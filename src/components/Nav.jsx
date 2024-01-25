@@ -1,1 +1,6 @@
-const x = "new"
+
+const Nav = ()=>{
+
+}
+
+export default Nav;
