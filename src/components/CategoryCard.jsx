@@ -1,4 +1,4 @@
-const CategoriesCard = () => {
-  return <div>CategoriesCard</div>;
+const CategoryCard = () => {
+  return <div>CategoryCard</div>;
 };
-export default CategoriesCard;
+export default CategoryCard;
