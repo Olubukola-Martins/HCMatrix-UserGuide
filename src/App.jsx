@@ -4,7 +4,9 @@ function App() {
   return (
     <>
       <div>
-        <p>User Guide Starter Template...</p>
+        <div className="font-body">
+          <p>User Guide Starter Template...</p>
+        </div>
       </div>
     </>
   );
