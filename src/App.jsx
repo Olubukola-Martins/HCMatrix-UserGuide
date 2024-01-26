@@ -1,12 +1,10 @@
-import styles from './sass/App.module.scss';
+import styles from "./sass/App.module.scss";
 
 function App() {
   return (
     <>
       <div>
-        <p>
-          User Guide Starter Template...
-        </p>
+        <p>User Guide Starter Template...</p>
       </div>
     </>
   );
