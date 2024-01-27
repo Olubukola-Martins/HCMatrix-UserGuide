@@ -5,8 +5,8 @@ const Home = () => {
   return (
     <>
       <HeroSection user="Seth" />
-      {/* <Outlet /> */}
-      {/* <Footer /> */}
+      <Outlet />
+      <Footer />
     </>
   );
 };

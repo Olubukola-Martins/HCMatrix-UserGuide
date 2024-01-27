@@ -1,8 +1,5 @@
-import Home from "./Pages/Home";
-import Page from "./components/HeroSection";
-
-import { Articles, Category } from "./Sections";
-
+import Home from "./pages/Home";
+import { Articles, Category } from "./sections";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {

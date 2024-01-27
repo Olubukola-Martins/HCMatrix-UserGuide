@@ -11,7 +11,9 @@ export default {
         primary: "#ffffff",
         customGray: {
           DEFAULT: "#3A3A3A",
+          semiDark: "rgba(58, 58, 58, 0.8)",
           light: "rgba(58, 58, 58, 0.7)",
+          lighter: "#ffffffb2",
         },
       },
       fontFamily: {
