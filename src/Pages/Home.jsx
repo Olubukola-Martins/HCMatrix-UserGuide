@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
-import { Hero, Footer } from "../components";
+import { Footer, HeroSection } from "../components";
 
 const Home = () => {
   return (
     <>
-      <Hero />
-      <Outlet />
-      <Footer />
+      <HeroSection user="Seth" />
+      {/* <Outlet /> */}
+      {/* <Footer /> */}
     </>
   );
 };

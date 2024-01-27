@@ -1,17 +1,15 @@
 import bulb from "../assets/bulb.svg";
 import search01 from "../assets/search-01.svg";
 import Nav from "./Nav";
-import Footer from "./Footer";
 import bg from "../assets/bg.svg";
 
-
-const Page = props => {
+const HeroSection = (props) => {
   return (
     <>
       <div className="component">
         <div className="hero">
           <div className="hero__container">
-            <Nav user={props.user}/>
+            <Nav user={props.user} />
 
             <div className="hero__container__content">
               <div className="hero__container__content__caption">
@@ -23,21 +21,17 @@ const Page = props => {
                 <input type="text" placeholder="Search for articles" />
                 <img src={search01} alt="search icon" />
               </div>
-
-              <p className="category-text">Categories</p>
             </div>
           </div>
 
           <div className="hero__background">
-            <img src={bg} alt="" /> 
-            <div className="overlay"/>
+            <img src={bg} alt="" />
+            <div className="overlay" />
           </div>
         </div>
-
-        <Footer />
       </div>
     </>
   );
 };
 
-export default Page;
+export default HeroSection;
