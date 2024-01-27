@@ -1,5 +1,14 @@
+import { Outlet } from "react-router-dom";
+import { Hero, Footer } from "../components";
+
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <>
+      <Hero />
+      <Outlet />
+      <Footer />
+    </>
+  );
 };
 
 export default Home;

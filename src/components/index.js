@@ -5,8 +5,9 @@ import GlassDesign from "./GlassDesign";
 import NavMenu from "./NavMenu";
 import SearchBar from "./SearchBar";
 import Nav from "./Nav";
+import Hero from "./Hero";
 
-export default {
+export {
   Container,
   NavMenu,
   GlassDesign,
@@ -14,4 +15,5 @@ export default {
   Footer,
   Nav,
   CategoryCard,
+  Hero,
 };
