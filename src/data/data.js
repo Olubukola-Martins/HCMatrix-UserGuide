@@ -3,7 +3,6 @@ import {
   gear,
   file,
   clipBoard,
-  lock,
   moneyBag,
   briefCase,
   alarmClock,
@@ -51,6 +50,10 @@ const categories = [
         title: "How to create an account",
         description: "learn about how to create an account",
       },
+      {
+        title: "How to create an account",
+        description: "learn about how to create an account",
+      },
     ],
     status: "active",
   },
@@ -73,6 +76,14 @@ const categories = [
         title: "How to create an account",
         description: "learn about how to create an account",
       },
+      {
+        title: "How to create an account",
+        description: "learn about how to create an account",
+      },
+      {
+        title: "How to create an account",
+        description: "learn about how to create an account",
+      },
     ],
     status: "active",
   },
@@ -83,6 +94,18 @@ const categories = [
       "Help your user learn more about the basic of your product and how they can get started",
     articlesNo: 7,
     articles: [
+      {
+        title: "How to create an account",
+        description: "learn about how to create an account",
+      },
+      {
+        title: "How to create an account",
+        description: "learn about how to create an account",
+      },
+      {
+        title: "How to create an account",
+        description: "learn about how to create an account",
+      },
       {
         title: "How to create an account",
         description: "learn about how to create an account",
@@ -127,6 +150,10 @@ const categories = [
       "Help your user learn more about the basic of your product and how they can get started",
     articlesNo: 7,
     articles: [
+      {
+        title: "How to create an account",
+        description: "learn about how to create an account",
+      },
       {
         title: "How to create an account",
         description: "learn about how to create an account",

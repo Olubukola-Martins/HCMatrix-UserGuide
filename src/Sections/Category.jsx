@@ -3,7 +3,7 @@ import { categories } from "../data/data";
 
 const Category = () => {
   return (
-    <Container style="mb-32 mt-[-8rem] z-50 relative">
+    <Container>
       <NavMenu />
       <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-5">
         {categories.map((category) => {

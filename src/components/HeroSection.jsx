@@ -2,7 +2,6 @@ import bulb from "../assets/bulb.svg";
 import search01 from "../assets/search-01.svg";
 import Nav from "./Nav";
 import bg from "../assets/bg.svg";
-import Container from "./Container";
 
 const HeroSection = (props) => {
   return (
