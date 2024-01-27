@@ -51,7 +51,7 @@
             border: 1 px;
             outline: none;
             border-radius: 10px;
-            padding-left: 40px;
+            padding-left: 75px;
             background: linear-gradient(
                 110.72deg,
                 rgba(255, 255, 255, 0.24) 1.21%,
@@ -75,7 +75,8 @@
             top: 50%;
             left: 10px;
             transform: translateY(-50%);
-            height: 16px;
+            height: 35px;
+            width: 35px;
           }
         }
 
@@ -110,7 +111,7 @@
           0,
           0,
           0,
-          0.5
+          0.65
         ); /* Black overlay with 50% opacity */
       }
     }
