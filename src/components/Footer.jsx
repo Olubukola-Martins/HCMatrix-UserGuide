@@ -1,14 +1,14 @@
-import Container from "./Container";
-import footerImg from "../assets/images/hcmatrix.png";
+import Logo from "../assets/Logo.svg";
 
 const Footer = () => {
   return (
-    <Container>
-      <div className="flex items-center border border-black justify-center ">
-        <p className="mr-[-18px] text-sm font-semibold">Powered by</p>
-        <img src={footerImg} alt="" />
+    <div className="footer">
+      <div className="footer__content">
+        <p>Powered by</p>
+        <img src={Logo} alt="" />
       </div>
-    </Container>
+    </div>
   );
 };
+
 export default Footer;

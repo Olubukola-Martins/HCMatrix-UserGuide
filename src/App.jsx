@@ -1,13 +1,16 @@
 import Home from "./Pages/Home";
-import styles from "./sass/App.module.scss";
+import Page from "./components/Page";
 
 import { Articles, Category } from "./Sections";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-function App() {
+const App = () => {
   return (
     <>
+      <div>
+        <Page user="Basil" />
+      </div>
       <Router>
         <Routes>
           <Route path="/" Component={Home}>
@@ -18,6 +21,6 @@ function App() {
       </Router>
     </>
   );
-}
+};
 
 export default App;
