@@ -9,7 +9,7 @@ const App = () => {
         <Routes>
           <Route path="/" Component={Home}>
             <Route path="" Component={Category}></Route>
-            <Route path=":category" Component={Articles}></Route>
+            <Route path=":articles" Component={Articles}></Route>
           </Route>
         </Routes>
       </Router>

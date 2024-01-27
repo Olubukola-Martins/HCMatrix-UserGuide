@@ -11,8 +11,10 @@ export default {
         primary: "#ffffff",
         customGray: {
           DEFAULT: "#3A3A3A",
+          dark: "rgba(58, 58, 58, 0.9)",
           semiDark: "rgba(58, 58, 58, 0.8)",
           light: "rgba(58, 58, 58, 0.7)",
+          lightest: "rgba(58, 58, 58, 0.7)",
           lighter: "#ffffffb2",
         },
       },
