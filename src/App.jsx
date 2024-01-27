@@ -1,13 +1,13 @@
-import styles from "./sass/App.module.scss";
+import Page from "./components/Page";
 
-function App() {
+const App = () => {
   return (
     <>
-      <div className="font-body">
-        <p>User Guide Starter Template...</p>
-      </div>
+    <div>
+      <Page user="Basil"/>
+    </div>
     </>
   );
-}
+};
 
 export default App;
