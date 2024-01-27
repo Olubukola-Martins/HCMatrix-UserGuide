@@ -6,6 +6,7 @@ import NavMenu from "./NavMenu";
 import SearchBar from "./SearchBar";
 import Nav from "./Nav";
 import Hero from "./Hero";
+import HeroSection from "./HeroSection";
 
 export {
   Container,
@@ -16,4 +17,5 @@ export {
   Nav,
   CategoryCard,
   Hero,
+  HeroSection,
 };

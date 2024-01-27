@@ -1,5 +1,5 @@
 import Home from "./Pages/Home";
-import Page from "./components/Page";
+import Page from "./components/HeroSection";
 
 import { Articles, Category } from "./Sections";
 
@@ -8,9 +8,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 const App = () => {
   return (
     <>
-      <div>
-        <Page user="Basil" />
-      </div>
       <Router>
         <Routes>
           <Route path="/" Component={Home}>

@@ -2,7 +2,7 @@ import { Container, NavMenu } from "../components";
 
 const Category = () => {
   return (
-    <Container style="mb-20 mt-[-20px] bg-blue-200 z-50 relative">
+    <Container style="mb-20  bg-blue-200 z-50 relative">
       <NavMenu />
       Category
     </Container>
