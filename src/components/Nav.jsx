@@ -1,6 +1,6 @@
-import Hand from "../assets/Hand.svg"
+import Hand from "../assets/Hand.svg";
 
-const Nav = props => {
+const Nav = (props) => {
   return (
     <nav className="navbar">
       <ul>
@@ -10,7 +10,9 @@ const Nav = props => {
             <img src={Hand} alt="Hand.svg" />
           </div>
         </li>
-        <li><a>HCMatrix Help Center</a></li>
+        <li>
+          <a>HCMatrix Help Center</a>
+        </li>
       </ul>
     </nav>
   );
