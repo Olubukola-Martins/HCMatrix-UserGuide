@@ -10,6 +10,8 @@ import HeroSection from "./HeroSection";
 import SectionContainer from "./SectionContainer";
 import Back from "./Back";
 import ArticleCard from "./ArticleCard";
+import ArticleContainer from "./ArticleContainer";
+import ReviewBox from "./ReviewBox";
 
 export {
   Container,
@@ -24,4 +26,6 @@ export {
   SectionContainer,
   Back,
   ArticleCard,
+  ArticleContainer,
+  ReviewBox,
 };

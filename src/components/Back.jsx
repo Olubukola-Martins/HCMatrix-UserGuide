@@ -1,7 +1,7 @@
 import back from "../assets/back.svg";
 import { Navigate, useNavigate } from "react-router-dom";
 
-const Back = ({ route }) => {
+const Back = ({ route, home }) => {
   const navigate = useNavigate();
 
   const onClickHandler = (routing) => {
@@ -14,7 +14,7 @@ const Back = ({ route }) => {
       onClick={() => onClickHandler(route)}
     >
       <img src={back} alt="" className="h-5" />
-      {route ? <p>Back</p> : <p>Back To Home</p>}
+      {home ? <p>Back To Home</p> : <p>Back </p>}
     </div>
   );
 };

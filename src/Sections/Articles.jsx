@@ -17,17 +17,19 @@ const Articles = () => {
 
   return (
     <Container>
-      <NavMenu />
+      <NavMenu articles={articles} />
       <SectionContainer>
         <header className="flex justify-between">
-          <Back />
+          <Back home={true} />
           <span className="text-sm text-customGray-semiDark">
             {article.length} Articles
           </span>
         </header>
         <div className="grid grid-cols-2 gap-5 mt-8">
           {article.map((item, index) => {
-            return <ArticleCard key={index} article={item} />;
+            return (
+              <ArticleCard key={index} article={item} category={articles} />
+            );
           })}
         </div>
       </SectionContainer>
