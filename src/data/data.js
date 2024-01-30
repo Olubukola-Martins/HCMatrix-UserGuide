@@ -8,6 +8,23 @@ import {
   alarmClock,
 } from "../assets/categories";
 
+import { pensive, relieved, smiling } from "../assets/review";
+
+const reviews = [
+  {
+    emoji: pensive,
+    name: "pensive",
+  },
+  {
+    emoji: relieved,
+    name: "relieved",
+  },
+  {
+    emoji: smiling,
+    name: "smiling",
+  },
+];
+
 const categories = [
   {
     svg: wavingHand,
@@ -215,4 +232,4 @@ const categories = [
   },
 ];
 
-export { categories };
+export { categories, reviews };

@@ -12,6 +12,7 @@ import Back from "./Back";
 import ArticleCard from "./ArticleCard";
 import ArticleContainer from "./ArticleContainer";
 import ReviewBox from "./ReviewBox";
+import EmojiComponent from "./EmojiComponent";
 
 export {
   Container,
@@ -28,4 +29,5 @@ export {
   ArticleCard,
   ArticleContainer,
   ReviewBox,
+  EmojiComponent,
 };

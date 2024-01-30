@@ -14,7 +14,6 @@ const ArticleContainer = () => {
       <SectionContainer>
         <Back route={articles} />
         <Outlet />
-        <div>this is such a div and this</div>
         <ReviewBox />
       </SectionContainer>
     </Container>
