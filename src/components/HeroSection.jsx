@@ -3,14 +3,14 @@ import search01 from "../assets/search-01.svg";
 import Nav from "./Nav";
 import bg from "../assets/bg.svg";
 
-const HeroSection = (props) => {
+const HeroSection = ({user}) => {
   return (
     <>
       <div></div>
       <div className="component">
         <div className="hero">
           <div className="hero__container">
-            <Nav user={props.user} />
+            <Nav user={user} />
 
             <div className="hero__container__content">
               <div className="hero__container__content__caption">
