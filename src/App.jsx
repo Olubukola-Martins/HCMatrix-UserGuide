@@ -2,7 +2,7 @@ import Home from "./pages/Home";
 import { Articles, Category } from "./sections";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ArticleContainer } from "./components";
-import { Dummy, Employee } from "./articles";
+import { Employee } from "./articles";
 
 const App = () => {
   return (

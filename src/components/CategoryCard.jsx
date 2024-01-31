@@ -11,7 +11,9 @@ const placeHolder = {
 };
 
 const CategoryCard = ({ category }) => {
-  const { svg, title, description, articles, status } = category;
+  const { svg, title, description, articles, status, categories } = category;
+
+  const array = articles ? articles : categories;
 
   const icon = svg;
 
