@@ -11,9 +11,17 @@ const placeHolder = {
 };
 
 const CategoryCard = ({ category }) => {
-  const { svg, title, description, articles, status, categories } = category;
+  const {
+    svg,
+    pageTitle,
+    articles,
+    status,
+    pageDescription,
+    categories,
+    articleNo,
+  } = category;
 
-  const array = articles ? articles : categories;
+  // const array = articles ? articles : categories;
 
   const icon = svg;
 
@@ -21,14 +29,16 @@ const CategoryCard = ({ category }) => {
     return (
       <div className="rounded-lg  bg-white px-4 py-6 customShadow box-border h-[16.5rem] flex flex-col items-center">
         <img src={icon} className="h-8 mb-3" alt="" />
-        <Link to={`${title}`}>
-          <h3 className="text-lg font-bold mb-3">{title}</h3>
+
+        <Link to={`${articles ? `${pageTitle}` : `/categories/${pageTitle}`}`}>
+          <h3 className="text-lg font-bold mb-3">{pageTitle}</h3>
         </Link>
+
         <p className="text-center text-customGray-light font-semibold mb-4">
-          {description}
+          {pageDescription}
         </p>
         <span className="text-sm text-customGray-semiDark">
-          {articles?.length} Articles
+          {articleNo} Articles
         </span>
       </div>
     );

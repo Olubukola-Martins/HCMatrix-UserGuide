@@ -1,14 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
-const ArticleCard = ({ article, category }) => {
-  const { title, description } = article;
+const Card = ({ data, categoryId, name, description }) => {
   const navigate = useNavigate();
 
-  const link = `/${category}/${title}`;
-  console.log(link);
-
   const onClickHandler = () => {
-    navigate(`/${category}/${title}`);
+    categoryId && name && navigate(`/${categoryId}/${name}`);
   };
 
   return (
@@ -17,7 +13,7 @@ const ArticleCard = ({ article, category }) => {
       onClick={() => onClickHandler()}
     >
       <h3 className="text-lg font-semibold text-customGray-dark transition-all duration-300 ease-in-out group-hover:text-white">
-        {title}?
+        {name}?
       </h3>
       <p className="text-[12px] transition-all duration-300 ease-in-out text-customGray-light group-hover:text-white">
         {description}
@@ -25,4 +21,4 @@ const ArticleCard = ({ article, category }) => {
     </div>
   );
 };
-export default ArticleCard;
+export default Card;

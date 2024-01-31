@@ -94,31 +94,44 @@ import {
 // };
 
 const categoryData = [
-  {
-    svg: wavingHand,
-    pageTitle: "Sign up and sign in",
-    pageDescription:
-      "Help your user learn more about the basic of your product and how they can get started",
-    articleNo: 3,
-    articles: [
-      {
-        title: "How to create an account",
-        description: "learn about how to create an account",
-      },
-      {
-        title: "How to create an account",
-        description: "learn about how to create an account",
-      },
-      {
-        title: "How to create an account",
-        description: "learn about how to create an account",
-      },
-    ],
-    status: "active",
-  },
+  // {
+  //   svg: wavingHand,
+  //   pageTitle: "Sign up and sign in",
+  //   pageDescription:
+  //     "Help your user learn more about the basic of your product and how they can get started",
+  //   articleNo: 3,
+  //   categories: [
+  //     {
+  //       categoryName: "Sign up and sign in",
+  //       categoryDescription: "Learn about how to create an account",
+  //       subCategories: [
+  //         {
+  //           subCategoryName: "How to Configure Company settings",
+  //           subCategoryDescription: "Learn how to set up your Company Settings",
+  //           article: [],
+  //         },
+  //       ],
+  //     },
+  //   ],
+  //   articles: [
+  //     {
+  //       title: "How to create an account",
+  //       description: "learn about how to create an account",
+  //     },
+  //     {
+  //       title: "How to create an account",
+  //       description: "learn about how to create an account",
+  //     },
+  //     {
+  //       title: "How to create an account",
+  //       description: "learn about how to create an account",
+  //     },
+  //   ],
+  //   status: "active",
+  // },
   {
     svg: gear,
-    PageTitle: "Settings",
+    pageTitle: "Settings",
     pageDescription:
       "Help your user learn more about the basic of your product and how they can get started",
     articleNo: 10,
