@@ -32,7 +32,6 @@ const categories = [
     description:
       "Help your user learn more about the basic of your product and how they can get started",
     articlesNo: 7,
-
     articles: [
       {
         title: "How to create an account",
