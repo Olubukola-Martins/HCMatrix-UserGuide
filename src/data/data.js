@@ -233,3 +233,5 @@ const categories = [
 ];
 
 export { categories, reviews };
+
+//
