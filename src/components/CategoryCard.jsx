@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { wavingHand, lock } from "../assets/categories";
 import { Articles } from "../sections";
+import { useNavigate } from "react-router-dom";
 
 const placeHolder = {
   svg: wavingHand,
@@ -11,34 +12,40 @@ const placeHolder = {
 };
 
 const CategoryCard = ({ category }) => {
-  const {
-    svg,
-    pageTitle,
-    articles,
-    status,
-    pageDescription,
-    categories,
-    articleNo,
-  } = category;
+  const navigate = useNavigate();
+
+  const { svg, title, description, articlesNo, status, subCategories } =
+    category;
 
   // const array = articles ? articles : categories;
 
-  const icon = svg;
+  // const icon = svg;
+
+  const navigating = (sub) => {
+    if (!sub) {
+      navigate(`${title}/articles`);
+      return;
+    }
+    navigate(`${title}`);
+  };
 
   if (status === "active") {
     return (
       <div className="rounded-lg  bg-white px-4 py-6 customShadow box-border h-[16.5rem] flex flex-col items-center">
-        <img src={icon} className="h-8 mb-3" alt="" />
+        <img src={svg} className="h-8 mb-3" alt="" />
 
-        <Link to={`${articles ? `${pageTitle}` : `/categories/${pageTitle}`}`}>
-          <h3 className="text-lg font-bold mb-3">{pageTitle}</h3>
-        </Link>
+        <h3
+          className="text-lg font-bold mb-3"
+          onClick={() => navigating(subCategories)}
+        >
+          {title}
+        </h3>
 
         <p className="text-center text-customGray-light font-semibold mb-4">
-          {pageDescription}
+          {description}
         </p>
         <span className="text-sm text-customGray-semiDark">
-          {articleNo} Articles
+          {articlesNo} Articles
         </span>
       </div>
     );

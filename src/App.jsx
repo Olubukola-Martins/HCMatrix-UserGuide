@@ -17,7 +17,7 @@ const App = () => {
             <Route path=":id" Component={SubCategories} />
 
             {/* This is for the Articles */}
-            <Route path=":id/:articles" Component={Articles} />
+            <Route path=":id/:category" Component={Articles} />
 
             {/* This is for the content of the article */}
             <Route path=":id/:articles/:article" Component={ArticleContainer}>
