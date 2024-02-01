@@ -10,8 +10,10 @@ const placeHolder = {
   articlesNo: 7,
 };
 
-const CategoryCard = ({ category }) => {
-  const { svg, title, description, articles, status } = category;
+const CategoryCard = ({ svg, title, description, articles, status }) => {
+  console.log(title);
+
+  // const { svg, title, description, articles, status } = data;
 
   const icon = svg;
 
