@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { wavingHand, lock } from "../assets/categories";
-import { Articles } from "../section";
+import { Articles } from "../sections";
 
 const placeHolder = {
   svg: wavingHand,
