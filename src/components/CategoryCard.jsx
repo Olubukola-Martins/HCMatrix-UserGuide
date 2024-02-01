@@ -15,8 +15,15 @@ const CategoryCard = ({ category }) => {
   const navigate = useNavigate();
   const base = "articles";
 
-  const { svg, title, description, articlesNo, status, subCategories } =
-    category;
+  const {
+    svg,
+    title,
+    description,
+    articlesNo,
+    status,
+    subCategories,
+    articles,
+  } = category;
 
   const navigating = (sub) => {
     if (!sub) {
@@ -42,7 +49,7 @@ const CategoryCard = ({ category }) => {
           {description}
         </p>
         <span className="text-sm text-customGray-semiDark">
-          {articlesNo} Articles
+          {articles.length} Articles
         </span>
       </div>
     );
