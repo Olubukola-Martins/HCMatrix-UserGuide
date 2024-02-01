@@ -1,4 +1,4 @@
-import Home from "./Pages/Home";
+import Home from "./pages/Home";
 import { Articles, Category } from "./sections";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ArticleContainer } from "./components";
