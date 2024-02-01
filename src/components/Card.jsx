@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
-const Card = ({ data, categoryId, name, description }) => {
+const Card = ({ categoryId, title, description }) => {
   const navigate = useNavigate();
 
   const onClickHandler = () => {
-    categoryId && name && navigate(`/${categoryId}/${name}`);
+    navigate(`/${categoryId}/${title}`);
   };
 
   return (
@@ -13,7 +13,7 @@ const Card = ({ data, categoryId, name, description }) => {
       onClick={() => onClickHandler()}
     >
       <h3 className="text-lg font-semibold text-customGray-dark transition-all duration-300 ease-in-out group-hover:text-white">
-        {name}?
+        {title} ?
       </h3>
       <p className="text-[12px] transition-all duration-300 ease-in-out text-customGray-light group-hover:text-white">
         {description}

@@ -17,10 +17,6 @@ const CategoryCard = ({ category }) => {
   const { svg, title, description, articlesNo, status, subCategories } =
     category;
 
-  // const array = articles ? articles : categories;
-
-  // const icon = svg;
-
   const navigating = (sub) => {
     if (!sub) {
       navigate(`${title}/articles`);

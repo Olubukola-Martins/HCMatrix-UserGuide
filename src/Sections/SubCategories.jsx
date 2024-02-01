@@ -20,19 +20,6 @@ const SubCategories = () => {
 
   const { subCategories } = data;
 
-  console.log(subCategories);
-
-  if (!subCategories) {
-    return navigate(`/${id}/${articleRoute}`);
-  }
-
-  useLayoutEffect(() => {
-    if (!subCategories) {
-      console.log("worked fine");
-      navigate(`/${id}/${articleRoute}`);
-    }
-  }, [subCategories, navigate, id, articleRoute]);
-
   const articles = [];
   return (
     <Container>
@@ -49,17 +36,7 @@ const SubCategories = () => {
         </header>
         <div className="grid grid-cols-2 gap-5 mt-8">
           {subCategories.map((item, index) => {
-            const { title, description } = item;
-            return (
-              <div key={index}>title</div>
-              // <Card
-              //   key={index}
-              //   data={item}
-              //   categoryId={id}
-              //   name={name}
-              //   description={description}
-              // />
-            );
+            return <Card key={index} categoryId={id} {...item} />;
           })}
         </div>
       </SectionContainer>
