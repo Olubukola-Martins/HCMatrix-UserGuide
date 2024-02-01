@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
+///this is the way
+
 const ArticleCard = ({ article, category }) => {
   const { title, description } = article;
   const navigate = useNavigate();
