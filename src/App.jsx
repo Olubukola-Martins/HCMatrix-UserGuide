@@ -1,5 +1,5 @@
 import Home from "./page/Home";
-import { Articles, Category } from "./sections";
+import { Articles, Category } from "./section";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ArticleContainer } from "./components";
 import { Employee } from "./articles";
