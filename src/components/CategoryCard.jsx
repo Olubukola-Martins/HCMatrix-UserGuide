@@ -13,13 +13,14 @@ const placeHolder = {
 
 const CategoryCard = ({ category }) => {
   const navigate = useNavigate();
+  const base = "articles";
 
   const { svg, title, description, articlesNo, status, subCategories } =
     category;
 
   const navigating = (sub) => {
     if (!sub) {
-      navigate(`${title}/articles`);
+      navigate(`${title}/${base}`);
       return;
     }
     navigate(`${title}`);

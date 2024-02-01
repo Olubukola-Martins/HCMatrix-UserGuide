@@ -20,22 +20,18 @@ const categories = [
       {
         title: "Organization Settings Article",
         description: "learn about how to create an account",
-        subCategories: "Organization Settings",
       },
       {
         title: "Performance Settings Article",
         description: "learn about how to create an account",
-        subCategories: "Performance Settings",
       },
       {
         title: "General Settings Article",
         description: "learn about how to create an account",
-        subCategories: "General Settings",
       },
       {
         title: "Learning & Development Settings",
         description: "learn about how to create an account",
-        subCategories: "Learning & Development Settings",
       },
     ],
   },
@@ -97,6 +93,11 @@ const categories = [
         title: "Performance Settings Article",
         description: "learn about how to create an account",
         subCategories: "Performance Settings",
+      },
+      {
+        title: "General Settings Article one",
+        description: "learn about how to create an account",
+        subCategories: "General Settings",
       },
       {
         title: "General Settings Article",
