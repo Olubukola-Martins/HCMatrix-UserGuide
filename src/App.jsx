@@ -14,13 +14,16 @@ const App = () => {
             <Route path="" Component={Category} />
 
             {/* This is ths subcategories */}
-            <Route path=":id" Component={SubCategories} />
+            <Route path=":category" Component={SubCategories} />
 
             {/* This is for the Articles */}
-            <Route path=":id/:articles" Component={Articles} />
+            <Route path=":category/:subCategory" Component={Articles} />
 
             {/* This is for the content of the article */}
-            <Route path=":id/:articles/:article" Component={ArticleContainer}>
+            <Route
+              path=":category/:subCategory/:articles"
+              Component={ArticleContainer}
+            >
               <Route path="" Component={Employee}></Route>
             </Route>
           </Route>

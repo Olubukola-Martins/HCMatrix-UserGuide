@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 // import { categoryData } from "../data/data3";
 
 const Articles = () => {
-  const { id, articles: data } = useParams();
+  const { category: id, subCategory: sub } = useParams();
 
   const [articles, setArticles] = useState([]);
 
@@ -22,10 +22,10 @@ const Articles = () => {
 
     if (category) {
       const finder = category.articles.filter((article) => {
-        if (data === "articles") {
+        if (sub === "articles") {
           return true;
         } else {
-          return article.subCategories === data;
+          return article.subCategories === sub;
         }
       });
 
@@ -35,25 +35,32 @@ const Articles = () => {
 
   useEffect(() => {
     findArticles();
-  }, [id, data]);
+  }, [id, sub]);
 
-  console.log(articles);
+  console.log(sub);
 
   return (
     <Container>
       <NavMenu />
       <SectionContainer>
         <header className="flex justify-between">
-          <Back home={true} />
+          <Back
+            home={sub === "articles" ? true : false}
+            subCategory={sub}
+            category={id}
+          />
           <span className="text-sm text-customGray-semiDark">
             {articles?.length} Articles
           </span>
         </header>
         <div className="grid grid-cols-2 gap-5 mt-8">
           {articles?.map((article, index) => {
+            console.log(article);
             return (
               <Card
                 key={index}
+                category={id}
+                subCategory={sub}
                 title={article.title}
                 description={article.description}
               />

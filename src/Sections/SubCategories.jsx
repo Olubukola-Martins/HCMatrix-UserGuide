@@ -7,12 +7,12 @@ import {
 } from "../components";
 import { useParams, useNavigate } from "react-router-dom";
 import { categories } from "../data/new";
-import { useEffect, useState, useLayoutEffect } from "react";
+import { useEffect, useState } from "react";
 
 const SubCategories = () => {
-  const { id } = useParams();
+  const { category: id } = useParams();
   const navigate = useNavigate();
-  const [articleRoute, setArticleRoute] = useState("article");
+  // const [articleRoute, setArticleRoute] = useState("article");
 
   const data = categories.find((category) => {
     return category.title === id;
@@ -23,7 +23,7 @@ const SubCategories = () => {
   const articles = [];
   return (
     <Container>
-      <NavMenu articles={articles} />
+      <NavMenu />
       <SectionContainer>
         <header className="flex justify-between">
           <Back home={true} />
@@ -36,7 +36,7 @@ const SubCategories = () => {
         </header>
         <div className="grid grid-cols-2 gap-5 mt-8">
           {subCategories.map((item, index) => {
-            return <Card key={index} categoryId={id} {...item} />;
+            return <Card key={index} category={id} {...item} />;
           })}
         </div>
       </SectionContainer>
