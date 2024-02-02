@@ -8,7 +8,7 @@ const NavMenu = ({ category, subCategory, articles }) => {
       {category && (
         <div className="flex gap-3">
           <img src={greater} alt="" className="ml-3" />
-          <Link>
+          <Link to={`/${category}`}>
             <span className="capitalize">{category}</span>
           </Link>
         </div>
@@ -17,7 +17,7 @@ const NavMenu = ({ category, subCategory, articles }) => {
       {subCategory && (
         <div className="flex gap-3">
           <img src={greater} alt="" className="ml-3" />
-          <Link>
+          <Link to={`/${category}/${subCategory}`}>
             <span className="capitalize">{subCategory}</span>
           </Link>
         </div>

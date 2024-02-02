@@ -1,6 +1,6 @@
 import Container from "./Container";
 import HeroImg from "../assets/images/heroimg.png";
-import HuggingFace from "../assets/HuggingFace.svg";
+import Hand from "../assets/Hand.svg";
 import Idea from "../assets/bulb.svg";
 import GlassDesign from "./GlassDesign";
 
@@ -12,11 +12,11 @@ const Hero = () => {
     >
       <div className="absolute inset-0 bg-black opacity-70"></div>
 
-      <Container margin="mb-0 py-10">
+      <Container margin="mb-0 py-7">
         <nav className="flex justify-between items-center text-md md:text-[1.15rem] mb-3">
           <div className="flex items-center">
             <span>Hello User</span>
-            <img src={HuggingFace} alt="" className="md:h-[25px] h-4  ml-2" />
+            <img src={Hand} alt="" className="md:h-[25px] h-4  ml-2" />
           </div>
           <p className="text-white">HcMatrix Help Center</p>
         </nav>

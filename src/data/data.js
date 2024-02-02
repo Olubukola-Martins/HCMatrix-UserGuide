@@ -1,3 +1,4 @@
+// import { SubCategories } from "../sections";
 import {
   wavingHand,
   gear,
@@ -8,228 +9,116 @@ import {
   alarmClock,
 } from "../assets/categories";
 
-import { pensive, relieved, smiling } from "../assets/review";
-
-const reviews = [
-  {
-    emoji: pensive,
-    name: "pensive",
-  },
-  {
-    emoji: relieved,
-    name: "relieved",
-  },
-  {
-    emoji: smiling,
-    name: "smiling",
-  },
-];
-
 const categories = [
   {
-    svg: wavingHand,
-    title: "Sign up and sign in",
-    description:
-      "Help your user learn more about the basic of your product and how they can get started",
-    articlesNo: 7,
-    articles: [
-      {
-        title: "How to create an account",
-        description: "learn about how to create an account",
-      },
-      {
-        title: "How to create an account",
-        description: "learn about how to create an account",
-      },
-      {
-        title: "How to create an account",
-        description: "learn about how to create an account",
-      },
-    ],
-    status: "active",
-  },
-  {
-    svg: clipBoard,
-    title: "Get Started",
-    description:
-      "Help your user learn more about the basic of your product and how they can get started",
-    articlesNo: 7,
-    articles: [
-      {
-        title: "How to create an account",
-        description: "learn about how to create an account",
-      },
-      {
-        title: "How to create an account",
-        description: "learn about how to create an account",
-      },
-      {
-        title: "How to create an account",
-        description: "learn about how to create an account",
-      },
-      {
-        title: "How to create an account",
-        description: "learn about how to create an account",
-      },
-    ],
-    status: "active",
-  },
-  {
     svg: gear,
-    title: "Settings",
+    title: "Testing",
     description:
       "Help your user learn more about the basic of your product and how they can get started",
-    articlesNo: 7,
+    status: "active",
     articles: [
       {
-        title: "How to create an account",
+        title: "Organization Settings Article",
         description: "learn about how to create an account",
       },
       {
-        title: "How to create an account",
+        title: "Performance Settings Article",
         description: "learn about how to create an account",
       },
       {
-        title: "How to create an account",
+        title: "General Settings Article",
         description: "learn about how to create an account",
       },
       {
-        title: "How to create an account",
-        description: "learn about how to create an account",
-      },
-      {
-        title: "How to create an account",
+        title: "Learning & Development Settings",
         description: "learn about how to create an account",
       },
     ],
-    status: "active",
   },
   {
-    svg: briefCase,
-    title: "Self-Service",
+    svg: wavingHand,
+    title: "Perfect",
     description:
       "Help your user learn more about the basic of your product and how they can get started",
-    articlesNo: 7,
-    articles: [
+    status: "active",
+    subCategories: [
       {
-        title: "How to create an account",
-        description: "learn about how to create an account",
+        title: "General Settings",
+        description: "Company - Holiday - Projects",
       },
       {
-        title: "How to create an account",
-        description: "learn about how to create an account",
+        title: "Organization Settings",
+        description: "Company - Holiday - Projects",
       },
       {
-        title: "How to create an account",
-        description: "learn about how to create an account",
+        title: "User Access Control Settings",
+        description: "Company - Holiday - Projects",
       },
       {
-        title: "How to create an account",
-        description: "learn about how to create an account",
+        title: "Automation Settings",
+        description: "Company - Holiday - Projects",
       },
       {
-        title: "How to create an account",
-        description: "learn about how to create an account",
+        title: "Policies Settings",
+        description: "Company - Holiday - Projects",
       },
       {
-        title: "How to create an account",
-        description: "learn about how to create an account",
+        title: "Self Service Settings",
+        description: "Company - Holiday - Projects",
+      },
+      {
+        title: "Payroll Setting",
+        description: "Company - Holiday - Projects",
+      },
+      {
+        title: "Time & Attendance Settings",
+        description: "Company - Holiday - Projects",
+      },
+      {
+        title: "Performance Settings",
+        description: "Company - Holiday - Projects",
+      },
+      {
+        title: "Learning & Development Settings",
+        description: "Company - Holiday - Projects",
       },
     ],
-    status: "active",
-  },
-  {
-    svg: file,
-    title: "Payroll",
-    description:
-      "Help your user learn more about the basic of your product and how they can get started",
-    articlesNo: 7,
     articles: [
       {
-        title: "How to create an account",
+        title: "Organization Settings Article",
         description: "learn about how to create an account",
+        subCategories: "Organization Settings",
       },
       {
-        title: "How to create an account",
+        title: "Performance Settings Article",
         description: "learn about how to create an account",
+        subCategories: "Performance Settings",
       },
       {
-        title: "How to create an account",
+        title: "General Settings Article one",
         description: "learn about how to create an account",
+        subCategories: "General Settings",
+      },
+      {
+        title: "General Settings Article",
+        description: "learn about how to create an account",
+        subCategories: "General Settings",
+      },
+      {
+        title: "Learning & Development Settings",
+        description: "learn about how to create an account",
+        subCategories: "Learning & Development Settings",
       },
     ],
-    status: "active",
   },
-  {
-    svg: alarmClock,
-    title: "Time & Attendance",
-    description:
-      "Help your user learn more about the basic of your product and how they can get started",
-    articlesNo: 7,
-    articles: [
-      {
-        title: "How to create an account",
-        description: "learn about how to create an account",
-      },
-      {
-        title: "How to create an account",
-        description: "learn about how to create an account",
-      },
-      {
-        title: "How to create an account",
-        description: "learn about how to create an account",
-      },
-      {
-        title: "How to create an account",
-        description: "learn about how to create an account",
-      },
-    ],
-    status: "active",
-  },
-
-  {
-    svg: moneyBag,
-    title: "Billing & Subscription",
-    description:
-      "Help your user learn more about the basic of your product and how they can get started",
-    articlesNo: 7,
-    articles: [
-      {
-        title: "How to create an account",
-        description: "learn about how to create an account",
-      },
-      {
-        title: "How to create an account",
-        description: "learn about how to create an account",
-      },
-      {
-        title: "How to create an account",
-        description: "learn about how to create an account",
-      },
-    ],
-    status: "active",
-  },
-  {
-    svg: "",
-    description: "",
-    articlesNo: 0,
-    articles: [],
-    status: "coming soon",
-  },
-  {
-    svg: "",
-    description: "",
-    articlesNo: 0,
-    articles: [],
-    status: "coming soon",
-  },
-  {
-    svg: "",
-    description: "",
-    articlesNo: 0,
-    articles: [],
-    status: "coming soon",
-  },
+  { status: "" },
 ];
 
-export { categories, reviews };
+export { categories };
+
+// Category -- subcategory -- articles -- content
+// category -- {name,title , description , article: [name, description, subcategories]}
+// so the logic would be to map the articles and find the categories
+// if subcategories is null , then route the article names to the articles
+// if it exist pair all the
+// article -- {name, content ,category, subcategory}

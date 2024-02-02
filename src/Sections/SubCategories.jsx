@@ -6,13 +6,11 @@ import {
   Card,
 } from "../components";
 import { useParams, useNavigate } from "react-router-dom";
-import { categories } from "../data/new";
-import { useEffect, useState } from "react";
+import { categories } from "../data/data";
 
 const SubCategories = () => {
   const { category: id } = useParams();
   const navigate = useNavigate();
-  // const [articleRoute, setArticleRoute] = useState("article");
 
   const data = categories.find((category) => {
     return category.title === id;

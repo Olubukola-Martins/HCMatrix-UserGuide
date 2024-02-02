@@ -6,11 +6,8 @@ import {
   Card,
 } from "../components";
 import { useParams } from "react-router-dom";
-import { categories } from "../data/new";
+import { categories } from "../data/data";
 import { useEffect, useState } from "react";
-
-// import { categories } from "../data/data";
-// import { categoryData } from "../data/data3";
 
 const Articles = () => {
   const { category: id, subCategory: sub } = useParams();
