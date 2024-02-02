@@ -23,7 +23,7 @@ const SubCategories = () => {
   const articles = [];
   return (
     <Container>
-      <NavMenu />
+      <NavMenu category={id} />
       <SectionContainer>
         <header className="flex justify-between">
           <Back home={true} />

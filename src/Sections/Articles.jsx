@@ -41,7 +41,7 @@ const Articles = () => {
 
   return (
     <Container>
-      <NavMenu />
+      <NavMenu category={id} subCategory={sub} />
       <SectionContainer>
         <header className="flex justify-between">
           <Back

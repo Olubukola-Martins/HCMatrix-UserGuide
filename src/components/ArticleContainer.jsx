@@ -11,7 +11,11 @@ const ArticleContainer = () => {
 
   return (
     <Container>
-      {/* <NavMenu article={article} articles={articles} /> */}
+      <NavMenu
+        category={category}
+        subCategory={subCategory}
+        articles={articles}
+      />
       <SectionContainer>
         <Back
           category={category}
