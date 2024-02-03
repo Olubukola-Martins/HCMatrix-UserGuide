@@ -27,10 +27,10 @@ const CategoryCard = ({ category }) => {
 
   const navigating = (sub) => {
     if (!sub) {
-      navigate(`${title}/${base}`);
+      navigate(`/articles/${title}`);
       return;
     }
-    navigate(`${title}`);
+    navigate(`/category/${title}`);
   };
 
   if (status === "active") {

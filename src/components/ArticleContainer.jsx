@@ -6,20 +6,20 @@ import { Outlet, useParams } from "react-router-dom";
 import ReviewBox from "./ReviewBox";
 
 const ArticleContainer = () => {
-  const { category, subCategory, articles } = useParams();
-  console.log(category, subCategory, articles);
+  const { category, subcategory, nestedCategory, articles } = useParams();
 
   return (
     <Container>
       <NavMenu
         category={category}
-        subCategory={subCategory}
+        subcategory={subcategory}
+        nestedCategory={nestedCategory}
         articles={articles}
       />
       <SectionContainer>
         <Back
           category={category}
-          subCategory={subCategory}
+          subcategory={subcategory}
           articles={articles}
         />
         <Outlet />

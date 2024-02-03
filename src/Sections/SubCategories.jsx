@@ -18,7 +18,6 @@ const SubCategories = () => {
 
   const { subCategories } = data;
 
-  const articles = [];
   return (
     <Container>
       <NavMenu category={id} />
@@ -34,7 +33,15 @@ const SubCategories = () => {
         </header>
         <div className="grid grid-cols-2 gap-5 mt-8">
           {subCategories.map((item, index) => {
-            return <Card key={index} category={id} {...item} />;
+            return (
+              <Card
+                key={index}
+                mainCategory={id}
+                subcategory={item.title}
+                description={item.description}
+                nestedCategory={item.category}
+              />
+            );
           })}
         </div>
       </SectionContainer>

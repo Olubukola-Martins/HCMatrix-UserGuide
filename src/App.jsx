@@ -1,5 +1,10 @@
 import Home from "./pages/Home";
-import { Articles, Category, SubCategories } from "./sections";
+import {
+  Articles,
+  Category,
+  NestedCategories,
+  SubCategories,
+} from "./sections";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ArticleContainer } from "./components";
 import { Employee } from "./articles";
@@ -10,18 +15,55 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" Component={Home}>
-            {/* This is my main category card section  */}
+            {/* ROUTE TO THE CATEGORY  */}
             <Route path="" Component={Category} />
 
-            {/* This is ths subcategories */}
-            <Route path=":category" Component={SubCategories} />
+            {/* ROUTE TO THE SUBCATEGORY */}
+            {/* This is the subcategories */}
+            <Route path="/category/:category" Component={SubCategories} />
 
-            {/* This is for the Articles */}
-            <Route path=":category/:subCategory" Component={Articles} />
-
-            {/* This is for the content of the article */}
+            {/* ROUTE TO THE NESTED CATEGORY */}
             <Route
-              path=":category/:subCategory/:articles"
+              path="/category/:category/:subcategory/nested"
+              Component={NestedCategories}
+            />
+
+            {/* ROUTES TO THE ARTICLES */}
+            {/* when there is a subcategory*/}
+            <Route
+              path="/category/:category/:subcategory"
+              Component={Articles}
+            />
+
+            {/* when there are no subcategories */}
+            <Route path="/articles/:category" Component={Articles} />
+
+            {/* when there are nested categories */}
+            <Route
+              path="/category/:category/:subcategory/nested/:nestedCategory"
+              Component={Articles}
+            />
+
+            {/* ROUTES TO THE ARTICLES */}
+
+            <Route
+              path="/category/:category/:subcategory/:articles"
+              Component={ArticleContainer}
+            >
+              <Route path="" Component={Employee}></Route>
+            </Route>
+
+            {/* Route to the Article with no subcategories */}
+            <Route
+              path="/articles/:category/:articles"
+              Component={ArticleContainer}
+            >
+              <Route path="" Component={Employee}></Route>
+            </Route>
+
+            {/* Route to the article when there is a subCategory */}
+            <Route
+              path="/category/:category/:subcategory/nested/:nestedCategory/:articles"
               Component={ArticleContainer}
             >
               <Route path="" Component={Employee}></Route>

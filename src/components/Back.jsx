@@ -4,7 +4,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 const Back = ({ route, home, category, subCategory, articles }) => {
   const navigate = useNavigate();
 
-  console.log(category, subCategory, articles);
+  // console.log(category, subCategory, articles);
 
   const onClickHandler = () => {
     category && subCategory && navigate(`/${category}`);
