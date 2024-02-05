@@ -8,48 +8,79 @@ const NavMenu = ({
   articles,
   article,
 }) => {
+  console.log(category, subcategory, nestedCategory, articles, article);
   return (
     <div className="mb-10 text-customGray-lighter flex">
-      <Link to="/">All Categories</Link>
-      {category && (
+      <Link to="/">
+        <span className="hover:border-b-2 hover:pb-2 transition-all duration-100">
+          All Categories
+        </span>
+      </Link>
+
+      {category && !articles && (
         <div className="flex gap-3">
           <img src={greater} alt="" className="ml-3" />
-          <Link to={`/${category}`}>
-            <span className="capitalize">{category}</span>
+          <Link to={`/category/${category}`}>
+            <span className="capitalize hover:border-b-2 hover:pb-2 transition-all duration-100">
+              {category}
+            </span>
+          </Link>
+        </div>
+      )}
+
+      {category && articles && (
+        <div className="flex gap-3">
+          <img src={greater} alt="" className="ml-3" />
+          <Link to={`/articles/${category}`}>
+            <span className="capitalize hover:border-b-2 hover:pb-2 transition-all duration-100">
+              {category}
+            </span>
           </Link>
         </div>
       )}
 
       {subcategory && (
         <div className="flex gap-3">
-          <img src={greater} alt="" className="ml-3" />
-          <Link to={`/${category}/${subcategory}`}>
-            <span className="capitalize">{subcategory}</span>
+          <img src={greater} alt="" className="ml-3 " />
+          <Link to={`/category/${category}/${subcategory}`}>
+            <span className="capitalize hover:border-b-2 hover:pb-2 transition-all duration-100">
+              {subcategory}
+            </span>
           </Link>
         </div>
       )}
 
       {nestedCategory && (
         <div className="flex gap-3">
-          <img src={greater} alt="" className="ml-3" />
-          <Link to={`/${category}/${subcategory}`}>
-            <span className="capitalize">{nestedCategory}</span>
+          <img src={greater} alt="" className="ml-3 " />
+          <Link
+            to={`/category/${category}/${subcategory}/nested/${nestedCategory}`}
+          >
+            <span className="capitalize hover:border-b-2 hover:pb-2 transition-all duration-100">
+              {nestedCategory}
+            </span>
           </Link>
         </div>
       )}
 
       {articles && (
         <div className="flex gap-3">
-          <img src={greater} alt="" className="ml-3" />
+          <img src={greater} alt="" className="ml-3 " />
           <Link>
-            <span className="capitalize">{articles}</span>
+            <span className="capitalize hover:border-b-2 hover:pb-2 transition-all duration-100">
+              {articles}
+            </span>
           </Link>
         </div>
       )}
 
       {article && (
         <div className="flex gap-3">
-          <img src={greater} alt="" className="ml-3" />
+          <img
+            src={greater}
+            alt=""
+            className="ml-3 hover:border-b-2 hover:pb-2 transition-all duration-100"
+          />
           <Link>
             <span className="capitalize">{article}</span>
           </Link>
