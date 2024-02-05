@@ -15,8 +15,8 @@ const NestedCategories = () => {
 
   const findArticles = () => {
     const category = categories.find((category) => category.title === id);
-    const nestedCategory = category.subCategories.find((item) => {
-      if (item.title === sub) {
+    const nestedCategory = category.subcategories.find((item) => {
+      if (item.title.toLowerCase() === sub.toLowerCase()) {
         return item;
       }
     });
@@ -24,15 +24,15 @@ const NestedCategories = () => {
     setNested(nestedCategory);
   };
 
-  console.log("NESTED CATEGORY COMPONENT");
-
   useEffect(() => {
     findArticles();
   }, [id, sub]);
 
+  console.log("Nesting Category");
+
   return (
     <Container>
-      <NavMenu category={id} subcategory={sub} />
+      <NavMenu category={id} subcategory={sub} nested={true} />
       <SectionContainer>
         <header className="flex justify-between">
           <Back

@@ -1,6 +1,4 @@
 import { CategoryCard, Container, NavMenu } from "../components";
-// import { categories } from "../data/data";
-// import { categoryData } from "../data/data3";
 import { categories } from "../data/data";
 
 const Category = () => {

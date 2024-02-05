@@ -3,7 +3,7 @@ import {
   Articles,
   Category,
   NestedCategories,
-  SubCategories,
+  Subcategories,
 } from "./sections";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ArticleContainer } from "./components";
@@ -19,7 +19,7 @@ const App = () => {
             <Route path="" Component={Category} />
 
             {/* ROUTE TO THE SUBCATEGORY COMPONENT */}
-            <Route path="/category/:category" Component={SubCategories} />
+            <Route path="/category/:category" Component={Subcategories} />
 
             {/* ROUTE TO THE NESTED CATEGORY COMPONENT */}
             <Route

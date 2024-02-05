@@ -43,6 +43,7 @@ const Back = ({ home, category, subcategory, articles, nestedCategory }) => {
     //   return;
     // }
 
+    // from nested or articles to the category component
     if (category && subcategory) {
       navigate(`/category/${category}`);
       return;

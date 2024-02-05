@@ -5,21 +5,19 @@ import {
   Back,
   Card,
 } from "../components";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { categories } from "../data/data";
 
-const SubCategories = () => {
+const Subcategories = () => {
   const { category: id } = useParams();
-  const navigate = useNavigate();
 
   const data = categories.find((category) => {
-    return category.title === id;
+    return category.title.toLowerCase() === id.toLowerCase();
   });
 
-  const { subCategories } = data;
+  const { subcategories } = data;
 
-  console.log("SUB CATEGORY COMPONENT");
-  console.log(id);
+  console.log("sub category");
 
   return (
     <Container>
@@ -28,14 +26,14 @@ const SubCategories = () => {
         <header className="flex justify-between">
           <Back home={true} category={id} />
           <span className="text-sm text-customGray-semiDark">
-            <span>{subCategories?.length}</span>
+            <span>{subcategories?.length}</span>
             <span className="ml-2">
-              {subCategories?.length < 2 ? "Category" : "Categories"}
+              {subcategories?.length < 2 ? "Category" : "Categories"}
             </span>
           </span>
         </header>
         <div className="grid grid-cols-2 gap-5 mt-8">
-          {subCategories.map((item, index) => {
+          {subcategories.map((item, index) => {
             return (
               <Card
                 key={index}
@@ -51,4 +49,4 @@ const SubCategories = () => {
     </Container>
   );
 };
-export default SubCategories;
+export default Subcategories;

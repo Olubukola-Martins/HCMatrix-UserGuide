@@ -64,7 +64,6 @@ const Card = ({
           : title
           ? title
           : subcategory}
-        ?
       </h3>
       <p className="text-[12px] transition-all duration-300 ease-in-out text-customGray-light group-hover:text-white">
         {description}

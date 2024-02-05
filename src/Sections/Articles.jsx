@@ -14,22 +14,29 @@ const Articles = () => {
 
   const [articles, setArticles] = useState([]);
 
+  console.log("articles");
+
   const findArticles = () => {
-    const category = categories.find((category) => category.title === id);
+    const category = categories.find(
+      (category) => category.title.toLowerCase() === id.toLowerCase()
+    );
 
     if (category) {
       const finder = category.articles.filter((article) => {
         if (nestedCategory) {
-          return article.nestedCategory === nestedCategory;
+          return (
+            article.nestedCategory.toLowerCase() ===
+            nestedCategory.toLowerCase()
+          );
         }
 
-        if (!article.subCategories) {
+        if (!article.subcategories) {
           return true;
         }
 
         if (sub) {
           if (!article.nestedCategory) {
-            return article.subCategories === sub;
+            return article.subcategories.toLowerCase() === sub.toLowerCase();
           }
         }
       });

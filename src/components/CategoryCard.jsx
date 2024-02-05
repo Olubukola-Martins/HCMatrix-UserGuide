@@ -15,15 +15,7 @@ const CategoryCard = ({ category }) => {
   const navigate = useNavigate();
   const base = "articles";
 
-  const {
-    svg,
-    title,
-    description,
-    articlesNo,
-    status,
-    subCategories,
-    articles,
-  } = category;
+  const { svg, title, description, status, subcategories, articles } = category;
 
   const navigating = (sub) => {
     if (!sub) {
@@ -35,12 +27,12 @@ const CategoryCard = ({ category }) => {
 
   if (status === "active") {
     return (
-      <div className="rounded-lg  bg-white px-4 py-6 customShadow box-border h-[16.5rem] flex flex-col items-center">
+      <div className="rounded-lg  bg-white px-5 py-6 customShadow box-border h-[16.5rem] flex flex-col items-center">
         <img src={svg} className="h-8 mb-3" alt="" />
 
         <h3
-          className="text-lg font-bold mb-3 cursor-pointer"
-          onClick={() => navigating(subCategories)}
+          className="text-lg font-bold mb-3 cursor-pointer capitalize"
+          onClick={() => navigating(subcategories)}
         >
           {title}
         </h3>
@@ -59,7 +51,7 @@ const CategoryCard = ({ category }) => {
     <div className="rounded-lg  bg-white px-4 py-6 customShadow box-border h-[16.5rem] flex flex-col items-center relative overflow-hidden">
       <img src={placeHolder.svg} className="h-8 mb-3" alt="" />
       <Link>
-        <h3 className="text-lg font-bold mb-3">{placeHolder.title}</h3>
+        <h3 className="text-lg font-bold mb-3 ">{placeHolder.title}</h3>
       </Link>
       <p className="text-center text-customGray-light font-semibold mb-4">
         {placeHolder.description}
