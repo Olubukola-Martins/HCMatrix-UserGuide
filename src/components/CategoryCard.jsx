@@ -39,7 +39,7 @@ const CategoryCard = ({ category }) => {
         <img src={svg} className="h-8 mb-3" alt="" />
 
         <h3
-          className="text-lg font-bold mb-3"
+          className="text-lg font-bold mb-3 cursor-pointer"
           onClick={() => navigating(subCategories)}
         >
           {title}

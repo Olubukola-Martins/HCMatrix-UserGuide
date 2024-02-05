@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 
 const NestedCategories = () => {
   const { category: id, subcategory: sub } = useParams();
-  console.log(id, sub);
   const [nested, setNested] = useState({});
 
   const findArticles = () => {
@@ -25,11 +24,11 @@ const NestedCategories = () => {
     setNested(nestedCategory);
   };
 
+  console.log("NESTED CATEGORY COMPONENT");
+
   useEffect(() => {
     findArticles();
   }, [id, sub]);
-
-  console.log("nested");
 
   return (
     <Container>
@@ -37,13 +36,13 @@ const NestedCategories = () => {
       <SectionContainer>
         <header className="flex justify-between">
           <Back
-          // home={sub === "articles" ? true : false}
-          // subCategory={sub}
-          // category={id}
+            subcategory={sub}
+            category={id}
+            nestedRoute="nested"
+            info="nested clicking"
           />
           <span className="text-sm text-customGray-semiDark">
-            {/* {articles?.length}  */}
-            Articles
+            {nested?.category?.length} Subcategories
           </span>
         </header>
         <div className="grid grid-cols-2 gap-5 mt-8">

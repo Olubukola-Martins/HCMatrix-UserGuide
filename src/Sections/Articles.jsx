@@ -14,8 +14,6 @@ const Articles = () => {
 
   const [articles, setArticles] = useState([]);
 
-  console.log(id, sub);
-
   const findArticles = () => {
     const category = categories.find((category) => category.title === id);
 
@@ -30,8 +28,9 @@ const Articles = () => {
         }
 
         if (sub) {
-          // console.log(sub);
-          return article.subCategories === sub;
+          if (!article.nestedCategory) {
+            return article.subCategories === sub;
+          }
         }
       });
 
@@ -53,9 +52,10 @@ const Articles = () => {
       <SectionContainer>
         <header className="flex justify-between">
           <Back
-            home={sub === "articles" ? true : false}
+            home={sub ? false : true}
             subcategory={sub}
             category={id}
+            nestedCategory={nestedCategory}
           />
           <span className="text-sm text-customGray-semiDark">
             {articles?.length} Articles

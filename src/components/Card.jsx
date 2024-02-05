@@ -11,63 +11,46 @@ const Card = ({
 }) => {
   const navigate = useNavigate();
 
-  // console.log(
-  //   `This is the main category ${mainCategory}, This is the sub category ${subCategory}, This is the title ${title}, This is the description ${description}`
-  // );
-
   const onClickHandler = () => {
-    // console.log(mainCategory, subCategory, nestedCategory, "from the card");
-
     //  When routing to the articles and no subCategories
     if (!subcategory) {
-      console.log("no sub");
       navigate(`/articles/${mainCategory}/${title}`);
       return;
     }
 
+    //When routing to the article that has a nested category
     if (nestedCategory && mainCategory && subcategory && title) {
-      console.log("routing to nested category articles");
       navigate(
         `/category/${mainCategory}/${subcategory}/nested/${nestedCategory}/${title}`
       );
       return;
     }
 
+    // When routing to the nested route categories articles
     if (nestedCategoryTitle) {
-      console.log("routing to nested category articles");
-      console.log(subcategory);
       navigate(
         `/category/${mainCategory}/${subcategory}/nested/${nestedCategoryTitle}`
       );
       return;
     }
 
+    // When routing to the nested route categories
     if (nestedCategory) {
-      console.log("routing to nested categories");
       navigate(`/category/${mainCategory}/${subcategory}/nested`);
       return;
     }
 
     // When there is a subcategory but no nested category
     if (mainCategory && subcategory && !title) {
-      console.log("routing to subcategories no nesting");
-      console.log("problem");
       navigate(`/category/${mainCategory}/${subcategory}`);
       return;
     }
 
-    //When routing to the articles and has a subcategory
+    //When routing to a single article that has a subcategory and no subCategory
     if (mainCategory && subcategory && title) {
-      console.log("routing to subcategories without nesting articles");
       navigate(`/category/${mainCategory}/${subcategory}/${title}`);
       return;
     }
-
-    // if (nestedCategory) {
-    //   navigate(`/${category}/${subCategory}/${title}`);
-    // }
-
-    // navigate(`/${mainCategory}/${subCategory}/${title}`);
   };
 
   return (

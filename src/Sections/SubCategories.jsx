@@ -18,12 +18,15 @@ const SubCategories = () => {
 
   const { subCategories } = data;
 
+  console.log("SUB CATEGORY COMPONENT");
+  console.log(id);
+
   return (
     <Container>
       <NavMenu category={id} />
       <SectionContainer>
         <header className="flex justify-between">
-          <Back home={true} />
+          <Back home={true} category={id} />
           <span className="text-sm text-customGray-semiDark">
             <span>{subCategories?.length}</span>
             <span className="ml-2">

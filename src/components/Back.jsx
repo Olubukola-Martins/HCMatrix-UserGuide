@@ -1,19 +1,54 @@
 import back from "../assets/back.svg";
 import { Navigate, useNavigate } from "react-router-dom";
 
-const Back = ({ route, home, category, subCategory, articles }) => {
+const Back = ({ home, category, subcategory, articles, nestedCategory }) => {
   const navigate = useNavigate();
 
-  // console.log(category, subCategory, articles);
-
   const onClickHandler = () => {
-    category && subCategory && navigate(`/${category}`);
+    //From the article to all articles
+    if (!nestedCategory && !subcategory && category && articles) {
+      navigate(`/articles/${category}`);
+      return;
+    }
 
-    category &&
-      subCategory &&
-      articles &&
-      navigate(`/${category}/${subCategory}`);
+    //From the article to the subcategory with no nested route
+    if (!nestedCategory && category && subcategory && articles) {
+      navigate(`/category/${category}/${subcategory}`);
+      return;
+    }
 
+    //From the article to the nestedCategory articles if there are nested category
+    if (category && subcategory && nestedCategory && articles) {
+      navigate(`/category/${category}/${subcategory}/nested/${nestedCategory}`);
+      return;
+    }
+
+    //From the article to the nestedCategory if there are nested category
+    if (category && subcategory && nestedCategory) {
+      navigate(`/category/${category}/${subcategory}/nested`);
+      return;
+    }
+
+    // console.log(nestedRoute);
+    // nestedRoute &&
+    //   nestedCategory &&
+    //   category &&
+    //   subcategory &&
+    //   navigate(`/category/${category}/${subcategory}/nested`);
+
+    // From the category to the home
+    // if (!nestedCategory && category) {
+    //   console.log("From the category to the home");
+    //   navigate(`/category/${category}`);
+    //   return;
+    // }
+
+    if (category && subcategory) {
+      navigate(`/category/${category}`);
+      return;
+    }
+
+    //Going to the home page
     home && navigate("/");
   };
 

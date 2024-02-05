@@ -20,6 +20,7 @@ const ArticleContainer = () => {
         <Back
           category={category}
           subcategory={subcategory}
+          nestedCategory={nestedCategory}
           articles={articles}
         />
         <Outlet />

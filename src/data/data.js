@@ -9,6 +9,23 @@ import {
   alarmClock,
 } from "../assets/categories";
 
+import { pensive, relieved, smiling } from "../assets/review";
+
+const reviews = [
+  {
+    emoji: pensive,
+    name: "pensive",
+  },
+  {
+    emoji: relieved,
+    name: "relieved",
+  },
+  {
+    emoji: smiling,
+    name: "smiling",
+  },
+];
+
 const categories = [
   {
     svg: gear,
@@ -44,10 +61,6 @@ const categories = [
     subCategories: [
       {
         title: "General Settings",
-        description: "Company - Holiday - Projects",
-      },
-      {
-        title: "Organization Settings",
         description: "Company - Holiday - Projects",
       },
       {
@@ -207,7 +220,7 @@ const categories = [
   { status: "" },
 ];
 
-export { categories };
+export { categories, reviews };
 
 // Category -- subcategory -- articles -- content
 // category -- {name,title , description , article: [name, description, subcategories]}
