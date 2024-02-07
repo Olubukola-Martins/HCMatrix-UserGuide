@@ -5,11 +5,10 @@ const NavMenu = ({
   category,
   subcategory,
   nestedCategory,
-  articles,
   article,
   nested,
 }) => {
-  console.log(category, subcategory, nestedCategory, articles, article, nested);
+  console.log(category, subcategory, nestedCategory, article, article, nested);
   return (
     <div className="mb-10 text-customGray-lighter flex">
       {/* This is to go back to the homepage */}
@@ -23,7 +22,9 @@ const NavMenu = ({
       {category && (
         <div className="flex gap-3">
           <img src={greater} alt="" className="ml-3" />
-          <Link to={`/category/${category}`}>
+          <Link
+            to={subcategory ? `/category/${category}` : `/articles/${category}`}
+          >
             <span className="capitalize hover:border-b-2 hover:pb-2 ease-out  transition-all duration-100">
               {category}
             </span>
@@ -57,46 +58,13 @@ const NavMenu = ({
         </div>
       )}
 
-      {/* {category && !articles && (
-        <div className="flex gap-3">
-          <img src={greater} alt="" className="ml-3" />
-          <Link to={`/category/${category}`}>
-            <span className="capitalize hover:border-b-2 hover:pb-2 ease-out  transition-all duration-100">
-              {category}
-            </span>
-          </Link>
-        </div>
-      )} */}
-
-      {/* if There is a category and there is an article*/}
-      {/* {category && articles && !subcategory && (
-        <div className="flex gap-3">
-          <img src={greater} alt="" className="ml-3" />
-          <Link to={`/articles/${category}`}>
-            <span className="capitalize hover:border-b-2 ease-out  hover:pb-2 transition-all duration-100">
-              {category}
-            </span>
-          </Link>
-        </div>
-      )} */}
-
-      {/* {subcategory && nestedCategory && (
-        <div className="flex gap-3">
-          <img src={greater} alt="" className="ml-3 " />
-          <Link to={`/category/${category}/${subcategory}/nested`}>
-            <span className="capitalize hover:border-b-2 ease-out  hover:pb-2 transition-all duration-100">
-              {subcategory}
-            </span>
-          </Link>
-        </div>
-      )} */}
-
-      {articles && (
+      {/* if there is an article  */}
+      {article && (
         <div className="flex gap-3">
           <img src={greater} alt="" className="ml-3 " />
           <Link>
             <span className="capitalize hover:border-b-2 ease-out  hover:pb-2 transition-all duration-100">
-              {articles}
+              {article}
             </span>
           </Link>
         </div>
