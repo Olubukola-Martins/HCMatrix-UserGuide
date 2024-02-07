@@ -4,6 +4,7 @@ import {
   NavMenu,
   SectionContainer,
   Card,
+  CardWrapper,
 } from "../components";
 import { useParams } from "react-router-dom";
 import { categories } from "../data/data";
@@ -68,7 +69,7 @@ const Articles = () => {
             {articles?.length} Articles
           </span>
         </header>
-        <div className="grid grid-cols-2 gap-5 mt-8">
+        <CardWrapper>
           {articles?.map((article, index) => {
             return (
               <Card
@@ -81,7 +82,7 @@ const Articles = () => {
               />
             );
           })}
-        </div>
+        </CardWrapper>
       </SectionContainer>
     </Container>
   );

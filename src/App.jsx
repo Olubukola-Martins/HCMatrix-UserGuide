@@ -39,7 +39,7 @@ const App = () => {
 
             {/* Route to the Article with no subcategories */}
             <Route
-              path="/articles/:category/:articles"
+              path="/articles/:category/:article"
               Component={ArticleContainer}
             >
               <Route path="" Component={Employee}></Route>
@@ -53,7 +53,7 @@ const App = () => {
 
             {/* ROUTES TO THE ARTICLE COMPONENT */}
             <Route
-              path="/category/:category/:subcategory/:articles"
+              path="/category/:category/:subcategory/:article"
               Component={ArticleContainer}
             >
               <Route path="" Component={Employee}></Route>
@@ -61,7 +61,7 @@ const App = () => {
 
             {/* Route to the article when there is a subCategory */}
             <Route
-              path="/category/:category/:subcategory/nested/:nestedCategory/:articles"
+              path="/category/:category/:subcategory/nested/:nestedCategory/:article"
               Component={ArticleContainer}
             >
               <Route path="" Component={Employee}></Route>

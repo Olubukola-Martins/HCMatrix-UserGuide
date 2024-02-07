@@ -27,7 +27,7 @@ const CategoryCard = ({ category }) => {
 
   if (status === "active") {
     return (
-      <div className="rounded-lg  bg-white px-5 py-6 customShadow box-border h-[16.5rem] flex flex-col items-center">
+      <div className="rounded-lg  bg-white px-5 md:py-6 py-8  customShadow box-border h-[16.5rem] flex flex-col items-center ">
         <img src={svg} className="h-8 mb-3" alt="" />
 
         <h3

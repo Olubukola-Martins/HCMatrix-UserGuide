@@ -4,6 +4,7 @@ import {
   SectionContainer,
   Back,
   Card,
+  CardWrapper,
 } from "../components";
 import { useParams } from "react-router-dom";
 import { categories } from "../data/data";
@@ -32,7 +33,7 @@ const Subcategories = () => {
             </span>
           </span>
         </header>
-        <div className="grid grid-cols-2 gap-5 mt-8">
+        <CardWrapper>
           {subcategories.map((item, index) => {
             return (
               <Card
@@ -44,7 +45,7 @@ const Subcategories = () => {
               />
             );
           })}
-        </div>
+        </CardWrapper>
       </SectionContainer>
     </Container>
   );

@@ -6,7 +6,7 @@ import { Outlet, useParams } from "react-router-dom";
 import ReviewBox from "./ReviewBox";
 
 const ArticleContainer = () => {
-  const { category, subcategory, nestedCategory, articles } = useParams();
+  const { category, subcategory, nestedCategory, article } = useParams();
 
   return (
     <Container>
@@ -14,14 +14,14 @@ const ArticleContainer = () => {
         category={category}
         subcategory={subcategory}
         nestedCategory={nestedCategory}
-        articles={articles}
+        article={article}
       />
       <SectionContainer>
         <Back
           category={category}
           subcategory={subcategory}
           nestedCategory={nestedCategory}
-          articles={articles}
+          article={article}
         />
         <Outlet />
         <ReviewBox />

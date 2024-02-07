@@ -1,24 +1,24 @@
 import back from "../assets/back.svg";
 import { Navigate, useNavigate } from "react-router-dom";
 
-const Back = ({ home, category, subcategory, articles, nestedCategory }) => {
+const Back = ({ home, category, subcategory, article, nestedCategory }) => {
   const navigate = useNavigate();
 
   const onClickHandler = () => {
     //From the article to all articles
-    if (!nestedCategory && !subcategory && category && articles) {
+    if (!nestedCategory && !subcategory && category && article) {
       navigate(`/articles/${category}`);
       return;
     }
 
     //From the article to the subcategory with no nested route
-    if (!nestedCategory && category && subcategory && articles) {
+    if (!nestedCategory && category && subcategory && article) {
       navigate(`/category/${category}/${subcategory}`);
       return;
     }
 
     //From the article to the nestedCategory articles if there are nested category
-    if (category && subcategory && nestedCategory && articles) {
+    if (category && subcategory && nestedCategory && article) {
       navigate(`/category/${category}/${subcategory}/nested/${nestedCategory}`);
       return;
     }
@@ -59,7 +59,11 @@ const Back = ({ home, category, subcategory, articles, nestedCategory }) => {
       onClick={() => onClickHandler()}
     >
       <img src={back} alt="" className="h-5" />
-      {home ? <p>Back To Home</p> : <p>Back </p>}
+      {home ? (
+        <p className="text-[14px]">Back To Home</p>
+      ) : (
+        <p className="">Back </p>
+      )}
     </div>
   );
 };

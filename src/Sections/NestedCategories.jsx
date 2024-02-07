@@ -4,6 +4,7 @@ import {
   SectionContainer,
   Back,
   Card,
+  CardWrapper,
 } from "../components";
 import { useParams } from "react-router-dom";
 import { categories } from "../data/data";
@@ -28,8 +29,6 @@ const NestedCategories = () => {
     findArticles();
   }, [id, sub]);
 
-  console.log("Nesting Category");
-
   return (
     <Container>
       <NavMenu category={id} subcategory={sub} nested={true} />
@@ -45,7 +44,7 @@ const NestedCategories = () => {
             {nested?.category?.length} Subcategories
           </span>
         </header>
-        <div className="grid grid-cols-2 gap-5 mt-8">
+        <CardWrapper>
           {nested?.category?.map((item, index) => {
             return (
               <Card
@@ -57,7 +56,7 @@ const NestedCategories = () => {
               />
             );
           })}
-        </div>
+        </CardWrapper>
       </SectionContainer>
     </Container>
   );

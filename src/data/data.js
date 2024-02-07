@@ -36,7 +36,7 @@ const categories = [
     subcategories: null,
     articles: [
       {
-        title: "how to create an account?",
+        title: "how to create an account",
         description: "Learn about how to create an account",
       },
       {
@@ -49,78 +49,7 @@ const categories = [
       },
     ],
   },
-  // {
-  //   svg: gear,
-  //   title: "Perfect",
-  //   description:
-  //     "Help your user learn more about the basic of your product and how they can get started",
-  //   status: "active",
-  //   subCategories: [
-  //     {
-  //       title: "General Settings",
-  //       description: "Company - Holiday - Projects",
-  //     },
-  //     {
-  //       title: "User Access Control Settings",
-  //       description: "Company - Holiday - Projects",
-  //     },
-  //     {
-  //       title: "Automation Settings",
-  //       description: "Company - Holiday - Projects",
-  //     },
-  //     {
-  //       title: "Policies Settings",
-  //       description: "Company - Holiday - Projects",
-  //     },
-  //     {
-  //       title: "Self Service Settings",
-  //       description: "Company - Holiday - Projects",
-  //     },
-  //     {
-  //       title: "Payroll Setting",
-  //       description: "Company - Holiday - Projects",
-  //     },
-  //     {
-  //       title: "Time & Attendance Settings",
-  //       description: "Company - Holiday - Projects",
-  //     },
-  //     {
-  //       title: "Performance Settings",
-  //       description: "Company - Holiday - Projects",
-  //     },
-  //     {
-  //       title: "Learning & Development Settings",
-  //       description: "Company - Holiday - Projects",
-  //     },
-  //   ],
-  //   articles: [
-  //     {
-  //       title: "Organization Settings Article",
-  //       description: "learn about how to create an account",
-  //       subCategories: "Organization Settings",
-  //     },
-  //     {
-  //       title: "Performance Settings Article",
-  //       description: "learn about how to create an account",
-  //       subCategories: "Performance Settings",
-  //     },
-  //     {
-  //       title: "General Settings Article one",
-  //       description: "learn about how to create an account",
-  //       subCategories: "General Settings",
-  //     },
-  //     {
-  //       title: "General Settings Article",
-  //       description: "learn about how to create an account",
-  //       subCategories: "General Settings",
-  //     },
-  //     {
-  //       title: "Learning & Development Settings",
-  //       description: "learn about how to create an account",
-  //       subCategories: "Learning & Development Settings",
-  //     },
-  //   ],
-  // },
+
   {
     svg: gear,
     title: "settings",
@@ -131,6 +60,7 @@ const categories = [
       {
         title: "General Settings",
         description: "Company - Holiday - Projects",
+        category: null,
       },
       {
         title: "Organization Settings",
@@ -161,14 +91,17 @@ const categories = [
       {
         title: "User Access Control Settings",
         description: "Company - Holiday - Projects",
+        category: null,
       },
       {
         title: "Automation Settings",
         description: "Company - Holiday - Projects",
+        category: null,
       },
       {
         title: "Policies Settings",
         description: "Company - Holiday - Projects",
+        category: null,
       },
       {
         title: "Self Service Settings",
