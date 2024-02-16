@@ -5,9 +5,9 @@ import {
   Back,
   Card,
   CardWrapper,
-} from "../components";
+} from "../../components/user";
 import { useParams } from "react-router-dom";
-import { categories } from "../data/data";
+import { categories } from "../../data/data";
 import { useEffect, useState } from "react";
 
 const NestedCategories = () => {

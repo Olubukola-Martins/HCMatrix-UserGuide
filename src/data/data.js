@@ -7,9 +7,9 @@ import {
   moneyBag,
   briefCase,
   alarmClock,
-} from "../assets/categories";
+} from "../assets/user/categories";
 
-import { pensive, relieved, smiling } from "../assets/review";
+import { pensive, relieved, smiling } from "../assets/common/review";
 
 const reviews = [
   {

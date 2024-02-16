@@ -1,8 +1,8 @@
 import Container from "./Container";
-import HeroImg from "../assets/images/heroimg.png";
-import Hand from "../assets/Hand.svg";
-import Idea from "../assets/bulb.svg";
-import Search from "../assets/search.svg";
+import HeroImg from "../../assets/common/images/heroimg.png";
+import Hand from "../../assets/user/Hand.svg";
+import Idea from "../../assets/user/bulb.svg";
+import Search from "../../assets/user/search.svg";
 import GlassDesign from "./GlassDesign";
 
 const Hero = () => {

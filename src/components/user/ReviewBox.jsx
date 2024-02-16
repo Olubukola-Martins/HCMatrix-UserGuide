@@ -1,5 +1,5 @@
 import EmojiComponent from "./EmojiComponent";
-import { reviews } from "../data/data";
+import { reviews } from "../../data/data";
 
 const ReviewBox = () => {
   return (

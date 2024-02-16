@@ -1,5 +1,5 @@
-import back from "../assets/back.svg";
-import { Navigate, useNavigate } from "react-router-dom";
+import back from "../../assets/user/back.svg";
+import { useNavigate } from "react-router-dom";
 
 const Back = ({ home, category, subcategory, article, nestedCategory }) => {
   const navigate = useNavigate();

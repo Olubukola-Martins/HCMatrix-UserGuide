@@ -1,12 +1,12 @@
-import Home from "./pages/Home";
+import Home from "./pages/user/Home";
 import {
   Articles,
   Category,
   NestedCategories,
   Subcategories,
-} from "./sections";
+} from "./sections/user";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ArticleContainer } from "./components";
+import { ArticleContainer } from "./components/user";
 import { Employee } from "./articles";
 
 const App = () => {

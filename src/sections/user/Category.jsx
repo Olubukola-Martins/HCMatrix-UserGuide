@@ -1,5 +1,5 @@
-import { CategoryCard, Container, NavMenu } from "../components";
-import { categories } from "../data/data";
+import { CategoryCard, Container, NavMenu } from "../../components/user";
+import { categories } from "../../data/data";
 
 const Category = () => {
   return (

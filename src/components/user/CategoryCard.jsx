@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { wavingHand, lock } from "../assets/categories";
-import { Articles } from "../sections";
+import { wavingHand, lock } from "../../assets/user/categories";
+// import { Articles } from "../../sections/user";
 import { useNavigate } from "react-router-dom";
 
 const placeHolder = {

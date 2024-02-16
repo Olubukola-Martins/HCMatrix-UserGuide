@@ -1,9 +1,9 @@
-import bulb from "../assets/bulb.svg";
-import search01 from "../assets/search-01.svg";
+import bulb from "../../assets/user/bulb.svg";
+import search01 from "../../assets/user/search-01.svg";
 import Nav from "./Nav";
-import bg from "../assets/bg.svg";
+import bg from "../../assets/user/bg.svg";
 
-const HeroSection = ({user}) => {
+const HeroSection = ({ user }) => {
   return (
     <>
       <div></div>

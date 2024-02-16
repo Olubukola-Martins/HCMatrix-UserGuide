@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Footer, HeroSection, Hero } from "../components";
+import { Footer, HeroSection, Hero } from "../../components/user";
 
 const Home = () => {
   return (
@@ -12,5 +12,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
