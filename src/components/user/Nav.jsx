@@ -1,4 +1,4 @@
-import Hand from "../assets/Hand.svg";
+import Hand from "../../assets/user/Hand.svg";
 
 const Nav = (props) => {
   return (

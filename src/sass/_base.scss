@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .navLinks {
+    @apply capitalize hover:border-b-2 hover:pb-2 ease-out  transition-all duration-300;
+  }
+}
+
 *,
 *::after,
 *::before {

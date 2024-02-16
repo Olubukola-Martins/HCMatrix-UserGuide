@@ -9,10 +9,11 @@ import Hero from "./Hero";
 import HeroSection from "./HeroSection";
 import SectionContainer from "./SectionContainer";
 import Back from "./Back";
-import ArticleCard from "./ArticleCard";
+import Card from "./Card";
 import ArticleContainer from "./ArticleContainer";
 import ReviewBox from "./ReviewBox";
 import EmojiComponent from "./EmojiComponent";
+import CardWrapper from "./CardWrapper";
 
 export {
   Container,
@@ -26,8 +27,9 @@ export {
   HeroSection,
   SectionContainer,
   Back,
-  ArticleCard,
+  Card,
   ArticleContainer,
   ReviewBox,
   EmojiComponent,
+  CardWrapper,
 };

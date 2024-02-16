@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { wavingHand, lock } from "../assets/categories";
-import { Articles } from "../sections";
+import { wavingHand, lock } from "../../assets/user/categories";
+// import { Articles } from "../../sections/user";
+import { useNavigate } from "react-router-dom";
 
 const placeHolder = {
   svg: wavingHand,
@@ -10,25 +11,37 @@ const placeHolder = {
   articlesNo: 7,
 };
 
-const CategoryCard = ({ svg, title, description, articles, status }) => {
-  console.log(title);
+const CategoryCard = ({ category }) => {
+  const navigate = useNavigate();
+  const base = "articles";
 
-  // const { svg, title, description, articles, status } = data;
+  const { svg, title, description, status, subcategories, articles } = category;
 
-  const icon = svg;
+  const navigating = (sub) => {
+    if (!sub) {
+      navigate(`/articles/${title}`);
+      return;
+    }
+    navigate(`/category/${title}`);
+  };
 
   if (status === "active") {
     return (
-      <div className="rounded-lg  bg-white px-4 py-6 customShadow box-border h-[16.5rem] flex flex-col items-center">
-        <img src={icon} className="h-8 mb-3" alt="" />
-        <Link to={`${title}`}>
-          <h3 className="text-lg font-bold mb-3">{title}</h3>
-        </Link>
+      <div className="rounded-lg  bg-white px-5 md:py-6 py-8  customShadow box-border h-[16.5rem] flex flex-col items-center ">
+        <img src={svg} className="h-8 mb-3" alt="" />
+
+        <h3
+          className="text-lg font-bold mb-3 cursor-pointer capitalize"
+          onClick={() => navigating(subcategories)}
+        >
+          {title}
+        </h3>
+
         <p className="text-center text-customGray-light font-semibold mb-4">
           {description}
         </p>
         <span className="text-sm text-customGray-semiDark">
-          {articles?.length} Articles
+          {articles.length} Articles
         </span>
       </div>
     );
@@ -38,7 +51,7 @@ const CategoryCard = ({ svg, title, description, articles, status }) => {
     <div className="rounded-lg  bg-white px-4 py-6 customShadow box-border h-[16.5rem] flex flex-col items-center relative overflow-hidden">
       <img src={placeHolder.svg} className="h-8 mb-3" alt="" />
       <Link>
-        <h3 className="text-lg font-bold mb-3">{placeHolder.title}</h3>
+        <h3 className="text-lg font-bold mb-3 ">{placeHolder.title}</h3>
       </Link>
       <p className="text-center text-customGray-light font-semibold mb-4">
         {placeHolder.description}
