@@ -19,8 +19,12 @@
 //   },
 // };
 
+
+
+
+
 module.exports = {
-  root: true,
+  root: false,
   env: { browser: true, es2020: true },
   // extends: [
   //   'eslint:recommended',

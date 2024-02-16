@@ -486,6 +486,8 @@ const categories = [
   { status: "" },
 ];
 
+const article = [];
+
 export { categories, reviews };
 
 // Category -- subcategory -- articles -- content

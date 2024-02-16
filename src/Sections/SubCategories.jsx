@@ -18,8 +18,6 @@ const Subcategories = () => {
 
   const { subcategories } = data;
 
-  console.log("sub category");
-
   return (
     <Container>
       <NavMenu category={id} />

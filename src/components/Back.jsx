@@ -29,20 +29,6 @@ const Back = ({ home, category, subcategory, article, nestedCategory }) => {
       return;
     }
 
-    // console.log(nestedRoute);
-    // nestedRoute &&
-    //   nestedCategory &&
-    //   category &&
-    //   subcategory &&
-    //   navigate(`/category/${category}/${subcategory}/nested`);
-
-    // From the category to the home
-    // if (!nestedCategory && category) {
-    //   console.log("From the category to the home");
-    //   navigate(`/category/${category}`);
-    //   return;
-    // }
-
     // from nested or articles to the category component
     if (category && subcategory) {
       navigate(`/category/${category}`);

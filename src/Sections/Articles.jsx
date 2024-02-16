@@ -15,8 +15,6 @@ const Articles = () => {
 
   const [articles, setArticles] = useState([]);
 
-  console.log("articles");
-
   const findArticles = () => {
     const category = categories.find(
       (category) => category.title.toLowerCase() === id.toLowerCase()

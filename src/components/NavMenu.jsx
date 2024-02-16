@@ -1,14 +1,7 @@
 import { Link } from "react-router-dom";
 import greater from "../assets/greaterThan.svg";
 
-const NavMenu = ({
-  category,
-  subcategory,
-  nestedCategory,
-  article,
-  nested,
-}) => {
-  console.log(category, subcategory, nestedCategory, article, article, nested);
+const NavMenu = ({ category, subcategory, nestedCategory, article }) => {
   return (
     <div className="mb-10 text-customGray-lighter flex">
       {/* This is to go back to the homepage */}
@@ -58,7 +51,7 @@ const NavMenu = ({
         </div>
       )}
 
-      {/* if there is an article  */}
+      {/* if there is an article*/}
       {article && (
         <div className="flex gap-3">
           <img src={greater} alt="" className="ml-3 " />
