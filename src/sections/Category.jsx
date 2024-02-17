@@ -1,8 +1,9 @@
 import { CategoryCard, Container, NavMenu } from "../components";
-import { categories } from "../data/data";
+
+import { useSelector } from "react-redux";
 
 const Category = () => {
-  console.log(categories);
+  const { categories } = useSelector((store) => store.category);
   return (
     <Container>
       <NavMenu />
