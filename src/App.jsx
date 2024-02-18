@@ -5,6 +5,7 @@ import {
   NestedCategories,
   Subcategories,
 } from "./sections/user";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ArticleContainer } from "./components/user";
 import { Employee } from "./articles";
@@ -13,6 +14,10 @@ const App = () => {
   return (
     <>
       <Router>
+        {/* For the admin */}
+        <Routes>{/* <Route path="" Component={} /> */}</Routes>
+
+        {/* For the user */}
         <Routes>
           <Route path="/" Component={Home}>
             {/* ROUTE TO THE CATEGORY COMPONENT */}
