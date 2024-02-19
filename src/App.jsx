@@ -1,4 +1,7 @@
+// Landing Pages
 import Home from "./pages/user/Home";
+import AdminPage from "./pages/admin/AdminPage";
+
 import {
   Articles,
   Category,
@@ -15,7 +18,9 @@ const App = () => {
     <>
       <Router>
         {/* For the admin */}
-        <Routes>{/* <Route path="" Component={} /> */}</Routes>
+        <Routes>
+          <Route path="/admin" Component={AdminPage} />
+        </Routes>
 
         {/* For the user */}
         <Routes>

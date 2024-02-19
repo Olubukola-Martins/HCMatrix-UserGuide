@@ -9,12 +9,15 @@ export default {
       },
       colors: {
         primary: "#ffffff",
+        adminBG: "#E6E9F0",
+        adminHighlight: "#F77366",
         customGray: {
           DEFAULT: "#3A3A3A",
           dark: "rgba(58, 58, 58, 0.9)",
           semiDark: "rgba(58, 58, 58, 0.8)",
           light: "rgba(58, 58, 58, 0.7)",
           lightest: "rgba(58, 58, 58, 0.7)",
+          fade: "rgba(58, 58, 58, 0.5)",
           lighter: "#ffffffb2",
         },
       },

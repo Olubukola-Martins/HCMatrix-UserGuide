@@ -6,7 +6,6 @@ import bg from "../../assets/user/bg.svg";
 const HeroSection = ({ user }) => {
   return (
     <>
-      <div></div>
       <div className="component">
         <div className="hero">
           <div className="hero__container">
