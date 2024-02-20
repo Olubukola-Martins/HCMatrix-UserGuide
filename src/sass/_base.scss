@@ -4,12 +4,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .navLinks {
+    @apply capitalize hover:border-b-2 hover:pb-2 ease-out  transition-all duration-300;
+  }
+}
+
 *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 .blur {
