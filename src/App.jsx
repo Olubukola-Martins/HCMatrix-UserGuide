@@ -2,6 +2,7 @@
 import Home from "./pages/user/Home";
 import AdminPage from "./pages/admin/AdminPage";
 
+//User Sections
 import {
   Articles,
   Category,
@@ -9,7 +10,15 @@ import {
   Subcategories,
 } from "./sections/user";
 
+//Admin Section
+import { Dashboard, Insight, Setting } from "./sections/admin";
+
+//Setting Sections
+import { Create, DataOverview, ManageUser } from "./sections/admin/Settings";
+
+//React Router Dom
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import { ArticleContainer } from "./components/user";
 import { Employee } from "./articles";
 
@@ -19,7 +28,15 @@ const App = () => {
       <Router>
         {/* For the admin */}
         <Routes>
-          <Route path="/admin" Component={AdminPage} />
+          <Route path="/admin" Component={AdminPage}>
+            <Route path="" Component={Dashboard} />
+            <Route path="/admin/insight" Component={Insight} />
+            <Route path="/admin/setting" Component={Setting}>
+              <Route path="/admin/setting/create" Component={Create} />
+              <Route path="/admin/setting/overview" Component={DataOverview} />
+              <Route path="/admin/setting/manageuser" Component={ManageUser} />
+            </Route>
+          </Route>
         </Routes>
 
         {/* For the user */}

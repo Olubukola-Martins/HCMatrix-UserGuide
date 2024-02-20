@@ -8,19 +8,26 @@ import { Logo } from "../../assets/admin/images";
 //REDUX HOOKS
 import { useSelector, useDispatch } from "react-redux";
 
+//NAVIGATIONS
+import { useNavigate } from "react-router";
+
 //Redux Actions
 import { navigation, settingsNavigation } from "../../state/admin/headerSlice";
 
-import { CreateIcon } from "../../assets/admin/icons/headerSetting";
+// import { CreateIcon } from "../../assets/admin/icons/headerSetting";
 
 const Header = () => {
   const { navMenu, settingsMenu, barToggle } = useSelector(
     (store) => store.adminHeader
   );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onClickHandler = (name, type) => {
     if (type === "menu") {
+      navigate(
+        `${name.toLowerCase() === "dashboard" ? "" : `${name.toLowerCase()}`}`
+      );
       dispatch(navigation(name));
       return;
     }
@@ -31,15 +38,15 @@ const Header = () => {
   };
 
   return (
-    <nav className="bg-white transition-all ease-out duration-500 shadow-md py-7 grid font-semibold text-customGray-dark place-items-center text-[15px]">
+    <header className="mb-8 bg-white transition-all ease-out duration-500 shadow-md py-7 grid font-semibold text-customGray-dark place-items-center text-[15px]">
       <Container>
         <div className="flex justify-between">
-          <div className="flex w-[60%] gap-5">
-            <img src={Logo} alt="logo" className=" h-12" />
+          <div className="flex w-[60%] gap-6">
+            <img src={Logo} alt="logo" className=" h-12 -ml-5" />
             <div className="flex justify-between gap-6">
               {navMenu.map((menu, index) => {
-                const { icon, name, active } = menu;
-                const Icon = icon;
+                const { icon: Icon, name, active } = menu;
+
                 return (
                   <div
                     key={index}
@@ -80,7 +87,7 @@ const Header = () => {
                     active ? "text-adminHighlight" : ""
                   }`}
                 >
-                  <Icon className="text-black" />
+                  <Icon />
                   <span className="capitalize text-[14px]">{name}</span>
                 </div>
               );
@@ -88,7 +95,7 @@ const Header = () => {
           </div>
         )}
       </Container>
-    </nav>
+    </header>
   );
 };
 export default Header;

@@ -6,7 +6,6 @@ const LookIcon = () => {
 
   return (
     <svg
-      className={`${active ? "text-adminHighlight" : ""}`}
       width="16"
       height="17"
       viewBox="0 0 16 17"

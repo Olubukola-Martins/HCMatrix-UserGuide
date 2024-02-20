@@ -5,7 +5,9 @@ const AdminPage = () => {
   return (
     <>
       <Header />
-      <Outlet />
+      <div className="pb-10">
+        <Outlet />
+      </div>
     </>
   );
 };
