@@ -5,6 +5,10 @@ import ArticleReviewBox from "./ArticleReviewBox";
 import SideMenu from "./SideMenu";
 import DashBoardHeader from "./DashBoardHeader";
 import ArticleDisplay from "./ArticleDisplay";
+import Input from "./Input";
+import Tag from "./Tag";
+import Button from "./Button";
+import Dropdown from "./Dropdown";
 
 export {
   Header,
@@ -14,4 +18,8 @@ export {
   SideMenu,
   DashBoardHeader,
   ArticleDisplay,
+  Input,
+  Tag,
+  Button,
+  Dropdown,
 };
