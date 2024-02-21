@@ -27,7 +27,11 @@ export default {
           lightest: "rgba(58, 58, 58, 0.7)",
           fade: "rgba(58, 58, 58, 0.5)",
           lighter: "#ffffffb2",
+          tag: "#C5C5C5",
         },
+        btn:{
+          red: "#F77366"
+        }
       },
       fontFamily: {
         body: ["Inter"],
