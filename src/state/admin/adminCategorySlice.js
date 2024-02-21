@@ -5,6 +5,7 @@ const initialState = {
   categories: categories,
   category: [],
   singleCategory: {},
+  singleArticle: {},
   active: false,
 };
 

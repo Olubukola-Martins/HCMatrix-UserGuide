@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Wrapper, ArticleDisplay } from ".";
 import { smiling, pensive, relieved } from "../../assets/common/review";
 
-const ArticleReviewBox = () => {
+const ArticleReviewBox = ({ type }) => {
   const {
     singleCategory: { articles },
   } = useSelector((store) => store.adminCategory);
@@ -20,7 +20,8 @@ const ArticleReviewBox = () => {
         <span className="w-[25%] grid place-items-center">Action</span>
       </header>
       {articles?.map((each, index) => {
-        return <ArticleDisplay key={index} article={each} />;
+        const article = { ...each, active: false };
+        return <ArticleDisplay key={index} article={article} type={type} />;
       })}
     </Wrapper>
   );

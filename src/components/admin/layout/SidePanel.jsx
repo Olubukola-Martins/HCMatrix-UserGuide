@@ -1,4 +1,4 @@
-const SidePanel = ({ children }) => {
-  return <div className="w-[30%]">{children}</div>;
+const SidePanel = ({ children, width }) => {
+  return <div className={`${width ? width : `w-[30%]`}`}>{children}</div>;
 };
 export default SidePanel;

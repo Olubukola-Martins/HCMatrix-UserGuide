@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { AddBtn } from "../../../assets/admin/icons/dashboard";
-
 import { Layout, MainContent } from "../../../components/admin/layout";
 import {
   Container,
@@ -15,8 +13,8 @@ import { getAllCategories } from "../../../state/admin/adminCategorySlice";
 import { SideMenu } from "../../../components/admin";
 
 const Main = () => {
-  const { singleCategory } = useSelector((store) => store.adminCategory);
   const dispatch = useDispatch();
+  const { singleCategory } = useSelector((store) => store.adminCategory);
   const { svg, title, articles } = singleCategory;
 
   useEffect(() => {
@@ -44,7 +42,7 @@ const Main = () => {
               </section>
             </Wrapper>
 
-            {/* Header */}
+            {/* Heading */}
             <DashBoardHeader title={title} svg={svg} articles={articles} />
 
             {articles?.length ? (

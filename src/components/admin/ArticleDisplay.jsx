@@ -1,7 +1,8 @@
 import { Menu } from "../../assets/admin/icons/dashboard";
+import ArticleActions from "./ArticleActions";
 
 const ArticleDisplay = ({ type, article }) => {
-  const { title } = article;
+  const { title, active } = article;
   return (
     <div className="flex px-6 border-b last:border-none items-stretch">
       <div className="flex-1 flex flex-col justify-center ">
@@ -23,10 +24,7 @@ const ArticleDisplay = ({ type, article }) => {
       </div>
       <div className="w-[25%] relative grid place-items-center">
         <Menu />
-        <div className="absolute top-2 right-7 p-2 rounded-md text-[10px] shadow-md flex-col flex bg-white">
-          <span>Edit</span>
-          <span>Disable</span>
-        </div>
+        {active && <ArticleActions type={type} />}
       </div>
     </div>
   );

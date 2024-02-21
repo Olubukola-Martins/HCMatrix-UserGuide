@@ -1,4 +1,4 @@
-const Layout = ({ children }) => {
-  return <div className="flex gap-6">{children}</div>;
+const Layout = ({ children, gap }) => {
+  return <div className={`flex ${gap ? gap : "gap-6"}`}>{children}</div>;
 };
 export default Layout;

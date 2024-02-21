@@ -29,7 +29,11 @@ const Insight = () => {
           <MainContent>
             {/* Header */}
             <DashBoardHeader title={title} svg={svg} articles={articles} />
-            {articles?.length ? <ArticleReviewBox /> : <div></div>}
+            {articles?.length ? (
+              <ArticleReviewBox type="insight" />
+            ) : (
+              <div></div>
+            )}
           </MainContent>
         </Layout>
       </Container>
