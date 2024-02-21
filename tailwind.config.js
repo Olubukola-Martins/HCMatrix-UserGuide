@@ -11,6 +11,14 @@ export default {
         primary: "#ffffff",
         adminBG: "#E6E9F0",
         adminHighlight: "#F77366",
+        customGreen: {
+          DEFAULT: "rgba(168, 255, 171, 0.25)",
+          normal: "rgba(9, 124, 14, 1)",
+        },
+        customRed: {
+          DEFAULT: "rgba(255, 169, 169, 0.1)",
+          normal: "rgba(255, 57, 57, 1)",
+        },
         customGray: {
           DEFAULT: "#3A3A3A",
           dark: "rgba(58, 58, 58, 0.9)",

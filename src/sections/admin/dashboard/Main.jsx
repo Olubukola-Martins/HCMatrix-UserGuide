@@ -1,38 +1,39 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Layout, MainContent } from "../../components/admin/layout";
+import { AddBtn } from "../../../assets/admin/icons/dashboard";
+
+import { Layout, MainContent } from "../../../components/admin/layout";
 import {
   Container,
   Wrapper,
   ArticleReviewBox,
   DashBoardHeader,
-} from "../../components/admin";
-import { Search } from "../../assets/admin/icons/dashboard";
-import { getAllCategories } from "../../state/admin/adminCategorySlice";
-import { SideMenu } from "../../components/admin";
+} from "../../../components/admin";
+import { Search } from "../../../assets/admin/icons/dashboard";
+import { getAllCategories } from "../../../state/admin/adminCategorySlice";
+import { SideMenu } from "../../../components/admin";
 
-const Dashboard = () => {
+const Main = () => {
   const { singleCategory } = useSelector((store) => store.adminCategory);
   const dispatch = useDispatch();
   const { svg, title, articles } = singleCategory;
 
   useEffect(() => {
-    dispatch(getAllCategories());
+    dispatch(getAllCategories({ page: "dashboard" }));
   }, []);
 
   return (
     <main className="font-semibold text-customGray-dark text-[15px]">
       <Container>
-        <h3 className="mb-3">Upload Articles</h3>
         <Layout>
           {/* Side Panel */}
-          <SideMenu />
+          <SideMenu page="dashboard" title="Upload Articles" />
 
           {/* Main Body */}
           <MainContent>
             {/* Search input */}
-            <Wrapper>
+            <Wrapper className="mb-4 bg-white py-2 rounded-lg">
               <section className="flex pl-6 gap-3">
                 <Search />
                 <input
@@ -46,11 +47,18 @@ const Dashboard = () => {
             {/* Header */}
             <DashBoardHeader title={title} svg={svg} articles={articles} />
 
-            <ArticleReviewBox />
+            {articles?.length ? (
+              <ArticleReviewBox />
+            ) : (
+              <Wrapper className="flex bg-white w-[40%] justify-center rounded-lg items-center gap-2 mb-4 cursor-pointer">
+                <AddBtn />
+                <span>Create New Article</span>
+              </Wrapper>
+            )}
           </MainContent>
         </Layout>
       </Container>
     </main>
   );
 };
-export default Dashboard;
+export default Main;

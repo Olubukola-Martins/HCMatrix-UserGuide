@@ -2,7 +2,7 @@
 import Container from "./Container";
 
 //ICONS & IMAGES
-import { DashboardIcon, Admin } from "../../assets/admin/icons/header";
+import { Admin } from "../../assets/admin/icons/header";
 import { Logo } from "../../assets/admin/images";
 
 //REDUX HOOKS
@@ -26,13 +26,28 @@ const Header = () => {
   const onClickHandler = (name, type) => {
     if (type === "menu") {
       navigate(
-        `${name.toLowerCase() === "dashboard" ? "" : `${name.toLowerCase()}`}`
+        `${
+          name.toLowerCase() === "/admin/dashboard"
+            ? ""
+            : `${name.toLowerCase()}`
+        }`
       );
       dispatch(navigation(name));
       return;
     }
 
     if (type === "settings") {
+      if (name.toLowerCase() === "create category") {
+        navigate(`/admin/setting`);
+      }
+
+      if (name.toLowerCase() === "look & data") {
+        navigate(`/admin/setting/overview`);
+      }
+
+      if (name.toLowerCase() === "manage members") {
+        navigate("/admin/setting/manageuser");
+      }
       dispatch(settingsNavigation(name));
     }
   };
@@ -40,6 +55,7 @@ const Header = () => {
   return (
     <header className="mb-8 bg-white transition-all ease-out duration-500 shadow-md py-7 grid font-semibold text-customGray-dark place-items-center text-[15px]">
       <Container>
+        {/* Main Menu */}
         <div className="flex justify-between">
           <div className="flex w-[60%] gap-6">
             <img src={Logo} alt="logo" className=" h-12 -ml-5" />
@@ -74,6 +90,7 @@ const Header = () => {
           </div>
         </div>
 
+        {/* Settings Sub Menu */}
         {barToggle && (
           <div className="flex border-t-[1px] mt-4 gap-16 justify-center text-customGray-fade items-center pt-4">
             {settingsMenu.map((menu, index) => {

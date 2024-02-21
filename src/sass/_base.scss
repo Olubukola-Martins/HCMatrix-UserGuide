@@ -8,6 +8,10 @@
   .navLinks {
     @apply capitalize hover:border-b-2 hover:pb-2 ease-out  transition-all duration-300;
   }
+
+  .activeindicator {
+    @apply bg-[#F2f2f2] shadow-sm border-[1.2px] border-white rounded-lg;
+  }
 }
 
 *,

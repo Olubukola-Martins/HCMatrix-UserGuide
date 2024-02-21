@@ -13,12 +13,30 @@ const adminCategorySlice = createSlice({
   initialState,
   reducers: {
     getSingleCategory: (state, action) => {
-      const single = state.category.find((category) => {
-        return category.active === true;
+      const { title, page } = action.payload;
+
+      const setActive = state.category.map((category) => {
+        if (category.title === title) {
+          return { ...category, active: true };
+        } else {
+          return { ...category, active: false };
+        }
       });
+
+      const noArticles = setActive.filter((category) => {
+        return category.articles.length !== 0;
+      });
+
+      const single = state.category.find((category) => {
+        return category.title === title;
+      });
+
+      state.category = page === "insight" ? noArticles : setActive;
       state.singleCategory = single;
     },
     getAllCategories: (state, action) => {
+      const { page } = action.payload;
+
       const active = state.categories
         .map((category, index) => {
           if (category.status === "active") {
@@ -31,12 +49,16 @@ const adminCategorySlice = createSlice({
         })
         .filter((category) => category !== undefined);
 
+      const insight = active.filter((category) => {
+        return category.articles.length !== 0;
+      });
+
       const single = active.find((category) => {
         return category.active === true;
       });
 
       state.singleCategory = single;
-      state.category = active;
+      state.category = page === "insight" ? insight : active;
     },
   },
 });

@@ -11,10 +11,13 @@ import {
 } from "./sections/user";
 
 //Admin Section
-import { Dashboard, Insight, Setting } from "./sections/admin";
+import { Dashboard, Insight, Settings } from "./sections/admin";
+
+//DashBoard Sections
+import { Main } from "./sections/admin/dashboard";
 
 //Setting Sections
-import { Create, DataOverview, ManageUser } from "./sections/admin/Settings";
+import { Create, DataOverview, ManageUser } from "./sections/admin/setting";
 
 //React Router Dom
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -29,10 +32,18 @@ const App = () => {
         {/* For the admin */}
         <Routes>
           <Route path="/admin" Component={AdminPage}>
-            <Route path="" Component={Dashboard} />
+            {/* Dashboard Routes */}
+
+            <Route path="/admin/dashboard" Component={Dashboard}>
+              <Route index Component={Main} />
+            </Route>
+
+            {/* Insight Routes */}
             <Route path="/admin/insight" Component={Insight} />
-            <Route path="/admin/setting" Component={Setting}>
-              <Route path="/admin/setting/create" Component={Create} />
+
+            {/* Settings Routes */}
+            <Route path="/admin/setting" Component={Settings}>
+              <Route path="/admin/setting/" Component={Create} />
               <Route path="/admin/setting/overview" Component={DataOverview} />
               <Route path="/admin/setting/manageuser" Component={ManageUser} />
             </Route>

@@ -1,5 +1,5 @@
-import Dashboard from "./Dashboard";
-import Insight from "./Insight";
-import Setting from "./Setting";
+import Dashboard from "./dashboard/Dashboard";
+import Insight from "./insight/Insight";
+import Settings from "./setting/Settings";
 
-export { Dashboard, Insight, Setting };
+export { Dashboard, Insight, Settings };

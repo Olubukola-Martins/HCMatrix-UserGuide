@@ -1,20 +1,27 @@
+import { useSelector } from "react-redux";
 import { Wrapper, ArticleDisplay } from ".";
 import { smiling, pensive, relieved } from "../../assets/common/review";
 
 const ArticleReviewBox = () => {
+  const {
+    singleCategory: { articles },
+  } = useSelector((store) => store.adminCategory);
+
   return (
-    <Wrapper className="rounded-[20px] bg-white py-10">
-      <header className="flex px-6 my-3">
-        <span className="flex-1 ">Articles</span>
-        <div className="w-[35%] flex border bg-black">
-          <img src={smiling} alt="" className="border h-5 flex-1" />
-          <img src={relieved} alt="" className="flex-1 border h-5" />
-          <img src={pensive} alt="" className="flex-1 border h-5" />
+    <Wrapper className="rounded-[28px] bg-white pb-0">
+      <header className="flex px-6 pb-3 mt-3  border-b">
+        <span className="flex-1 text-customGray-semiDark ">Articles</span>
+        <div className="flex-1  flex">
+          <img src={smiling} alt="" className=" h-5 flex-1" />
+          <img src={relieved} alt="" className="flex-1  h-5" />
+          <img src={pensive} alt="" className="flex-1  h-5" />
         </div>
 
-        <span className="w-[30%] grid place-items-center">Action</span>
+        <span className="w-[25%] grid place-items-center">Action</span>
       </header>
-      <ArticleDisplay />
+      {articles?.map((each, index) => {
+        return <ArticleDisplay key={index} article={each} />;
+      })}
     </Wrapper>
   );
 };

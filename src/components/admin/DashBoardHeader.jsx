@@ -1,6 +1,6 @@
 const DashBoardHeader = ({ title, svg, articles }) => {
   return (
-    <section className="mt-4 mb-4">
+    <section className="mb-4">
       <div className="flex items-center gap-3">
         <img src={svg} alt="" className="h-6 " />
         <h2 className="text-[27px] mb-2 capitalize font-[600]">{title}</h2>
