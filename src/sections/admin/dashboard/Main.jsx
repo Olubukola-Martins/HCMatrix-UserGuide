@@ -11,6 +11,7 @@ import {
 import { Search } from "../../../assets/admin/icons/dashboard";
 import { getAllCategories } from "../../../state/admin/adminCategorySlice";
 import { SideMenu } from "../../../components/admin";
+import { NewArticleModal } from "../../../components/admin/modals";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const Main = () => {
   }, []);
 
   return (
-    <main className="font-semibold text-customGray-dark text-[15px]">
+    <main className="font-semibold relative text-customGray-dark text-[15px]">
       <Container>
         <Layout>
           {/* Side Panel */}
