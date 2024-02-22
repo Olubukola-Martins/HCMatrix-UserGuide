@@ -10,6 +10,7 @@ import Input from "./Input";
 import Tag from "./Tag";
 import Button from "./Button";
 import Dropdown from "./Dropdown";
+import AddBtn from "./AddBtn";
 
 export {
   Header,
@@ -23,4 +24,5 @@ export {
   Tag,
   Button,
   Dropdown,
+  AddBtn,
 };

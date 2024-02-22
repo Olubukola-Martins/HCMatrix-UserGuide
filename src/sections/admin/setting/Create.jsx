@@ -8,6 +8,7 @@ import {
   Tag,
   Button,
   Dropdown,
+  AddBtn,
 } from "../../../components/admin";
 import { Layout, MainContent } from "../../../components/admin/layout";
 import { SidePanel } from "../../../components/admin/layout";
@@ -18,7 +19,7 @@ import { Subcategories } from "../../user";
 const Create = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllCategories());
+    dispatch(getAllCategories({ page: "settings" }));
   }, []);
 
   const { category } = useSelector((store) => store.adminCategory);
@@ -81,8 +82,8 @@ const Create = () => {
           </SidePanel>
 
           <MainContent>
-            <div className="flex flex-col gap-6">
-              <Wrapper>
+            <div className="flex flex-col gap-5">
+              <Wrapper padding="py-6">
                 <div className="div pl-8 flex flex-col gap-4">
                   <h3 className=" font-semibold text-md">Category Name</h3>
                   <Input
@@ -93,22 +94,20 @@ const Create = () => {
               </Wrapper>
 
               <div className="flex flex-col gap-6">
-                <Wrapper>
-                  <div className="flex gap-4 ">
-                    <div className="pl-8 flex flex-col gap-4">
+                <Wrapper padding="py-6">
+                  <div className="flex gap-7 ">
+                    <div className="pl-8 w-[35%] flex flex-col gap-4">
                       <h3 className=" font-semibold text-md">
-                        Add Sub category{" "}
+                        Add Sub category
                       </h3>
                       <Input
                         placeholder="Self Service"
                         className=" max-w-[300px] max-md:w-[150px] max-md:text-sm    placeholder:text-customGray-semiDark py-[7px]"
                       />
-                      <button className="flex gap-3 cursor-pointer items-center  border-gray-100  border-[1px] p-1 rounded-sm max-w-[75px]">
-                        <img src={add} alt="add icon" width={20} height={20} />
-                        <p className="text-md text-customGray-fade ">Add</p>
-                      </button>
+                      <AddBtn />
                     </div>
-                    <div className="flex-1 grid grid-cols-2 gap-3 place-content-center max-w-fit max-lg:text-][10px] ">
+
+                    <div className="flex-1 flex pr-8 flex-wrap gap-2 justify-start place-content-center max-lg:text-][10px] ">
                       {subs.map((sub) => (
                         <Tag key={sub} tagName={sub} />
                       ))}
@@ -118,24 +117,22 @@ const Create = () => {
                 <Button message={"save"} />
               </div>
 
-              <div className="flex flex-col gap-6">
-                <Wrapper>
-                  <div className="flex gap-4">
-                    <div className="pl-8 flex flex-col gap-4">
-                      <h3 className=" font-semibold text-md">
-                        Add Sub category
+              <div className="flex flex-col gap-5">
+                <Wrapper padding="py-6">
+                  <div className="flex gap-7">
+                    <div className="pl-8 w-[35%] flex flex-col gap-4">
+                      <h3 className=" font-semibold text-[15px]">
+                        Add least sub category (Optional)
                       </h3>
                       <Input
                         placeholder="Document Settings"
-                        className=" max-w-[300px] max-md:w-[150px] max-md:text-sm    placeholder:text-customGray-semiDark py-[7px]"
+                        className=" max-w-[300px]  max-md:w-[150px] max-md:text-sm    placeholder:text-customGray-semiDark py-[7px]"
                       />
                       <Dropdown />
-                      <button className="flex gap-3 cursor-pointer items-center  border-gray-100  border-[1px] p-1 rounded-sm max-w-[75px]">
-                        <img src={add} alt="add icon" width={20} height={20} />
-                        <p className="text-md text-customGray-fade ">Add</p>
-                      </button>
+                      <AddBtn />
                     </div>
-                    <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 h-fit place-content-center gap-3 max-w-fit max-lg:text-][10px] ">
+
+                    <div className="flex-1 pr-8 flex flex-wrap justify-start gap-2 place-content-center max-lg:text-][10px] ">
                       {leastSubs.map((leastSub) => (
                         <Tag key={leastSub} tagName={leastSub} />
                       ))}

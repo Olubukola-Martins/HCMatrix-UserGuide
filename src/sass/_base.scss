@@ -5,6 +5,9 @@
 @tailwind utilities;
 
 @layer components {
+  .center {
+    @apply items-center justify-center;
+  }
   .navLinks {
     @apply capitalize hover:border-b-2 hover:pb-2 ease-out  transition-all duration-300;
   }
@@ -15,6 +18,10 @@
 
   .articleDisplayModal {
     @apply absolute p-2 rounded-md text-[10px] shadow-md flex-col flex bg-white;
+  }
+
+  .inputStyle {
+    @apply outline-none border rounded-xl py-4 pl-5;
   }
 }
 

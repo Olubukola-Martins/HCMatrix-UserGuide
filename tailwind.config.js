@@ -24,14 +24,14 @@ export default {
           dark: "rgba(58, 58, 58, 0.9)",
           semiDark: "rgba(58, 58, 58, 0.8)",
           light: "rgba(58, 58, 58, 0.7)",
-          lightest: "rgba(58, 58, 58, 0.7)",
+          lightest: "rgba(58, 58, 58, 0.6)",
           fade: "rgba(58, 58, 58, 0.5)",
           lighter: "#ffffffb2",
-          tag: "#C5C5C5",
+          tag: "rgba(197, 197, 197, 0.3)",
         },
-        btn:{
-          red: "#F77366"
-        }
+        btn: {
+          red: "#F77366",
+        },
       },
       fontFamily: {
         body: ["Inter"],

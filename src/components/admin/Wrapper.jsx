@@ -1,10 +1,10 @@
-const Wrapper = ({ children, className, edges, onClickHandler }) => {
+const Wrapper = ({ children, className, edges, onClickHandler, padding }) => {
   return (
     <div
       onClick={() => onClickHandler()}
-      className={`${
-        className ? `${className}` : "rounded-lg bg-white"
-      } py-3 overflow-hidden ${edges ? edges : ""}`}
+      className={`${className ? `${className}` : "rounded-lg bg-white"} ${
+        padding ? padding : "py-3"
+      } overflow-hidden ${edges ? edges : ""}`}
     >
       {children}
     </div>
