@@ -11,6 +11,8 @@ import Tag from "./Tag";
 import Button from "./Button";
 import Dropdown from "./Dropdown";
 import AddBtn from "./AddBtn";
+import Toggler from "./Toggler";
+import ToggleBtn from "./ToggleBtn";
 
 export {
   Header,
@@ -25,4 +27,6 @@ export {
   Button,
   Dropdown,
   AddBtn,
+  Toggler,
+  ToggleBtn,
 };

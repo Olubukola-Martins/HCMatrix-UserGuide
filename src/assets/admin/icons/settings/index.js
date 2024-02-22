@@ -1,3 +1,11 @@
 import add from "./add.svg";
 import close from "./close.svg";
-export { add, close };
+import idea from "./idea.svg";
+
+import placeholder from "./placeholder.svg";
+
+import base from "./base.svg";
+
+import link from "./link.svg";
+
+export { add, close, idea, placeholder, base, link };

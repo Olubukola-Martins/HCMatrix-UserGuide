@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+
 import Container from "./Container";
 import HeroImg from "../../assets/common/images/heroimg.png";
 import Hand from "../../assets/user/Hand.svg";
@@ -6,6 +8,10 @@ import Search from "../../assets/user/search.svg";
 import GlassDesign from "./GlassDesign";
 
 const Hero = () => {
+  const { suggestedArticle, contactBtn, badge } = useSelector(
+    (store) => store.customization
+  );
+
   return (
     <section
       className="bg-cover bg-center relative text-primary h-96"
@@ -22,9 +28,11 @@ const Hero = () => {
           <p className="text-white">HcMatrix Help Center</p>
         </nav>
 
-        <GlassDesign className="inline-block rounded-xl px-4 py-2 absolute right-0 md:right-14 cursor-pointer">
-          <p className="text-[10px]">Contact Us</p>
-        </GlassDesign>
+        {contactBtn && (
+          <GlassDesign className="inline-block rounded-xl px-4 py-2 absolute right-0 md:right-14 cursor-pointer">
+            <p className="text-[10px]">Contact Us</p>
+          </GlassDesign>
+        )}
 
         <div className="w-[100%] md:w-[75%] mx-auto md:mt-[2rem] mt-[4.5rem] ">
           <div className=" flex items-center md:mb-2 mb-4 justify-center">

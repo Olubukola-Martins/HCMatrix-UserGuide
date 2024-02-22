@@ -13,6 +13,9 @@ import { useNavigate } from "react-router";
 
 //Redux Actions
 import { navigation, settingsNavigation } from "../../state/admin/headerSlice";
+import { adminModalToggle } from "../../state/admin/modalSlice";
+
+import { AuthModal } from "./modals";
 
 // import { CreateIcon } from "../../assets/admin/icons/headerSetting";
 
@@ -20,6 +23,8 @@ const Header = () => {
   const { navMenu, settingsMenu, barToggle } = useSelector(
     (store) => store.adminHeader
   );
+  const { adminModal } = useSelector((store) => store.modelSlice);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -53,7 +58,7 @@ const Header = () => {
   };
 
   return (
-    <header className="mb-8 bg-white shadow-md py-7 grid font-semibold text-customGray-dark place-items-center text-[15px]">
+    <header className="mb-8 bg-white relative shadow-md py-7 grid font-semibold text-customGray-dark place-items-center text-[15px]">
       <Container>
         {/* Main Menu */}
         <div className="flex justify-between">
@@ -84,11 +89,16 @@ const Header = () => {
           </div>
 
           {/* The Admin */}
-          <div className="flex items-center gap-2">
+          <div
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => dispatch(adminModalToggle())}
+          >
             <span>Admin</span>
             <Admin />
           </div>
         </div>
+
+        {adminModal && <AuthModal />}
 
         {/* Settings Sub Menu */}
         {barToggle && (
