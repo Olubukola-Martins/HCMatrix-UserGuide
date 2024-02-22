@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 // FOR THE USER
-import categoryReducer from "./state/user/categorys/categorySlice";
+import categoryReducer from "./state/user/usercategory/categorySlice";
 
 // FOR THE ADMIN
 import adminHeaderReducer from "./state/admin/headerSlice";
