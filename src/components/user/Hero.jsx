@@ -30,7 +30,7 @@ const Hero = () => {
             <span>Hello User</span>
             <img src={Hand} alt="" className="md:h-[25px] h-4 ml-2" />
           </div>
-          <p className="text-white" onClick={() => toAdmin()}>
+          <p className="text-white cursor-pointer" onClick={() => toAdmin()}>
             HcMatrix Help Center
           </p>
         </nav>
