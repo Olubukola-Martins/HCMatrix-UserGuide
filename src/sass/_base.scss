@@ -34,6 +34,37 @@
   scroll-behavior: smooth;
 }
 
+html::-webkit-scrollbar {
+  width: 10px;
+}
+
+html::-webkit-scrollbar-thumb {
+  width: 7px;
+  background-color: rgba(247, 115, 102, 1);
+  border-radius: 50px;
+}
+
+.form::-webkit-scrollbar {
+  width: 5px;
+  border-top-right-radius: 500px;
+  border-bottom-right-radius: 500px;
+  overflow: hidden;
+}
+
+.form::-webkit-scrollbar-track {
+  overflow: hidden;
+  height: 80%;
+}
+
+.form::-webkit-scrollbar-thumb {
+  width: 10px;
+  background-color: rgba(247, 115, 102, 1);
+  border-top-right-radius: 100px;
+  border-top-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-bottom-left-radius: 100px;
+}
+
 .blur {
   background: linear-gradient(
     111deg,
