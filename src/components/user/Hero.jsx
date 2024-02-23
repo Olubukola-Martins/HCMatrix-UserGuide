@@ -8,9 +8,7 @@ import Search from "../../assets/user/search.svg";
 import GlassDesign from "./GlassDesign";
 
 const Hero = () => {
-  const { suggestedArticle, contactBtn, badge } = useSelector(
-    (store) => store.customization
-  );
+  const { contactBtn } = useSelector((store) => store.customization);
 
   return (
     <section
@@ -23,7 +21,7 @@ const Hero = () => {
         <nav className="flex justify-between items-center text-md md:text-[1.15rem] mb-3">
           <div className="flex items-center">
             <span>Hello User</span>
-            <img src={Hand} alt="" className="md:h-[25px] h-4  ml-2" />
+            <img src={Hand} alt="" className="md:h-[25px] h-4 ml-2" />
           </div>
           <p className="text-white">HcMatrix Help Center</p>
         </nav>

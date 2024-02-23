@@ -12,6 +12,7 @@ import { Search } from "../../../assets/admin/icons/dashboard";
 import { getAllCategories } from "../../../state/admin/adminCategorySlice";
 import { SideMenu } from "../../../components/admin";
 import { NewArticleModal } from "../../../components/admin/modals";
+import { newArticleModalToggle } from "../../../state/admin/modalSlice";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -49,7 +50,10 @@ const Main = () => {
             {articles?.length ? (
               <ArticleReviewBox />
             ) : (
-              <Wrapper className="flex bg-white w-[40%] justify-center rounded-lg items-center gap-2 mb-4 cursor-pointer">
+              <Wrapper
+                className="flex bg-white w-[40%] justify-center rounded-lg items-center gap-2 mb-4 cursor-pointer"
+                onClickHandler={() => dispatch(newArticleModalToggle())}
+              >
                 <AddBtn />
                 <span>Create New Article</span>
               </Wrapper>

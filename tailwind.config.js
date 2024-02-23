@@ -18,6 +18,7 @@ export default {
         customRed: {
           DEFAULT: "rgba(255, 169, 169, 0.1)",
           normal: "rgba(255, 57, 57, 1)",
+          light: "rgba(247, 115, 102, 1)",
         },
         customGray: {
           DEFAULT: "#3A3A3A",

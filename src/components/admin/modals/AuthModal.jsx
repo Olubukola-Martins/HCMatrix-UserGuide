@@ -3,7 +3,7 @@ import { Lock, LogOut } from "../../../assets/admin/icons/dashboard";
 
 const AuthModal = () => {
   return (
-    <div className="absolute flex flex-col right-[4rem] border px-3 text-[17px] font-normal bg-white rounded-xl w-72 pt-6 pb-8 shadow-lg">
+    <div className="absolute flex flex-col right-[4rem] z-20 border px-3 text-[17px] font-normal bg-white rounded-xl w-72 pt-6 pb-8 shadow-lg">
       <div className="w-[50px] h-[50px] rounded-full self-center border grid place-items-center">
         <UserIcon />
       </div>
