@@ -1,3 +1,5 @@
 import add from "./add.svg";
 import close from "./close.svg";
-export { add, close };
+import editIcon from "./editIcon.svg";
+
+export { add, close, editIcon};
