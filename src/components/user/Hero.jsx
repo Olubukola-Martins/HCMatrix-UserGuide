@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux";
 
+import { useNavigate } from "react-router-dom";
+
 import Container from "./Container";
 import HeroImg from "../../assets/common/images/heroimg.png";
 import Hand from "../../assets/user/Hand.svg";
@@ -9,6 +11,11 @@ import GlassDesign from "./GlassDesign";
 
 const Hero = () => {
   const { contactBtn } = useSelector((store) => store.customization);
+  const navigate = useNavigate();
+
+  const toAdmin = () => {
+    navigate("/admin");
+  };
 
   return (
     <section
@@ -23,7 +30,9 @@ const Hero = () => {
             <span>Hello User</span>
             <img src={Hand} alt="" className="md:h-[25px] h-4 ml-2" />
           </div>
-          <p className="text-white">HcMatrix Help Center</p>
+          <p className="text-white cursor-pointer" onClick={() => toAdmin()}>
+            HcMatrix Help Center
+          </p>
         </nav>
 
         {contactBtn && (

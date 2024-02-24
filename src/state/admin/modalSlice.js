@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   adminModal: false,
-  newArticleModal: true,
+  newArticleModal: false,
 };
 
 const modelSlice = createSlice({

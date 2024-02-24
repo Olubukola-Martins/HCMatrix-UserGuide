@@ -52,7 +52,7 @@ const Main = () => {
             ) : (
               <Wrapper
                 className="flex bg-white w-[40%] justify-center rounded-lg items-center gap-2 mb-4 cursor-pointer"
-                onClickHandler={() => dispatch(newArticleModalToggle())}
+                // onClickHandler={() => dispatch(newArticleModalToggle())}
               >
                 <AddBtn />
                 <span>Create New Article</span>

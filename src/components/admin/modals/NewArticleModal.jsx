@@ -8,8 +8,6 @@ const NewArticleModal = () => {
     dispatch(newArticleModalToggle());
   };
 
-  //   fixed top-0 left-0 z-10 bg-opacity-5 bg-black
-
   return (
     <div className="w-[100%] h-[100vh] fixed top-0 left-0 z-10 flex items-center flex-col">
       {/* The overlay */}
