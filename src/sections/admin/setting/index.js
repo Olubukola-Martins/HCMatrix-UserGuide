@@ -1,5 +1,5 @@
 import Create from "./Create";
 import ManageUser from "./ManageUser";
-import DataOverview from "./DataOverview";
+import Customization from "./Customization";
 
-export { Create, ManageUser, DataOverview };
+export { Create, ManageUser, Customization };

@@ -11,8 +11,6 @@ import Tag from "./Tag";
 import Button from "./Button";
 import Dropdown from "./Dropdown";
 import AddBtn from "./AddBtn";
-import TableHeader from "./TableHeader";
-import TableBody from "./TableBody";
 
 export {
   Header,
@@ -27,6 +25,4 @@ export {
   Button,
   Dropdown,
   AddBtn,
-  TableBody,
-  TableHeader
 };

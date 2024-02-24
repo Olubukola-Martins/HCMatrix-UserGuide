@@ -17,7 +17,7 @@ import { Dashboard, Insight, Settings } from "./sections/admin";
 import { Main } from "./sections/admin/dashboard";
 
 //Setting Sections
-import { Create, DataOverview, ManageUser } from "./sections/admin/setting";
+import { Create, Customization, ManageUser } from "./sections/admin/setting";
 
 //React Router Dom
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -44,7 +44,7 @@ const App = () => {
             {/* Settings Routes */}
             <Route path="/admin/setting" Component={Settings}>
               <Route path="/admin/setting/" Component={Create} />
-              <Route path="/admin/setting/overview" Component={DataOverview} />
+              <Route path="/admin/setting/overview" Component={Customization} />
               <Route path="/admin/setting/manageuser" Component={ManageUser} />
             </Route>
           </Route>

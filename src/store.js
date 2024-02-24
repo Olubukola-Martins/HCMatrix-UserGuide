@@ -7,6 +7,8 @@ import categoryReducer from "./state/user/usercategory/categorySlice";
 import adminHeaderReducer from "./state/admin/headerSlice";
 import adminCategoryReducer from "./state/admin/adminCategorySlice";
 import authenticationReducer from "./state/admin/authenticationSlice";
+import customizationReducer from "./state/admin/customizationSlice";
+import modalReducer from "./state/admin/modalSlice";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +16,8 @@ const store = configureStore({
     adminHeader: adminHeaderReducer,
     adminCategory: adminCategoryReducer,
     auth: authenticationReducer,
+    customization: customizationReducer,
+    modelSlice: modalReducer,
   },
 });
 

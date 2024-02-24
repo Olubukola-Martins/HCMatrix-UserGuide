@@ -5,6 +5,7 @@ import { SidePanel } from "./layout";
 import { Link } from "react-router-dom";
 
 import { getSingleCategory } from "../../state/admin/adminCategorySlice";
+import { newArticleModalToggle } from "../../state/admin/modalSlice";
 
 import { Fluent, ViewFinder } from "../../assets/admin/icons/dashboard";
 
@@ -23,7 +24,10 @@ const SideMenu = ({ page, title: pageTitle }) => {
     <SidePanel>
       <h3 className="mb-3 text-lg">{pageTitle}</h3>
       {page === "dashboard" && (
-        <Wrapper className="flex bg-white justify-center rounded-lg items-center gap-2 mb-4 cursor-pointer">
+        <Wrapper
+          className="flex bg-white justify-center rounded-lg items-center gap-2 mb-4 cursor-pointer"
+          onClickHandler={() => dispatch(newArticleModalToggle())}
+        >
           <AddBtn />
           <span>New Article</span>
         </Wrapper>
