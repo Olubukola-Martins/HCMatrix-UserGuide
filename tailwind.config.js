@@ -28,6 +28,7 @@ export default {
           lightest: "rgba(58, 58, 58, 0.6)",
           fade: "rgba(58, 58, 58, 0.5)",
           lighter: "#ffffffb2",
+          clear: "#E5E7EB",
           tag: "rgba(197, 197, 197, 0.3)",
         },
         btn: {
