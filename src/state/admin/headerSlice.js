@@ -23,6 +23,7 @@ const initialState = {
     { icon: LookIcon, name: "look & data", active: false },
     { icon: MemberIcon, name: "Manage Members", active: false },
   ],
+  showHeader: true,
 };
 
 const adminHeaderSlice = createSlice({
@@ -57,10 +58,19 @@ const adminHeaderSlice = createSlice({
       });
 
       state.settingsMenu = settingNav;
-      // alert("working");
+    },
+    headerToggle: (state, action) => {
+      const { page } = action.payload;
+
+      if (page === "article") {
+        state.showHeader = false;
+      } else {
+        state.showHeader = true;
+      }
     },
   },
 });
 
-export const { navigation, settingsNavigation } = adminHeaderSlice.actions;
+export const { navigation, settingsNavigation, headerToggle } =
+  adminHeaderSlice.actions;
 export default adminHeaderSlice.reducer;

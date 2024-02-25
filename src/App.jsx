@@ -26,6 +26,7 @@ import { ArticleContainer } from "./components/user";
 import { Employee } from "./articles";
 
 import { InsightMain, Review } from "./sections/admin/insight";
+import { CreateArticle } from "./sections/admin/article";
 
 const App = () => {
   return (
@@ -39,6 +40,8 @@ const App = () => {
             <Route path="/admin/dashboard" Component={Dashboard}>
               <Route index Component={Main} />
             </Route>
+
+            <Route path="/admin/create" Component={CreateArticle} />
 
             {/* Insight Routes */}
             <Route path="/admin/insight" Component={Insight}>

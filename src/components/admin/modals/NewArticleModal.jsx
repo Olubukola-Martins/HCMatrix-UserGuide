@@ -1,11 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
 import { newArticleModalToggle } from "../../../state/admin/modalSlice";
+import { useNavigate } from "react-router-dom";
+import { headerToggle } from "../../../state/admin/headerSlice";
 
 const NewArticleModal = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onClickHandler = () => {
     dispatch(newArticleModalToggle());
+  };
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    dispatch(newArticleModalToggle());
+    dispatch(headerToggle({ page: "article" }));
+    navigate("/admin/create");
   };
 
   return (
@@ -21,7 +31,7 @@ const NewArticleModal = () => {
         {/* For The Effect */}
         <div className="h-[20px] w-[37%] fixed bg-white"></div>
 
-        <form className="w-full">
+        <form className="w-full" onSubmit={onSubmitHandler}>
           <h3 className="font-semibold text-lg mb-4 mt-4">
             Create New Article
           </h3>

@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 const AdminPage = () => {
   const { newArticleModal } = useSelector((store) => store.modelSlice);
+  const { showHeader } = useSelector((store) => store.adminHeader);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -16,7 +18,8 @@ const AdminPage = () => {
 
   return (
     <>
-      <Header />
+      {showHeader && <Header />}
+
       {newArticleModal && <NewArticleModal />}
 
       <div className="pb-10">
