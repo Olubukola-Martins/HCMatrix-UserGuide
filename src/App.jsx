@@ -25,6 +25,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ArticleContainer } from "./components/user";
 import { Employee } from "./articles";
 
+import { InsightMain, Review } from "./sections/admin/insight";
+
 const App = () => {
   return (
     <>
@@ -39,7 +41,10 @@ const App = () => {
             </Route>
 
             {/* Insight Routes */}
-            <Route path="/admin/insight" Component={Insight} />
+            <Route path="/admin/insight" Component={Insight}>
+              <Route index Component={InsightMain}></Route>
+              <Route path="/admin/insight/review" Component={Review}></Route>
+            </Route>
 
             {/* Settings Routes */}
             <Route path="/admin/setting" Component={Settings}>

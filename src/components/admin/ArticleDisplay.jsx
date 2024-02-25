@@ -1,10 +1,19 @@
 import { Menu } from "../../assets/admin/icons/dashboard";
 import ArticleActions from "./ArticleActions";
+import { useDispatch } from "react-redux";
+import { actionModalToggler } from "../../state/admin/adminDataSlice";
 
-const ArticleDisplay = ({ type, article }) => {
-  const { title, active } = article;
+const ArticleDisplay = ({ type, article, categoryName }) => {
+  const dispatch = useDispatch();
+  const { title, toggle } = article;
+  const info = { title, categoryName };
+
+  const toggleHandler = () => {
+    dispatch(actionModalToggler({ categoryName, title }));
+  };
+
   return (
-    <div className="flex px-6 border-b last:border-none items-stretch">
+    <div className="flex px-6 border-b last:border-none last:pb-4 items-stretch">
       <div className="flex-1 flex flex-col justify-center ">
         <h3 className="capitalize text-customGray">{title}</h3>
         <span className="text-[10px] text-semibold">
@@ -23,8 +32,8 @@ const ArticleDisplay = ({ type, article }) => {
         </span>
       </div>
       <div className="w-[25%] relative grid place-items-center">
-        <Menu />
-        {active && <ArticleActions type={type} />}
+        <Menu onClickHandler={() => toggleHandler()} />
+        {toggle && <ArticleActions type={type} info={info} />}
       </div>
     </div>
   );

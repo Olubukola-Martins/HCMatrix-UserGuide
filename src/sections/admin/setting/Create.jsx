@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllCategories } from "../../../state/admin/adminCategorySlice";
+import { getAllCategories } from "../../../state/admin/adminDataSlice";
 import {
   Container,
   Wrapper,
