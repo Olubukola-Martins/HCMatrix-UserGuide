@@ -15,6 +15,7 @@ import { SidePanel } from "../../../components/admin/layout";
 import { wavingHand } from "../../../assets/user/categories";
 import { add } from "../../../assets/admin/icons/settings";
 import { Subcategories } from "../../user";
+import { subCategories, leastSubCategories } from "../../../data/categories";
 
 const Create = () => {
   const dispatch = useDispatch();
@@ -24,28 +25,10 @@ const Create = () => {
 
   const { category } = useSelector((store) => store.adminCategory);
 
-  const subCategories = [
-    "General Settings",
-    "Organization Settings",
-    "Self Service Settings",
-    "Automation Settings",
-  ];
-
-  const leastSubCategories = [
-    "Onboarding",
-    "Leave",
-    "Loan",
-    "Document",
-    "Conference room booking",
-    "Vehicle booking",
-    "Requisition",
-    "Payslip",
-    "Health Access",
-  ];
-
   const [leastSubs, setLeastSubs] = useState(leastSubCategories);
 
   const [subs, setSubs] = useState(subCategories);
+  
 
   return (
     <main className="font-semibold text-customGray-dark text-[15px]">
@@ -124,11 +107,11 @@ const Create = () => {
                       <h3 className=" font-semibold text-[15px]">
                         Add least sub category (Optional)
                       </h3>
+                      <Dropdown />
                       <Input
                         placeholder="Document Settings"
-                        className=" max-w-[300px]  max-md:w-[150px] max-md:text-sm    placeholder:text-customGray-semiDark py-[7px]"
+                        className=" max-w-[300px] max-md:w-[150px] max-md:text-sm placeholder:text-customGray-semiDark py-[7px]"
                       />
-                      <Dropdown />
                       <AddBtn />
                     </div>
 
