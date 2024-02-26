@@ -15,6 +15,7 @@ import ToggleBtn from "./ToggleBtn";
 import AddBtn from "./AddBtn";
 import TableHeader from "./TableHeader";
 import TableBody from "./TableBody";
+import Accordion from "./Accordion";
 
 export {
   Header,
@@ -33,4 +34,5 @@ export {
   ToggleBtn,
   TableBody,
   TableHeader,
+  Accordion,
 };

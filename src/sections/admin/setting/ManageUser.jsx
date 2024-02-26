@@ -4,6 +4,7 @@ import {
   Input,
   TableHeader,
   TableBody,
+  Button,
 } from "../../../components/admin";
 
 import {
@@ -31,10 +32,10 @@ const ManageUser = () => {
             <Wrapper padding="p-6">
               <form className="flex flex-col gap-4">
                 <h3 className="text-md font-semibold">Invite a new member</h3>
-                <div className="flex flex-1 flex-wrap max-md:flex-col gap-2 justify-start">
+                <div className="flex flex-1 flex-wrap max-md:flex-col gap-3 justify-start mb-2">
                   <Input
                     placeholder="@gmail.com"
-                    className="w-[40%] min-w-[300px] max-md:w-full"
+                    className="w-[40%]  min-w-[300px] max-md:w-full"
                   />
                   <Input
                     placeholder="first name"
@@ -45,6 +46,7 @@ const ManageUser = () => {
                     className="w-[20%] capitalize min-w-[180px] max-md:w-full"
                   />
                 </div>
+                <Button message="invite members" />
               </form>
             </Wrapper>
             <Wrapper padding="p-6">
