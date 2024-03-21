@@ -16,8 +16,16 @@ import AddBtn from "./AddBtn";
 import TableHeader from "./TableHeader";
 import TableBody from "./TableBody";
 import Accordion from "./Accordion";
+import BtnLayoutAdmin from "./BtnLayoutAdmin";
+import Novel from "./Novel";
+import Tiptap from "./Tiptap";
+import EmojiPicker from "./EmojiPicker";
+import FormContainer from "./FormContainer";
 
 export {
+  FormContainer,
+  Novel,
+  Tiptap,
   Header,
   Container,
   Wrapper,
@@ -35,4 +43,6 @@ export {
   TableBody,
   TableHeader,
   Accordion,
+  BtnLayoutAdmin,
+  EmojiPicker,
 };

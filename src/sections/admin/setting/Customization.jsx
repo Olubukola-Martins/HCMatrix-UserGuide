@@ -7,6 +7,7 @@ import {
 } from "../../../components/admin/layout";
 
 import { Toggler } from "../../../components/admin";
+import Home from "../../../pages/user/Home";
 
 const Customization = () => {
   const { toggler: toggle, accordion } = useSelector(
@@ -24,7 +25,11 @@ const Customization = () => {
             return <Toggler key={index} {...action} />;
           })}
         </MainContent>
-        <SidePanel></SidePanel>
+        <SidePanel>
+          <div>
+            <Home />
+          </div>
+        </SidePanel>
       </Layout>
     </Container>
   );

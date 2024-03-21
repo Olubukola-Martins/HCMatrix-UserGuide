@@ -44,6 +44,14 @@ html::-webkit-scrollbar-thumb {
   border-radius: 50px;
 }
 
+.jodit li {
+  margin-left: 0 !important;
+}
+
+select option {
+  padding: 5px;
+}
+
 .form::-webkit-scrollbar {
   width: 5px;
   border-top-right-radius: 500px;
