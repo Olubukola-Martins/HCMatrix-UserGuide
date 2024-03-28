@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  DashboardIcon,
-  InsightIcon,
-  SettingsIcon,
+  dashboardicon,
+  insighticon,
+  settingsicon,
+  admin,
 } from "../../assets/admin/icons/header";
 
 import {
@@ -13,9 +14,9 @@ import {
 
 const initialState = {
   navMenu: [
-    { icon: DashboardIcon, name: "Dashboard", active: true },
-    { icon: InsightIcon, name: "Insight", active: false },
-    { icon: SettingsIcon, name: "Setting", active: false },
+    { icon: dashboardicon, name: "Dashboard", active: true },
+    { icon: insighticon, name: "Insight", active: false },
+    { icon: settingsicon, name: "Setting", active: false },
   ],
   barToggle: false,
   settingsMenu: [
