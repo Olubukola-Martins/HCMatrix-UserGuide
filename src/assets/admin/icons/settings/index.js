@@ -1,7 +1,8 @@
 import add from "./add.svg";
 import close from "./close.svg";
 import editIcon from "./editIcon.svg";
-
+import down from "./down.svg";
+import upload from "./upload.svg";
 
 import idea from "./idea.svg";
 
@@ -11,4 +12,4 @@ import base from "./base.svg";
 
 import link from "./link.svg";
 
-export { add, close, idea, placeholder, base, link,  editIcon };
+export { add, close, idea, placeholder, base, link, editIcon, down, upload };

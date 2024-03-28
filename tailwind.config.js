@@ -30,6 +30,7 @@ export default {
           lighter: "#ffffffb2",
           clear: "#E5E7EB",
           tag: "rgba(197, 197, 197, 0.3)",
+          upload: "rgba(246, 246, 246, 1)",
         },
         btn: {
           red: "#F77366",

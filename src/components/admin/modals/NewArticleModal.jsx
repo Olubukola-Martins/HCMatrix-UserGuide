@@ -1,11 +1,107 @@
 import { useDispatch, useSelector } from "react-redux";
 import { newArticleModalToggle } from "../../../state/admin/modalSlice";
+import { useNavigate } from "react-router-dom";
+import { headerToggle } from "../../../state/admin/headerSlice";
+import { useEffect, useState } from "react";
+import { subCategories } from "../../../data/categories";
+import FormContainer from "../FormContainer";
+import { populateNewArticle } from "../../../state/admin/articleSlice";
+import { formValidation } from "../../../utils/formvalidator";
 
 const NewArticleModal = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const initial = {
+    articleTitle: "",
+    articleDescription: "",
+  };
+
+  const [inputFields, setInputFields] = useState(initial);
+
+  const { articleTitle, articleDescription } = inputFields;
+
+  const textChangeHandler = (e) => {
+    const { value, name } = e.target;
+    setInputFields((prev) => {
+      return { ...prev, [name]: value };
+    });
+  };
+
+  // Arrays
+  const { categories } = useSelector((store) => store.adminCategory);
+  const [subcategories, setSubcategories] = useState([]);
+  const [leastSubcategories, setLeastSubcategories] = useState([]);
+
+  // States
+  const [category, setCategory] = useState("select category");
+  const [subcategory, setSubcategory] = useState("select subcategories");
+  const [leastSubcategory, setLeastSubcategory] = useState(
+    "select lease subcategories"
+  );
 
   const onClickHandler = () => {
     dispatch(newArticleModalToggle());
+  };
+
+  //onSubmit handler
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    const form = {
+      category: category,
+      subcategory: subcategory,
+      leastSubcategory: leastSubcategory,
+      articleTitle: articleTitle,
+      articleDescription: articleDescription,
+    };
+
+    if (formValidation(form)) {
+      dispatch(populateNewArticle(form));
+      dispatch(newArticleModalToggle());
+      dispatch(headerToggle({ page: "article" }));
+      navigate("/admin/create");
+    }
+  };
+
+  // Cascading Form Input logic
+  const changeCategory = (event) => {
+    setCategory(event.target.value);
+    const subcategory = categories.find(
+      (cat) => cat.title === event.target.value
+    ).subcategories;
+
+    setSubcategories(subcategory);
+
+    if (subcategory) {
+      setSubcategory("select subcategories");
+      setLeastSubcategory("select least subcategories");
+      setInputFields(initial);
+    }
+
+    if (!subcategory) {
+      setSubcategory("");
+      setLeastSubcategory("");
+    }
+  };
+
+  const changeSubcategory = (event) => {
+    setSubcategory(event.target.value);
+    const leastSubcategory = subcategories.find(
+      (sub) => sub.title === event.target.value
+    ).category;
+    setLeastSubcategories(leastSubcategory);
+    if (leastSubcategory) {
+      setLeastSubcategory("select least subcategories");
+      setInputFields(initial);
+    }
+
+    if (!leastSubcategory) {
+      setLeastSubcategory("");
+    }
+  };
+
+  const changeLeastSubcategory = (event) => {
+    setLeastSubcategory(event.target.value);
   };
 
   return (
@@ -21,67 +117,82 @@ const NewArticleModal = () => {
         {/* For The Effect */}
         <div className="h-[20px] w-[37%] fixed bg-white"></div>
 
-        <form className="w-full">
+        <form className="w-full" onSubmit={onSubmitHandler}>
           <h3 className="font-semibold text-lg mb-4 mt-4">
             Create New Article
           </h3>
-          <div className="mb-3">
-            <label className="text-sm text-customGray-lightest block mb-2 font-semibold ">
-              Select category
-            </label>
-            <select className="w-full py-3 px-4 rounded-lg border outline-none text-sm">
-              <option value="man">man</option>
-              <option value="man">woman</option>
-              <option value="man">boy</option>
-              <option value="man">girl</option>
-            </select>
-          </div>
-          <div className="mb-3">
-            <label className="text-sm text-customGray-lightest block mb-2 font-semibold">
-              Select sub category
-            </label>
-            <select className="w-full py-3 px-4 rounded-lg border outline-none text-sm">
-              <option value="man">man</option>
-              <option value="man">woman</option>
-              <option value="man">boy</option>
-              <option value="man">girl</option>
-            </select>
-          </div>
 
-          {/*  */}
-          <div className="mb-3">
-            <label className="text-sm text-customGray-lightest block mb-2 font-semibold">
-              Select least category (optional)
-            </label>
-            <select className="w-full py-3 px-4 rounded-lg border outline-none text-sm">
-              <option value="man">Documents</option>
-              <option value="man">woman</option>
-              <option value="man">boy</option>
-              <option value="man">girl</option>
+          {/* Category input */}
+          <FormContainer label="Select category">
+            <select
+              className="w-full py-3 px-4 rounded-lg border outline-none text-sm"
+              value={category}
+              onChange={changeCategory}
+            >
+              <option>Select Category</option>
+              {categories.map((category, index) => {
+                return (
+                  <option className="" key={index}>
+                    {category.title}
+                  </option>
+                );
+              })}
             </select>
-          </div>
+          </FormContainer>
+
+          {/* Sub category */}
+          {subcategories && (
+            <FormContainer label=" Select subcategory">
+              <select
+                className="w-full py-3 px-4 rounded-lg border outline-none text-sm"
+                value={subcategory}
+                onChange={changeSubcategory}
+              >
+                <option>Select subcategory</option>
+                {subcategories.map((sub, index) => {
+                  return <option key={index}>{sub.title}</option>;
+                })}
+              </select>
+            </FormContainer>
+          )}
+
+          {/* least category */}
+          {subcategories && leastSubcategories && (
+            <FormContainer label="Select least category (optional)">
+              <select
+                className="w-full py-3 px-4 rounded-lg border outline-none text-sm"
+                value={leastSubcategory}
+                onChange={changeLeastSubcategory}
+              >
+                <option>Select least subcategory</option>
+                {leastSubcategories.map((least, index) => {
+                  return <option>{least.title}</option>;
+                })}
+              </select>
+            </FormContainer>
+          )}
 
           {/* The input form */}
-          <div className="mb-3">
-            <label className="text-sm text-customGray-lightest block mb-2 font-semibold">
-              Article Title
-            </label>
+          <FormContainer label="Article Title">
             <input
               type="text"
               className="w-full py-3 px-4 rounded-lg border outline-none text-sm"
+              name="articleTitle"
+              value={articleTitle}
+              onChange={textChangeHandler}
             />
-          </div>
+          </FormContainer>
 
           {/* Add desc */}
-          <div className="mb-3">
-            <label className="text-sm text-customGray-lightest block mb-2 font-semibold">
-              Article Description
-            </label>
+          <FormContainer label="Article Description">
             <textarea
               type="text"
               className="w-full py-3 px-4 rounded-lg border outline-none text-sm"
+              value={articleDescription}
+              name="articleDescription"
+              onChange={textChangeHandler}
             />
-          </div>
+          </FormContainer>
 
           <div className="mb-3">
             <button className="w-full py-3 px-4 rounded-lg border outline-none bg-customRed-light text-white">

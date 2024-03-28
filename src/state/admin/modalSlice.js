@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   adminModal: false,
   newArticleModal: false,
+  showAccordion: false,
 };
 
 const modelSlice = createSlice({
@@ -15,8 +16,12 @@ const modelSlice = createSlice({
     newArticleModalToggle: (state, action) => {
       state.newArticleModal = !state.newArticleModal;
     },
+    toggleAccordion: (state, action) => {
+      state.showAccordion = !state.showAccordion;
+    },
   },
 });
 
-export const { adminModalToggle, newArticleModalToggle } = modelSlice.actions;
+export const { adminModalToggle, newArticleModalToggle, toggleAccordion } =
+  modelSlice.actions;
 export default modelSlice.reducer;

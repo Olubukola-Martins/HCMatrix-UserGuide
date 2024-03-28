@@ -9,7 +9,7 @@ import {
   DashBoardHeader,
 } from "../../../components/admin";
 import { Search } from "../../../assets/admin/icons/dashboard";
-import { getAllCategories } from "../../../state/admin/adminCategorySlice";
+import { getAllCategories } from "../../../state/admin/adminDataSlice";
 import { SideMenu } from "../../../components/admin";
 import { NewArticleModal } from "../../../components/admin/modals";
 import { newArticleModalToggle } from "../../../state/admin/modalSlice";
@@ -32,8 +32,9 @@ const Main = () => {
 
           {/* Main Body */}
           <MainContent>
+            <div className="bg-transparent h-8 mb-3 "></div>
             {/* Search input */}
-            <Wrapper className="mb-4 bg-white py-2 rounded-lg">
+            <Wrapper className=" mb-4 bg-white rounded-lg">
               <section className="flex pl-6 gap-3">
                 <Search />
                 <input
@@ -52,7 +53,7 @@ const Main = () => {
             ) : (
               <Wrapper
                 className="flex bg-white w-[40%] justify-center rounded-lg items-center gap-2 mb-4 cursor-pointer"
-                // onClickHandler={() => dispatch(newArticleModalToggle())}
+                onClickHandler={() => dispatch(newArticleModalToggle())}
               >
                 <AddBtn />
                 <span>Create New Article</span>

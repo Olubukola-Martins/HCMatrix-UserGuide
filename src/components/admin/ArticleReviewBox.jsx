@@ -4,11 +4,12 @@ import { smiling, pensive, relieved } from "../../assets/common/review";
 
 const ArticleReviewBox = ({ type }) => {
   const {
-    singleCategory: { articles },
+    singleCategory: { articles, title },
   } = useSelector((store) => store.adminCategory);
 
   return (
     <Wrapper className="rounded-[28px] bg-white pb-0">
+      {/* Box Heading */}
       <header className="flex px-6 pb-3 mt-3  border-b">
         <span className="flex-1 text-customGray-semiDark ">Articles</span>
         <div className="flex-1  flex">
@@ -19,9 +20,18 @@ const ArticleReviewBox = ({ type }) => {
 
         <span className="w-[25%] grid place-items-center">Action</span>
       </header>
+
+      {/* The Articles */}
       {articles?.map((each, index) => {
-        const article = { ...each, active: false };
-        return <ArticleDisplay key={index} article={article} type={type} />;
+        const article = { ...each };
+        return (
+          <ArticleDisplay
+            key={index}
+            article={article}
+            categoryName={title}
+            type={type}
+          />
+        );
       })}
     </Wrapper>
   );

@@ -2,13 +2,13 @@
 import Container from "./Container";
 
 //ICONS & IMAGES
-import { Admin } from "../../assets/admin/icons/header";
+import { admin } from "../../assets/admin/icons/header";
 import { Logo } from "../../assets/admin/images";
 
 //REDUX HOOKS
 import { useSelector, useDispatch } from "react-redux";
 
-//NAVIGATIONS
+//NAVIGATION
 import { useNavigate } from "react-router";
 
 //Redux Actions
@@ -66,7 +66,7 @@ const Header = () => {
             <img src={Logo} alt="logo" className=" h-12 -ml-5" />
             <div className="flex justify-between gap-6">
               {navMenu.map((menu, index) => {
-                const { icon: Icon, name, active } = menu;
+                const { icon, name, active } = menu;
 
                 return (
                   <div
@@ -77,7 +77,7 @@ const Header = () => {
                     }`}
                   >
                     <div>
-                      <Icon />
+                      <img src={icon} alt="" />
                     </div>
                     <span className="font-semibold text-customGray-dark ">
                       {name}
@@ -94,7 +94,7 @@ const Header = () => {
             onClick={() => dispatch(adminModalToggle())}
           >
             <span>Admin</span>
-            <Admin />
+            <img src={admin} alt="" />
           </div>
         </div>
 

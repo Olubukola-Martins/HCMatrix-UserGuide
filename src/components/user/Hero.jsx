@@ -9,7 +9,7 @@ import Idea from "../../assets/user/bulb.svg";
 import Search from "../../assets/user/search.svg";
 import GlassDesign from "./GlassDesign";
 
-const Hero = () => {
+const Hero = ({ showSearch }) => {
   const { contactBtn } = useSelector((store) => store.customization);
   const navigate = useNavigate();
 

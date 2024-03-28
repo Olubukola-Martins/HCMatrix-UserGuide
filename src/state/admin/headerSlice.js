@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  DashboardIcon,
-  InsightIcon,
-  SettingsIcon,
+  dashboardicon,
+  insighticon,
+  settingsicon,
+  admin,
 } from "../../assets/admin/icons/header";
 
 import {
@@ -13,9 +14,9 @@ import {
 
 const initialState = {
   navMenu: [
-    { icon: DashboardIcon, name: "Dashboard", active: true },
-    { icon: InsightIcon, name: "Insight", active: false },
-    { icon: SettingsIcon, name: "Setting", active: false },
+    { icon: dashboardicon, name: "Dashboard", active: true },
+    { icon: insighticon, name: "Insight", active: false },
+    { icon: settingsicon, name: "Setting", active: false },
   ],
   barToggle: false,
   settingsMenu: [
@@ -23,6 +24,7 @@ const initialState = {
     { icon: LookIcon, name: "look & data", active: false },
     { icon: MemberIcon, name: "Manage Members", active: false },
   ],
+  showHeader: true,
 };
 
 const adminHeaderSlice = createSlice({
@@ -57,10 +59,19 @@ const adminHeaderSlice = createSlice({
       });
 
       state.settingsMenu = settingNav;
-      // alert("working");
+    },
+    headerToggle: (state, action) => {
+      const { page } = action.payload;
+
+      if (page === "article") {
+        state.showHeader = false;
+      } else {
+        state.showHeader = true;
+      }
     },
   },
 });
 
-export const { navigation, settingsNavigation } = adminHeaderSlice.actions;
+export const { navigation, settingsNavigation, headerToggle } =
+  adminHeaderSlice.actions;
 export default adminHeaderSlice.reducer;

@@ -9,7 +9,7 @@ const initialState = {
   active: false,
 };
 
-const adminCategorySlice = createSlice({
+const adminDataHandlingSlice = createSlice({
   name: "adminCategory",
   initialState,
   reducers: {
@@ -61,9 +61,21 @@ const adminCategorySlice = createSlice({
       state.singleCategory = single;
       state.category = page === "insight" ? insight : active;
     },
+    actionModalToggler: (state, action) => {
+      const { title } = action.payload;
+      state.singleCategory.articles.map((article) => {
+        return { ...article, toggle: false };
+      });
+
+      state.singleCategory?.articles.map((article) => {
+        if (title === article.title) {
+          article.toggle = !article.toggle;
+        }
+      });
+    },
   },
 });
 
-export const { getSingleCategory, getAllCategories } =
-  adminCategorySlice.actions;
-export default adminCategorySlice.reducer;
+export const { getSingleCategory, getAllCategories, actionModalToggler } =
+  adminDataHandlingSlice.actions;
+export default adminDataHandlingSlice.reducer;
