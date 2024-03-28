@@ -1,4 +1,179 @@
-@import "./sass/base";
-@import "./sass/Page";
-@import "./sass/Nav";
-@import "./sass/Footer";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "SF-Pro-Text";
+  src: url("./fonts/SF-Pro-Text-Regular.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@layer base {
+  li {
+    list-style-type: disc;
+    list-style-position: inside;
+  }
+}
+
+@layer components {
+  .center {
+    @apply items-center justify-center;
+  }
+  .navLinks {
+    @apply capitalize hover:border-b-2 hover:pb-2 ease-out  transition-all duration-300;
+  }
+
+  .activeindicator {
+    @apply bg-[rgb(242,242,242)] shadow-md border-[1.2px] border-white rounded-lg;
+  }
+
+  .articleDisplayModal {
+    @apply absolute p-2 rounded-md text-[10px] shadow-md flex-col flex bg-white;
+  }
+
+  .inputStyle {
+    @apply outline-none border rounded-xl py-4 pl-5;
+  }
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+}
+
+html::-webkit-scrollbar-thumb {
+  width: 7px;
+  background-color: rgba(247, 115, 102, 1);
+  border-radius: 50px;
+}
+
+.jodit li {
+  margin-left: 0 !important;
+}
+
+select option {
+  padding: 5px;
+}
+
+.article__container {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  gap: 0.1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  line-height: 2rem;
+  margin-bottom: 2rem;
+  color: #3a3a3ab2;
+  font-weight: 500;
+}
+
+.article__container img {
+  margin: 1rem 0rem;
+}
+
+.article__container h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.article header {
+  color: rgba(58, 58, 58, 0.9);
+}
+
+.article header span {
+  color: rgba(58, 58, 58, 0.6);
+}
+
+.article header {
+  color: rgba(58, 58, 58, 0.9);
+}
+
+.article__container blockquote {
+  width: 95%;
+  margin: 1rem auto;
+  padding: 30px 7.5rem 30px 10rem;
+  background-color: #f6f6f6;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  max-width: 100%;
+  font-weight: 500;
+}
+
+.article__container blockquote::before {
+  content: url("./assets//admin/icons//articles/idea.svg");
+  position: absolute;
+  left: 5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: auto;
+}
+
+.form::-webkit-scrollbar {
+  width: 5px;
+  border-top-right-radius: 500px;
+  border-bottom-right-radius: 500px;
+  overflow: hidden;
+}
+
+.form::-webkit-scrollbar-track {
+  overflow: hidden;
+  height: 80%;
+}
+
+.form::-webkit-scrollbar-thumb {
+  width: 10px;
+  background-color: rgba(247, 115, 102, 1);
+  border-top-right-radius: 100px;
+  border-top-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-bottom-left-radius: 100px;
+}
+
+.blur {
+  background: linear-gradient(
+    111deg,
+    rgba(255, 255, 255, 0.24) 1.21%,
+    rgba(196, 196, 196, 0.04) 100%
+  );
+
+  backdrop-filter: blur(15px);
+}
+
+.glass {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+}
+
+.customShadow {
+  box-shadow: 0px 7px 15px 0px rgba(181, 181, 181, 0.1),
+    0px 28px 28px 0px rgba(181, 181, 181, 0.09),
+    0px 62px 37px 0px rgba(181, 181, 181, 0.05),
+    0px 110px 44px 0px rgba(181, 181, 181, 0.01),
+    0px 172px 48px 0px rgba(181, 181, 181, 0);
+}
+
+body {
+  background-color: #f6f6f6;
+  font-family: "Sf-Pro-Text";
+}

@@ -23,7 +23,7 @@ import { Create, Customization, ManageUser } from "./sections/admin/setting";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { ArticleContainer } from "./components/user";
-import { Employee } from "./articles";
+import { Dummy, Employee } from "./articles";
 
 import { InsightMain, Review } from "./sections/admin/insight";
 import { CreateArticle } from "./sections/admin/article";
@@ -80,6 +80,7 @@ const App = () => {
               Component={Articles}
             />
 
+            <Route path="/dummy" Component={Dummy} />
             {/* when there are no subcategories */}
             <Route path="/articles/:category" Component={Articles} />
 

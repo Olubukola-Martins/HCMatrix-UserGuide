@@ -3,6 +3,7 @@ import { categories } from "../../data/data";
 
 const initialState = {
   newArticle: {},
+  store: [],
   categories: categories,
 };
 
@@ -16,17 +17,22 @@ const articleSlice = createSlice({
       state.newArticle = { ...form };
     },
     addContent: (state, actions) => {
-      // const content = actions.payload;
-      const content = "this is the content";
+      const content = actions.payload;
       alert("content is working");
-      state.newArticle = {};
+      state.store = [...state.store, { ...state.newArticle, content }];
+
+      console.log(state.store);
       // state.categories = categories.map((item) => {
+      //   const { articles } = item;
       //   if (item.title === state.newArticle.category) {
-      //     return { ...item, articles: article.push(state.newArticle) };
+      //     const update = articles.push(state.newArticle);
+      //     return { ...item, articles: update };
       //   } else {
       //     return { ...item };
       //   }
       // });
+
+      state.newArticle = {};
     },
   },
 });
