@@ -1,5 +1,5 @@
 import { JoditEditorComponent } from "../../../components/admin/JoditEditor";
-import HeroImg from "../../../assets/common/images/heroImg.png";
+import img from "../../../assets/common/images/heroImg.png";
 import { Container, SectionContainer } from "../../../components/user";
 import { BtnLayoutAdmin } from "../../../components/admin";
 import { useNavigate } from "react-router-dom";
@@ -30,7 +30,7 @@ const CreateArticle = ({ margin }) => {
     <>
       <section
         className="bg-cover bg-center relative text-primary h-96 pt-7"
-        style={{ backgroundImage: `url(${HeroImg})` }}
+        style={{ backgroundImage: `url(${img})` }}
       >
         <div className="absolute inset-0 bg-black opacity-70"></div>
         <nav
