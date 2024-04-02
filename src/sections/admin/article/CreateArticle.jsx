@@ -3,17 +3,16 @@ import HeroImg from "../../../assets/common/images/heroImg.png";
 import { Container, SectionContainer } from "../../../components/user";
 import { BtnLayoutAdmin } from "../../../components/admin";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { ReactTyped } from "react-typed";
 import { addContent } from "../../../state/admin/articleSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { publish, cancel } from "../../../assets/admin/icons/articles";
+import { articleContentHandler } from "../../../state/admin/articleSlice";
 
 const CreateArticle = ({ margin }) => {
-  const [content, setContent] = useState("");
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { content } = useSelector((store) => store.article);
 
   const cancelHandler = () => {
     navigate("/admin/dashboard");
@@ -24,7 +23,7 @@ const CreateArticle = ({ margin }) => {
   };
 
   const onChangeHandler = (value) => {
-    setContent(value);
+    dispatch(articleContentHandler(value));
   };
 
   return (

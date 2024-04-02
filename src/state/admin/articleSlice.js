@@ -5,37 +5,30 @@ const initialState = {
   newArticle: {},
   store: [],
   categories: categories,
+  content: "",
 };
 
 const articleSlice = createSlice({
   name: "article",
   initialState,
   reducers: {
+    articleContentHandler: (state, actions) => {
+      const content = actions.payload;
+      state.content = content;
+    },
     populateNewArticle: (state, actions) => {
-      alert("populate still working why?");
       const form = actions.payload;
       state.newArticle = { ...form };
     },
     addContent: (state, actions) => {
       const content = actions.payload;
-      alert("content is working");
       state.store = [...state.store, { ...state.newArticle, content }];
-
-      console.log(state.store);
-      // state.categories = categories.map((item) => {
-      //   const { articles } = item;
-      //   if (item.title === state.newArticle.category) {
-      //     const update = articles.push(state.newArticle);
-      //     return { ...item, articles: update };
-      //   } else {
-      //     return { ...item };
-      //   }
-      // });
-
       state.newArticle = {};
     },
+    editContent: (state, actions) => {},
   },
 });
 
-export const { populateNewArticle, addContent } = articleSlice.actions;
+export const { populateNewArticle, addContent, articleContentHandler } =
+  articleSlice.actions;
 export default articleSlice.reducer;

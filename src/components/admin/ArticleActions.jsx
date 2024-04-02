@@ -6,6 +6,9 @@ const ArticleActions = ({ type, article, id, info }) => {
     navigate("/admin/insight/review");
   };
 
+  const disableArticleHandler = () => {};
+  const editHandler = () => {};
+
   if (type === "insight") {
     return (
       <div
@@ -19,9 +22,13 @@ const ArticleActions = ({ type, article, id, info }) => {
 
   return (
     <div className="articleDisplayModal top-2 right-7">
-      <span className="cursor-pointer">Edit</span>
+      <span className="cursor-pointer" onClick={editHandler(id)}>
+        Edit
+      </span>
       <hr className="my-1" />
-      <span className="cursor-pointer">Disable</span>
+      <span className="cursor-pointer" onClick={disableArticleHandler(id)}>
+        Disable
+      </span>
     </div>
   );
 };
