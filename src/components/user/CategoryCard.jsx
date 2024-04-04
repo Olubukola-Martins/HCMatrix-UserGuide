@@ -27,20 +27,38 @@ const CategoryCard = ({ category }) => {
 
   if (status === "active") {
     return (
-      <div className="rounded-lg  bg-white px-5 md:py-6 py-8  customShadow box-border h-[16.5rem] flex flex-col items-center ">
-        <img src={svg} className="h-8 mb-3" alt="" />
+      // <div className="rounded-lg  bg-white px-8 md:py-6 py-8 customShadow box-border h-[16.5rem] flex flex-col items-center ">
+      //   <img src={svg} className="h-8 mb-3" alt="" />
+
+      //   <h3
+      //     className="text-lg font-bold mb-3 cursor-pointer capitalize"
+      //     onClick={() => navigating(subcategories)}
+      //   >
+      //     {title}
+      //   </h3>
+
+      //   <p className="text-center text-customGray-light font-semibold mb-4">
+      //     {description}
+      //   </p>
+      //   <span className="text-sm text-customGray-semiDark">
+      //     {articles.length} Articles
+      //   </span>
+      // </div>
+
+      <div className="rounded-lg bg-white px-6 md:px-3 py-6 md:py-8 customShadow box-border h-auto flex flex-col items-center">
+        <img src={svg} className="h-10 md:h-8 mb-3" alt="" />
 
         <h3
-          className="text-lg font-bold mb-3 cursor-pointer capitalize"
+          className="text-lg md:text-xl font-bold mb-3 cursor-pointer capitalize w-full text-center"
           onClick={() => navigating(subcategories)}
         >
           {title}
         </h3>
 
-        <p className="text-center text-customGray-light font-semibold mb-4">
+        <p className="text-center text-[16px] text-customGray-light font-semibold mb-4 w-full">
           {description}
         </p>
-        <span className="text-sm text-customGray-semiDark">
+        <span className="text-sm text-customGray-semiDark w-full text-center">
           {articles.length} Articles
         </span>
       </div>

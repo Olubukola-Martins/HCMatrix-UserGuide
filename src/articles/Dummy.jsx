@@ -1,14 +1,11 @@
 // import ArticleContent from "../components/ArticleContent";
 // import SectionContainer from "../components/SectionContainer";
+import { useSelector } from "react-redux";
+import { testing } from "../data/fine";
 
 const Dummy = () => {
-  return (
-    <div>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
-      labore magni illum velit soluta. Dolorum animi repellat ut tempora
-      accusantium! Tempora non repellat commodi, eaque architecto eius velit
-      sint voluptatem! dummy
-    </div>
-  );
+  const { store } = useSelector((store) => store.article);
+  console.log(store);
+  return <div dangerouslySetInnerHTML={{ __html: testing.content }}></div>;
 };
 export default Dummy;

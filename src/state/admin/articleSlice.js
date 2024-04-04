@@ -3,33 +3,32 @@ import { categories } from "../../data/data";
 
 const initialState = {
   newArticle: {},
+  store: [],
   categories: categories,
+  content: "",
 };
 
 const articleSlice = createSlice({
   name: "article",
   initialState,
   reducers: {
+    articleContentHandler: (state, actions) => {
+      const content = actions.payload;
+      state.content = content;
+    },
     populateNewArticle: (state, actions) => {
-      alert("populate still working why?");
       const form = actions.payload;
       state.newArticle = { ...form };
     },
     addContent: (state, actions) => {
-      // const content = actions.payload;
-      const content = "this is the content";
-      alert("content is working");
+      const content = actions.payload;
+      state.store = [...state.store, { ...state.newArticle, content }];
       state.newArticle = {};
-      // state.categories = categories.map((item) => {
-      //   if (item.title === state.newArticle.category) {
-      //     return { ...item, articles: article.push(state.newArticle) };
-      //   } else {
-      //     return { ...item };
-      //   }
-      // });
     },
+    editContent: (state, actions) => {},
   },
 });
 
-export const { populateNewArticle, addContent } = articleSlice.actions;
+export const { populateNewArticle, addContent, articleContentHandler } =
+  articleSlice.actions;
 export default articleSlice.reducer;
