@@ -1,120 +1,19 @@
-// Landing Pages
-import Home from "./pages/user/Home";
-import AdminPage from "./pages/admin/AdminPage";
-
-//User Sections
-import {
-  Articles,
-  Category,
-  NestedCategories,
-  Subcategories,
-} from "./sections/user";
-
-//Admin Section
-import { Dashboard, Insight, Settings } from "./sections/admin";
-
-//DashBoard Sections
-import { Main } from "./sections/admin/dashboard";
-
-//Setting Sections
-import { Create, Customization, ManageUser } from "./sections/admin/setting";
+import { UserRoutes, AdminRoutes } from "./routes";
+import { ToastContainer } from "react-toastify";
 
 //React Router Dom
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import { ArticleContainer } from "./components/user";
-import { Dummy, Employee } from "./articles";
-
-import { InsightMain, Review } from "./sections/admin/insight";
-import { CreateArticle } from "./sections/admin/article";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const App = () => {
   return (
     <>
+      <ToastContainer />
       <Router>
         {/* For the admin */}
-        <Routes>
-          <Route path="/admin" Component={AdminPage}>
-            {/* Dashboard Routes */}
-
-            <Route path="/admin/dashboard" Component={Dashboard}>
-              <Route index Component={Main} />
-            </Route>
-
-            <Route path="/admin/create" Component={CreateArticle} />
-
-            {/* Insight Routes */}
-            <Route path="/admin/insight" Component={Insight}>
-              <Route index Component={InsightMain}></Route>
-              <Route path="/admin/insight/review" Component={Review}></Route>
-            </Route>
-
-            {/* Settings Routes */}
-            <Route path="/admin/setting" Component={Settings}>
-              <Route path="/admin/setting/" Component={Create} />
-              <Route path="/admin/setting/overview" Component={Customization} />
-              <Route path="/admin/setting/manageuser" Component={ManageUser} />
-            </Route>
-          </Route>
-        </Routes>
+        <AdminRoutes />
 
         {/* For the user */}
-        <Routes>
-          <Route path="/" Component={Home}>
-            {/* ROUTE TO THE CATEGORY COMPONENT */}
-            <Route path="" Component={Category} />
-
-            {/* ROUTE TO THE SUBCATEGORY COMPONENT */}
-            <Route path="/category/:category" Component={Subcategories} />
-
-            {/* ROUTE TO THE NESTED CATEGORY COMPONENT */}
-            <Route
-              path="/category/:category/:subcategory/nested"
-              Component={NestedCategories}
-            />
-
-            {/* ROUTES TO THE ARTICLES COMPONENT */}
-            {/* when there is a subcategory*/}
-            <Route
-              path="/category/:category/:subcategory"
-              Component={Articles}
-            />
-
-            <Route path="/dummy" Component={Dummy} />
-            {/* when there are no subcategories */}
-            <Route path="/articles/:category" Component={Articles} />
-
-            {/* Route to the Article with no subcategories */}
-            <Route
-              path="/articles/:category/:article"
-              Component={ArticleContainer}
-            >
-              <Route path="" Component={Employee}></Route>
-            </Route>
-
-            {/* when there are nested categories */}
-            <Route
-              path="/category/:category/:subcategory/nested/:nestedCategory"
-              Component={Articles}
-            />
-
-            {/* ROUTES TO THE ARTICLE COMPONENT */}
-            <Route
-              path="/category/:category/:subcategory/:article"
-              Component={ArticleContainer}
-            >
-              <Route path="" Component={Employee}></Route>
-            </Route>
-
-            {/* Route to the article when there is a subCategory */}
-            <Route
-              path="/category/:category/:subcategory/nested/:nestedCategory/:article"
-              Component={ArticleContainer}
-            >
-              <Route path="" Component={Employee}></Route>
-            </Route>
-          </Route>
-        </Routes>
+        <UserRoutes />
       </Router>
     </>
   );

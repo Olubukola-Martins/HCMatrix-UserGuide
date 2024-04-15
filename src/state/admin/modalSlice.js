@@ -24,4 +24,5 @@ const modelSlice = createSlice({
 
 export const { adminModalToggle, newArticleModalToggle, toggleAccordion } =
   modelSlice.actions;
+
 export default modelSlice.reducer;

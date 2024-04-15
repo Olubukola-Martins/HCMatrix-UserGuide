@@ -1,4 +1,4 @@
 import Dummy from "./Dummy";
-import Employee from "./Employee";
+import SingleArticle from "./SingleArticle";
 
-export { Dummy, Employee };
+export { Dummy, SingleArticle };
