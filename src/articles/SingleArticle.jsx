@@ -1,7 +1,9 @@
 import { testing, another } from "../data/fine";
+import { ReviewModal } from "../components/user/modals";
 
-const Employee = () => {
+const SingleArticle = () => {
   const { content, articleDescription, articleTitle } = another;
+
   const video = true;
   return (
     <section className="mt-3 font-SFPro article">
@@ -29,4 +31,5 @@ const Employee = () => {
     </section>
   );
 };
-export default Employee;
+
+export default SingleArticle;

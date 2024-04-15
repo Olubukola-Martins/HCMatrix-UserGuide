@@ -1,8 +1,15 @@
+import { ReviewModal } from "./modals";
+import { useSelector, useDispatch } from "react-redux";
+
+import { handleReaction } from "../../state/user/modals/userModalSlice";
+
 const EmojiComponent = ({ react }) => {
   const { name, emoji } = react;
 
+  const dispatch = useDispatch();
+
   const reactionHandler = () => {
-    alert(name);
+    dispatch(handleReaction(name));
   };
 
   return (

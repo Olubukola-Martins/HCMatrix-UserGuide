@@ -10,6 +10,7 @@ import authenticationReducer from "./state/admin/authenticationSlice";
 import customizationReducer from "./state/admin/customizationSlice";
 import modalReducer from "./state/admin/modalSlice";
 import articleSlice from "./state/admin/articleSlice";
+import userModalReducer from "./state/user/modals/userModalSlice";
 
 const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ const store = configureStore({
     auth: authenticationReducer,
     customization: customizationReducer,
     modelSlice: modalReducer,
+    userModalSlice: userModalReducer,
   },
 });
 

@@ -7,6 +7,7 @@ import { subCategories } from "../../../data/categories";
 import FormContainer from "../FormContainer";
 import { populateNewArticle } from "../../../state/admin/articleSlice";
 import { formValidation } from "../../../utils/formvalidator";
+import { Input, TextArea, FormBtn } from "../../common";
 
 const NewArticleModal = () => {
   const dispatch = useDispatch();
@@ -174,9 +175,8 @@ const NewArticleModal = () => {
 
           {/* The input form */}
           <FormContainer label="Article Title">
-            <input
+            <Input
               type="text"
-              className="w-full py-3 px-4 rounded-lg border outline-none text-sm"
               name="articleTitle"
               value={articleTitle}
               onChange={textChangeHandler}
@@ -185,7 +185,7 @@ const NewArticleModal = () => {
 
           {/* Add desc */}
           <FormContainer label="Article Description">
-            <textarea
+            <TextArea
               type="text"
               className="w-full py-3 px-4 rounded-lg border outline-none text-sm"
               value={articleDescription}
@@ -195,9 +195,7 @@ const NewArticleModal = () => {
           </FormContainer>
 
           <div className="mb-3">
-            <button className="w-full py-3 px-4 rounded-lg border outline-none bg-customRed-light text-white">
-              Submit
-            </button>
+            <FormBtn />
           </div>
         </form>
       </div>

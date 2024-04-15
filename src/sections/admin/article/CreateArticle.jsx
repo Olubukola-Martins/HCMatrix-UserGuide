@@ -64,23 +64,6 @@ const CreateArticle = ({ margin }) => {
       <Container margin={`mt-[-15rem]`}>
         <SectionContainer>
           <form action="">
-            {/* <header className="mb-10 flex justify-start gap-5 ">
-              <div>
-                <h1 className="text-2xl font-semibold mb-1">
-                  How to configure company settings?
-                </h1>
-                <p className="text-[#3A3A3A99] text-sm mb-4">
-                  Learn about how to set up the company settings.
-                </p>
-                <p className="text-[#3A3A3A99] text-[15px]">
-                  This guide will walk you through the quick and easy steps, so
-                  you can start benefiting from all that HCMATRIX has to offer.
-                  Let’s get started
-                </p>
-              </div>
-              <div className="w-[22rem] bg-green-200 h-[15rem] border rounded-xl"></div>
-            </header>  */}
-
             <JoditEditorComponent
               setContent={onChangeHandler}
               content={content}
