@@ -24,7 +24,7 @@ const initialState = {
       name: "Footer links",
       desc: "Set the links that will appear in your bottom footer. Leave a roll blank and its wont show up",
       type: "footer",
-      id: "header",
+      id: "footer",
       toggle: false,
     },
   ],
@@ -79,12 +79,12 @@ const customizationSlice = createSlice({
     },
     accordionToggler: (state, action) => {
       const id = action.payload;
-      alert(id);
-      state.accordion.map((content) => {
+
+      state.accordion = state.accordion.map((content) => {
         if (id === content.id) {
           return { ...content, toggle: !content.toggle };
         } else {
-          return content;
+          return { ...content, toggle: false };
         }
       });
     },

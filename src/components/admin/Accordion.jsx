@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useRef } from "react";
 import {
   placeholder,
   down,
@@ -15,6 +16,18 @@ const Accordion = ({ name, desc, type, id, toggle }) => {
 
   const closeAccordionHandler = () => {
     dispatch(accordionToggler(id));
+  };
+
+  const inputRef = useRef(null);
+
+  const handleUploadClick = () => {
+    inputRef.current.click();
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    // Do something with the selected file, such as uploading it
+    console.log("Selected file:", file);
   };
 
   return (
@@ -41,11 +54,24 @@ const Accordion = ({ name, desc, type, id, toggle }) => {
       <hr className="mb-3" />
 
       {toggle && (
-        <div className="w-[35%] py-14 px-6 rounded-lg bg-customGray-upload">
+        <div className="w-[35%] py-14 px-6 mb-3 rounded-lg bg-customGray-upload">
           <Wrapper>
-            <div className="flex items-center gap-2 w-[95%] mx-auto">
-              <img src={upload} alt="" className="ml-1" />
-              <span className="font-bold text-md">Upload Image</span>
+            <div className="flex items-center relative gap-2 w-[95%] mx-auto">
+              <input
+                type="file"
+                className="absolute opacity-0"
+                ref={inputRef}
+                onChange={handleFileChange}
+                onClick={(event) => event.stopPropagation()}
+              />
+
+              <div
+                onClick={handleUploadClick}
+                className="flex gap-2 items-center pl-1"
+              >
+                <img src={upload} alt="" className="ml-1" />
+                <span className="font-bold text-md">Upload Image</span>
+              </div>
             </div>
           </Wrapper>
           <span className="text-[12px] block text-center mt-2 text-customGray-fade font-semibold">

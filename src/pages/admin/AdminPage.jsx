@@ -9,6 +9,10 @@ const AdminPage = () => {
   const { newArticleModal } = useSelector((store) => store.modelSlice);
   const { showHeader } = useSelector((store) => store.adminHeader);
 
+  const { navMenu, settingsMenu, barToggle } = useSelector(
+    (store) => store.adminHeader
+  );
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -19,10 +23,9 @@ const AdminPage = () => {
   return (
     <>
       {showHeader && <Header />}
-
       {newArticleModal && <NewArticleModal />}
 
-      <div className="pb-10">
+      <div className={`${barToggle ? "py-44" : "py-[6.5rem]"}`}>
         <Outlet />
       </div>
     </>

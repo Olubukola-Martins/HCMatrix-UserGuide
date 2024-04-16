@@ -12,4 +12,23 @@ import base from "./base.svg";
 
 import link from "./link.svg";
 
-export { add, close, idea, placeholder, base, link, editIcon, down, upload };
+import articles from "./articles.svg";
+
+import searchBar from "./searchBar.svg";
+
+import preview from "./preview.svg";
+
+export {
+  add,
+  close,
+  idea,
+  placeholder,
+  base,
+  link,
+  editIcon,
+  down,
+  upload,
+  articles,
+  searchBar,
+  preview,
+};

@@ -58,7 +58,7 @@ const Header = () => {
   };
 
   return (
-    <header className="mb-8 bg-white relative shadow-md py-7 grid font-semibold text-customGray-dark place-items-center text-[15px]">
+    <header className="fixed top-0 w-full z-[9999] mb-72 bg-white  shadow-md py-5 grid font-semibold text-customGray-dark place-items-center text-[15px]">
       <Container>
         {/* Main Menu */}
         <div className="flex justify-between">

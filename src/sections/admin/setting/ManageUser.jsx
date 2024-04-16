@@ -7,6 +7,8 @@ import {
   Button,
 } from "../../../components/admin";
 
+import { useState } from "react";
+
 import {
   Layout,
   MainContent,
@@ -15,6 +17,26 @@ import {
 import { adminTableData, adminTableHeader } from "../../../data/admintableData";
 
 const ManageUser = () => {
+  const [newMember, setNewMember] = useState({
+    email: "",
+    firstName: "",
+    lastName: "",
+  });
+
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setNewMember((prev) => {
+      return { ...prev, [name]: value };
+    });
+  };
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    setTimeout(() => {
+      console.log(newMember);
+    }, 5000);
+  };
+
   return (
     <Container>
       ManageUser
@@ -30,18 +52,32 @@ const ManageUser = () => {
         <MainContent>
           <div className="flex flex-col gap-5">
             <Wrapper padding="p-6">
-              <form className="flex flex-col gap-4">
+              <form className="flex flex-col gap-4" onSubmit={onSubmitHandler}>
                 <h3 className="text-md font-semibold">Invite a new member</h3>
                 <div className="flex flex-1 flex-wrap max-md:flex-col gap-3 justify-start mb-2">
                   <Input
+                    onChange={onChangeHandler}
+                    type="email"
+                    name="email"
+                    value={newMember?.email}
                     placeholder="@gmail.com"
                     className="w-[40%]  min-w-[300px] max-md:w-full"
                   />
+
                   <Input
+                    onChange={onChangeHandler}
+                    type="text"
+                    name="firstName"
+                    value={newMember?.firstName}
                     placeholder="first name"
                     className="w-[20%] capitalize min-w-[180px] max-md:w-full"
                   />
+
                   <Input
+                    onChange={onChangeHandler}
+                    type="text"
+                    name="lastName"
+                    value={newMember?.lastName}
                     placeholder="last name"
                     className="w-[20%] capitalize min-w-[180px] max-md:w-full"
                   />
