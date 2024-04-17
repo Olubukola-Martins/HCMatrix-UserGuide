@@ -14,15 +14,15 @@ import {
 
 const initialState = {
   navMenu: [
-    { icon: dashboardicon, name: "Dashboard", active: true },
-    { icon: insighticon, name: "Insight", active: false },
-    { icon: settingsicon, name: "Setting", active: false },
+    { name: "Dashboard", active: true },
+    { name: "Insight", active: false },
+    { name: "Setting", active: false },
   ],
   barToggle: false,
   settingsMenu: [
-    { icon: CreateIcon, name: "create category", active: true },
-    { icon: LookIcon, name: "look & data", active: false },
-    { icon: MemberIcon, name: "Manage Members", active: false },
+    { name: "create category", active: true },
+    { name: "look & data", active: false },
+    { name: "Manage Members", active: false },
   ],
   showHeader: true,
 };

@@ -21,6 +21,7 @@ import Novel from "./Novel";
 import Tiptap from "./Tiptap";
 import EmojiPicker from "./EmojiPicker";
 import FormContainer from "./FormContainer";
+import FloatingInput from "./FloatingInput";
 
 export {
   FormContainer,
@@ -45,4 +46,5 @@ export {
   Accordion,
   BtnLayoutAdmin,
   EmojiPicker,
+  FloatingInput,
 };

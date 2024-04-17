@@ -39,6 +39,7 @@ export default {
       fontFamily: {
         body: ["Inter"],
         SFPro: ["SF-Pro-Text", "sans-serif"],
+        poppins: [],
       },
     },
   },

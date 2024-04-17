@@ -4,7 +4,6 @@ import { getAllCategories } from "../../../state/admin/adminDataSlice";
 import {
   Container,
   Wrapper,
-  Input,
   Tag,
   Button,
   Dropdown,
@@ -17,6 +16,8 @@ import { add } from "../../../assets/admin/icons/settings";
 import { Subcategories } from "../../user";
 import { subCategories, leastSubCategories } from "../../../data/categories";
 
+import { Input } from "../../../components/common";
+
 const Create = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -28,7 +29,6 @@ const Create = () => {
   const [leastSubs, setLeastSubs] = useState(leastSubCategories);
 
   const [subs, setSubs] = useState(subCategories);
-  
 
   return (
     <main className="font-semibold text-customGray-dark text-[15px]">
@@ -38,7 +38,7 @@ const Create = () => {
             <div className="w-full h-full flex flex-col gap-4">
               <div>
                 <h3 className=" font-bold mb-4">Creating new Categories</h3>
-                <p className="text-md leading-6 text-customGray-light">
+                <p className="text-[12px] leading-6 font-medium text-customGray-light">
                   Lorem ipsum dolor sit amet consectetur. Ornare risus praesent
                   id amet faucibus aliquam turpis. Vulputate etiam imperdiet
                   metus laoreet sed eu neque.{" "}

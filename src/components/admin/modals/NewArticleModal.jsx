@@ -106,7 +106,7 @@ const NewArticleModal = () => {
   };
 
   return (
-    <div className="w-[100%] h-[100vh] fixed top-0 left-0 z-10 flex items-center flex-col">
+    <div className="w-[100%] h-[100vh] fixed top-0 left-0 z-[9999] flex items-center flex-col">
       {/* The overlay */}
       <div
         className="absolute inset-0 bg-black opacity-10 "

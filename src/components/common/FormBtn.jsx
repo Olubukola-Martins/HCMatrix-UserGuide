@@ -1,7 +1,14 @@
-const FormBtn = () => {
+import { FaSpinner } from "react-icons/fa";
+
+const FormBtn = ({ custom, loading }) => {
   return (
-    <button className="w-full py-3 px-4 rounded-lg border outline-none bg-customRed-light text-white">
-      Submit
+    <button
+      disabled={loading}
+      className={`w-full py-3 px-4 border outline-none bg-customRed-light text-white ${
+        custom ? custom : "rounded-lg"
+      }`}
+    >
+      {loading ? <FaSpinner className="spinner-icon" /> : "submit"}
     </button>
   );
 };

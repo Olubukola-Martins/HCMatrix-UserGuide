@@ -18,6 +18,7 @@ const UserRoutes = () => {
       <Route path="/" Component={Home}>
         {/* ROUTE TO THE CATEGORY COMPONENT */}
         <Route path="" Component={Category} />
+        <Route path="/dummy" Component={Dummy} />
 
         {/* ROUTE TO THE SUBCATEGORY COMPONENT */}
         <Route path="/category/:category" Component={Subcategories} />

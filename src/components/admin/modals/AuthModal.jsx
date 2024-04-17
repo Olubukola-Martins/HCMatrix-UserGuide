@@ -1,7 +1,18 @@
+import { useSelector } from "react-redux";
 import { UserIcon } from "../../../assets/admin/icons/dashboard";
 import { Lock, LogOut } from "../../../assets/admin/icons/dashboard";
+import { useNavigate } from "react-router-dom";
 
 const AuthModal = () => {
+  const { user } = useSelector((store) => store.auth);
+
+  const navigate = useNavigate();
+  const data = user.data.user;
+
+  const changePasswordHandler = () => {
+    navigate("/auth/forgot-password");
+  };
+
   return (
     <div className="absolute flex flex-col right-[4rem] z-20 border px-3 text-[17px] font-normal bg-white rounded-xl w-72 pt-6 pb-8 shadow-lg">
       <div className="w-[50px] h-[50px] rounded-full self-center border grid place-items-center">
@@ -12,14 +23,16 @@ const AuthModal = () => {
       <div className="py-5 border-y flex items-center gap-2 my-4">
         <UserIcon />
         <span className="text-[17px] font-normal text-customGray-fade">
-          admin@gmail.com
+          {data?.email}
         </span>
       </div>
 
       {/* The password and stuff */}
       <div className="flex gap-3 mb-3 items-center px-1">
         <Lock />
-        <span>Change Password</span>
+        <span onClick={changePasswordHandler} className="cursor-pointer">
+          Change Password
+        </span>
       </div>
 
       {/* The log out */}

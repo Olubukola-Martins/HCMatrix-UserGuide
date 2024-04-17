@@ -1,11 +1,13 @@
 import {
   Container,
   Wrapper,
-  Input,
   TableHeader,
   TableBody,
   Button,
+  FormContainer,
 } from "../../../components/admin";
+
+import { Input } from "../../../components/common";
 
 import { useState } from "react";
 
@@ -39,12 +41,11 @@ const ManageUser = () => {
 
   return (
     <Container>
-      ManageUser
       <Layout>
         <SidePanel>
-          <div className="w-full flex flex-col gap-4">
-            <h3 className=" font-bold mb-4">Invite your team members</h3>
-            <p className="text-md leading-6 text-customGray-light">
+          <div className="w-full flex flex-col gap-3">
+            <h3 className=" font-bold">Invite your team members</h3>
+            <p className="text-[12px] leading-6 font-medium text-customGray-light">
               Invite new members to your knowledge base or manage existing ones:
             </p>
           </div>
@@ -61,7 +62,7 @@ const ManageUser = () => {
                     name="email"
                     value={newMember?.email}
                     placeholder="@gmail.com"
-                    className="w-[40%]  min-w-[300px] max-md:w-full"
+                    className="w-[40%]"
                   />
 
                   <Input
@@ -70,7 +71,7 @@ const ManageUser = () => {
                     name="firstName"
                     value={newMember?.firstName}
                     placeholder="first name"
-                    className="w-[20%] capitalize min-w-[180px] max-md:w-full"
+                    className="w-[20%] capitalize"
                   />
 
                   <Input
@@ -79,16 +80,17 @@ const ManageUser = () => {
                     name="lastName"
                     value={newMember?.lastName}
                     placeholder="last name"
-                    className="w-[20%] capitalize min-w-[180px] max-md:w-full"
+                    className="w-[20%] capitalize"
                   />
                 </div>
                 <Button message="invite members" />
               </form>
             </Wrapper>
-            <Wrapper padding="p-6">
-              <div className="flex flex-col gap-5">
+
+            <Wrapper padding="p-6 pb-10">
+              <div className="flex flex-col gap-7">
                 <h3 className="text-md font-semibold">Manage Team Members</h3>
-                <table class="min-w-full text-left text-sm font-light">
+                <table class="min-w-full text-left text-sm font-light pb-5 font-poppins">
                   <thead class="border-b font-medium">
                     {adminTableHeader.map((header) => (
                       <TableHeader key={header} value={header} />

@@ -6,6 +6,7 @@ const initialState = {
   store: [],
   categories: categories,
   content: "",
+  editedContent: {},
 };
 
 const articleSlice = createSlice({

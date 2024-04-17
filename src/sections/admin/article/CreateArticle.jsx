@@ -12,6 +12,7 @@ import { articleContentHandler } from "../../../state/admin/articleSlice";
 const CreateArticle = ({ margin }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const { content } = useSelector((store) => store.article);
 
   const cancelHandler = () => {

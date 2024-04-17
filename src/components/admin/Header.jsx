@@ -2,7 +2,13 @@
 import Container from "./Container";
 
 //ICONS & IMAGES
-import { admin } from "../../assets/admin/icons/header";
+import {
+  admin,
+  dashboardicon,
+  insighticon,
+  settingsicon,
+} from "../../assets/admin/icons/header";
+
 import { Logo } from "../../assets/admin/images";
 
 //REDUX HOOKS
@@ -18,6 +24,12 @@ import { adminModalToggle } from "../../state/admin/modalSlice";
 import { AuthModal } from "./modals";
 
 // import { CreateIcon } from "../../assets/admin/icons/headerSetting";
+
+import {
+  CreateIcon,
+  LookIcon,
+  MemberIcon,
+} from "../../assets/admin/icons/headerSetting";
 
 const Header = () => {
   const { navMenu, settingsMenu, barToggle } = useSelector(
@@ -77,7 +89,16 @@ const Header = () => {
                     }`}
                   >
                     <div>
-                      <img src={icon} alt="" />
+                      <img
+                        src={
+                          name === "Dashboard"
+                            ? dashboardicon
+                            : name === "Insight"
+                            ? insighticon
+                            : settingsicon
+                        }
+                        alt=""
+                      />
                     </div>
                     <span className="font-semibold text-customGray-dark ">
                       {name}
@@ -104,7 +125,7 @@ const Header = () => {
         {barToggle && (
           <div className="flex border-t-[1px] mt-4 gap-16 justify-center text-customGray-fade items-center pt-4">
             {settingsMenu.map((menu, index) => {
-              const { name, icon: Icon, active } = menu;
+              const { name, active } = menu;
 
               return (
                 <div
@@ -114,7 +135,14 @@ const Header = () => {
                     active ? "text-adminHighlight" : ""
                   }`}
                 >
-                  <Icon />
+                  {name === "create category" ? (
+                    <CreateIcon />
+                  ) : name === "look & data" ? (
+                    <LookIcon />
+                  ) : (
+                    <MemberIcon />
+                  )}
+
                   <span className="capitalize text-[14px]">{name}</span>
                 </div>
               );

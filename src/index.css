@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -46,6 +48,17 @@
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+}
+
+.body {
+  font-family: "SF-Pro-Text", "sans-serif";
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  background-color: #fff !important;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
 
 html::-webkit-scrollbar {
@@ -176,4 +189,76 @@ select option {
 body {
   background-color: #f6f6f6;
   font-family: "Sf-Pro-Text";
+}
+
+.floating_container {
+  width: 680px;
+}
+
+.entryarea {
+  position: relative;
+  line-height: 50px;
+}
+
+.float_input {
+  width: 100%;
+  font-size: 14px;
+  line-height: 50px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid #d9dce0;
+  padding: 0 25px;
+  position: relative;
+  z-index: 1111;
+}
+
+.labelLine {
+  position: absolute;
+  top: 0;
+  font-size: 10px;
+  padding: 0 15px;
+  margin: 0 20px;
+  transition: 0.2s ease;
+  background: transparent;
+}
+
+.evilEye {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  transition: 0.5s ease;
+  z-index: 1111;
+}
+
+.float_input:focus,
+.float_input:valid {
+  border: 1px solid #d9dce0;
+  outline: none;
+}
+
+.float_input:focus + .labelLine,
+.float_input:valid + .labelLine,
+.float_input:user-invalid + .labelLine {
+  color: rgba(247, 115, 102, 1);
+  height: 30px;
+  line-height: 30px;
+  padding: 0 12px;
+  transform: translate(-15px, -16px) scale(0.88);
+  background: white;
+  z-index: 1111;
+}
+
+.spinner-icon {
+  animation: spin 1s linear infinite;
+  padding: 0 10px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
