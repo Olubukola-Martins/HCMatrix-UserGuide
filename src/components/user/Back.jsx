@@ -41,12 +41,12 @@ const Back = ({ home, category, subcategory, article, nestedCategory }) => {
 
   return (
     <div
-      className="group flex text-l text-customGray-dark items-center gap-2 cursor-pointer"
+      className="group flex text-l text-customGray-dark items-center gap-[6px] md:gap-2 cursor-pointer"
       onClick={() => onClickHandler()}
     >
-      <img src={back} alt="" className="h-[1rem]" />
+      <img src={back} alt="" className="h-[.8rem] md:h-[1rem]" />
       {home ? (
-        <p className="text-[15px]">Back To Home</p>
+        <p className="text-[12px] md:text-[15px] ">Back To Home</p>
       ) : (
         <p className="">Back </p>
       )}

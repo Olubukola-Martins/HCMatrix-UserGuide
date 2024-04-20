@@ -65,7 +65,7 @@ const Articles = () => {
             category={id}
             nestedCategory={nestedCategory}
           />
-          <span className="text-sm text-customGray-semiDark">
+          <span className="text-[12px] md:text-sm text-customGray-semiDark">
             {articles?.length} Articles
           </span>
         </header>

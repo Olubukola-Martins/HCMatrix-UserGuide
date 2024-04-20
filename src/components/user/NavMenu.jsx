@@ -3,7 +3,7 @@ import greater from "../../assets/user/greaterThan.svg";
 
 const NavMenu = ({ category, subcategory, nestedCategory, article }) => {
   return (
-    <div className="mb-10 text-customGray-lighter flex">
+    <div className="mb-10 text-customGray-lighter hidden md:flex ">
       {/* This is to go back to the homepage */}
       <Link to="/">
         <span className="navLinks">All Categories</span>

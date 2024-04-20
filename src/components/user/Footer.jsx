@@ -5,8 +5,8 @@ import Container from "./Container";
 const Footer = () => {
   const { badge } = useSelector((store) => store.customization);
   return (
-    <footer className="">
-      <Container margin={"mx-auto"}>
+    <footer className=" -mt-10">
+      <Container margin={"mx-auto mb-10"}>
         <div className=" grid place-items-center">
           {badge && (
             <div className="flex items-center">

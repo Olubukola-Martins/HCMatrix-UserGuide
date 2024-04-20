@@ -80,7 +80,7 @@
   }
 
   .container {
-    @apply max-w-[1150px] mx-auto px-4 md:px-8 font-body  relative z-50 mb-32;
+    @apply max-w-[1150px] mx-auto px-3 md:px-8 font-body  relative z-50 mb-32;
   }
 
   .category__card__container {
@@ -100,11 +100,11 @@
   }
 
   .article__card__container {
-    @apply px-4 py-4 scale-90;
+    @apply px-4 py-4 scale-90 bg-black;
   }
 
   .article__card__header {
-    @apply text-[16px] mb-1;
+    @apply text-[12px] md:text-[16px] mb-1;
   }
 }
 

@@ -25,19 +25,22 @@ const Hero = ({ showSearch }) => {
     >
       <div className="absolute inset-0 bg-black opacity-70"></div>
 
-      <Container margin="mb-0 py-7 z-[9999999]">
+      <Container margin="mb-0 py-7 z-[9999999] border">
         <nav className="flex justify-between items-center text-md md:text-[1.15rem] mb-3">
           <div className="flex items-center">
             <span>Hello</span>
             <img src={Hand} alt="" className="md:h-[25px] h-4 ml-2" />
           </div>
-          <p className="text-white cursor-pointer" onClick={() => toAdmin()}>
+          <p
+            className="text-white cursor-pointer hidden"
+            onClick={() => toAdmin()}
+          >
             HcMatrix Help Center
           </p>
         </nav>
 
         {contactBtn && (
-          <GlassDesign className="inline-block rounded-xl px-4 py-2 absolute right-0 md:right-14 cursor-pointer animate-pulse">
+          <GlassDesign className="inline-block rounded-xl px-4 py-2 absolute right-10 md:right-14 cursor-pointer animate-pulse">
             <p className="text-[10px]">Contact Us</p>
           </GlassDesign>
         )}

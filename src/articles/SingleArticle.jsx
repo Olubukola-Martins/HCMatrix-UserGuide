@@ -19,8 +19,8 @@ const SingleArticle = () => {
 
   return (
     <section className="mt-3 font-SFPro article">
-      <header className={`flex gap-3  items-center ${video ? "" : "mb-3"}`}>
-        <div>
+      <header className={`flex gap-5  items-center ${video ? "" : "mb-3"}`}>
+        <div className="w-[60%]">
           <h2 className="text-[25px] font-semibold mb-[0.15rem]">
             {singleArticle?.articleTitle}
           </h2>
@@ -29,9 +29,16 @@ const SingleArticle = () => {
             {singleArticle?.articleDescription}
           </p>
         </div>
+
         {video && (
-          <div className="h-[15rem] w-[25rem] border rounded-lg">
-            <iframe src="" frameborder="0"></iframe>
+          <div className="h-[18rem] w-[28rem] border rounded-lg overflow-hidden">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/ILOnnEW2iRg"
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
           </div>
         )}
       </header>
