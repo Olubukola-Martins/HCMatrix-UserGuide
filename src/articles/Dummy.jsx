@@ -1,68 +1,95 @@
-// import ArticleContent from "../components/ArticleContent";
-// import SectionContainer from "../components/SectionContainer";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import { testing } from "../data/fine";
 import { FloatingInput } from "../components/admin";
+import { v4 as uuidv4 } from "uuid";
 
 const Dummy = () => {
-  const [text, setText] = useState({ id: "", text: "" });
-  const [final, setFinal] = useState([
-    { id: 1, text: "this is the way of the world" },
-    { id: 2, text: "another world" },
-  ]);
+  const [input, setInput] = useState();
+  const [todos, setTodos] = useState([]);
+  const [editTodo, setEditTodo] = useState([]);
 
   const onChangeHandler = (e) => {
-    const { name, value } = e.target;
-    setText((prevText) => ({
-      ...prevText,
-      [name]: value,
-    }));
+    const { value } = e.target;
+    setInput(value);
   };
 
-  const onSubmitHandler = () => {
-    setFinal((prev) => {
-      const id = new Date().toTimeString();
-      const newItem = { id, text: text.text };
-      return [...prev, newItem];
-    });
+  // Submitting form input
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
 
-    setText({ id: "", text: "" });
+    if (!editTodo) {
+      if (input) {
+        setTodos((prev) => {
+          return [...prev, { id: uuidv4(), title: input, completed: false }];
+        });
+        setInput("");
+      }
+    } else {
+      updateTodo(input, editTodo.id, editTodo.completed);
+    }
   };
 
-  const editHandler = (id) => {
-    const word = final.find((each) => {
-      return each.id === id;
+  // Edit
+  const onEditHandler = (id) => {
+    const find = todos.find((todo) => {
+      return todo.id === id;
+    });
+    setEditTodo(find);
+    setInput(find?.title);
+  };
+
+  // updating form input
+  const updateTodo = (title, id, completed) => {
+    const updatedTodo = todos.map((todo) => {
+      return todo.id === id ? { title, id, completed } : todo;
     });
 
-    setText({ id: word.id, text: word.text });
+    setTodos(updatedTodo);
+    setInput("");
+    setEditTodo("");
   };
 
   return (
-    // <div className="py-5 px-10 mx-auto">
-    //   <input
-    //     type="text"
-    //     value={text.text}
-    //     name="text"
-    //     onChange={onChangeHandler}
-    //   />
-
-    //   <button onClick={onSubmitHandler} className="ml-3 border">
-    //     Submit
-    //   </button>
-
-    //   <div className="flex gap-3 mt-3 border">
-    //     {final.map((each) => {
-    //       return (
-    //         <h1 onClick={() => editHandler(each?.id)} key={each.id}>
-    //           {each?.text}
-    //         </h1>
-    //       );
-    //     })}
-    //   </div>
-    // </div>
     <div className="py-10 items-center justify-center flex">
-      <FloatingInput />
+      <div className="py-10">
+        <form onSubmit={onSubmitHandler}>
+          <FloatingInput
+            placeHolder="Enter something"
+            value={input}
+            name="input"
+            onChange={onChangeHandler}
+          />
+          <button className="border p-2"> Summit</button>
+        </form>
+
+        <div className="py-10">
+          <h1>To do list</h1>
+
+          <div className="border py-5">
+            {todos.map((todo) => {
+              return (
+                <li key={todo?.id}>
+                  <input
+                    type="text"
+                    value={todo?.title}
+                    onChange={(e) => e.preventDefault()}
+                    className="py-3"
+                  />
+
+                  <span
+                    className="cursor-pointer"
+                    onClick={() => {
+                      onEditHandler(todo?.id);
+                    }}
+                  >
+                    Edit
+                  </span>
+                </li>
+              );
+            })}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

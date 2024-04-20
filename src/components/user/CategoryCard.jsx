@@ -27,53 +27,30 @@ const CategoryCard = ({ category }) => {
 
   if (status === "active") {
     return (
-      // <div className="rounded-lg  bg-white px-8 md:py-6 py-8 customShadow box-border h-[16.5rem] flex flex-col items-center ">
-      //   <img src={svg} className="h-8 mb-3" alt="" />
-
-      //   <h3
-      //     className="text-lg font-bold mb-3 cursor-pointer capitalize"
-      //     onClick={() => navigating(subcategories)}
-      //   >
-      //     {title}
-      //   </h3>
-
-      //   <p className="text-center text-customGray-light font-semibold mb-4">
-      //     {description}
-      //   </p>
-      //   <span className="text-sm text-customGray-semiDark">
-      //     {articles.length} Articles
-      //   </span>
-      // </div>
-
-      <div className="rounded-lg bg-white px-6 md:px-3 py-6 md:py-8 customShadow box-border h-auto flex flex-col items-center">
-        <img src={svg} className="h-10 md:h-8 mb-3" alt="" />
+      <div className="category__card__container  rounded-lg bg-white customShadow box-border h-auto flex flex-col items-center">
+        <img src={svg} className="h-7 md:h-8 mb-3" alt="" />
 
         <h3
-          className="text-lg md:text-xl font-bold mb-3 cursor-pointer capitalize w-full text-center"
+          className="category__card__header"
           onClick={() => navigating(subcategories)}
         >
           {title}
         </h3>
 
-        <p className="text-center text-[16px] text-customGray-light font-semibold mb-4 w-full">
-          {description}
-        </p>
-        <span className="text-sm text-customGray-semiDark w-full text-center">
-          {articles.length} Articles
-        </span>
+        <p className="category__card__text">{description}</p>
+
+        <span className="category__card__sub">{articles.length} Articles</span>
       </div>
     );
   }
 
   return (
-    <div className="rounded-lg  bg-white px-4 py-6 customShadow box-border h-[16.5rem] flex flex-col items-center relative overflow-hidden">
+    <div className="category__card__container  rounded-lg bg-white customShadow box-border h-auto flex flex-col items-center relative overflow-hidden">
       <img src={placeHolder.svg} className="h-8 mb-3" alt="" />
       <Link>
-        <h3 className="text-lg font-bold mb-3 ">{placeHolder.title}</h3>
+        <h3 className="category__card__header ">{placeHolder.title}</h3>
       </Link>
-      <p className="text-center text-customGray-light font-semibold mb-4">
-        {placeHolder.description}
-      </p>
+      <p className="category__card__text">{placeHolder.description}</p>
       <span>0</span>
       <div className="inset-0 blur w-full h-full absolute rounded-lg"></div>
       <div className="absolute z-10 top-[30%] flex flex-col items-center font-bold text-customGray-semiDark">
@@ -84,3 +61,21 @@ const CategoryCard = ({ category }) => {
   );
 };
 export default CategoryCard;
+
+// <div className="rounded-lg  bg-white px-8 md:py-6 py-8 customShadow box-border h-[16.5rem] flex flex-col items-center ">
+//   <img src={svg} className="h-8 mb-3" alt="" />
+
+//   <h3
+//     className="text-lg font-bold mb-3 cursor-pointer capitalize"
+//     onClick={() => navigating(subcategories)}
+//   >
+//     {title}
+//   </h3>
+
+//   <p className="text-center text-customGray-light font-semibold mb-4">
+//     {description}
+//   </p>
+//   <span className="text-sm text-customGray-semiDark">
+//     {articles.length} Articles
+//   </span>
+// </div>

@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "../pages/user/Home";
 
+import { RapidCreate } from "../articles";
+
 import {
   Articles,
   Category,
@@ -19,6 +21,8 @@ const UserRoutes = () => {
         {/* ROUTE TO THE CATEGORY COMPONENT */}
         <Route path="" Component={Category} />
         <Route path="/dummy" Component={Dummy} />
+
+        <Route path="/rapid" Component={RapidCreate} />
 
         {/* ROUTE TO THE SUBCATEGORY COMPONENT */}
         <Route path="/category/:category" Component={Subcategories} />

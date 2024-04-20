@@ -12,7 +12,7 @@ const NavMenu = ({ category, subcategory, nestedCategory, article }) => {
       {/* If there is a category */}
       {category && (
         <div className="flex gap-3">
-          <img src={greater} alt="" className="ml-3" />
+          <img src={greater} alt="" className="mx-5" />
           <Link
             to={subcategory ? `/category/${category}` : `/articles/${category}`}
           >
@@ -24,7 +24,7 @@ const NavMenu = ({ category, subcategory, nestedCategory, article }) => {
       {/* This is if there is a subcategory */}
       {subcategory && (
         <div className="flex gap-3">
-          <img src={greater} alt="" className="ml-3 " />
+          <img src={greater} alt="" className="mx-5" />
           <Link
             to={
               nestedCategory
@@ -40,7 +40,7 @@ const NavMenu = ({ category, subcategory, nestedCategory, article }) => {
       {/* If there is a nested Category  */}
       {nestedCategory && (
         <div className="flex gap-3">
-          <img src={greater} alt="" className="ml-3 " />
+          <img src={greater} alt="" className="mx-5 " />
           <Link
             to={`/category/${category}/${subcategory}/nested/${nestedCategory}`}
           >
@@ -52,7 +52,7 @@ const NavMenu = ({ category, subcategory, nestedCategory, article }) => {
       {/* if there is an article*/}
       {article && (
         <div className="flex gap-3">
-          <img src={greater} alt="" className="ml-3 " />
+          <img src={greater} alt="" className="mx-5 " />
           <Link>
             <span className="navLinks">{article}</span>
           </Link>

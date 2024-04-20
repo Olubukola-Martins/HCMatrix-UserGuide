@@ -14,6 +14,7 @@ const App = () => {
       <ToastContainer />
       <Router>
         {/* For the admin */}
+
         <AuthRoutes />
 
         <AdminRoutes />

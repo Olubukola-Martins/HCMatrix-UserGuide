@@ -10,6 +10,8 @@ import { useParams } from "react-router-dom";
 import { categories } from "../../data/data";
 import { useEffect, useState } from "react";
 
+import { NoData } from "../../components/common";
+
 const Articles = () => {
   const { category: id, subcategory: sub, nestedCategory } = useParams();
 
@@ -67,19 +69,23 @@ const Articles = () => {
             {articles?.length} Articles
           </span>
         </header>
-        <CardWrapper>
-          {articles?.map((article, index) => {
-            return (
-              <Card
-                key={index}
-                mainCategory={id}
-                subcategory={sub}
-                nestedCategory={nestedCategory}
-                title={article.title}
-                description={article.description}
-              />
-            );
-          })}
+        <CardWrapper empty={articles.length < 1 ? true : false}>
+          {articles.length > 0 ? (
+            articles?.map((article, index) => {
+              return (
+                <Card
+                  key={index}
+                  mainCategory={id}
+                  subcategory={sub}
+                  nestedCategory={nestedCategory}
+                  title={article.title}
+                  description={article.description}
+                />
+              );
+            })
+          ) : (
+            <NoData msg={"No Articles Found!"} />
+          )}
         </CardWrapper>
       </SectionContainer>
     </Container>

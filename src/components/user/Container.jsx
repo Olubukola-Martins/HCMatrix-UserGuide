@@ -13,11 +13,7 @@
 
 const Container = ({ children, margin }) => {
   return (
-    <div
-      className={`max-w-[1250px] mx-auto px-4 md:px-8 font-body relative z-50 mb-32 ${
-        margin ? margin : "mt-[-8rem]"
-      }`}
-    >
+    <div className={`container  ${margin ? margin : "mt-[-8rem]"}`}>
       {children}
     </div>
   );

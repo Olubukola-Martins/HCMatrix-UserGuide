@@ -8,6 +8,7 @@ import Hand from "../../assets/user/Hand.svg";
 import Idea from "../../assets/user/bulb.svg";
 import Search from "../../assets/user/search.svg";
 import GlassDesign from "./GlassDesign";
+import SearchBar from "./SearchBar";
 
 const Hero = ({ showSearch }) => {
   const { contactBtn } = useSelector((store) => store.customization);
@@ -24,10 +25,10 @@ const Hero = ({ showSearch }) => {
     >
       <div className="absolute inset-0 bg-black opacity-70"></div>
 
-      <Container margin="mb-0 py-7">
+      <Container margin="mb-0 py-7 z-[9999999]">
         <nav className="flex justify-between items-center text-md md:text-[1.15rem] mb-3">
           <div className="flex items-center">
-            <span>Hello User</span>
+            <span>Hello</span>
             <img src={Hand} alt="" className="md:h-[25px] h-4 ml-2" />
           </div>
           <p className="text-white cursor-pointer" onClick={() => toAdmin()}>
@@ -36,7 +37,7 @@ const Hero = ({ showSearch }) => {
         </nav>
 
         {contactBtn && (
-          <GlassDesign className="inline-block rounded-xl px-4 py-2 absolute right-0 md:right-14 cursor-pointer">
+          <GlassDesign className="inline-block rounded-xl px-4 py-2 absolute right-0 md:right-14 cursor-pointer animate-pulse">
             <p className="text-[10px]">Contact Us</p>
           </GlassDesign>
         )}
@@ -47,21 +48,12 @@ const Hero = ({ showSearch }) => {
               How can we help?
             </h1>
 
-            <img src={Idea} alt="" className="md:h-16 h-10" />
+            <img src={Idea} alt="" className="md:h-16 h-10 " />
 
             {/* <Idea /> */}
           </div>
 
-          <GlassDesign className="rounded-md pl-5 py-2 md:py-4 mt-[-.7rem]">
-            <div className="flex">
-              <img src={Search} alt="" className="h-7" />
-              <input
-                type="text"
-                placeholder="Search for articles"
-                className="bg-transparent outline-none text-l md:text-xl text-body w-[100%] md:w-[85%]  ml-6 "
-              />
-            </div>
-          </GlassDesign>
+          <SearchBar />
         </div>
       </Container>
     </section>

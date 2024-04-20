@@ -14,9 +14,47 @@
 }
 
 @layer base {
+  *,
+  *::after,
+  *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+
+  .body {
+    font-family: "SF-Pro-Text", "sans-serif";
+  }
+
+  input:-webkit-autofill,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    background-color: #fff !important;
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+  }
+
+  html::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  html::-webkit-scrollbar-thumb {
+    width: 7px;
+    background-color: rgba(247, 115, 102, 1);
+    border-radius: 50px;
+  }
+
   li {
     list-style-type: disc;
     list-style-position: inside;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  select option {
+    padding: 5px;
   }
 }
 
@@ -24,8 +62,9 @@
   .center {
     @apply items-center justify-center;
   }
+
   .navLinks {
-    @apply capitalize hover:border-b-2 hover:pb-2 ease-out  transition-all duration-300;
+    @apply capitalize  hover:text-customRed-light ease-out  transition-all duration-75 text-[14px];
   }
 
   .activeindicator {
@@ -39,44 +78,38 @@
   .inputStyle {
     @apply outline-none border rounded-xl py-4 pl-5;
   }
-}
 
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
+  .container {
+    @apply max-w-[1150px] mx-auto px-4 md:px-8 font-body  relative z-50 mb-32;
+  }
 
-.body {
-  font-family: "SF-Pro-Text", "sans-serif";
-}
+  .category__card__container {
+    @apply px-6 md:px-4 py-8 md:py-8;
+  }
 
-input:-webkit-autofill,
-textarea:-webkit-autofill,
-select:-webkit-autofill {
-  background-color: #fff !important;
-  -webkit-box-shadow: 0 0 0px 1000px white inset;
-}
+  .category__card__text {
+    @apply text-center text-[13px] text-customGray-light font-semibold mb-4 w-full;
+  }
 
-html::-webkit-scrollbar {
-  width: 10px;
-}
+  .category__card__sub {
+    @apply text-[12px] text-customGray-semiDark w-full text-center;
+  }
 
-html::-webkit-scrollbar-thumb {
-  width: 7px;
-  background-color: rgba(247, 115, 102, 1);
-  border-radius: 50px;
+  .category__card__header {
+    @apply text-[15px] md:text-xl font-bold mb-3 cursor-pointer capitalize w-full text-center;
+  }
+
+  .article__card__container {
+    @apply px-4 py-4 scale-90;
+  }
+
+  .article__card__header {
+    @apply text-[16px] mb-1;
+  }
 }
 
 .jodit li {
   margin-left: 0 !important;
-}
-
-select option {
-  padding: 5px;
 }
 
 .article__container {
@@ -126,6 +159,11 @@ select option {
   margin: 1.5rem;
 }
 
+.article__container ul {
+  width: 95%;
+  margin: 0 auto;
+}
+
 .article__container blockquote::before {
   content: url("./assets//admin/icons//articles/idea.svg");
   position: absolute;
@@ -134,6 +172,11 @@ select option {
   transform: translateY(-50%);
   width: 20px;
   height: auto;
+}
+
+.article__container u {
+  color: rgba(247, 115, 102, 1);
+  line-height: 2px;
 }
 
 .form::-webkit-scrollbar {
@@ -176,6 +219,23 @@ select option {
   backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+}
+
+.glass__two {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.glass__two::-webkit-scrollbar-thumb {
+  width: 7px;
+  background-color: rgba(247, 115, 102, 1);
+  border-radius: 50px;
+}
+
+.glass__two::-webkit-scrollbar {
+  width: 7px; /* Width of the scrollbar */
 }
 
 .customShadow {

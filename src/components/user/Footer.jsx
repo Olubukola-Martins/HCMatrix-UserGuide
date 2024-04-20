@@ -4,11 +4,11 @@ import { useSelector } from "react-redux";
 const Footer = () => {
   const { badge } = useSelector((store) => store.customization);
   return (
-    <div className="footer">
+    <div className=" grid place-items-center pb-10 -mt-16">
       {badge && (
-        <div className="footer__content">
-          <p>Powered by</p>
-          <img src={Logo} alt="" />
+        <div className="flex items-center">
+          <p className="text-sm">Powered by</p>
+          <img src={Logo} alt="" className="h-14 -ml-2 " />
         </div>
       )}
     </div>
