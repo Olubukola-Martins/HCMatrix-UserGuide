@@ -42,7 +42,7 @@ const Hero = ({ showSearch }) => {
           </GlassDesign>
         )}
 
-        <div className="w-[100%] md:w-[75%] mx-auto md:mt-[2rem] mt-[4.5rem] ">
+        <div className="w-[100%] md:w-[75%] mx-auto md:mt-[2rem] mt-[4.5rem] relative">
           <div className=" flex items-center md:mb-2 mb-4 justify-center">
             <h1 className="text-center font-bold text-lg  md:text-2xl md:text-l mr-2">
               How can we help?

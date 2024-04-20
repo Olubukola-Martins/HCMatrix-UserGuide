@@ -4,11 +4,14 @@ import GlassDesign from "./GlassDesign";
 import { articles } from "../../data/articles";
 import { useEffect, useState } from "react";
 import { NoData } from "../common";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
+  const navigate = useNavigate();
+
   const [data, setData] = useState(articles);
   const [filteredArticles, setFilteredArticles] = useState([]);
-  const [searchInput, setSearchInput] = useState(null);
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {}, [searchInput]);
 
@@ -28,6 +31,28 @@ const SearchBar = () => {
     );
     setFilteredArticles(filtered);
   }, [searchInput, articles]);
+
+  const articleRouteHandler = (articleData) => {
+    const { category, subcategory, leastSubcategory, articleTitle } =
+      articleData;
+
+    if (leastSubcategory) {
+      navigate(
+        `/category/${category}/${subcategory}/nested/${leastSubcategory}/${articleTitle}`
+      );
+    }
+
+    if (!leastSubcategory) {
+      navigate(`/category/${category}/${subcategory}/${articleTitle}`);
+    }
+
+    if (!subcategory) {
+      navigate(`/articles/${category}/${articleTitle}`);
+    }
+
+    setSearchInput("");
+    return;
+  };
 
   return (
     <div className="">
@@ -54,8 +79,9 @@ const SearchBar = () => {
             filteredArticles.map((each, index) => {
               return (
                 <div
+                  onClick={() => articleRouteHandler(each)}
                   key={index}
-                  className={`py-3 border-[#C0C0C0] border-y-[.2px] px-2 ${
+                  className={`py-3 cursor-pointer border-[#C0C0C0] border-y-[.2px] px-2 ${
                     index === 0 ? "border-t-0" : ""
                   } 
         ${index === filteredArticles.length - 1 ? "border-b-0" : ""}
