@@ -28,7 +28,7 @@ const CategoryCard = ({ category }) => {
   if (status === "active") {
     return (
       <div className="category__card__container  rounded-lg bg-white customShadow box-border h-auto flex flex-col items-center">
-        <img src={svg} className="h-7 md:h-8 mb-3" alt="" />
+        <img src={svg} className="h-10 md:h-8 mb-3" alt="" />
 
         <h3
           className="category__card__header"
@@ -46,7 +46,7 @@ const CategoryCard = ({ category }) => {
 
   return (
     <div className="category__card__container  rounded-lg bg-white customShadow box-border h-auto flex flex-col items-center relative overflow-hidden">
-      <img src={placeHolder.svg} className="h-8 mb-3" alt="" />
+      <img src={placeHolder.svg} className="h-9 md:h-8 mb-3" alt="" />
       <Link>
         <h3 className="category__card__header ">{placeHolder.title}</h3>
       </Link>

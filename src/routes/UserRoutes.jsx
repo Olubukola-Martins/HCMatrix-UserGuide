@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import Home from "../pages/user/Home";
 
@@ -14,9 +14,17 @@ import {
 import { ArticleContainer } from "../components/user";
 import { Dummy, SingleArticle } from "../articles";
 
+import { useEffect } from "react";
+
 const UserRoutes = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.pathname]);
+
   return (
-    <Routes>
+    <Routes location={location} key={location.pathname}>
       <Route path="/" Component={Home}>
         {/* ROUTE TO THE CATEGORY COMPONENT */}
         <Route path="" Component={Category} />

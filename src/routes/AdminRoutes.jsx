@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import AdminPage from "../pages/admin/AdminPage";
 import { Dashboard, Insight, Settings } from "../sections/admin";
@@ -8,10 +8,17 @@ import { InsightMain, Review } from "../sections/admin/insight";
 import { CreateArticle } from "../sections/admin/article";
 import ProtectedRoutes from "./ProtectedRoutes";
 import { Login } from "../sections/admin/auth";
+import { useEffect } from "react";
 
 const AdminRoutes = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.pathname]);
+
   return (
-    <Routes>
+    <Routes location={location} key={location.pathname}>
       <Route Component={ProtectedRoutes}>
         <Route path="/admin" Component={AdminPage}>
           {/* Dashboard Routes */}
