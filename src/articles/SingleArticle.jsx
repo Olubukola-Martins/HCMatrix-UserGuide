@@ -22,7 +22,7 @@ const SingleArticle = () => {
       <header
         className={`flex flex-col items-center ${
           video ? "" : "mb-3"
-        } md:flex-row md:items-start md:gap-5`}
+        } md:flex-row md:items-center md:gap-5`}
       >
         <div className="order-2 md:order-1 w-full md:w-[60%] md:mr-5">
           <h2 className="text-[25px] font-semibold mb-[0.15rem]">
