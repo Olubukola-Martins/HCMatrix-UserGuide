@@ -51,8 +51,8 @@ const NavMenu = ({ category, subcategory, nestedCategory, article }) => {
 
       {/* if there is an article*/}
       {article && (
-        <div className="flex gap-3 border">
-          <img src={greater} alt="" className="mx-5 h-full" />
+        <div className="flex gap-3 ">
+          <img src={greater} alt="" className="mx-5 scale-90" />
           <Link>
             <p className="navLinks">{article}</p>
           </Link>
