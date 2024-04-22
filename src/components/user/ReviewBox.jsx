@@ -24,7 +24,7 @@ const ReviewBox = () => {
         <p className="mb-7 text-[13px] font-SFPro font-medium text-customGray-semiDark">
           Did this article answer your question?
         </p>
-        <div className="flex w-[30%]  justify-between">
+        <div className="flex w-[60%] md:w-[30%]  justify-between">
           {reviews.map((reaction, index) => {
             return <EmojiComponent key={index} react={reaction} />;
           })}

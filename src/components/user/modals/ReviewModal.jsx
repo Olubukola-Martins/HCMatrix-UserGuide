@@ -59,7 +59,7 @@ const ReviewModal = ({ reaction }) => {
       ></div>
 
       {/* The form Container */}
-      <div className="relative form border-3 rounded-2xl pr-4 z-20 bg-white w-[35%] overflow-y-scroll py-6 pl-6 px-5 shadow-lg my-6">
+      <div className="relative form border-3 rounded-2xl pr-4 z-20 bg-white w-[95%] md:w-[35%] overflow-y-scroll py-6 pl-6 px-5 shadow-lg my-6">
         <div className="flex items-center flex-col justify-center mb-3">
           <img src={emoji} alt="the reaction" className="mb-5 h-7" />
           <p className="font-medium text-[#3A3A3AE5]">
