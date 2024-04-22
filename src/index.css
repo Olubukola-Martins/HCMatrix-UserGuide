@@ -64,7 +64,7 @@
   }
 
   .navLinks {
-    @apply capitalize hover:text-customRed-light ease-out  transition-all duration-75 text-[14px];
+    @apply capitalize hover:text-customRed-light ease-out transition-all duration-75 text-[14px]  whitespace-nowrap;
   }
 
   .activeindicator {

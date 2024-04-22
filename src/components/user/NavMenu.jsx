@@ -6,24 +6,24 @@ const NavMenu = ({ category, subcategory, nestedCategory, article }) => {
     <div className="mb-10 text-customGray-lighter hidden  md:flex ">
       {/* This is to go back to the homepage */}
       <Link to="/">
-        <span className="navLinks">All Categories</span>
+        <p className="navLinks">All Categories</p>
       </Link>
 
       {/* If there is a category */}
       {category && (
-        <div className="flex gap-3">
+        <div className="flex gap-3 ">
           <img src={greater} alt="" className="mx-5 h-full" />
           <Link
             to={subcategory ? `/category/${category}` : `/articles/${category}`}
           >
-            <span className="navLinks">{category}</span>
+            <p className="navLinks">{category}</p>
           </Link>
         </div>
       )}
 
       {/* This is if there is a subcategory */}
       {subcategory && (
-        <div className="flex gap-3">
+        <div className="flex gap-3 ">
           <img src={greater} alt="" className="mx-5 h-full" />
           <Link
             to={
@@ -32,29 +32,29 @@ const NavMenu = ({ category, subcategory, nestedCategory, article }) => {
                 : `/category/${category}/${subcategory}`
             }
           >
-            <span className="navLinks">{subcategory}</span>
+            <p className="navLinks">{subcategory}</p>
           </Link>
         </div>
       )}
 
       {/* If there is a nested Category  */}
       {nestedCategory && (
-        <div className="flex gap-3">
+        <div className="flex gap-3 ">
           <img src={greater} alt="" className="mx-5 h-full" />
           <Link
             to={`/category/${category}/${subcategory}/nested/${nestedCategory}`}
           >
-            <span className="navLinks">{nestedCategory}</span>
+            <p className="navLinks">{nestedCategory}</p>
           </Link>
         </div>
       )}
 
       {/* if there is an article*/}
       {article && (
-        <div className="flex gap-3">
+        <div className="flex gap-3 border">
           <img src={greater} alt="" className="mx-5 h-full" />
           <Link>
-            <span className="navLinks">{article}</span>
+            <p className="navLinks">{article}</p>
           </Link>
         </div>
       )}
