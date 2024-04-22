@@ -3,7 +3,7 @@ import greater from "../../assets/user/greaterThan.svg";
 
 const NavMenu = ({ category, subcategory, nestedCategory, article }) => {
   return (
-    <div className="mb-10 text-customGray-lighter hidden  md:flex ">
+    <div className="mb-10 text-customGray-lighter hidden md:flex ">
       {/* This is to go back to the homepage */}
       <Link to="/">
         <p className="navLinks">All Categories</p>
@@ -12,7 +12,7 @@ const NavMenu = ({ category, subcategory, nestedCategory, article }) => {
       {/* If there is a category */}
       {category && (
         <div className="flex gap-3 ">
-          <img src={greater} alt="" className="mx-5 h-full scale-90" />
+          <img src={greater} alt="" className="mx-5" />
           <Link
             to={subcategory ? `/category/${category}` : `/articles/${category}`}
           >
@@ -24,7 +24,7 @@ const NavMenu = ({ category, subcategory, nestedCategory, article }) => {
       {/* This is if there is a subcategory */}
       {subcategory && (
         <div className="flex gap-3 ">
-          <img src={greater} alt="" className="mx-5 h-full scale-90" />
+          <img src={greater} alt="" className="mx-5" />
           <Link
             to={
               nestedCategory
@@ -40,7 +40,7 @@ const NavMenu = ({ category, subcategory, nestedCategory, article }) => {
       {/* If there is a nested Category  */}
       {nestedCategory && (
         <div className="flex gap-3 ">
-          <img src={greater} alt="" className="mx-5 h-full scale-90" />
+          <img src={greater} alt="" className="mx-5" />
           <Link
             to={`/category/${category}/${subcategory}/nested/${nestedCategory}`}
           >
@@ -52,7 +52,7 @@ const NavMenu = ({ category, subcategory, nestedCategory, article }) => {
       {/* if there is an article*/}
       {article && (
         <div className="flex gap-3 ">
-          <img src={greater} alt="" className="mx-5 scale-90" />
+          <img src={greater} alt="" className="mx-5" />
           <Link>
             <p className="navLinks">{article}</p>
           </Link>
