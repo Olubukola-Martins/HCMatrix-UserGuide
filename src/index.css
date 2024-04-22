@@ -120,7 +120,7 @@
   }
 
   .article__container ul {
-    @apply w-[93%] md:w-[95%] my-2  md:my-0 mx-auto leading-7;
+    @apply w-[93%] md:w-[95%] my-2 md:my-0 mx-auto leading-7;
   }
 
   .article__container ul li {
@@ -136,7 +136,7 @@
   }
 
   .article__container blockquote {
-    @apply w-full md:w-[95%] rounded-[0.75rem] px-4 pt-16 py-5 text-center md:py-[30px] md:pr-[7.5rem] md:pl-[10rem] inline-flex items-center relative max-w-full font-medium  my-4 md:m-[1.5rem] bg-[#f6f6f6] text-[13px] leading-7;
+    @apply w-full md:w-[95%] rounded-[0.75rem] px-4 pt-16 py-5 text-center md:py-[30px] md:pr-[7.5rem] md:pl-[10rem] inline-flex md:items-center relative max-w-full font-medium  my-4 md:m-[1.5rem] bg-[#f6f6f6] text-[13px] leading-7;
   }
 
   /* bg-[#f6f6f6] */

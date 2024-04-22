@@ -56,9 +56,9 @@ const SearchBar = () => {
 
   return (
     <div className="">
-      <GlassDesign className="rounded-md pl-5 py-2 md:py-3 mt-[-.7rem]">
-        <div className="flex">
-          <img src={search} alt="" className="h-6" />
+      <GlassDesign className="rounded-md pl-5 py-3 md:mt-[-.7rem]">
+        <div className="flex items-center">
+          <img src={search} alt="" className="h-4 md:h-6" />
           <input
             onChange={handleFilter}
             value={searchInput}

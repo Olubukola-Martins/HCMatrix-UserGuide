@@ -25,16 +25,13 @@ const Hero = ({ showSearch }) => {
     >
       <div className="absolute inset-0 bg-black opacity-70"></div>
 
-      <Container margin="mb-0 py-7 z-[9999999] border">
+      <Container margin="mb-0 py-7 z-[9999999]">
         <nav className="flex justify-between items-center text-md md:text-[1.15rem] mb-3">
           <div className="flex items-center">
             <span>Hello</span>
             <img src={Hand} alt="" className="md:h-[25px] h-4 ml-2" />
           </div>
-          <p
-            className="text-white cursor-pointer hidden"
-            onClick={() => toAdmin()}
-          >
+          <p className="text-white cursor-pointer " onClick={() => toAdmin()}>
             HcMatrix Help Center
           </p>
         </nav>
@@ -45,13 +42,13 @@ const Hero = ({ showSearch }) => {
           </GlassDesign>
         )}
 
-        <div className="w-[100%] md:w-[75%] mx-auto md:mt-[2rem] mt-[4.5rem] relative">
-          <div className=" flex items-center md:mb-2 mb-4 justify-center">
+        <div className="w-[95%] md:w-[75%] mx-auto md:mt-[2rem] mt-[7rem] relative ">
+          <div className=" flex items-center mb-1 md:mb-2 justify-center">
             <h1 className="text-center font-bold text-lg  md:text-2xl md:text-l mr-2">
               How can we help?
             </h1>
 
-            <img src={Idea} alt="" className="md:h-16 h-10 " />
+            <img src={Idea} alt="" className="md:h-16 h-10 hidden " />
 
             {/* <Idea /> */}
           </div>
