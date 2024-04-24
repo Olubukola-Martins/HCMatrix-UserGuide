@@ -7,10 +7,10 @@ import {
   ArticleReviewBox,
 } from "../../../components/admin";
 import { Layout, MainContent } from "../../../components/admin/layout";
-import { getAllCategories } from "../../../state/admin/adminDataSlice";
+import { getAllCategories } from "../../../state/admin/categories/categorySlice";
 
 const InsightMain = () => {
-  const { singleCategory } = useSelector((store) => store.adminCategory);
+  const { singleCategory } = useSelector((store) => store.adminData);
   const dispatch = useDispatch();
   const { svg, title, articles } = singleCategory;
 

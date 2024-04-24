@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import axios from "axios";
+import axiosInstance from "../../services/AxiosInstance";
 import { toast } from "react-toastify";
 
 const baseUrl = import.meta.env.BASE;
@@ -10,18 +11,11 @@ export const loginUser = createAsyncThunk(
 
   async (userCredential, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        `https://api.staging.hcmatrix.com/v1/user-guide//auth/`,
-        userCredential
-      );
-
-      console.log(response?.data?.message);
-      // toast.success(response?.data?.message);
-
+      const response = await axiosInstance.post(`/auth/`, userCredential);
       localStorage.setItem("user", JSON.stringify(response.data));
       return response.data;
     } catch (error) {
-      toast.error(error.response.data.message);
+      console.log(error);
       return rejectWithValue(error.response.data);
     }
   }
@@ -32,6 +26,7 @@ const initialState = {
   loading: false,
   user: null,
   message: "",
+  token: "",
 };
 
 const authSlice = createSlice({
@@ -40,6 +35,15 @@ const authSlice = createSlice({
   reducers: {
     setCurrentUser: (state, action) => {
       state.user = JSON.parse(action.payload);
+    },
+    getAccessToken: (state, action) => {
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      if (user && user.data.accessToken) {
+        state.token = user.data.accessToken;
+      } else {
+        console.error("Access token not found in local storage");
+      }
     },
   },
   extraReducers: (builder) => {
@@ -58,5 +62,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { setCurrentUser } = authSlice.actions;
+export const { setCurrentUser, getAccessToken } = authSlice.actions;
 export default authSlice.reducer;

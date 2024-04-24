@@ -17,9 +17,7 @@ const Login = () => {
   };
 
   const [credentials, setCredentials] = useState({ email: "", password: "" });
-
   const { email, password } = credentials;
-
   const { loading, error } = useSelector((store) => store.auth);
 
   const onChangeHandler = (e) => {

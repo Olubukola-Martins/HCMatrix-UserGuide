@@ -3,12 +3,18 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import AdminPage from "../pages/admin/AdminPage";
 import { Dashboard, Insight, Settings } from "../sections/admin";
 import { Main } from "../sections/admin/dashboard";
-import { Create, Customization, ManageUser } from "../sections/admin/setting";
+import {
+  CreateCategory,
+  Customization,
+  ManageUser,
+} from "../sections/admin/setting";
 import { InsightMain, Review } from "../sections/admin/insight";
 import { CreateArticle } from "../sections/admin/article";
 import ProtectedRoutes from "./ProtectedRoutes";
 import { Login } from "../sections/admin/auth";
 import { useEffect } from "react";
+
+import { ToastContainer } from "react-toastify";
 
 const AdminRoutes = () => {
   const location = useLocation();
@@ -18,32 +24,36 @@ const AdminRoutes = () => {
   }, [location.pathname]);
 
   return (
-    <Routes location={location} key={location.pathname}>
-      <Route Component={ProtectedRoutes}>
-        <Route path="/admin" Component={AdminPage}>
-          {/* Dashboard Routes */}
-          <Route path="/admin/dashboard" Component={Dashboard}>
-            <Route index Component={Main} />
-          </Route>
+    <>
+      <ToastContainer />
+      <Routes>
+        <Route Component={ProtectedRoutes}>
+          <Route path="/admin" Component={AdminPage}>
+            {/* Dashboard Routes */}
 
-          {/* Create Article Route */}
-          <Route path="/admin/create" Component={CreateArticle} />
+            <Route path="/admin/dashboard" Component={Dashboard}>
+              <Route index Component={Main} />
+            </Route>
 
-          {/* Insight Routes */}
-          <Route path="/admin/insight" Component={Insight}>
-            <Route index Component={InsightMain}></Route>
-            <Route path="/admin/insight/review" Component={Review}></Route>
-          </Route>
+            {/* Create Article Route */}
+            <Route path="/admin/create" Component={CreateArticle} />
 
-          {/* Settings Routes */}
-          <Route path="/admin/setting" Component={Settings}>
-            <Route path="/admin/setting/" Component={Create} />
-            <Route path="/admin/setting/overview" Component={Customization} />
-            <Route path="/admin/setting/manageuser" Component={ManageUser} />
+            {/* Insight Routes */}
+            <Route path="/admin/insight" Component={Insight}>
+              <Route index Component={InsightMain} />
+              <Route path="/admin/insight/review" Component={Review} />
+            </Route>
+
+            {/* Settings Routes */}
+            <Route path="/admin/setting" Component={Settings}>
+              <Route path="/admin/setting/" Component={CreateCategory} />
+              <Route path="/admin/setting/overview" Component={Customization} />
+              <Route path="/admin/setting/manageuser" Component={ManageUser} />
+            </Route>
           </Route>
         </Route>
-      </Route>
-    </Routes>
+      </Routes>
+    </>
   );
 };
 export default AdminRoutes;

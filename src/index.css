@@ -156,12 +156,6 @@
 
 .article__container blockquote::before {
   content: url("./assets//admin/icons//articles/idea.svg");
-  /* position: absolute;
-  left: 5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: auto; */
 }
 
 .form::-webkit-scrollbar {

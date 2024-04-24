@@ -5,7 +5,7 @@ import { smiling, pensive, relieved } from "../../assets/common/review";
 const ArticleReviewBox = ({ type }) => {
   const {
     singleCategory: { articles, title },
-  } = useSelector((store) => store.adminCategory);
+  } = useSelector((store) => store.adminData);
 
   return (
     <Wrapper className="rounded-[28px] bg-white pb-0">

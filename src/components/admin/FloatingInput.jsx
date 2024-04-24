@@ -36,6 +36,9 @@ const FloatingInput = ({ name, onChange, value, placeHolder, type }) => {
     );
   }
 
+  if (type === "datalist") {
+  }
+
   return (
     <div className="entryarea">
       <input

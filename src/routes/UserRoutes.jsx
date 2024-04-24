@@ -24,7 +24,7 @@ const UserRoutes = () => {
   }, [location.pathname]);
 
   return (
-    <Routes location={location} key={location.pathname}>
+    <Routes>
       <Route path="/" Component={Home}>
         {/* ROUTE TO THE CATEGORY COMPONENT */}
         <Route path="" Component={Category} />

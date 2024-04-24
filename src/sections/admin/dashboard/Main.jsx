@@ -9,14 +9,14 @@ import {
   DashBoardHeader,
 } from "../../../components/admin";
 import { Search } from "../../../assets/admin/icons/dashboard";
-import { getAllCategories } from "../../../state/admin/adminDataSlice";
+import { getAllCategories } from "../../../state/admin/categories/categorySlice";
 import { SideMenu } from "../../../components/admin";
 import { NewArticleModal } from "../../../components/admin/modals";
 import { newArticleModalToggle } from "../../../state/admin/modalSlice";
 
 const Main = () => {
   const dispatch = useDispatch();
-  const { singleCategory } = useSelector((store) => store.adminCategory);
+  const { singleCategory } = useSelector((store) => store.adminData);
   const { svg, title, articles } = singleCategory;
 
   useEffect(() => {

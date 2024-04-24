@@ -1,5 +1,5 @@
-import Create from "./Create";
+import CreateCategory from "./CreateCategory";
 import ManageUser from "./ManageUser";
 import Customization from "./Customization";
 
-export { Create, ManageUser, Customization };
+export { CreateCategory, ManageUser, Customization };

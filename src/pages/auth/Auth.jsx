@@ -30,7 +30,7 @@ const Auth = () => {
           HCMatrix User Guide{" "}
         </h1>
         <SectionContainer>
-          <div className="py-10 flex items-center justify-center border mb-2">
+          <div className="py-10 flex items-center justify-center border rounded-md mb-2">
             <Outlet />
           </div>
 

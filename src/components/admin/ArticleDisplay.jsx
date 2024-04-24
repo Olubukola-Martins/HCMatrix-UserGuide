@@ -1,7 +1,7 @@
 import { Menu } from "../../assets/admin/icons/dashboard";
 import ArticleActions from "./ArticleActions";
 import { useDispatch } from "react-redux";
-import { actionModalToggler } from "../../state/admin/adminDataSlice";
+import { actionModalToggler } from "../../state/admin/categories/categorySlice";
 
 const ArticleDisplay = ({ type, article, categoryName }) => {
   const dispatch = useDispatch();

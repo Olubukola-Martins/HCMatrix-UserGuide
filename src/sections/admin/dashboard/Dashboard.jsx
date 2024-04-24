@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { headerToggle } from "../../../state/admin/headerSlice";
 import { useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
 
 const Dashboard = () => {

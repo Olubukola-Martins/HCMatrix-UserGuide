@@ -30,7 +30,7 @@ const NewArticleModal = () => {
   };
 
   // Arrays
-  const { categories } = useSelector((store) => store.adminCategory);
+  const { categories } = useSelector((store) => store.adminData);
   const [subcategories, setSubcategories] = useState([]);
   const [leastSubcategories, setLeastSubcategories] = useState([]);
 
