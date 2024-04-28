@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { editContent } from "../../state/admin/articleSlice";
+import { editContent } from "../../state/admin/articles/articleSlice";
 import { useEditor } from "novel";
 
 const ArticleActions = ({ type, article, id, info }) => {

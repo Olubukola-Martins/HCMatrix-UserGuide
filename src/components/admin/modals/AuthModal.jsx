@@ -1,16 +1,29 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { UserIcon } from "../../../assets/admin/icons/dashboard";
 import { Lock, LogOut } from "../../../assets/admin/icons/dashboard";
 import { useNavigate } from "react-router-dom";
+import useSignOut from "react-auth-kit/hooks/useSignOut";
+import Cookies from "js-cookie";
+import { LogoutHandler } from "../../../state/admin/authenticationSlice";
 
 const AuthModal = () => {
-  const { user } = useSelector((store) => store.auth);
+  const signOut = useSignOut();
+  const { user, token } = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  const data = user.data.user;
 
   const changePasswordHandler = () => {
     navigate("/auth/forgot-password");
+  };
+
+  const logOutHandler = () => {
+    Cookies.remove("_auth");
+    signOut();
+
+    dispatch(LogoutHandler());
+
+    navigate("/auth/login");
   };
 
   return (
@@ -23,7 +36,7 @@ const AuthModal = () => {
       <div className="py-5 border-y flex items-center gap-2 my-4">
         <UserIcon />
         <span className="text-[17px] font-normal text-customGray-fade">
-          {data?.email}
+          {user?.email}
         </span>
       </div>
 
@@ -36,7 +49,10 @@ const AuthModal = () => {
       </div>
 
       {/* The log out */}
-      <div className="flex gap-2 font-normal items-center">
+      <div
+        className="flex gap-2 font-normal items-center cursor-pointer"
+        onClick={logOutHandler}
+      >
         <LogOut />
         <span>Log Out</span>
       </div>

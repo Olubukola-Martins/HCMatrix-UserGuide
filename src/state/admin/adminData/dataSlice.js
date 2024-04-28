@@ -1,9 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { categories } from "../../../data/data";
 import {
-  getEveryCategory,
+  getAllCategories,
   getEmojis,
   createNewCategory,
+  getMainCategory,
+  getSubCategories,
 } from "./thunkFunctions";
 
 const init = {
@@ -22,6 +24,9 @@ const initialState = {
   categories: categories,
   emoji: [],
   allCategories: [],
+  mainCategories: [],
+  subcategories: [],
+  leastSubcategories: [],
   category: [],
   singleCategory: {},
   singleArticle: {},
@@ -38,54 +43,38 @@ const categorySlice = createSlice({
   name: "adminData",
   initialState,
   reducers: {
-    getSingleCategory: (state, action) => {
-      const { title, page } = action.payload;
+    // To Get a specific subcategory
+    getSpecificSubcategory: (state, action) => {
+      const id = action.payload;
+      const sub = state.allCategories.filter((category) => {
+        return category.parentId === Number(id);
+      });
+      state.subcategories = sub;
+    },
 
-      const setActive = state.category.map((category) => {
-        if (category.title === title) {
+    // To get specifics least subcategory
+    getSpecificLeastSubcategory: (state, action) => {
+      const id = action.payload;
+      const least = state.allCategories.filter((category) => {
+        return category.parentId === Number(id);
+      });
+      state.leastSubcategories = least;
+    },
+
+    // This is to get single category
+    getSingleCategory: (state, action) => {
+      const { id, page } = action.payload;
+      const setActive = state.mainCategories.map((category) => {
+        if (category.id === id) {
           return { ...category, active: true };
         } else {
           return { ...category, active: false };
         }
       });
-
-      const noArticles = setActive.filter((category) => {
-        return category.articles.length !== 0;
-      });
-
-      const single = state.category.find((category) => {
-        return category.title === title;
-      });
-
-      state.category = page === "insight" ? noArticles : setActive;
-      state.singleCategory = single;
+      state.mainCategories = setActive;
     },
-    getAllCategories: (state, action) => {
-      const { page } = action.payload;
 
-      const active = state.categories
-        .map((category, index) => {
-          if (category.status === "active") {
-            if (index === 0) {
-              return { ...category, active: true };
-            } else {
-              return { ...category, active: false };
-            }
-          }
-        })
-        .filter((category) => category !== undefined);
-
-      const insight = active.filter((category) => {
-        return category.articles.length !== 0;
-      });
-
-      const single = active.find((category) => {
-        return category.active === true;
-      });
-
-      state.singleCategory = single;
-      state.category = page === "insight" ? insight : active;
-    },
+    // This is to handle the action thingy
     actionModalToggler: (state, action) => {
       const { title } = action.payload;
       state.singleCategory.articles.map((article) => {
@@ -98,24 +87,59 @@ const categorySlice = createSlice({
         }
       });
     },
+
+    // New category data handler
     newCategoryDataHandler: (state, action) => {
-      console.log("working");
       const { name, value } = action.payload;
       state.addNew = { ...state.addNew, [name]: value };
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getEveryCategory.pending, (state, action) => {
+      .addCase(getAllCategories.pending, (state, action) => {
         state.loadingCategory = true;
       })
-      .addCase(getEveryCategory.fulfilled, (state, action) => {
-        const categories = action.payload;
-        state.allCategories = categories.data.result;
+      .addCase(getAllCategories.fulfilled, (state, action) => {
+        const categories = action.payload.data.result;
+
+        const main = categories
+          .filter((category) => {
+            return category.type === "main";
+          })
+          .map((each, index) => {
+            if (index === 0) {
+              return { ...each, active: true };
+            }
+            return { ...each, active: false };
+          });
+
+        state.allCategories = categories;
+        state.mainCategories = main;
         state.loadingCategory = false;
         state.error = null;
       })
-      .addCase(getEveryCategory.rejected, (state, action) => {
+      .addCase(getAllCategories.rejected, (state, action) => {
+        state.loadingCategory = false;
+        state.error = action.payload;
+      })
+      .addCase(getMainCategory.fulfilled, (state, action) => {
+        const categories = action.payload;
+        state.mainCategories = categories.data.result;
+        state.loadingCategory = false;
+        state.error = null;
+      })
+      .addCase(getMainCategory.rejected, (state, action) => {
+        state.loadingCategory = false;
+        state.error = action.payload;
+      })
+      .addCase(getSubCategories.fulfilled, (state, action) => {
+        const categories = action.payload;
+        const sub = categories.data.result.filter;
+        state.subcategories = categories.data.result;
+        state.loadingCategory = false;
+        state.error = null;
+      })
+      .addCase(getSubCategories.rejected, (state, action) => {
         state.loadingCategory = false;
         state.error = action.payload;
       })
@@ -145,8 +169,9 @@ const categorySlice = createSlice({
 
 export const {
   getSingleCategory,
-  getAllCategories,
   actionModalToggler,
   newCategoryDataHandler,
+  getSpecificSubcategory,
+  getSpecificLeastSubcategory,
 } = categorySlice.actions;
 export default categorySlice.reducer;

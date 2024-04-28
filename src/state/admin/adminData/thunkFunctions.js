@@ -2,7 +2,65 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../../services/AxiosInstance";
 import { toast } from "react-toastify";
 
-export const getEveryCategory = createAsyncThunk(
+export const getAllCategories = createAsyncThunk(
+  "adminData/category",
+  async (thunkAPI) => {
+    try {
+      const response = await axiosInstance.get(`/categories/?limit=1000`);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const searchCategories = createAsyncThunk(
+  "adminData/category",
+  async (categoryName, thunkAPI) => {
+    try {
+      const response = await axiosInstance.get(
+        `/categories/?search=${categoryName}`
+      );
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const getMainCategory = createAsyncThunk(
+  "adminData/mainCategory",
+  async () => {
+    try {
+      const response = await axiosInstance.get(
+        `/categories/?category_type=Main`
+      );
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const getSubCategories = createAsyncThunk(
+  "adminData/subcategories",
+  async (thunkAPI) => {
+    try {
+      const response = await axiosInstance.get(
+        `/categories//categories/?category_type=Sub`
+      );
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const getLeastCategories = createAsyncThunk(
   "adminData/category",
   async (thunkAPI) => {
     try {
@@ -49,13 +107,12 @@ export const createNewCategory = createAsyncThunk(
         emojiId: emoji,
       };
     } else {
-      const type = foundCategory.type === "main" ? "sub" : "least_sub";
+      const type = foundCategory.type === "main" ? "sub" : "least-sub";
       const emoji = "";
       newCategory = {
         name: categoryName,
         description,
         type,
-        emojiId: "",
         parentId: foundCategory.id,
       };
     }
@@ -63,7 +120,7 @@ export const createNewCategory = createAsyncThunk(
     console.log(newCategory);
 
     try {
-      const response = await axiosInstance.post(`/categories`);
+      const response = await axiosInstance.post(`/categories`, newCategory);
       if (response.data.message) {
         const msg = response.data.message;
         toast.success(msg);

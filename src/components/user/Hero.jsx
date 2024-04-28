@@ -52,7 +52,14 @@ const Hero = ({ showSearch }) => {
 
         {contactBtn && (
           <GlassDesign className="inline-block rounded-xl px-4 py-2 absolute -mt-4 md:-mt-0 right-5 md:right-14 cursor-pointer animate-pulse">
-            <p className="text-[10px]">Contact Us</p>
+            <p className="text-[10px]">
+              <a
+                target="_black"
+                href="https://hcmatrixsupport.powerappsportals.com/contact-us/"
+              >
+                Contact Us
+              </a>
+            </p>
           </GlassDesign>
         )}
 

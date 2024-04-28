@@ -3,15 +3,33 @@ import { newArticleModalToggle } from "../../../state/admin/modalSlice";
 import { useNavigate } from "react-router-dom";
 import { headerToggle } from "../../../state/admin/headerSlice";
 import { useEffect, useState } from "react";
-import { subCategories } from "../../../data/categories";
 import FormContainer from "../FormContainer";
-import { populateNewArticle } from "../../../state/admin/articleSlice";
+import { populateNewArticle } from "../../../state/admin/articles/articleSlice";
 import { formValidation } from "../../../utils/formvalidator";
 import { Input, TextArea, FormBtn } from "../../common";
+import {
+  getSpecificSubcategory,
+  getSpecificLeastSubcategory,
+} from "../../../state/admin/adminData/dataSlice";
+
+import { Select } from "antd";
+
+import {
+  getMainCategory,
+  getSubCategories,
+} from "../../../state/admin/adminData/thunkFunctions";
 
 const NewArticleModal = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { mainCategories, subcategories, leastSubcategories } = useSelector(
+    (store) => store.adminData
+  );
+
+  useEffect(() => {
+    dispatch(getMainCategory());
+  }, []);
 
   const initial = {
     articleTitle: "",
@@ -19,7 +37,6 @@ const NewArticleModal = () => {
   };
 
   const [inputFields, setInputFields] = useState(initial);
-
   const { articleTitle, articleDescription } = inputFields;
 
   const textChangeHandler = (e) => {
@@ -31,8 +48,8 @@ const NewArticleModal = () => {
 
   // Arrays
   const { categories } = useSelector((store) => store.adminData);
-  const [subcategories, setSubcategories] = useState([]);
-  const [leastSubcategories, setLeastSubcategories] = useState([]);
+  const [_, setSubcategories] = useState([]);
+  const [o, setLeastSubcategories] = useState([]);
 
   // States
   const [category, setCategory] = useState("select category");
@@ -40,6 +57,21 @@ const NewArticleModal = () => {
   const [leastSubcategory, setLeastSubcategory] = useState(
     "select lease subcategories"
   );
+
+  const [mainId, setMainId] = useState("");
+  const [subId, setSubId] = useState("");
+  const [least, setLeastId] = useState("");
+
+  useEffect(() => {
+    const id = Number(mainId);
+    setSubId("");
+    dispatch(getSpecificSubcategory(id));
+  }, [mainId]);
+
+  useEffect(() => {
+    const id = Number(subId);
+    dispatch(getSpecificLeastSubcategory(id));
+  }, [mainId, subId]);
 
   const onClickHandler = () => {
     dispatch(newArticleModalToggle());
@@ -67,46 +99,35 @@ const NewArticleModal = () => {
   // Cascading Form Input logic
   const changeCategory = (event) => {
     setCategory(event.target.value);
-    const subcategory = categories.find(
-      (cat) => cat.title === event.target.value
-    ).subcategories;
-
-    setSubcategories(subcategory);
-
-    if (subcategory) {
-      setSubcategory("select subcategories");
-      setLeastSubcategory("select least subcategories");
-      setInputFields(initial);
-    }
-
-    if (!subcategory) {
-      setSubcategory("");
-      setLeastSubcategory("");
-    }
+    const selectedOption = event.target.options[event.target.selectedIndex];
+    const selectedCategoryId = selectedOption.getAttribute("id");
+    setMainId(selectedCategoryId);
   };
 
   const changeSubcategory = (event) => {
     setSubcategory(event.target.value);
-    const leastSubcategory = subcategories.find(
-      (sub) => sub.title === event.target.value
-    ).category;
-    setLeastSubcategories(leastSubcategory);
-    if (leastSubcategory) {
-      setLeastSubcategory("select least subcategories");
-      setInputFields(initial);
-    }
-
-    if (!leastSubcategory) {
-      setLeastSubcategory("");
-    }
+    const selectedOption = event.target.options[event.target.selectedIndex];
+    const selectedCategoryId = selectedOption.getAttribute("id");
+    setSubId(selectedCategoryId);
   };
 
   const changeLeastSubcategory = (event) => {
     setLeastSubcategory(event.target.value);
+    const selectedOption = event.target.options[event.target.selectedIndex];
+    const selectedCategoryId = selectedOption.getAttribute("id");
+    setLeastId(selectedCategoryId);
   };
 
+  const options = [];
+  for (let i = 10; i < 36; i++) {
+    options.push({
+      value: i.toString(36) + i,
+      label: i.toString(36) + i,
+    });
+  }
+
   return (
-    <div className="w-[100%] h-[100vh] fixed top-0 left-0 z-[9999] flex items-center flex-col">
+    <div className="w-[100%] h-[100vh] fixed top-0 left-0 z-[9999] flex items-center  justify-center flex-col">
       {/* The overlay */}
       <div
         className="absolute inset-0 bg-black opacity-10 "
@@ -114,7 +135,7 @@ const NewArticleModal = () => {
       ></div>
 
       {/* The form Container */}
-      <div className="relative form border-3 rounded-2xl pr-4 z-20 bg-white w-2/5 h-[90%] overflow-y-scroll pl-6 px-5 shadow-lg my-6">
+      <div className="relative form border-3 rounded-2xl pr-4 z-20 bg-white w-2/5 max-w-[600px]  overflow-y-scroll pl-6 px-5 pb-5 shadow-lg my-6 ">
         {/* For The Effect */}
         <div className="h-[20px] w-[37%] fixed bg-white"></div>
 
@@ -130,35 +151,52 @@ const NewArticleModal = () => {
               value={category}
               onChange={changeCategory}
             >
-              <option>Select Category</option>
-              {categories.map((category, index) => {
+              <option disabled>Select Category</option>
+              {mainCategories?.map((category, index) => {
                 return (
-                  <option className="" key={index}>
-                    {category.title}
+                  <option className="" key={category.id} id={category.id}>
+                    {category.name}
                   </option>
                 );
               })}
             </select>
+
+            <Select
+              size={"middle"}
+              defaultValue="a1"
+              onChange={changeCategory}
+              style={{
+                width: "100%",
+              }}
+              options={options}
+            />
           </FormContainer>
 
           {/* Sub category */}
-          {subcategories && (
-            <FormContainer label=" Select subcategory">
+
+          {subcategories.length > 0 && (
+            <FormContainer label="Select subcategory">
               <select
                 className="w-full py-3 px-4 rounded-lg border outline-none text-sm"
                 value={subcategory}
                 onChange={changeSubcategory}
               >
-                <option>Select subcategory</option>
-                {subcategories.map((sub, index) => {
-                  return <option key={index}>{sub.title}</option>;
+                <option disabled>Select subcategory</option>
+                {subcategories?.map((sub, index) => {
+                  if (sub?.parentId === Number(mainId)) {
+                    return (
+                      <option key={index} id={sub.id}>
+                        {sub.name}
+                      </option>
+                    );
+                  }
                 })}
               </select>
             </FormContainer>
           )}
 
           {/* least category */}
-          {subcategories && leastSubcategories && (
+          {leastSubcategories.length > 0 && (
             <FormContainer label="Select least category (optional)">
               <select
                 className="w-full py-3 px-4 rounded-lg border outline-none text-sm"
@@ -166,8 +204,12 @@ const NewArticleModal = () => {
                 onChange={changeLeastSubcategory}
               >
                 <option>Select least subcategory</option>
-                {leastSubcategories.map((least, index) => {
-                  return <option>{least.title}</option>;
+                {leastSubcategories.map((least) => {
+                  return (
+                    <option key={least.id} id={least.id}>
+                      {least.name}
+                    </option>
+                  );
                 })}
               </select>
             </FormContainer>

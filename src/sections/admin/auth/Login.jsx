@@ -1,16 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import { FloatingInput } from "../../../components/admin";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormBtn } from "../../../components/common";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../state/admin/authenticationSlice";
-
 import { FaSpinner } from "react-icons/fa";
+import useSignIn from "react-auth-kit/hooks/useSignIn";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const signIn = useSignIn();
+
+  const {} = useState();
 
   const signUpNavigate = () => {
     navigate("/auth/sign-up");
@@ -18,7 +21,9 @@ const Login = () => {
 
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const { email, password } = credentials;
-  const { loading, error } = useSelector((store) => store.auth);
+  const { loginMessage, user, token, loading, error } = useSelector(
+    (store) => store.auth
+  );
 
   const onChangeHandler = (e) => {
     const { value, name } = e.target;
@@ -38,10 +43,28 @@ const Login = () => {
     dispatch(loginUser(credentials)).then((result) => {
       if (result.payload) {
         setCredentials({ email: "", password: "" });
-        navigate("/admin");
       }
     });
   };
+
+  useEffect(() => {
+    if (token) {
+      if (
+        signIn({
+          auth: {
+            token: token,
+            type: "Bearer",
+          },
+          userState: { user: user },
+        })
+      ) {
+        toast.success("Welcome back!");
+        navigate("/admin/dashboard");
+      } else {
+        toast.error("Something went wrong");
+      }
+    }
+  }, [token]);
 
   return (
     <div className="relative w-[40%]">

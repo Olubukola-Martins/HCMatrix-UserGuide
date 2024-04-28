@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getSingleArticle } from "../state/admin/articleSlice";
+import { getSingleArticle } from "../state/admin/articles/articleSlice";
 import { useEffect } from "react";
 
 const SingleArticle = () => {

@@ -2,17 +2,19 @@ import Wrapper from "./Wrapper";
 import { useSelector, useDispatch } from "react-redux";
 import { SidePanel } from "./layout";
 import { Link } from "react-router-dom";
-import { getSingleCategory } from "../../state/admin/categories/categorySlice";
+import { getSingleCategory } from "../../state/admin/adminData/dataSlice";
 import { newArticleModalToggle } from "../../state/admin/modalSlice";
 import { Fluent, ViewFinder } from "../../assets/admin/icons/dashboard";
 import { AddBtn } from "../../assets/admin/icons/dashboard";
+import { settingsicon } from "../../assets/admin/icons/header";
+import { gear } from "../../assets/user/categories";
 
 const SideMenu = ({ page, title: pageTitle }) => {
-  const { category } = useSelector((store) => store.adminData);
+  const { category, mainCategories } = useSelector((store) => store.adminData);
   const dispatch = useDispatch();
 
-  const onClickHandler = (title) => {
-    dispatch(getSingleCategory({ title, page }));
+  const onClickHandler = (id) => {
+    dispatch(getSingleCategory({ id, page }));
   };
 
   return (
@@ -29,23 +31,29 @@ const SideMenu = ({ page, title: pageTitle }) => {
       )}
 
       <h3 className="mb-4">All Categories</h3>
-      <div>
-        {category.map((category, index) => {
-          const { svg, title, articles, active } = category;
+      <div className="max-h-[80vh] overflow-auto pb-2">
+        {mainCategories.map((category, index) => {
+          const { emoji, name, active, id } = category;
 
           return (
             <Wrapper
-              onClickHandler={() => onClickHandler(title)}
-              className={`flex transition-all duration-100 ease-linear justify-between items-center px-3 rounded-lg hover:cursor-pointer ${
+              onClickHandler={() => onClickHandler(id)}
+              className={`flex transition-all border-[1.2px] border-transparent duration-100 ease-linear justify-between items-center px-3 rounded-lg hover:cursor-pointer ${
                 active ? "activeindicator" : ""
               }`}
-              key={title}
+              key={name}
             >
               <div className="flex gap-4 items-center">
-                <img src={svg} alt="" className="h-5" />
-                <h3 className="text-[17px] capitalize">{title}</h3>
+                {name === "Settings" ? (
+                  <img src={gear} alt="" className=" p-1 h-[1.8rem]" />
+                ) : (
+                  <span className="text-lg">{emoji?.code}</span>
+                )}
+
+                {/* <img src={svg} alt="" className="h-5" /> */}
+                <h3 className="text-[17px] capitalize">{name}</h3>
               </div>
-              <span className="font-light">{`${articles?.length} Articles`}</span>
+              {/* <span className="font-light">{`${articles?.length} Articles`}</span> */}
             </Wrapper>
           );
         })}

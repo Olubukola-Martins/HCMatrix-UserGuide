@@ -4,10 +4,12 @@ import { Container, SectionContainer } from "../../../components/user";
 import { BtnLayoutAdmin } from "../../../components/admin";
 import { useNavigate } from "react-router-dom";
 import { ReactTyped } from "react-typed";
-import { addContent } from "../../../state/admin/articleSlice";
+import {
+  addContent,
+  articleContentHandler,
+} from "../../../state/admin/articles/articleSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { publish, cancel } from "../../../assets/admin/icons/articles";
-import { articleContentHandler } from "../../../state/admin/articleSlice";
 
 const CreateArticle = ({ margin }) => {
   const navigate = useNavigate();

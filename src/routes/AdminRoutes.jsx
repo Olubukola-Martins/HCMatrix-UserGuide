@@ -13,6 +13,7 @@ import { CreateArticle } from "../sections/admin/article";
 import ProtectedRoutes from "./ProtectedRoutes";
 import { Login } from "../sections/admin/auth";
 import { useEffect } from "react";
+import AuthOutlet from "@auth-kit/react-router/AuthOutlet";
 
 import { ToastContainer } from "react-toastify";
 
@@ -27,7 +28,7 @@ const AdminRoutes = () => {
     <>
       <ToastContainer />
       <Routes>
-        <Route Component={ProtectedRoutes}>
+        <Route element={<AuthOutlet fallbackPath="/auth/login" />}>
           <Route path="/admin" Component={AdminPage}>
             {/* Dashboard Routes */}
 

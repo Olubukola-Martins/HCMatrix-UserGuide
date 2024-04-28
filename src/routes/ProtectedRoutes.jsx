@@ -9,6 +9,7 @@ import {
 const ProtectedRoutes = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((store) => store.auth);
+
   const storedUser = localStorage.getItem("user");
 
   useEffect(() => {

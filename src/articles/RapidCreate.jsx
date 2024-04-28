@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { publish, cancel } from "../assets/admin/icons/articles";
-import { articleContentHandler } from "../state/admin/articleSlice";
+import {
+  articleContentHandler,
+  addContent,
+} from "../state/admin/articles/articleSlice";
 import { useNavigate } from "react-router-dom";
-import { addContent } from "../state/admin/articleSlice";
 import { heroImg } from "../assets/common/images";
 
 import { Container, SectionContainer } from "../components/user";

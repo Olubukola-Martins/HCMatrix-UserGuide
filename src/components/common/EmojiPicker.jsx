@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getEmojis } from "../../state/admin/categories/thunkFunctions";
+import { getEmojis } from "../../state/admin/adminData/thunkFunctions";
 
 const EmojiPicker = ({
   value,

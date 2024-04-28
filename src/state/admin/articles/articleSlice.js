@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { categories } from "../../data/data";
-import { articles } from "../../data/articles";
+import { categories } from "../../../data/data";
+import { articles } from "../../../data/articles";
 
 const initialState = {
   allArticles: articles,

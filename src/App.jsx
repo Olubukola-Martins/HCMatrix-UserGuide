@@ -4,6 +4,8 @@ import { ToastContainer } from "react-toastify";
 //React Router Dom
 import { BrowserRouter as Router } from "react-router-dom";
 
+import RequireAuth from "@auth-kit/react-router/RequireAuth";
+
 const Test = () => {
   return <div>This is a test</div>;
 };

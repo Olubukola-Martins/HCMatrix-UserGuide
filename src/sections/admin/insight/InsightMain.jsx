@@ -7,16 +7,13 @@ import {
   ArticleReviewBox,
 } from "../../../components/admin";
 import { Layout, MainContent } from "../../../components/admin/layout";
-import { getAllCategories } from "../../../state/admin/categories/categorySlice";
 
 const InsightMain = () => {
   const { singleCategory } = useSelector((store) => store.adminData);
   const dispatch = useDispatch();
   const { svg, title, articles } = singleCategory;
 
-  useEffect(() => {
-    dispatch(getAllCategories({ page: "insight" }));
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <main className="font-semibold text-customGray-dark text-[15px]">

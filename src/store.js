@@ -5,11 +5,11 @@ import categoryReducer from "./state/user/usercategory/categorySlice";
 
 // FOR THE ADMIN
 import adminHeaderReducer from "./state/admin/headerSlice";
-import categorySlice from "./state/admin/categories/categorySlice";
+import dataSlice from "./state/admin/adminData/dataSlice";
 import authenticationReducer from "./state/admin/authenticationSlice";
 import customizationReducer from "./state/admin/customizationSlice";
 import modalReducer from "./state/admin/modalSlice";
-import articleSlice from "./state/admin/articleSlice";
+import articleSlice from "./state/admin/articles/articleSlice";
 import userModalReducer from "./state/user/modals/userModalSlice";
 
 const store = configureStore({
@@ -17,7 +17,7 @@ const store = configureStore({
     article: articleSlice,
     category: categoryReducer,
     adminHeader: adminHeaderReducer,
-    adminData: categorySlice,
+    adminData: dataSlice,
     auth: authenticationReducer,
     customization: customizationReducer,
     modelSlice: modalReducer,

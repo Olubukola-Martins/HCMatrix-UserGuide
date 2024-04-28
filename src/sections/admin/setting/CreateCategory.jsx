@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getAllCategories,
-  newCategoryDataHandler,
-} from "../../../state/admin/categories/categorySlice";
+import { newCategoryDataHandler } from "../../../state/admin/adminData/dataSlice";
+
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import {
@@ -19,9 +17,10 @@ import {
 } from "../../../components/admin/layout";
 
 import {
-  getEveryCategory,
+  getAllCategories,
   createNewCategory,
-} from "../../../state/admin/categories/thunkFunctions";
+  getMainCategory,
+} from "../../../state/admin/adminData/thunkFunctions";
 import {
   Input,
   DataListInput,
@@ -31,15 +30,13 @@ import {
 
 const CreateCategory = () => {
   const dispatch = useDispatch();
-  const { allCategories, loadingAddCategory, addNew } = useSelector(
-    (store) => store.adminData
-  );
+  const { allCategories, loadingAddCategory, addNew, mainCategories } =
+    useSelector((store) => store.adminData);
 
   const { categoryName, description, emojiId, parentName } = addNew;
 
   useEffect(() => {
-    dispatch(getEveryCategory());
-    dispatch(getAllCategories({ page: "settings" }));
+    dispatch(getAllCategories());
   }, []);
 
   const { category } = useSelector((store) => store.adminData);
@@ -56,13 +53,13 @@ const CreateCategory = () => {
       toast.error("Empty fields detected");
       return;
     }
-
     dispatch(createNewCategory(addNew));
+    dispatch(getEveryCategory());
   };
 
   return (
     <>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <main className="font-semibold text-customGray-dark text-[15px]">
         <Container>
           <Layout>
@@ -72,23 +69,24 @@ const CreateCategory = () => {
                 <div>
                   <h3 className=" font-bold mb-4">Creating new Categories</h3>
                   <p className="text-[12px] leading-6 font-medium text-customGray-light">
-                    Lorem ipsum dolor sit amet consectetur. Ornare risus
-                    praesent id amet faucibus aliquam turpis. Vulputate etiam
-                    imperdiet metus laoreet sed eu neque.{" "}
+                    Crafting new categories is a breeze. Simplify your approach
+                    with clear categories. Organize effortlessly for better
+                    navigation. Start creating categories today now!
                   </p>
                 </div>
 
                 <div>
                   <h3 className="font-bold mb-4">Categories</h3>
                   <div className="flex flex-col gap-4 capitalize">
-                    {category.map((category) => (
+                    {mainCategories.map((category) => (
                       <div
-                        className="flex gap-3 cursor-pointer ml-4"
-                        key={category.title}
+                        className="flex items-center gap-3 cursor-pointer ml-4"
+                        key={category.name}
                       >
-                        <img src={category.svg} alt="" width={24} height={24} />
+                        <span className="text-lg">{category?.emoji?.code}</span>
+
                         <p className="text-md text-customGray-light  ">
-                          {category.title}
+                          {category.name}
                         </p>
                       </div>
                     ))}

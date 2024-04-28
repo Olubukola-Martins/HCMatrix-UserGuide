@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import axios from "axios";
-import axiosInstance from "../../services/AxiosInstance";
 import { toast } from "react-toastify";
+
+import axiosInstance from "../../services/AxiosInstance";
 
 const baseUrl = import.meta.env.BASE;
 
@@ -16,6 +16,7 @@ export const loginUser = createAsyncThunk(
       return response.data;
     } catch (error) {
       console.log(error);
+      toast.error("An Error occurred");
       return rejectWithValue(error.response.data);
     }
   }
@@ -25,7 +26,7 @@ const initialState = {
   error: "",
   loading: false,
   user: null,
-  message: "",
+  loginMessage: "",
   token: "",
 };
 
@@ -38,12 +39,15 @@ const authSlice = createSlice({
     },
     getAccessToken: (state, action) => {
       const user = JSON.parse(localStorage.getItem("user"));
-
       if (user && user.data.accessToken) {
         state.token = user.data.accessToken;
       } else {
         console.error("Access token not found in local storage");
       }
+    },
+    LogoutHandler: (state, action) => {
+      state.user = null;
+      state.token = "";
     },
   },
   extraReducers: (builder) => {
@@ -52,6 +56,10 @@ const authSlice = createSlice({
         state.loading = true;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
+        const res = action.payload;
+        state.loginMessage = res.message;
+        state.user = res.data.user;
+        state.token = res.data.accessToken;
         state.loading = false;
         state.error = null;
       })
@@ -62,5 +70,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { setCurrentUser, getAccessToken } = authSlice.actions;
+export const { setCurrentUser, getAccessToken, LogoutHandler } =
+  authSlice.actions;
 export default authSlice.reducer;
