@@ -88,12 +88,14 @@ const NewArticleModal = () => {
       articleDescription: articleDescription,
     };
 
-    if (formValidation(form)) {
-      dispatch(populateNewArticle(form));
-      dispatch(newArticleModalToggle());
-      dispatch(headerToggle({ page: "article" }));
-      navigate("/admin/create");
-    }
+    // if (formValidation(form)) {
+
+    // }
+
+    dispatch(populateNewArticle(form));
+    dispatch(newArticleModalToggle());
+    dispatch(headerToggle({ page: "article" }));
+    navigate("/admin/create");
   };
 
   // Cascading Form Input logic
@@ -160,16 +162,6 @@ const NewArticleModal = () => {
                 );
               })}
             </select>
-
-            <Select
-              size={"middle"}
-              defaultValue="a1"
-              onChange={changeCategory}
-              style={{
-                width: "100%",
-              }}
-              options={options}
-            />
           </FormContainer>
 
           {/* Sub category */}

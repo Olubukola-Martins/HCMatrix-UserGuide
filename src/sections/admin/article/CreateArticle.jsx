@@ -32,7 +32,7 @@ const CreateArticle = ({ margin }) => {
   return (
     <>
       <section
-        className="bg-cover bg-center relative text-primary h-96 pt-7"
+        className="bg-cover bg-center relative text-primary h-96 pt-7 -mt-[6.5rem]"
         style={{ backgroundImage: `url(${heroImg})` }}
       >
         <div className="absolute inset-0 bg-black opacity-70"></div>

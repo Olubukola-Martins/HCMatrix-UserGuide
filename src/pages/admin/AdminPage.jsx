@@ -24,7 +24,6 @@ const AdminPage = () => {
     <>
       {showHeader && <Header />}
       {newArticleModal && <NewArticleModal />}
-
       <div className={`${barToggle ? "py-44" : "py-[6.5rem]"}`}>
         <Outlet />
       </div>
