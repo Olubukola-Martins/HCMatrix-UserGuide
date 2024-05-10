@@ -22,12 +22,28 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const inviteUser = createAsyncThunk(
+  "auth/invite",
+
+  async (userCredential, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.post(`/user/invite`, userCredential);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      toast.error("An Error occurred");
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const initialState = {
   error: "",
   loading: false,
   user: null,
   loginMessage: "",
   token: "",
+  msg: "",
 };
 
 const authSlice = createSlice({
@@ -64,6 +80,18 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(loginUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(inviteUser.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(inviteUser.fulfilled, (state, action) => {
+        const res = action.payload;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(inviteUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

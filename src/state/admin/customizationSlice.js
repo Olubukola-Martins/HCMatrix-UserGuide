@@ -14,7 +14,7 @@ const initialState = {
       toggle: false,
     },
     {
-      name: "Header Styles",
+      name: "Header",
       desc: "Customize your header  by adding your desired background image to the overlay.",
       type: "upload",
       id: "header",

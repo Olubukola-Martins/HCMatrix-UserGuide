@@ -5,12 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Logo } from "../../assets/admin/images";
 
-const Auth = () => {
+const Auth = ({ children }) => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    navigate("/auth/login");
-  }, []);
 
   return (
     <>
@@ -31,11 +27,11 @@ const Auth = () => {
         </h1>
         <SectionContainer>
           <div className="py-10 flex items-center justify-center border rounded-md mb-2">
-            <Outlet />
+            {children}
           </div>
 
           <div className="flex items-center justify-center">
-            <span className="text-sm -mr-2">Powered by </span>
+            <span className="text-sm -mr-2">Powered by</span>
             <img src={Logo} alt="" className="h-9" />
           </div>
         </SectionContainer>

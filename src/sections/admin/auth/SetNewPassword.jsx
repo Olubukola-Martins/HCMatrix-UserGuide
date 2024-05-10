@@ -9,7 +9,7 @@ import { FaSpinner } from "react-icons/fa";
 import useSignIn from "react-auth-kit/hooks/useSignIn";
 import Auth from "../../../pages/auth/Auth";
 
-const Login = () => {
+const SetNewPassword = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const signIn = useSignIn();
@@ -67,48 +67,49 @@ const Login = () => {
     }
   }, [token]);
 
+  const loginNavigate = () => {
+    navigate("/auth/login");
+  };
+
   return (
     <Auth>
       <div className="relative w-[40%]">
         <div className="text-center text-[#3A3A3AB2] mb-10">
           <h3 className=" font-semibold text-xl mb-2">
-            Admin sign in to HCMatrix User Guide
+            Enter You new Password
           </h3>
-          <p className="text-[#7C7C7C] text-[13px]">
-            Welcome back! Please enter your details.
-          </p>
         </div>
         <form className="  relative w-full" onSubmit={onSubmitHandler}>
           <div className="flex flex-col gap-10">
             <FloatingInput
-              placeHolder="Your email"
-              value={email}
-              type="email"
+              type="password"
+              placeHolder="Enter New Password"
+              FloatingInput
+              value={password}
               onChange={onChangeHandler}
-              name="email"
+              name="password"
             />
-
             <FloatingInput
               type="password"
-              placeHolder="Your password"
+              placeHolder="confirm you password"
               FloatingInput
               value={password}
               onChange={onChangeHandler}
               name="password"
             />
 
-            <FormBtn custom="rounded-full" loading={loading} />
+            <FormBtn custom="rounded-full" loading={false} />
           </div>
         </form>
 
         <div className="mt-3 text-center">
           <p className="text-[#7C7C7C] text-[13px] mx-auto ">
-            Don't have an account ?{" "}
+            Already Have an Account ?{" "}
             <span
               className="text-[#F77366] cursor-pointer"
-              onClick={signUpNavigate}
+              onClick={loginNavigate}
             >
-              Sign up
+              Log in
             </span>
           </p>
         </div>
@@ -116,4 +117,4 @@ const Login = () => {
     </Auth>
   );
 };
-export default Login;
+export default SetNewPassword;

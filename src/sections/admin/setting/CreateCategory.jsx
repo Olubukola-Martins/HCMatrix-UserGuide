@@ -54,7 +54,7 @@ const CreateCategory = () => {
       return;
     }
     dispatch(createNewCategory(addNew));
-    dispatch(getEveryCategory());
+    dispatch(getAllCategories());
   };
 
   return (

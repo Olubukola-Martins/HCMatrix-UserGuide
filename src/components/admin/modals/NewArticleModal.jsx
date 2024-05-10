@@ -8,16 +8,13 @@ import { populateNewArticle } from "../../../state/admin/articles/articleSlice";
 import { formValidation } from "../../../utils/formvalidator";
 import { Input, TextArea, FormBtn } from "../../common";
 import {
+  getMainCategory,
   getSpecificSubcategory,
   getSpecificLeastSubcategory,
 } from "../../../state/admin/adminData/dataSlice";
 
 import { Select } from "antd";
-
-import {
-  getMainCategory,
-  getSubCategories,
-} from "../../../state/admin/adminData/thunkFunctions";
+// import { subCategories } from "../../../data/categories";
 
 const NewArticleModal = () => {
   const dispatch = useDispatch();
@@ -29,15 +26,26 @@ const NewArticleModal = () => {
 
   useEffect(() => {
     dispatch(getMainCategory());
+    dispatch(getSpecificSubcategory());
+    dispatch(getSpecificLeastSubcategory());
   }, []);
 
+  // Initial values for the state
   const initial = {
     articleTitle: "",
     articleDescription: "",
+    videoLink: "",
   };
 
+  const initCategory = { category: "", subcategory: "", leastSubcategory: "" };
+
+  // The values of the category
+  const [categoryValue, setCategoryValue] = useState(initCategory);
+  const { category, subcategory, leastSubcategory } = categoryValue;
+
+  // The values of the form input
   const [inputFields, setInputFields] = useState(initial);
-  const { articleTitle, articleDescription } = inputFields;
+  const { articleTitle, articleDescription, videoLink } = inputFields;
 
   const textChangeHandler = (e) => {
     const { value, name } = e.target;
@@ -46,32 +54,12 @@ const NewArticleModal = () => {
     });
   };
 
-  // Arrays
-  const { categories } = useSelector((store) => store.adminData);
-  const [_, setSubcategories] = useState([]);
-  const [o, setLeastSubcategories] = useState([]);
 
-  // States
-  const [category, setCategory] = useState("select category");
-  const [subcategory, setSubcategory] = useState("select subcategories");
-  const [leastSubcategory, setLeastSubcategory] = useState(
-    "select lease subcategories"
-  );
 
-  const [mainId, setMainId] = useState("");
-  const [subId, setSubId] = useState("");
-  const [least, setLeastId] = useState("");
-
-  useEffect(() => {
-    const id = Number(mainId);
-    setSubId("");
+  const handleCategory = (id) => {
     dispatch(getSpecificSubcategory(id));
-  }, [mainId]);
-
-  useEffect(() => {
-    const id = Number(subId);
     dispatch(getSpecificLeastSubcategory(id));
-  }, [mainId, subId]);
+  };
 
   const onClickHandler = () => {
     dispatch(newArticleModalToggle());
@@ -80,6 +68,7 @@ const NewArticleModal = () => {
   //onSubmit handler
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    alert("submitting");
     const form = {
       category: category,
       subcategory: subcategory,
@@ -88,124 +77,95 @@ const NewArticleModal = () => {
       articleDescription: articleDescription,
     };
 
-    // if (formValidation(form)) {
-
-    // }
-
-    dispatch(populateNewArticle(form));
-    dispatch(newArticleModalToggle());
-    dispatch(headerToggle({ page: "article" }));
-    navigate("/admin/create");
+    // dispatch(populateNewArticle(form));
+    // dispatch(newArticleModalToggle());
+    // dispatch(headerToggle({ page: "article" }));
+    // navigate("/admin/create");
   };
-
-  // Cascading Form Input logic
-  const changeCategory = (event) => {
-    setCategory(event.target.value);
-    const selectedOption = event.target.options[event.target.selectedIndex];
-    const selectedCategoryId = selectedOption.getAttribute("id");
-    setMainId(selectedCategoryId);
-  };
-
-  const changeSubcategory = (event) => {
-    setSubcategory(event.target.value);
-    const selectedOption = event.target.options[event.target.selectedIndex];
-    const selectedCategoryId = selectedOption.getAttribute("id");
-    setSubId(selectedCategoryId);
-  };
-
-  const changeLeastSubcategory = (event) => {
-    setLeastSubcategory(event.target.value);
-    const selectedOption = event.target.options[event.target.selectedIndex];
-    const selectedCategoryId = selectedOption.getAttribute("id");
-    setLeastId(selectedCategoryId);
-  };
-
-  const options = [];
-  for (let i = 10; i < 36; i++) {
-    options.push({
-      value: i.toString(36) + i,
-      label: i.toString(36) + i,
-    });
-  }
 
   return (
-    <div className="w-[100%] h-[100vh] fixed top-0 left-0 z-[9999] flex items-center  justify-center flex-col">
+    <div className="w-[100%] h-[100vh] fixed top-0 left-0 z-[99] flex items-center  justify-center flex-col">
       {/* The overlay */}
       <div
-        className="absolute inset-0 bg-black opacity-10 "
+        className="absolute inset-0 bg-black opacity-10"
         onClick={() => onClickHandler()}
       ></div>
 
       {/* The form Container */}
       <div className="relative form border-3 rounded-2xl pr-4 z-20 bg-white w-2/5 max-w-[600px]  overflow-y-scroll pl-6 px-5 pb-5 shadow-lg my-6 ">
         {/* For The Effect */}
-        <div className="h-[20px] w-[37%] fixed bg-white"></div>
+        {/* <div className="h-[20px] w-[37%] fixed bg-white"></div> */}
 
         <form className="w-full" onSubmit={onSubmitHandler}>
-          <h3 className="font-semibold text-lg mb-4 mt-4">
+          <h3 className="font-semibold text-lg mb-2 mt-4">
             Create New Article
           </h3>
 
           {/* Category input */}
           <FormContainer label="Select category">
-            <select
-              className="w-full py-3 px-4 rounded-lg border outline-none text-sm"
-              value={category}
-              onChange={changeCategory}
-            >
-              <option disabled>Select Category</option>
-              {mainCategories?.map((category, index) => {
-                return (
-                  <option className="" key={category.id} id={category.id}>
-                    {category.name}
-                  </option>
-                );
+            <Select
+              size="large"
+              allowClear
+              placeholder="Select Category"
+              className="md:flex hidden w-[full]"
+              onChange={(value) => handleCategory(value)}
+              options={mainCategories?.map((category) => {
+                return {
+                  label: `${category?.name}`,
+                  value: `${category?.id}`,
+                };
               })}
-            </select>
+            />
           </FormContainer>
 
-          {/* Sub category */}
-
-          {subcategories.length > 0 && (
+          {subcategories?.length > 0 && (
             <FormContainer label="Select subcategory">
-              <select
-                className="w-full py-3 px-4 rounded-lg border outline-none text-sm"
-                value={subcategory}
-                onChange={changeSubcategory}
-              >
-                <option disabled>Select subcategory</option>
-                {subcategories?.map((sub, index) => {
-                  if (sub?.parentId === Number(mainId)) {
-                    return (
-                      <option key={index} id={sub.id}>
-                        {sub.name}
-                      </option>
-                    );
-                  }
+              <Select
+                size="large"
+                allowClear
+                placeholder="Select Subcategories"
+                className="md:flex hidden w-[full]"
+                onChange={(value) =>
+                  dispatch(getSpecificLeastSubcategory(value))
+                }
+                options={subcategories?.map((category) => {
+                  return {
+                    label: `${category?.name}`,
+                    value: `${category?.id}`,
+                  };
                 })}
-              </select>
+              />
             </FormContainer>
           )}
 
           {/* least category */}
-          {leastSubcategories.length > 0 && (
-            <FormContainer label="Select least category (optional)">
-              <select
-                className="w-full py-3 px-4 rounded-lg border outline-none text-sm"
-                value={leastSubcategory}
-                onChange={changeLeastSubcategory}
-              >
-                <option>Select least subcategory</option>
-                {leastSubcategories.map((least) => {
-                  return (
-                    <option key={least.id} id={least.id}>
-                      {least.name}
-                    </option>
-                  );
+          {leastSubcategories?.length > 0 && (
+            <FormContainer label="Select Least Subcategory">
+              <Select
+                size="large"
+                allowClear
+                placeholder="Select Category"
+                className="md:flex hidden w-[full]"
+                onChange={(value) => console.log(value)}
+                options={leastSubcategories?.map((category) => {
+                  return {
+                    label: `${category?.name}`,
+                    value: `${category?.id}`,
+                  };
                 })}
-              </select>
+              />
             </FormContainer>
           )}
+
+          {/* The video link */}
+          <FormContainer label="Embedded video link (optional)">
+            <Input
+              type="text"
+              name="videoLink"
+              value={videoLink}
+              onChange={textChangeHandler}
+            />
+          </FormContainer>
 
           {/* The input form */}
           <FormContainer label="Article Title">

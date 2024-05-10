@@ -1,4 +1,5 @@
 import ToggleBtn from "./ToggleBtn";
+import { Switch } from "antd";
 
 const Toggler = ({ desc, svg, title, active, id }) => {
   return (
@@ -9,7 +10,8 @@ const Toggler = ({ desc, svg, title, active, id }) => {
           <h3 className="text-md font-bold capitalize">{title}</h3>
         </div>
 
-        <ToggleBtn active={active} id={id} />
+        <Switch style={{ color: "red",  }} />
+        {/* <ToggleBtn active={active} id={id} /> */}
       </div>
       <span className="text-[13px] font-semibold text-customGray-light leading-none">
         {desc}

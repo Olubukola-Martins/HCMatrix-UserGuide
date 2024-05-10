@@ -4,7 +4,6 @@ const TableBody = ({ tableRows }) => {
     const {sn, fullName, email, status, action} = row;
     
     const statusTextLogic = status ?"Accepted Invite": "Pending Invite";
-
     const statusStyleLogic = status?"text-green-600":"text-yellow-400";
 
     return <tr class="border-b" key={row.sn}>

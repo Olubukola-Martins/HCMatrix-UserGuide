@@ -1,9 +1,9 @@
 import { FaSpinner } from "react-icons/fa";
 
-const Button = ({ message, loading }) => {
+const Button = ({ message, loading, margin }) => {
   return (
     <button
-      className={`text-white capitalize py-[1rem] px-12 self-start bg-btn-red rounded-lg`}
+      className={`text-white capitalize py-[.7rem] px-12 self-start bg-btn-red rounded-lg ${margin}`}
     >
       <div className="flex items-center justify-center w-32">
         {loading ? (

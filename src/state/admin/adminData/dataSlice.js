@@ -4,7 +4,6 @@ import {
   getAllCategories,
   getEmojis,
   createNewCategory,
-  getMainCategory,
   getSubCategories,
 } from "./thunkFunctions";
 
@@ -43,21 +42,34 @@ const categorySlice = createSlice({
   name: "adminData",
   initialState,
   reducers: {
+    getMainCategory: (state, action) => {},
+
     // To Get a specific subcategory
     getSpecificSubcategory: (state, action) => {
       const id = action.payload;
-      const sub = state.allCategories.filter((category) => {
-        return category.parentId === Number(id);
-      });
+      const sub = state.allCategories.find((category) => {
+        return category.id === Number(id);
+      })?.children;
+      state.subcategories = sub;
+
+      if (!sub) {
+        state.leastSubcategories = [];
+        return;
+      }
       state.subcategories = sub;
     },
 
     // To get specifics least subcategory
     getSpecificLeastSubcategory: (state, action) => {
       const id = action.payload;
-      const least = state.allCategories.filter((category) => {
-        return category.parentId === Number(id);
-      });
+      const least = state.allCategories.find((category) => {
+        return category.id === Number(id);
+      })?.children;
+
+      if (!least) {
+        state.leastSubcategories = [];
+        return;
+      }
       state.leastSubcategories = least;
     },
 
@@ -122,27 +134,6 @@ const categorySlice = createSlice({
         state.loadingCategory = false;
         state.error = action.payload;
       })
-      .addCase(getMainCategory.fulfilled, (state, action) => {
-        const categories = action.payload;
-        state.mainCategories = categories.data.result;
-        state.loadingCategory = false;
-        state.error = null;
-      })
-      .addCase(getMainCategory.rejected, (state, action) => {
-        state.loadingCategory = false;
-        state.error = action.payload;
-      })
-      .addCase(getSubCategories.fulfilled, (state, action) => {
-        const categories = action.payload;
-        const sub = categories.data.result.filter;
-        state.subcategories = categories.data.result;
-        state.loadingCategory = false;
-        state.error = null;
-      })
-      .addCase(getSubCategories.rejected, (state, action) => {
-        state.loadingCategory = false;
-        state.error = action.payload;
-      })
       .addCase(getEmojis.fulfilled, (state, action) => {
         const emoji = action.payload;
         state.emoji = emoji.data;
@@ -171,6 +162,7 @@ export const {
   getSingleCategory,
   actionModalToggler,
   newCategoryDataHandler,
+  getMainCategory,
   getSpecificSubcategory,
   getSpecificLeastSubcategory,
 } = categorySlice.actions;

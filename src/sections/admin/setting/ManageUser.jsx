@@ -7,6 +7,10 @@ import {
   FormContainer,
 } from "../../../components/admin";
 
+import { inviteUser } from "../../../state/admin/authenticationSlice";
+
+import { toast } from "react-toastify";
+
 import { Input } from "../../../components/common";
 
 import { useState } from "react";
@@ -17,13 +21,20 @@ import {
   SidePanel,
 } from "../../../components/admin/layout";
 import { adminTableData, adminTableHeader } from "../../../data/admintableData";
+import { useDispatch, useSelector } from "react-redux";
 
 const ManageUser = () => {
-  const [newMember, setNewMember] = useState({
+  const dispatch = useDispatch();
+  const {} = useSelector((store) => store);
+
+  const init = {
     email: "",
     firstName: "",
     lastName: "",
-  });
+  };
+  const [newMember, setNewMember] = useState(init);
+
+  const { email, firstName, lastName } = newMember;
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -34,9 +45,14 @@ const ManageUser = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    setTimeout(() => {
-      console.log(newMember);
-    }, 5000);
+
+    if ((email === "", firstName === "", lastName === "")) {
+      toast.error("please enter values");
+    }
+
+    dispatch(inviteUser(newMember));
+    toast.success("Invite successfully sent");
+    setNewMember(init);
   };
 
   return (
@@ -54,8 +70,8 @@ const ManageUser = () => {
           <div className="flex flex-col gap-5">
             <Wrapper padding="p-6">
               <form className="flex flex-col gap-4" onSubmit={onSubmitHandler}>
-                <h3 className="text-md font-semibold">Invite a new member</h3>
-                <div className="flex flex-1 flex-wrap max-md:flex-col gap-3 justify-start mb-2">
+                <h3 className="text-md font-semibold">Invite A New Member</h3>
+                <div className="grid grid-cols-3 gap-3 justify-start mb-2">
                   <Input
                     onChange={onChangeHandler}
                     type="email"
@@ -82,8 +98,8 @@ const ManageUser = () => {
                     placeholder="last name"
                     className="w-[20%] capitalize"
                   />
+                  <Button message="invite members" margin={"mt-4"} />
                 </div>
-                <Button message="invite members" />
               </form>
             </Wrapper>
 

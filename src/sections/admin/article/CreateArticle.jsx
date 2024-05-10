@@ -15,13 +15,16 @@ const CreateArticle = ({ margin }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { content } = useSelector((store) => store.article);
+  const { content, editing } = useSelector((store) => store.article);
 
   const cancelHandler = () => {
     navigate("/admin/dashboard");
   };
 
   const publishHandler = () => {
+    if(editing){
+     // this would be the logic for editing the thing
+    }
     dispatch(addContent(content));
   };
 

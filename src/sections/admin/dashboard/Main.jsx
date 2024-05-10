@@ -11,13 +11,36 @@ import {
 import { Search } from "../../../assets/admin/icons/dashboard";
 import { SideMenu } from "../../../components/admin";
 import { newArticleModalToggle } from "../../../state/admin/modalSlice";
+import { AutoComplete } from "antd";
+
+import { editContent } from "../../../state/admin/articles/articleSlice";
+import { useNavigate } from "react-router-dom";
 
 const Main = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { singleCategory } = useSelector((store) => store.adminData);
   const { svg, title, articles } = singleCategory;
 
   useEffect(() => {}, []);
+
+  const options = [
+    { label: "article", value: "article" },
+    { label: "articulate", value: "articulate" },
+    { label: "mandy", value: "mandy" },
+    { label: "john", value: "john" },
+    { label: "snow", value: "snow" },
+  ];
+
+  const editArticleNavigation = () => {
+    dispatch(editContent());
+    navigate("/admin/create");
+    // fetch the article
+    // navigate to the article
+    // if this is ready populate jodit with it
+    // if not load the spinner
+  };
 
   return (
     <main className="font-semibold relative text-customGray-dark text-[15px]">
@@ -30,13 +53,20 @@ const Main = () => {
           <MainContent>
             <div className="bg-transparent h-8 mb-3 "></div>
             {/* Search input */}
-            <Wrapper className=" mb-4 bg-white rounded-lg">
-              <section className="flex pl-6 gap-3">
+            <Wrapper padding={"py-2"} className="mb-4 bg-white rounded-lg">
+              <section className="flex pl-6 gap-3 items-center">
                 <Search />
-                <input
-                  type="text"
-                  placeholder="Search for articles"
-                  className="outline-none w-[90%]"
+                <AutoComplete
+                  variant="borderless"
+                  style={{
+                    width: "99%",
+                    border: "none",
+                  }}
+                  options={options}
+                  filterOptions={true}
+                  placeholder="Search for article"
+                  onSearch={(value) => console.log(value)}
+                  onSelect={editArticleNavigation}
                 />
               </section>
             </Wrapper>

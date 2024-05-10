@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { categories } from "../../../data/data";
 import { articles } from "../../../data/articles";
+import { testArticle } from "../../../data/dummyArticle";
 
 const initialState = {
   allArticles: articles,
@@ -41,9 +42,11 @@ const articleSlice = createSlice({
       state.newArticle = {};
     },
     editContent: (state, actions) => {
-      state.editedContent = { ...another };
-      state.content = another.content;
-    },
+      const { content, ...removedContent } = testArticle;
+      state.editedContent = { ...removedContent };
+      state.editing = true;
+      state.content = content;
+    }, 
   },
 });
 
