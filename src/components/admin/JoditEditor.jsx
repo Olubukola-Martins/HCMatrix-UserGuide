@@ -30,11 +30,12 @@ export const JoditEditorComponent = ({ content, setContent }) => {
   };
 
   return (
-    <JoditEditor
-      ref={editor}
-      config={config}
-      value={content}
-      onBlur={setContent}
-    />
+    // <JoditEditor
+    //   ref={editor}
+    //   config={config}
+    //   value={content}
+    //   onBlur={setContent}
+    // />
+    <div>working</div>
   );
 };
