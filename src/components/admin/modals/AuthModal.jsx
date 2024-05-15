@@ -6,10 +6,13 @@ import useSignOut from "react-auth-kit/hooks/useSignOut";
 import Cookies from "js-cookie";
 import { LogoutHandler } from "../../../state/admin/authenticationSlice";
 import { adminModalToggle } from "../../../state/admin/modalSlice";
+import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 
 const AuthModal = () => {
   const signOut = useSignOut();
-  const { user, token } = useSelector((store) => store.auth);
+  const auth = useAuthUser();
+
+  const { token } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -44,7 +47,7 @@ const AuthModal = () => {
         <div className="py-5 border-y flex items-center gap-2 my-4">
           <UserIcon />
           <span className="text-[17px] font-normal text-customGray-fade">
-            {user?.email}
+            {auth?.email}
           </span>
         </div>
 

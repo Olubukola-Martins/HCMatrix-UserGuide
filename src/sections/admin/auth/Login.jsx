@@ -5,7 +5,6 @@ import { FormBtn } from "../../../components/common";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../state/admin/authenticationSlice";
-import { FaSpinner } from "react-icons/fa";
 import useSignIn from "react-auth-kit/hooks/useSignIn";
 import Auth from "../../../pages/auth/Auth";
 
@@ -55,7 +54,6 @@ const Login = () => {
           type: "Bearer",
         },
         userState: { user: user },
-        
       })
     ) {
       toast.success("Welcome back!");
@@ -64,10 +62,6 @@ const Login = () => {
       toast.error("Something went wrong");
     }
   }
-
-  // useEffect(() => {
-
-  // }, [token]);
 
   return (
     <Auth>

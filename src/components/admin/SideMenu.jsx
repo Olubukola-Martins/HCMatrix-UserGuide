@@ -37,9 +37,12 @@ const SideMenu = ({ page, title: pageTitle }) => {
       <div className="min-h-[50vh] max-h-[80vh] overflow-auto pb-2">
         {loadingCategory ? (
           <div>
-            {placeHolder.map(() => {
+            {placeHolder.map((each, index) => {
               return (
-                <Wrapper className="skeleton flex border-[1.2px] py-4 mb-2 px-3 rounded-lg">
+                <Wrapper
+                  key={each}
+                  className="skeleton flex border-[1.2px] py-4 mb-2 px-3 rounded-lg"
+                >
                   working
                 </Wrapper>
               );

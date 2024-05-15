@@ -12,15 +12,23 @@ import { InsightMain, Review } from "../sections/admin/insight";
 import { CreateArticle } from "../sections/admin/article";
 import { useEffect } from "react";
 import AuthOutlet from "@auth-kit/react-router/AuthOutlet";
-
+import useIsAuthenticated from "react-auth-kit/hooks/useIsAuthenticated";
 import { ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AdminRoutes = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location.pathname]);
+
+  // useEffect(() => {
+  //   if (useIsAuthenticated) {
+  //     navigate("/auth/login");
+  //   }
+  // }, []);
 
   return (
     <>
