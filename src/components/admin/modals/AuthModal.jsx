@@ -12,7 +12,7 @@ const AuthModal = () => {
   const signOut = useSignOut();
   const auth = useAuthUser();
 
-  const { token } = useSelector((store) => store.auth);
+  const { user, token } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -47,7 +47,7 @@ const AuthModal = () => {
         <div className="py-5 border-y flex items-center gap-2 my-4">
           <UserIcon />
           <span className="text-[17px] font-normal text-customGray-fade">
-            {auth?.email}
+            {user?.email}
           </span>
         </div>
 
