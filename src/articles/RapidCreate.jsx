@@ -10,8 +10,6 @@ import { heroImg } from "../assets/common/images";
 
 import { Container, SectionContainer } from "../components/user";
 import { BtnLayoutAdmin } from "../components/admin";
-
-import { JoditEditorComponent } from "../components/admin/JoditEditor";
 import { ReactTyped } from "react-typed";
 
 const RapidCreate = () => {
@@ -69,10 +67,7 @@ const RapidCreate = () => {
       <Container margin={`mt-[-15rem]`}>
         <SectionContainer>
           <form action="">
-            <JoditEditorComponent
-              setContent={onChangeHandler}
-              content={content}
-            />
+            <div>Working placeholder</div>
           </form>
         </SectionContainer>
       </Container>

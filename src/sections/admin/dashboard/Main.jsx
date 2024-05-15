@@ -12,7 +12,7 @@ import { Search } from "../../../assets/admin/icons/dashboard";
 import { SideMenu } from "../../../components/admin";
 import { newArticleModalToggle } from "../../../state/admin/modalSlice";
 import { AutoComplete } from "antd";
-
+import { getCategoryArticles } from "../../../state/admin/articles/thunkFunctions";
 import { editContent } from "../../../state/admin/articles/articleSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -20,10 +20,15 @@ const Main = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { mainCategoryId } = useSelector((store) => store.adminData);
+
+  const { singleCategoryArticles } = useSelector((store) => store.article);
   const { singleCategory } = useSelector((store) => store.adminData);
   const { svg, title, articles } = singleCategory;
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    dispatch(getCategoryArticles(mainCategoryId));
+  }, [mainCategoryId]);
 
   const options = [
     { label: "article", value: "article" },
@@ -36,10 +41,6 @@ const Main = () => {
   const editArticleNavigation = () => {
     dispatch(editContent());
     navigate("/admin/create");
-    // fetch the article
-    // navigate to the article
-    // if this is ready populate jodit with it
-    // if not load the spinner
   };
 
   return (
@@ -63,28 +64,15 @@ const Main = () => {
                     border: "none",
                   }}
                   options={options}
-                  filterOptions={true}
                   placeholder="Search for article"
                   onSearch={(value) => console.log(value)}
-                  onSelect={editArticleNavigation}
+                  // onSelect={editArticleNavigation}
                 />
               </section>
             </Wrapper>
-
             {/* Heading */}
-            <DashBoardHeader title={title} svg={svg} articles={articles} />
-
-            {articles?.length ? (
-              <ArticleReviewBox />
-            ) : (
-              <Wrapper
-                className="flex bg-white w-[40%] justify-center rounded-lg items-center gap-2 mb-4 cursor-pointer"
-                onClickHandler={() => dispatch(newArticleModalToggle())}
-              >
-                <AddBtn />
-                <span>Create New Article</span>
-              </Wrapper>
-            )}
+            <DashBoardHeader />
+            <ArticleReviewBox type="dashboard" />
           </MainContent>
         </Layout>
       </Container>

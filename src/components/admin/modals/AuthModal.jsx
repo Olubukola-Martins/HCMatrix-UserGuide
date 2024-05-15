@@ -23,6 +23,7 @@ const AuthModal = () => {
     Cookies.remove("_auth");
     signOut();
     dispatch(LogoutHandler());
+    dispatch(adminModalToggle());
     navigate("/auth/login");
   };
 

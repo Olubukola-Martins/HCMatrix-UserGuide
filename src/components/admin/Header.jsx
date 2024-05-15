@@ -23,7 +23,6 @@ import { adminModalToggle } from "../../state/admin/modalSlice";
 
 import { AuthModal } from "./modals";
 
-// import { CreateIcon } from "../../assets/admin/icons/headerSetting";
 
 import {
   CreateIcon,

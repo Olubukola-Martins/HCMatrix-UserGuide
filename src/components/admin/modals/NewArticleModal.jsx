@@ -4,7 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { headerToggle } from "../../../state/admin/headerSlice";
 import { useEffect, useState } from "react";
 import FormContainer from "../FormContainer";
-import { populateNewArticle } from "../../../state/admin/articles/articleSlice";
+import {
+  populateNewArticle,
+  populateEditingArticle,
+} from "../../../state/admin/articles/articleSlice";
 import { formValidation } from "../../../utils/formvalidator";
 import { Input, TextArea, FormBtn } from "../../common";
 import {
@@ -14,7 +17,7 @@ import {
 } from "../../../state/admin/adminData/dataSlice";
 
 import { Select } from "antd";
-// import { subCategories } from "../../../data/categories";
+import { toast } from "react-toastify";
 
 const NewArticleModal = () => {
   const dispatch = useDispatch();
@@ -24,11 +27,21 @@ const NewArticleModal = () => {
     (store) => store.adminData
   );
 
+  const { content, editing, loading, error, message, editingArticle } =
+    useSelector((store) => store.article);
+
   useEffect(() => {
     dispatch(getMainCategory());
     dispatch(getSpecificSubcategory());
     dispatch(getSpecificLeastSubcategory());
   }, []);
+
+  const initialEditing = {
+    articleTitle: editingArticle?.title,
+    articleDescription: editingArticle?.description,
+    videoLink:
+      editingArticle?.videoUrl === null ? "" : editingArticle?.videoUrl,
+  };
 
   // Initial values for the state
   const initial = {
@@ -44,7 +57,9 @@ const NewArticleModal = () => {
   const { category, subcategory, leastSubcategory } = categoryValue;
 
   // The values of the form input
-  const [inputFields, setInputFields] = useState(initial);
+  const [inputFields, setInputFields] = useState(
+    editing ? initialEditing : initial
+  );
   const { articleTitle, articleDescription, videoLink } = inputFields;
 
   const textChangeHandler = (e) => {
@@ -54,11 +69,9 @@ const NewArticleModal = () => {
     });
   };
 
-
-
   const handleCategory = (id) => {
     dispatch(getSpecificSubcategory(id));
-    dispatch(getSpecificLeastSubcategory(id));
+    dispatch(getSpecificLeastSubcategory());
   };
 
   const onClickHandler = () => {
@@ -68,19 +81,49 @@ const NewArticleModal = () => {
   //onSubmit handler
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    alert("submitting");
+
     const form = {
       category: category,
       subcategory: subcategory,
       leastSubcategory: leastSubcategory,
       articleTitle: articleTitle,
       articleDescription: articleDescription,
+      videoLink: videoLink,
     };
 
-    // dispatch(populateNewArticle(form));
-    // dispatch(newArticleModalToggle());
-    // dispatch(headerToggle({ page: "article" }));
-    // navigate("/admin/create");
+    const editForm = {
+        articleTitle: articleTitle,
+        articleDescription: articleDescription,
+        videoLink: videoLink,
+    };
+
+    if (!editing && mainCategories.length > 0 && category === "") {
+      toast.error("please select a category");
+      return;
+    }
+
+    if (!editing && subcategories.length > 0 && subcategory === "") {
+      toast.error("please select a subcategory");
+      return;
+    }
+
+    if (!editing && leastSubcategories.length > 0 && leastSubcategory === "") {
+      toast.error("please select least subcategory ");
+      return;
+    }
+
+    if (articleTitle === "" || articleDescription === "") {
+      toast.error("Empty fields detected");
+      return;
+    }
+
+    editing
+      ? dispatch(populateEditingArticle(editForm))
+      : dispatch(populateNewArticle(form));
+
+    dispatch(newArticleModalToggle());
+    dispatch(headerToggle({ page: "article" }));
+    navigate("/admin/create");
   };
 
   return (
@@ -96,58 +139,65 @@ const NewArticleModal = () => {
         {/* For The Effect */}
         {/* <div className="h-[20px] w-[37%] fixed bg-white"></div> */}
 
-        <form className="w-full" onSubmit={onSubmitHandler}>
-          <h3 className="font-semibold text-lg mb-2 mt-4">
-            Create New Article
-          </h3>
+        {editing ? (
+          <form className="w-full" onSubmit={onSubmitHandler}>
+            <h3 className="font-semibold text-lg mb-2 mt-4">Edit Article</h3>
 
-          {/* Category input */}
-          <FormContainer label="Select category">
-            <Select
-              size="large"
-              allowClear
-              placeholder="Select Category"
-              className="md:flex hidden w-[full]"
-              onChange={(value) => handleCategory(value)}
-              options={mainCategories?.map((category) => {
-                return {
-                  label: `${category?.name}`,
-                  value: `${category?.id}`,
-                };
-              })}
-            />
-          </FormContainer>
-
-          {subcategories?.length > 0 && (
-            <FormContainer label="Select subcategory">
-              <Select
-                size="large"
-                allowClear
-                placeholder="Select Subcategories"
-                className="md:flex hidden w-[full]"
-                onChange={(value) =>
-                  dispatch(getSpecificLeastSubcategory(value))
-                }
-                options={subcategories?.map((category) => {
-                  return {
-                    label: `${category?.name}`,
-                    value: `${category?.id}`,
-                  };
-                })}
+            {/* The video link */}
+            <FormContainer label="Embedded video link (optional)">
+              <Input
+                type="text"
+                name="videoLink"
+                value={videoLink}
+                onChange={textChangeHandler}
               />
             </FormContainer>
-          )}
 
-          {/* least category */}
-          {leastSubcategories?.length > 0 && (
-            <FormContainer label="Select Least Subcategory">
+            {/* The input form */}
+            <FormContainer label="Article Title">
+              <Input
+                type="text"
+                name="articleTitle"
+                value={articleTitle}
+                onChange={textChangeHandler}
+              />
+            </FormContainer>
+
+            {/* Add desc */}
+            <FormContainer label="Article Description">
+              <TextArea
+                type="text"
+                className="w-full py-3 px-4 rounded-lg border outline-none text-sm"
+                value={articleDescription}
+                name="articleDescription"
+                onChange={textChangeHandler}
+              />
+            </FormContainer>
+
+            <div className="mb-3">
+              <FormBtn />
+            </div>
+          </form>
+        ) : (
+          <form className="w-full" onSubmit={onSubmitHandler}>
+            <h3 className="font-semibold text-lg mb-2 mt-4">
+              Create New Article
+            </h3>
+
+            {/* Category input */}
+            <FormContainer label="Select category">
               <Select
                 size="large"
                 allowClear
                 placeholder="Select Category"
                 className="md:flex hidden w-[full]"
-                onChange={(value) => console.log(value)}
-                options={leastSubcategories?.map((category) => {
+                onChange={(value) => {
+                  setCategoryValue((prev) => {
+                    return { ...prev, category: value };
+                  });
+                  handleCategory(value);
+                }}
+                options={mainCategories?.map((category) => {
                   return {
                     label: `${category?.name}`,
                     value: `${category?.id}`,
@@ -155,43 +205,89 @@ const NewArticleModal = () => {
                 })}
               />
             </FormContainer>
-          )}
 
-          {/* The video link */}
-          <FormContainer label="Embedded video link (optional)">
-            <Input
-              type="text"
-              name="videoLink"
-              value={videoLink}
-              onChange={textChangeHandler}
-            />
-          </FormContainer>
+            {subcategories?.length > 0 && (
+              <FormContainer label="Select subcategory">
+                <Select
+                  size="large"
+                  allowClear
+                  placeholder="Select Subcategories"
+                  className="md:flex hidden w-[full]"
+                  onChange={(value) => {
+                    setCategoryValue((prev) => {
+                      return { ...prev, subcategory: value };
+                    });
+                    dispatch(getSpecificLeastSubcategory(value));
+                  }}
+                  options={subcategories?.map((category) => {
+                    return {
+                      label: `${category?.name}`,
+                      value: `${category?.id}`,
+                    };
+                  })}
+                />
+              </FormContainer>
+            )}
 
-          {/* The input form */}
-          <FormContainer label="Article Title">
-            <Input
-              type="text"
-              name="articleTitle"
-              value={articleTitle}
-              onChange={textChangeHandler}
-            />
-          </FormContainer>
+            {/* least category */}
+            {leastSubcategories?.length > 0 && (
+              <FormContainer label="Select Least Subcategory">
+                <Select
+                  size="large"
+                  allowClear
+                  placeholder="Select least subcategory"
+                  className="md:flex hidden w-[full]"
+                  onChange={(value) => {
+                    setCategoryValue((prev) => {
+                      return { ...prev, leastSubcategory: value };
+                    });
+                  }}
+                  options={leastSubcategories?.map((category) => {
+                    return {
+                      label: `${category?.name}`,
+                      value: `${category?.id}`,
+                    };
+                  })}
+                />
+              </FormContainer>
+            )}
 
-          {/* Add desc */}
-          <FormContainer label="Article Description">
-            <TextArea
-              type="text"
-              className="w-full py-3 px-4 rounded-lg border outline-none text-sm"
-              value={articleDescription}
-              name="articleDescription"
-              onChange={textChangeHandler}
-            />
-          </FormContainer>
+            {/* The video link */}
+            <FormContainer label="Embedded video link (optional)">
+              <Input
+                type="text"
+                name="videoLink"
+                value={videoLink}
+                onChange={textChangeHandler}
+              />
+            </FormContainer>
 
-          <div className="mb-3">
-            <FormBtn />
-          </div>
-        </form>
+            {/* The input form */}
+            <FormContainer label="Article Title">
+              <Input
+                type="text"
+                name="articleTitle"
+                value={articleTitle}
+                onChange={textChangeHandler}
+              />
+            </FormContainer>
+
+            {/* Add desc */}
+            <FormContainer label="Article Description">
+              <TextArea
+                type="text"
+                className="w-full py-3 px-4 rounded-lg border outline-none text-sm"
+                value={articleDescription}
+                name="articleDescription"
+                onChange={textChangeHandler}
+              />
+            </FormContainer>
+
+            <div className="mb-3">
+              <FormBtn />
+            </div>
+          </form>
+        )}
       </div>
     </div>
   );

@@ -14,14 +14,13 @@ const Login = () => {
   const dispatch = useDispatch();
   const signIn = useSignIn();
 
-  const {} = useState();
-
   const signUpNavigate = () => {
     navigate("/auth/sign-up");
   };
 
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const { email, password } = credentials;
+
   const { loginMessage, user, token, loading, error } = useSelector(
     (store) => store.auth
   );
@@ -48,24 +47,27 @@ const Login = () => {
     });
   };
 
-  useEffect(() => {
-    if (token) {
-      if (
-        signIn({
-          auth: {
-            token: token,
-            type: "Bearer",
-          },
-          userState: { user: user },
-        })
-      ) {
-        toast.success("Welcome back!");
-        navigate("/admin/dashboard");
-      } else {
-        toast.error("Something went wrong");
-      }
+  if (token) {
+    if (
+      signIn({
+        auth: {
+          token: token,
+          type: "Bearer",
+        },
+        userState: { user: user },
+        
+      })
+    ) {
+      toast.success("Welcome back!");
+      navigate("/admin/dashboard");
+    } else {
+      toast.error("Something went wrong");
     }
-  }, [token]);
+  }
+
+  // useEffect(() => {
+
+  // }, [token]);
 
   return (
     <Auth>

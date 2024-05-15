@@ -1,3 +1,4 @@
+import { FaSpinner } from "react-icons/fa";
 import { JoditEditorComponent } from "../../../components/admin/JoditEditor";
 import { heroImg } from "../../../assets/common/images";
 import { Container, SectionContainer } from "../../../components/user";
@@ -10,22 +11,55 @@ import {
 } from "../../../state/admin/articles/articleSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { publish, cancel } from "../../../assets/admin/icons/articles";
+import { useEffect } from "react";
+import { headerToggle } from "../../../state/admin/headerSlice";
+import {
+  clearNewArticle,
+  clearContent,
+} from "../../../state/admin/articles/articleSlice";
+import {
+  createNewArticle,
+  editArticle,
+} from "../../../state/admin/articles/thunkFunctions";
+import { toast } from "react-toastify";
 
 const CreateArticle = ({ margin }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { content, editing } = useSelector((store) => store.article);
+  const {
+    content,
+    editing,
+    loading,
+    error,
+    message,
+    newArticle,
+    editingArticle,
+  } = useSelector((store) => store.article);
+
+  useEffect(() => {
+    dispatch(headerToggle({ page: "article" }));
+  }, []);
 
   const cancelHandler = () => {
+    dispatch(clearContent());
+    dispatch(clearNewArticle());
     navigate("/admin/dashboard");
   };
 
   const publishHandler = () => {
-    if(editing){
-     // this would be the logic for editing the thing
+    if (content === "") {
+      toast.error("You cannot leave page empty");
+      return;
     }
-    dispatch(addContent(content));
+
+    editing
+      ? dispatch(editArticle(editingArticle))
+      : dispatch(createNewArticle(newArticle));
+
+    if (content === "" && loading === false) {
+      navigate("/admin/dashboard");
+    }
   };
 
   const onChangeHandler = (value) => {
@@ -61,7 +95,12 @@ const CreateArticle = ({ margin }) => {
           </div>
 
           <BtnLayoutAdmin onClickHandler={publishHandler}>
-            <img src={publish} alt="" />
+            {loading ? (
+              <FaSpinner className="animate-spin text-sm" size={22} />
+            ) : (
+              <img src={publish} alt="" />
+            )}
+
             <span>Publish</span>
           </BtnLayoutAdmin>
         </nav>

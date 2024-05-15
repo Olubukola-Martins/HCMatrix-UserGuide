@@ -26,7 +26,7 @@ const InsightMain = () => {
           <MainContent>
             {/* Header */}
             <DashBoardHeader title={title} svg={svg} articles={articles} />
-            {articles?.length ? (
+            {!articles?.length ? (
               <ArticleReviewBox type="insight" />
             ) : (
               <div></div>

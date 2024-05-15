@@ -1,14 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
 import { toast } from "react-toastify";
-
 import axiosInstance from "../../services/AxiosInstance";
-
 const baseUrl = import.meta.env.BASE;
 
 export const loginUser = createAsyncThunk(
   "auth/login",
-
   async (userCredential, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.post(`/auth/`, userCredential);

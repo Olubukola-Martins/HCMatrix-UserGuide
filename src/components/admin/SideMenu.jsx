@@ -6,16 +6,19 @@ import { getSingleCategory } from "../../state/admin/adminData/dataSlice";
 import { newArticleModalToggle } from "../../state/admin/modalSlice";
 import { Fluent, ViewFinder } from "../../assets/admin/icons/dashboard";
 import { AddBtn } from "../../assets/admin/icons/dashboard";
-import { settingsicon } from "../../assets/admin/icons/header";
 import { gear } from "../../assets/user/categories";
 
 const SideMenu = ({ page, title: pageTitle }) => {
-  const { category, mainCategories } = useSelector((store) => store.adminData);
+  const { mainCategories, loadingCategory } = useSelector(
+    (store) => store.adminData
+  );
   const dispatch = useDispatch();
 
   const onClickHandler = (id) => {
     dispatch(getSingleCategory({ id, page }));
   };
+
+  const placeHolder = [1, 2, 3, 4, 5];
 
   return (
     <SidePanel>
@@ -31,32 +34,44 @@ const SideMenu = ({ page, title: pageTitle }) => {
       )}
 
       <h3 className="mb-4">All Categories</h3>
-      <div className="max-h-[80vh] overflow-auto pb-2">
-        {mainCategories.map((category, index) => {
-          const { emoji, name, active, id } = category;
+      <div className="min-h-[50vh] max-h-[80vh] overflow-auto pb-2">
+        {loadingCategory ? (
+          <div>
+            {placeHolder.map(() => {
+              return (
+                <Wrapper className="skeleton flex border-[1.2px] py-4 mb-2 px-3 rounded-lg">
+                  working
+                </Wrapper>
+              );
+            })}
+          </div>
+        ) : (
+          <section>
+            {mainCategories.map((category, index) => {
+              const { emoji, name, active, id } = category;
 
-          return (
-            <Wrapper
-              onClickHandler={() => onClickHandler(id)}
-              className={`flex transition-all border-[1.2px] border-transparent duration-100 ease-linear justify-between items-center px-3 rounded-lg hover:cursor-pointer ${
-                active ? "activeindicator" : ""
-              }`}
-              key={name}
-            >
-              <div className="flex gap-4 items-center">
-                {name === "Settings" ? (
-                  <img src={gear} alt="" className=" p-1 h-[1.8rem]" />
-                ) : (
-                  <span className="text-lg">{emoji?.code}</span>
-                )}
-
-                {/* <img src={svg} alt="" className="h-5" /> */}
-                <h3 className="text-[17px] capitalize">{name}</h3>
-              </div>
-              {/* <span className="font-light">{`${articles?.length} Articles`}</span> */}
-            </Wrapper>
-          );
-        })}
+              return (
+                <Wrapper
+                  onClickHandler={() => onClickHandler(id)}
+                  className={`flex transition-all border-[1.2px] border-transparent duration-100 ease-linear justify-between items-center px-3 rounded-lg hover:cursor-pointer ${
+                    active ? "activeindicator" : ""
+                  }`}
+                  key={name}
+                >
+                  <div className="flex gap-4 items-center">
+                    {name === "Settings" ? (
+                      <img src={gear} alt="" className=" p-1 h-[1.8rem]" />
+                    ) : (
+                      <span className="text-lg">{emoji?.code}</span>
+                    )}
+                    <h3 className="text-[16px] capitalize">{name}</h3>
+                  </div>
+                  {/* <span className="font-light">{`${articles?.length} Articles`}</span> */}
+                </Wrapper>
+              );
+            })}
+          </section>
+        )}
       </div>
 
       {page === "dashboard" && (

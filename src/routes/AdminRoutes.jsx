@@ -26,29 +26,6 @@ const AdminRoutes = () => {
     <>
       <ToastContainer />
       <Routes>
-        <Route path="/admin" Component={AdminPage}>
-          {/* Dashboard Routes */}
-
-          <Route path="/admin/dashboard" Component={Dashboard}>
-            <Route index Component={Main} />
-          </Route>
-
-          {/* Create Article Route */}
-          <Route path="/admin/create" Component={CreateArticle} />
-
-          {/* Insight Routes */}
-          <Route path="/admin/insight" Component={Insight}>
-            <Route index Component={InsightMain} />
-            <Route path="/admin/insight/review" Component={Review} />
-          </Route>
-
-          {/* Settings Routes */}
-          <Route path="/admin/setting" Component={Settings}>
-            <Route path="/admin/setting/" Component={CreateCategory} />
-            <Route path="/admin/setting/overview" Component={Customization} />
-            <Route path="/admin/setting/manageuser" Component={ManageUser} />
-          </Route>
-        </Route>
         <Route element={<AuthOutlet fallbackPath="/auth/login" />}>
           <Route path="/admin" Component={AdminPage}>
             {/* Dashboard Routes */}

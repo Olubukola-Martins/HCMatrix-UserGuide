@@ -8,7 +8,6 @@ export const JoditEditorComponent = ({ content, setContent }) => {
   const config = {
     height: 400,
     iframe: true,
-    spellcheck: true,
     showCharsCounter: false,
     showWordsCounter: false,
     showXPathInStatusbar: false,
@@ -23,10 +22,11 @@ export const JoditEditorComponent = ({ content, setContent }) => {
       "bold,italic,underline,strikethrough,eraser,ul,ol,font,fontsize,paragraph,classSpan,lineHeight,superscript,subscript,file,image,video,spellcheck,cut,preview",
     buttonsXS:
       "bold,italic,underline,strikethrough,eraser,ul,ol,font,fontsize,paragraph,classSpan,lineHeight,superscript,subscript,file,image,video,spellcheck,cut,preview",
-    minHeight: 0,
+    minHeight: "80%",
     minWidth: 0,
     allowResizeY: false,
     insertImageAsBase64URI: true,
+    askBeforePasteHTML: false,
   };
 
   return (

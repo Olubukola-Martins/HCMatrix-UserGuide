@@ -21,6 +21,7 @@ const initialState = {
   success: false,
   message: "",
   categories: categories,
+  mainCategoryId: "",
   emoji: [],
   allCategories: [],
   mainCategories: [],
@@ -44,7 +45,6 @@ const categorySlice = createSlice({
   reducers: {
     getMainCategory: (state, action) => {},
 
-    // To Get a specific subcategory
     getSpecificSubcategory: (state, action) => {
       const id = action.payload;
       const sub = state.allCategories.find((category) => {
@@ -59,7 +59,6 @@ const categorySlice = createSlice({
       state.subcategories = sub;
     },
 
-    // To get specifics least subcategory
     getSpecificLeastSubcategory: (state, action) => {
       const id = action.payload;
       const least = state.allCategories.find((category) => {
@@ -73,7 +72,6 @@ const categorySlice = createSlice({
       state.leastSubcategories = least;
     },
 
-    // This is to get single category
     getSingleCategory: (state, action) => {
       const { id, page } = action.payload;
       const setActive = state.mainCategories.map((category) => {
@@ -83,10 +81,13 @@ const categorySlice = createSlice({
           return { ...category, active: false };
         }
       });
+
+      state.mainCategoryId = setActive.find((category) => {
+        return category.active === true;
+      }).id;
       state.mainCategories = setActive;
     },
 
-    // This is to handle the action thingy
     actionModalToggler: (state, action) => {
       const { title } = action.payload;
       state.singleCategory.articles.map((article) => {
@@ -126,6 +127,9 @@ const categorySlice = createSlice({
           });
 
         state.allCategories = categories;
+        state.mainCategoryId = main.find((category) => {
+          return category.active === true;
+        }).id;
         state.mainCategories = main;
         state.loadingCategory = false;
         state.error = null;

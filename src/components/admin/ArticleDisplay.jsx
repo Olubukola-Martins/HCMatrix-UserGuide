@@ -1,39 +1,83 @@
-import { Menu } from "../../assets/admin/icons/dashboard";
-import ArticleActions from "./ArticleActions";
 import { useDispatch } from "react-redux";
-import { actionModalToggler } from "../../state/admin/adminData/dataSlice";
+import { useNavigate } from "react-router-dom";
+import { Popover } from "antd";
+import { menu } from "../../assets/admin/icons/articles";
+import { dateConverter } from "../../utils/dateConverter";
+import { editContent } from "../../state/admin/articles/articleSlice";
+import { newArticleModalToggle } from "../../state/admin/modalSlice";
+import { disableArticlesHandler } from "../../state/admin/articles/thunkFunctions";
 
-const ArticleDisplay = ({ type, article, categoryName }) => {
+const ArticleDisplay = ({
+  title,
+  updatedAt,
+  articleStats,
+  type,
+  id,
+  isPublished,
+}) => {
   const dispatch = useDispatch();
-  const { title, toggle } = article;
-  const info = { title, categoryName };
+  const navigate = useNavigate();
 
-  const toggleHandler = () => {
-    dispatch(actionModalToggler({ categoryName, title }));
+  const onClickHandler = () => {
+    navigate("/admin/insight/review");
   };
 
+  const disableArticle = () => {
+    dispatch(disableArticlesHandler(id));
+  };
+
+  const editHandler = () => {
+    dispatch(editContent(id));
+    dispatch(newArticleModalToggle());
+  };
+
+  const dashboardContent = (
+    <div>
+      <p className="cursor-pointer" onClick={editHandler}>
+        Edit
+      </p>
+      <p className="cursor-pointer" onClick={disableArticle}>
+        {isPublished ? "Disable" : "Enable"}
+      </p>
+    </div>
+  );
+
+  const insightContent = (
+    <div>
+      <p className="cursor-pointer" onClick={() => alert("viewing feedback")}>
+        View Feedback
+      </p>
+    </div>
+  );
+
   return (
-    <div className="flex px-6 border-b last:border-none last:pb-4 items-stretch">
+    <div className="flex px-6 border-b last:border-none items-stretch">
       <div className="flex-1 flex flex-col justify-center ">
         <h3 className="capitalize text-customGray">{title}</h3>
+
         <span className="text-[10px] text-semibold">
-          Last updated 2 hours ago
+          {`Last updated ${dateConverter(updatedAt)} hours ago`}
         </span>
       </div>
       <div className="flex-1 flex h-[60px] text-center">
         <span className="bg-customGreen text-customGreen-normal grid place-items-center text-center h-full flex-1">
-          50%
+          {`${articleStats?.positivePercentage}%`}
         </span>
         <span className="grid text-customGreen-normal place-items-center text-center h-full flex-1">
-          50%
+          {`${articleStats?.neutralPercentage}%`}
         </span>
         <span className="bg-customRed grid place-items-center text-center h-full flex-1 text-customRed-normal">
-          0%
+          {`${articleStats?.negativePercentage}%`}
         </span>
       </div>
       <div className="w-[25%] relative grid place-items-center">
-        <Menu onClickHandler={() => toggleHandler()} />
-        {toggle && <ArticleActions type={type} info={info} />}
+        <Popover
+          content={type === "dashboard" ? dashboardContent : insightContent}
+          trigger="click"
+          placement="right"
+        >
+          <img src={menu} alt="" />
+        </Popover>
       </div>
     </div>
   );

@@ -1,6 +1,3 @@
-import { select } from "jodit/esm/plugins/select/select";
-import { TbCategoryPlus } from "react-icons/tb";
-
 const SelectInput = ({
   category,
   onChange,
