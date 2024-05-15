@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
-// import JoditEditor from "jodit-react";
-// import "jodit";
+import JoditEditor from "jodit-react";
 
 export const JoditEditorComponent = ({ content, setContent }) => {
   const editor = useRef(null);
@@ -30,12 +29,11 @@ export const JoditEditorComponent = ({ content, setContent }) => {
   };
 
   return (
-    // <JoditEditor
-    //   ref={editor}
-    //   config={config}
-    //   value={content}
-    //   onBlur={setContent}
-    // />
-    <div>working</div>
+    <JoditEditor
+      ref={editor}
+      config={config}
+      value={content}
+      onBlur={setContent}
+    />
   );
 };
