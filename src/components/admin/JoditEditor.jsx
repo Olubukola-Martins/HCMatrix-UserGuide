@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import "jodit";
-import JoditEditor from "jodit-react";
+// import JoditEditor from "jodit-react";
+// import "jodit";
 
 export const JoditEditorComponent = ({ content, setContent }) => {
   const editor = useRef(null);
