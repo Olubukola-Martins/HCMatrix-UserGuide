@@ -6,8 +6,7 @@ export const createNewArticle = createAsyncThunk(
   "article/newArticle",
   async (newArticle) => {
     try {
-      // const response = await axiosInstance.post(`/articles`, newArticle);
-      // return response.data;
+   
       let categoryId;
 
       const {
@@ -101,6 +100,21 @@ export const disableArticlesHandler = createAsyncThunk(
       const response = await axiosInstance.patch(
         `/articles/${articleId}/publish`
       );
+      return response.data;
+    } catch (error) {
+      toast.error("Something went wrong");
+      console.log(error);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const findSingleArticle = createAsyncThunk(
+  "article/find",
+  async (articleId) => {
+    try {
+      const response = await axiosInstance.get(`/articles/${articleId}`);
+      console.log(response);
       return response.data;
     } catch (error) {
       toast.error("Something went wrong");

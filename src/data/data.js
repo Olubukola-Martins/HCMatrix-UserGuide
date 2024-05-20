@@ -1,4 +1,4 @@
-// import { SubCategories } from "../sections";
+
 import {
   wavingHand,
   gear,
@@ -9,21 +9,95 @@ import {
   alarmClock,
 } from "../assets/user/categories";
 
-import { pensive, relieved, smiling } from "../assets/common/review";
+import { neutral, negative, positive } from "../assets/common/review";
 
 const reviews = [
   {
-    emoji: pensive,
-    name: "pensive",
+    emoji: negative,
+    name: "negative",
   },
   {
-    emoji: relieved,
-    name: "relieved",
+    emoji: neutral,
+    name: "neutral",
   },
   {
-    emoji: smiling,
-    name: "smiling",
+    emoji: positive,
+    name: "positive",
   },
+];
+
+export const categoryCardPlaceholder = [
+  {
+    svg: wavingHand,
+    title: "Sign up and sign in",
+    description:
+      "Help your user learn more about the basic of your product and how they can get started",
+    articlesNo: 7,
+    placeholder: true,
+  },
+  {
+    svg: wavingHand,
+    title: "Sign up and sign in",
+    description:
+      "Help your user learn more about the basic of your product and how they can get started",
+    articlesNo: 7,
+    placeholder: true,
+  },
+  {
+    svg: wavingHand,
+    title: "Sign up and sign in",
+    description:
+      "Help your user learn more about the basic of your product and how they can get started",
+    articlesNo: 7,
+    placeholder: true,
+  },
+  {
+    svg: wavingHand,
+    title: "Sign up and sign in",
+    description:
+      "Help your user learn more about the basic of your product and how they can get started",
+    articlesNo: 7,
+    placeholder: true,
+  },
+  {
+    svg: wavingHand,
+    title: "Sign up and sign in",
+    description:
+      "Help your user learn more about the basic of your product and how they can get started",
+    articlesNo: 7,
+    placeholder: true,
+  },
+  {
+    svg: wavingHand,
+    title: "Sign up and sign in",
+    description:
+      "Help your user learn more about the basic of your product and how they can get started",
+    articlesNo: 7,
+    placeholder: true,
+  },
+  {
+    svg: wavingHand,
+    title: "Sign up and sign in",
+    description:
+      "Help your user learn more about the basic of your product and how they can get started",
+    articlesNo: 7,
+    placeholder: true,
+  },
+  {
+    svg: wavingHand,
+    title: "Sign up and sign in",
+    description:
+      "Help your user learn more about the basic of your product and how they can get started",
+    articlesNo: 7,
+    placeholder: true,
+  },
+];
+
+export const cardPlaceholder = [
+  { title: "dummy", description: "this is the way of the world" },
+  { title: "dummy", description: "this is the way of the world" },
+  { title: "dummy", description: "this is the way of the world" },
+  { title: "dummy", description: "this is the way of the world" },
 ];
 
 const categories = [
@@ -619,10 +693,3 @@ const categories = [
 ];
 
 export { categories, reviews };
-
-// Category -- subcategory -- articles -- content
-// category -- {name,title , description , article: [name, description, subcategories]}
-// so the logic would be to map the articles and find the categories
-// if subcategories is null , then route the article names to the articles
-// if it exist pair all the
-// article -- {name, content ,category, subcategory}

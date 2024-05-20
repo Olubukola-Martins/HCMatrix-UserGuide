@@ -8,7 +8,9 @@ import { useSelector } from "react-redux";
 
 const ArticleContainer = () => {
   const { category, subcategory, nestedCategory, article } = useParams();
-  const { singleArticle } = useSelector((store) => store.article);
+  const { articleContent } = useSelector((store) => store.userData);
+
+  console.log(category, subcategory, nestedCategory, article);
 
   return (
     <Container>
@@ -27,7 +29,7 @@ const ArticleContainer = () => {
         />
         <Outlet />
 
-        {singleArticle && <ReviewBox />}
+        {articleContent && <ReviewBox />}
       </SectionContainer>
     </Container>
   );

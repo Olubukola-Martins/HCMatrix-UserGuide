@@ -1,5 +1,5 @@
-import pensive from "./pensive.svg";
-import relieved from "./relieved.svg";
-import smiling from "./smiling.svg";
+import negative from "./negative.svg";
+import neutral from "./neutral.svg";
+import positive from "./positive.svg";
 
-export { pensive, relieved, smiling };
+export { negative, neutral, positive };

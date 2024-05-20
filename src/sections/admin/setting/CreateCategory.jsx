@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { newCategoryDataHandler } from "../../../state/admin/adminData/dataSlice";
+import { newCategoryDataHandler } from "../../../state/admin/adminData/adminData";
 
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";

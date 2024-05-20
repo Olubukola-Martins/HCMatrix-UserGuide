@@ -1,13 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Wrapper, ArticleDisplay, AddBtn } from ".";
-import { smiling, pensive, relieved } from "../../assets/common/review";
-import { Pagination, Space } from "antd";
+import { positive, negative, neutral } from "../../assets/common/review";
+import { Pagination } from "antd";
 import { useState } from "react";
 import { NoData } from "../common";
 
 const ArticleReviewBox = ({ type }) => {
-  const dispatch = useDispatch();
-  const { mainCategoryId } = useSelector((store) => store.adminData);
   const { singleCategoryArticles, loading } = useSelector(
     (store) => store.article
   );
@@ -25,19 +23,19 @@ const ArticleReviewBox = ({ type }) => {
 
   return (
     <section className="w-full flex flex-col gap-3">
-      {/* {loading ? <div className="rounded-[26px] bg-white min-h-[22.5rem] skeleton"></div>} */}
+   
       <Wrapper
         className={`rounded-[26px] bg-white ${loading ? "skeleton" : ""}`}
       >
-        {singleCategoryArticles?.length ? (
+        {singleCategoryArticles?.length > 0 ? (
           <section className="min-h-[20rem]">
             {/* Box Heading */}
             <header className="flex px-6 pb-3 mt-3 border-b">
               <span className="flex-1 text-customGray-semiDark">Articles</span>
               <div className="flex-1  flex">
-                <img src={smiling} alt="" className=" h-5 flex-1" />
-                <img src={relieved} alt="" className="flex-1  h-5" />
-                <img src={pensive} alt="" className="flex-1  h-5" />
+                <img src={positive} alt="" className=" h-5 flex-1" />
+                <img src={neutral} alt="" className="flex-1  h-5" />
+                <img src={negative} alt="" className="flex-1  h-5" />
               </div>
               <span className="w-[25%] grid place-items-center">Action</span>
             </header>
@@ -70,28 +68,3 @@ const ArticleReviewBox = ({ type }) => {
 };
 export default ArticleReviewBox;
 
-// className={`rounded-[26px] bg-white min-h-[22.5rem] ${
-//   loading ? "skeleton" : ""
-// }`}
-
-// {singleCategoryArticles?.length ? (
-//   <section>
-//     {/* Box Heading */}
-//     <header className="flex px-6 pb-3 mt-3 border-b">
-//       <span className="flex-1 text-customGray-semiDark">Articles</span>
-//       <div className="flex-1  flex">
-//         <img src={smiling} alt="" className=" h-5 flex-1" />
-//         <img src={relieved} alt="" className="flex-1  h-5" />
-//         <img src={pensive} alt="" className="flex-1  h-5" />
-//       </div>
-//       <span className="w-[25%] grid place-items-center">Action</span>
-//     </header>
-
-//     {/* The Articles */}
-//     {articlesToShow?.map((each, index) => {
-//       return <ArticleDisplay key={index} {...each} type={type} />;
-//     })}
-//   </section>
-// ) : (
-
-// )}

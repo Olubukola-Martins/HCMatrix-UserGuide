@@ -27,7 +27,7 @@ const ForgotPassword = () => {
     e.preventDefault();
 
     if (!email) {
-      toast.error("Please enter your details");
+      toast.error("Please enter your email");
       return;
     }
   };
@@ -49,56 +49,6 @@ const ForgotPassword = () => {
               onChange={onChangeHandler}
               name="email"
             />
-
-            <FormContainer label="Select category">
-              <Select
-                allowClear
-                placeholder="Select Category"
-                className="md:flex hidden w-[full]"
-                onChange={(value) => console.log("Selected value:", value)}
-                options={[
-                  {
-                    value: 1,
-                    label: `Category one`,
-                  },
-                  {
-                    value: 2,
-                    label: `Category two`,
-                  },
-                  {
-                    value: 3,
-                    label: `Category three`,
-                  },
-                  {
-                    value: 4,
-                    label: `Category four`,
-                  },
-                  {
-                    value: 5,
-                    label: `Category five`,
-                  },
-                  {
-                    value: 6,
-                    label: `Category six`,
-                  },
-                ]}
-              />
-
-              {/* <select
-              className="w-full py-3 px-4 rounded-lg border outline-none text-sm"
-              value={category}
-              onChange={changeCategory}
-            >
-              <option disabled>Select Category</option>
-              {mainCategories?.map((category, index) => {
-                return (
-                  <option className="" key={category.id} id={category.id}>
-                    {category.name}
-                  </option>
-                );
-              })}
-            </select> */}
-            </FormContainer>
 
             <FormBtn custom="rounded-full" loading={false} />
           </div>

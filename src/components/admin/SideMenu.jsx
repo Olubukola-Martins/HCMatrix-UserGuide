@@ -2,11 +2,12 @@ import Wrapper from "./Wrapper";
 import { useSelector, useDispatch } from "react-redux";
 import { SidePanel } from "./layout";
 import { Link } from "react-router-dom";
-import { getSingleCategory } from "../../state/admin/adminData/dataSlice";
+import { getSingleCategory } from "../../state/admin/adminData/adminData";
 import { newArticleModalToggle } from "../../state/admin/modalSlice";
 import { Fluent, ViewFinder } from "../../assets/admin/icons/dashboard";
 import { AddBtn } from "../../assets/admin/icons/dashboard";
 import { gear } from "../../assets/user/categories";
+import { cancelEdit } from "../../state/admin/articles/articleSlice";
 
 const SideMenu = ({ page, title: pageTitle }) => {
   const { mainCategories, loadingCategory } = useSelector(
@@ -18,6 +19,11 @@ const SideMenu = ({ page, title: pageTitle }) => {
     dispatch(getSingleCategory({ id, page }));
   };
 
+  const newArticleHandler = () => {
+    dispatch(cancelEdit());
+    dispatch(newArticleModalToggle());
+  };
+
   const placeHolder = [1, 2, 3, 4, 5];
 
   return (
@@ -26,7 +32,7 @@ const SideMenu = ({ page, title: pageTitle }) => {
       {page === "dashboard" && (
         <Wrapper
           className="flex bg-white justify-center rounded-lg items-center gap-2 mb-4 cursor-pointer"
-          onClickHandler={() => dispatch(newArticleModalToggle())}
+          onClickHandler={newArticleHandler}
         >
           <AddBtn />
           <span>New Article</span>
@@ -51,7 +57,7 @@ const SideMenu = ({ page, title: pageTitle }) => {
         ) : (
           <section>
             {mainCategories.map((category, index) => {
-              const { emoji, name, active, id } = category;
+              const { emoji, name, active, id, articlesCount } = category;
 
               return (
                 <Wrapper
@@ -69,7 +75,7 @@ const SideMenu = ({ page, title: pageTitle }) => {
                     )}
                     <h3 className="text-[16px] capitalize">{name}</h3>
                   </div>
-                  {/* <span className="font-light">{`${articles?.length} Articles`}</span> */}
+                  <span className="font-light text-[11px]">{`${articlesCount} Articles`}</span>
                 </Wrapper>
               );
             })}

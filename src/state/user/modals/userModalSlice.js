@@ -1,8 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { articleReview } from "./thunkFunctions";
+import { toast } from "react-toastify";
 
 const initialState = {
   showReviewModal: false,
   reactionType: "",
+  isLoading: false,
   review: {},
 };
 
@@ -22,6 +25,19 @@ const userModalSlice = createSlice({
     submitReview: (state, action) => {
       const review = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(articleReview.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(articleReview.fulfilled, (state, action) => {
+        state.isLoading = false;
+        toast.success("Thank you!");
+      })
+      .addCase(articleReview.rejected, (state, action) => {
+        state.isLoading = false;
+      });
   },
 });
 

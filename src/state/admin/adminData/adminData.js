@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { categories } from "../../../data/data";
 import {
   getAllCategories,
   getEmojis,
   createNewCategory,
   getSubCategories,
+  getReviews,
 } from "./thunkFunctions";
 
 const init = {
@@ -15,12 +15,12 @@ const init = {
 };
 
 const initialState = {
+  isLoading: false,
   loadingCategory: false,
   loadingAddCategory: false,
   error: false,
   success: false,
   message: "",
-  categories: categories,
   mainCategoryId: "",
   emoji: [],
   allCategories: [],
@@ -30,6 +30,7 @@ const initialState = {
   category: [],
   singleCategory: {},
   singleArticle: {},
+  reviews: [],
   active: false,
   addNew: {
     categoryName: "",
@@ -39,7 +40,7 @@ const initialState = {
   },
 };
 
-const categorySlice = createSlice({
+const adminDataSlice = createSlice({
   name: "adminData",
   initialState,
   reducers: {
@@ -158,6 +159,16 @@ const categorySlice = createSlice({
         state.loadingAddCategory = false;
         state.addNew = init;
         state.error = action.payload;
+      })
+      .addCase(getReviews.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(getReviews.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.reviews = action.payload.data.result;
+      })
+      .addCase(getReviews.rejected, (state, action) => {
+        state.isLoading = false;
       });
   },
 });
@@ -169,5 +180,5 @@ export const {
   getMainCategory,
   getSpecificSubcategory,
   getSpecificLeastSubcategory,
-} = categorySlice.actions;
-export default categorySlice.reducer;
+} = adminDataSlice.actions;
+export default adminDataSlice.reducer;

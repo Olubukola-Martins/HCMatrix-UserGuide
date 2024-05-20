@@ -14,7 +14,7 @@ import {
   getMainCategory,
   getSpecificSubcategory,
   getSpecificLeastSubcategory,
-} from "../../../state/admin/adminData/dataSlice";
+} from "../../../state/admin/adminData/adminData";
 
 import { Select } from "antd";
 import { toast } from "react-toastify";
@@ -23,18 +23,20 @@ const NewArticleModal = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  //Global States
   const { mainCategories, subcategories, leastSubcategories } = useSelector(
     (store) => store.adminData
   );
+  // const { newArticleModal } = useSelector((store) => store.modelSlice);
+  const { editing, editingArticle } = useSelector((store) => store.article);
 
-  const { content, editing, loading, error, message, editingArticle } =
-    useSelector((store) => store.article);
-
-  useEffect(() => {
-    dispatch(getMainCategory());
-    dispatch(getSpecificSubcategory());
-    dispatch(getSpecificLeastSubcategory());
-  }, []);
+  // Init values //
+  // Initial values for the state
+  const initial = {
+    articleTitle: "",
+    articleDescription: "",
+    videoLink: "",
+  };
 
   const initialEditing = {
     articleTitle: editingArticle?.title,
@@ -43,25 +45,30 @@ const NewArticleModal = () => {
       editingArticle?.videoUrl === null ? "" : editingArticle?.videoUrl,
   };
 
-  // Initial values for the state
-  const initial = {
-    articleTitle: "",
-    articleDescription: "",
-    videoLink: "",
-  };
-
   const initCategory = { category: "", subcategory: "", leastSubcategory: "" };
 
-  // The values of the category
+  // Module state //
+  // The values of the category //
   const [categoryValue, setCategoryValue] = useState(initCategory);
   const { category, subcategory, leastSubcategory } = categoryValue;
 
-  // The values of the form input
+  // The values of the form input //
   const [inputFields, setInputFields] = useState(
     editing ? initialEditing : initial
   );
   const { articleTitle, articleDescription, videoLink } = inputFields;
 
+  useEffect(() => {
+    if (!editing) {
+      setInputFields(initCategory);
+      setCategoryValue(initCategory);
+    }
+    dispatch(getMainCategory());
+    dispatch(getSpecificSubcategory());
+    dispatch(getSpecificLeastSubcategory());
+  }, []);
+
+  // Text change handler
   const textChangeHandler = (e) => {
     const { value, name } = e.target;
     setInputFields((prev) => {
@@ -69,6 +76,7 @@ const NewArticleModal = () => {
     });
   };
 
+  //Category handling function
   const handleCategory = (id) => {
     dispatch(getSpecificSubcategory(id));
     dispatch(getSpecificLeastSubcategory());
@@ -92,9 +100,9 @@ const NewArticleModal = () => {
     };
 
     const editForm = {
-        articleTitle: articleTitle,
-        articleDescription: articleDescription,
-        videoLink: videoLink,
+      articleTitle: articleTitle,
+      articleDescription: articleDescription,
+      videoLink: videoLink,
     };
 
     if (!editing && mainCategories.length > 0 && category === "") {

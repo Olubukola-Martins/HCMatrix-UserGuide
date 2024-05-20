@@ -83,6 +83,16 @@ export const getEmojis = createAsyncThunk("adminData/emoji", async () => {
   }
 });
 
+export const getReviews = createAsyncThunk("adminData/reviews", async (id) => {
+  try {
+    const response = await axiosInstance.get(`/articles/${id}/feedback`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue(error.response.data);
+  }
+});
+
 export const createNewCategory = createAsyncThunk(
   "adminData/newCategory",
   async (data, thunkAPI) => {

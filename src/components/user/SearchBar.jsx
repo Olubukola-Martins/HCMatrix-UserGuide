@@ -1,15 +1,11 @@
 import search from "../../assets/user/search.svg";
 import GlassDesign from "./GlassDesign";
-// import Articles from "../../sections/user/Articles";
-import { articles } from "../../data/articles";
 import { useEffect, useState } from "react";
 import { NoData } from "../common";
 import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
   const navigate = useNavigate();
-
-  const [data, setData] = useState(articles);
   const [filteredArticles, setFilteredArticles] = useState([]);
   const [searchInput, setSearchInput] = useState("");
 
@@ -20,6 +16,7 @@ const SearchBar = () => {
     setSearchInput(value);
   };
 
+  const articles = [];
   useEffect(() => {
     if (!searchInput) {
       setFilteredArticles(articles);
@@ -30,7 +27,7 @@ const SearchBar = () => {
       article.articleTitle.toLowerCase().includes(searchInput.toLowerCase())
     );
     setFilteredArticles(filtered);
-  }, [searchInput, articles]);
+  }, [searchInput]);
 
   const articleRouteHandler = (articleData) => {
     const { category, subcategory, leastSubcategory, articleTitle } =

@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 // FOR THE USER
-import categoryReducer from "./state/user/usercategory/categorySlice";
+import userDataReducer from "./state/user/userData/userData";
 
 // FOR THE ADMIN
 import adminHeaderReducer from "./state/admin/headerSlice";
-import dataSlice from "./state/admin/adminData/dataSlice";
+import adminDataReducer from "./state/admin/adminData/adminData";
 import authenticationReducer from "./state/admin/authenticationSlice";
 import customizationReducer from "./state/admin/customizationSlice";
 import modalReducer from "./state/admin/modalSlice";
@@ -15,9 +15,9 @@ import userModalReducer from "./state/user/modals/userModalSlice";
 const store = configureStore({
   reducer: {
     article: articleSlice,
-    category: categoryReducer,
+    userData: userDataReducer,
+    adminData: adminDataReducer,
     adminHeader: adminHeaderReducer,
-    adminData: dataSlice,
     auth: authenticationReducer,
     customization: customizationReducer,
     modelSlice: modalReducer,

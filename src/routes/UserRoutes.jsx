@@ -2,7 +2,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 
 import Home from "../pages/user/Home";
 
-import { RapidCreate } from "../articles";
+
 
 import {
   Articles,
@@ -12,7 +12,7 @@ import {
 } from "../sections/user";
 
 import { ArticleContainer } from "../components/user";
-import { Dummy, SingleArticle } from "../articles";
+import { SingleArticle } from "../articles";
 
 import { useEffect } from "react";
 
@@ -29,9 +29,8 @@ const UserRoutes = () => {
         {/* ROUTE TO THE CATEGORY COMPONENT */}
         <Route path="" Component={Category} />
 
-        {/* for test purposes */}
-        <Route path="/dummy" Component={Dummy} />
-        <Route path="/rapid" Component={RapidCreate} />
+       
+    
 
         {/* ROUTE TO THE SUBCATEGORY COMPONENT */}
         <Route path="/category/:category" Component={Subcategories} />

@@ -14,11 +14,7 @@ const NavMenu = ({ category, subcategory, nestedCategory, article }) => {
         <div className="flex gap-3 ">
           <img src={greater} alt="" className="mx-5" />
           <Link
-            to={
-              subcategory
-                ? `/category/${category.toLowerCase()}`
-                : `/articles/${category.toLowerCase()}`
-            }
+            to={subcategory ? `/category/${category}` : `/articles/${category}`}
           >
             <p className="navLinks">{category}</p>
           </Link>
@@ -32,8 +28,8 @@ const NavMenu = ({ category, subcategory, nestedCategory, article }) => {
           <Link
             to={
               nestedCategory
-                ? `/category/${category.toLowerCase()}/${subcategory.toLowerCase()}/nested`
-                : `/category/${category.toLowerCase()}/${subcategory.toLowerCase()}`
+                ? `/category/${category}/${subcategory}/nested`
+                : `/category/${category}/${subcategory}`
             }
           >
             <p className="navLinks">{subcategory}</p>
@@ -46,9 +42,9 @@ const NavMenu = ({ category, subcategory, nestedCategory, article }) => {
         <div className="flex gap-3 ">
           <img src={greater} alt="" className="mx-5" />
           <Link
-            to={`/category/${category.toLowerCase()}/${subcategory.toLowerCase()}/nested/${nestedCategory.toLowerCase()}`}
+            to={`/category/${category}/${subcategory}/nested/${nestedCategory}`}
           >
-            <p className="navLinks">{nestedCategory.toLowerCase()}</p>
+            <p className="navLinks">{nestedCategory}</p>
           </Link>
         </div>
       )}

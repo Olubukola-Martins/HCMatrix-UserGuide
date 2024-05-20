@@ -46,22 +46,24 @@ const Login = () => {
     });
   };
 
-  if (token) {
-    if (
-      signIn({
-        auth: {
-          token: token,
-          type: "Bearer",
-        },
-        userState: { user: user },
-      })
-    ) {
-      toast.success("Welcome back!");
-      navigate("/admin/dashboard");
-    } else {
-      toast.error("Something went wrong");
+  useEffect(() => {
+    if (token) {
+      if (
+        signIn({
+          auth: {
+            token: token,
+            type: "Bearer",
+          },
+          userState: { user: user },
+        })
+      ) {
+        toast.success("Welcome back!");
+        navigate("/admin/dashboard");
+      } else {
+        toast.error("Something went wrong");
+      }
     }
-  }
+  }, [token, signIn, navigate]);
 
   return (
     <Auth>

@@ -11,17 +11,21 @@ import {
   submitReview,
 } from "../../../state/user/modals/userModalSlice";
 
+import { articleReview } from "../../../state/user/modals/thunkFunctions";
+
 const ReviewModal = ({ reaction }) => {
   const { showReviewModal, reactionType } = useSelector(
     (store) => store.userModalSlice
   );
+  const { articleContent } = useSelector((store) => store.userData);
+  const { isLoading } = useSelector((store) => store.userModalSlice);
 
   const dispatch = useDispatch();
 
   const [review, setReview] = useState({ message: "", email: "" });
 
   // Get the Emoji
-  const emoji = reviews.find((each) => each?.name === reactionType)?.emoji;
+  const emoji = reviews.find((each) => each?.name === reactionType);
 
   const toggle = () => {
     return dispatch(toggleReviewModal());
@@ -40,14 +44,33 @@ const ReviewModal = ({ reaction }) => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
+    let reviewData;
+
     if (review.message === "") {
       toast.error("You cannot leave message empty");
       return;
     }
 
-    console.log(review);
+    if (review.email !== "") {
+      reviewData = {
+        id: articleContent.id,
+        type: emoji.name,
+        comment: review.message,
+        email: review.email,
+      };
+    } else {
+      reviewData = {
+        id: articleContent.id,
+        type: emoji.name,
+        comment: review.message,
+      };
+    }
 
-    toggle();
+    dispatch(articleReview(reviewData)).then((result) => {
+      if (result.payload) {
+        toggle();
+      }
+    });
   };
 
   return (
@@ -59,9 +82,9 @@ const ReviewModal = ({ reaction }) => {
       ></div>
 
       {/* The form Container */}
-      <div className="relative form border-3 rounded-2xl pr-4 z-20 bg-white w-[95%] md:w-[35%] overflow-y-scroll py-6 pl-6 px-5 shadow-lg my-6">
+      <div className="relative form border-3 rounded-2xl pr-4 z-20 bg-white w-[95%]  max-w-[400px] overflow-y-scroll py-6 pl-6 px-5 shadow-lg my-6">
         <div className="flex items-center flex-col justify-center mb-3">
-          <img src={emoji} alt="the reaction" className="mb-5 h-7" />
+          <img src={emoji.emoji} alt="the reaction" className="mb-5 h-7" />
           <p className="font-medium text-[#3A3A3AE5]">
             How do we review this article?{" "}
           </p>
@@ -85,7 +108,7 @@ const ReviewModal = ({ reaction }) => {
             />
           </FormContainer>
 
-          <FormBtn />
+          <FormBtn loading={isLoading} />
         </form>
       </div>
     </div>

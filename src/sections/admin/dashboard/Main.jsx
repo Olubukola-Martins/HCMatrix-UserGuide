@@ -20,11 +20,10 @@ const Main = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { mainCategoryId } = useSelector((store) => store.adminData);
-
+  const { mainCategoryId, singleCategory } = useSelector(
+    (store) => store.adminData
+  );
   const { singleCategoryArticles } = useSelector((store) => store.article);
-  const { singleCategory } = useSelector((store) => store.adminData);
-  const { svg, title, articles } = singleCategory;
 
   useEffect(() => {
     dispatch(getCategoryArticles(mainCategoryId));

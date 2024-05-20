@@ -1,17 +1,30 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  idHandler,
+  setArticleContent,
+} from "../../state/user/userData/userData";
 
 const Card = ({
+  className,
   mainCategory,
   subcategory,
   title,
   description,
   nestedCategory,
   nestedCategoryTitle,
+  id,
+  type,
+  articleId,
 }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onClickHandler = () => {
+    dispatch(idHandler({ type, id }));
+    articleId && dispatch(setArticleContent(articleId));
+
     //  When routing to the articles and no subCategories
     if (!subcategory) {
       navigate(`/articles/${mainCategory}/${title}`);
@@ -35,7 +48,7 @@ const Card = ({
     }
 
     // When routing to the nested route categories
-    if (nestedCategory) {
+    if (nestedCategory?.length) {
       navigate(`/category/${mainCategory}/${subcategory}/nested`);
       return;
     }
@@ -55,7 +68,7 @@ const Card = ({
 
   return (
     <div
-      className="group group-hover:text-white rounded-lg transition-all duration-500 ease-in-out  bg-white px-4 py-4 customShadow border border-[#D7DDE8] cursor-pointer group-hover:bg-customGray hover:bg-customGray"
+      className={`group group-hover:text-white rounded-lg transition-all duration-500 ease-in-out  bg-white px-4 py-4 customShadow border border-[#D7DDE8] cursor-pointer group-hover:bg-customGray hover:bg-customGray ${className}`}
       onClick={() => onClickHandler()}
     >
       <h3 className="md:text-lg text-[16px] font-semibold text-customGray-dark transition-all duration-300 ease-in-out group-hover:text-white capitalize">

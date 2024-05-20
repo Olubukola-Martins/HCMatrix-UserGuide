@@ -1,47 +1,47 @@
 import { Container, Wrapper } from "../../../components/admin";
 import { BackArrow } from "../../../assets/admin/icons/Insight";
-import { pensive, relieved, smiling } from "../../../assets/common/review";
-import { useDispatch } from "react-redux";
+import { negative, neutral, positive } from "../../../assets/common/review";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const reviews = [
+const review = [
   {
-    reaction: "pensive",
+    reaction: "negative",
     userEmail: "ade@gmail.com",
     date: "24 - 04 - 2023",
     content:
       "Lorem ipsum dolor sit amet consectetur. Fames morbi aenean tortor tortor. Aliquam pellentesque enim ultrices nisi pellentesque vel facilisis quam volutpat. Pellentesque scelerisque et felis tellus leo elit.",
   },
   {
-    reaction: "relieved",
+    reaction: "neutral",
     userEmail: "ade@gmail.com",
     date: "24 - 04 - 2023",
     content:
       "Lorem ipsum dolor sit amet consectetur. Fames morbi aenean tortor tortor. Aliquam pellentesque enim ultrices nisi pellentesque vel facilisis quam volutpat. Pellentesque scelerisque et felis tellus leo elit.",
   },
   {
-    reaction: "smiling",
+    reaction: "positive",
     userEmail: "ade@gmail.com",
     date: "24 - 04 - 2023",
     content:
       "Lorem ipsum dolor sit amet consectetur. Fames morbi aenean tortor tortor. Aliquam pellentesque enim ultrices nisi pellentesque vel facilisis quam volutpat. Pellentesque scelerisque et felis tellus leo elit.",
   },
   {
-    reaction: "pensive",
+    reaction: "negative",
     userEmail: "ade@gmail.com",
     date: "24 - 04 - 2023",
     content:
       "Lorem ipsum dolor sit amet consectetur. Fames morbi aenean tortor tortor. Aliquam pellentesque enim ultrices nisi pellentesque vel facilisis quam volutpat. Pellentesque scelerisque et felis tellus leo elit.",
   },
   {
-    reaction: "smiling",
+    reaction: "positive",
     userEmail: "ade@gmail.com",
     date: "24 - 04 - 2023",
     content:
       "Lorem ipsum dolor sit amet consectetur. Fames morbi aenean tortor tortor. Aliquam pellentesque enim ultrices nisi pellentesque vel facilisis quam volutpat. Pellentesque scelerisque et felis tellus leo elit.",
   },
   {
-    reaction: "relieved",
+    reaction: "neutral",
     userEmail: "ade@gmail.com",
     date: "24 - 04 - 2023",
     content:
@@ -51,6 +51,9 @@ const reviews = [
 
 const Review = () => {
   const navigate = useNavigate();
+  const { reviews, isLoading } = useSelector((store) => store.adminData);
+  const { articleInfo } = useSelector((store) => store.article);
+
   return (
     <Container>
       <header className=" flex justify-between mb-5">
@@ -73,19 +76,19 @@ const Review = () => {
 
         <div className="  self-stretch flex justify-between flex-col mr-5">
           <div className="flex gap-3 items-center">
-            <img src={smiling} alt="" className="h-6" />
+            <img src={positive} alt="" className="h-6" />
             <span className="text-xl text-customGreen-normal font-semibold">
               50%
             </span>
           </div>
           <div className="flex gap-3 items-center">
-            <img src={relieved} alt="" className="w-6" />
+            <img src={neutral} alt="" className="w-6" />
             <span className="text-xl text-customGray-semiDark font-semibold">
               50%
             </span>
           </div>
           <div className="flex gap-3 items-center">
-            <img src={pensive} alt="" className="h-6" />
+            <img src={negative} alt="" className="h-6" />
             <span className="text-xl text-customRed-normal font-semibold">
               0%
             </span>
@@ -93,26 +96,26 @@ const Review = () => {
         </div>
       </header>
       <main className="grid grid-cols-2 gap-4">
-        {reviews.map((review) => {
+        {reviews.map((review, index) => {
           return (
-            <Wrapper>
+            <Wrapper key={index}>
               <div className="w-[95%] mx-auto text-customGray-light">
                 <p className="text-md leading-7 font-medium mb-4">
-                  {review?.content}
+                  {review?.comment}
                 </p>
                 <div className="flex items-center justify-between">
                   <div className="text-md font-medium">
-                    <span>{review?.userEmail}</span>
+                    <span>{review?.email}</span>
                     <span className="ml-4">{review?.date}</span>
                   </div>
                   <img
                     className="h-6"
                     src={
-                      review.reaction === "pensive"
-                        ? pensive
-                        : review.reaction === "smiling"
-                        ? smiling
-                        : relieved
+                      review?.type === "negative"
+                        ? negative
+                        : review?.type === "positive"
+                        ? positive
+                        : neutral
                     }
                     alt="reaction"
                   />

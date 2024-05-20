@@ -7,13 +7,19 @@ import {
   ArticleReviewBox,
 } from "../../../components/admin";
 import { Layout, MainContent } from "../../../components/admin/layout";
+import { getCategoryArticles } from "../../../state/admin/articles/thunkFunctions";
 
 const InsightMain = () => {
-  const { singleCategory } = useSelector((store) => store.adminData);
+  const { singleCategory, mainCategoryId } = useSelector(
+    (store) => store.adminData
+  );
+
   const dispatch = useDispatch();
   const { svg, title, articles } = singleCategory;
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    dispatch(getCategoryArticles(mainCategoryId));
+  }, [mainCategoryId]);
 
   return (
     <main className="font-semibold text-customGray-dark text-[15px]">
@@ -26,11 +32,8 @@ const InsightMain = () => {
           <MainContent>
             {/* Header */}
             <DashBoardHeader title={title} svg={svg} articles={articles} />
-            {!articles?.length ? (
-              <ArticleReviewBox type="insight" />
-            ) : (
-              <div></div>
-            )}
+
+            <ArticleReviewBox type="insight" />
           </MainContent>
         </Layout>
       </Container>

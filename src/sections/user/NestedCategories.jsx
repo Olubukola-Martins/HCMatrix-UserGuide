@@ -7,27 +7,23 @@ import {
   CardWrapper,
 } from "../../components/user";
 import { useParams } from "react-router-dom";
-import { categories } from "../../data/data";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getNestedCategory } from "../../state/user/userData/userData";
+import { cardPlaceholder } from "../../data/data";
 
 const NestedCategories = () => {
+  const dispatch = useDispatch();
+  const [nested, setNested] = useState([]);
+
   const { category: id, subcategory: sub } = useParams();
-  const [nested, setNested] = useState({});
-
-  const findArticles = () => {
-    const category = categories.find((category) => category.title === id);
-    const nestedCategory = category.subcategories.find((item) => {
-      if (item.title.toLowerCase() === sub.toLowerCase()) {
-        return item;
-      }
-    });
-
-    setNested(nestedCategory);
-  };
+  const { ids, leastCategoriesUser, isLoading } = useSelector(
+    (store) => store.userData
+  );
 
   useEffect(() => {
-    findArticles();
-  }, [id, sub]);
+    dispatch(getNestedCategory(ids.sub));
+  }, []);
 
   return (
     <Container>
@@ -41,21 +37,34 @@ const NestedCategories = () => {
             info="nested clicking"
           />
           <span className="text-sm text-customGray-semiDark">
-            {nested?.category?.length} Subcategories
+            {leastCategoriesUser?.length} Subcategories
           </span>
         </header>
         <CardWrapper>
-          {nested?.category?.map((item, index) => {
-            return (
-              <Card
-                key={index}
-                mainCategory={id}
-                subcategory={sub}
-                nestedCategoryTitle={item.title}
-                description={item.desc}
-              />
-            );
-          })}
+          {isLoading
+            ? cardPlaceholder.map((dummy, index) => {
+                return (
+                  <Card
+                    key={index}
+                    title={dummy.title}
+                    description={dummy.description}
+                    className={`skeleton`}
+                  />
+                );
+              })
+            : leastCategoriesUser?.map((least, index) => {
+                return (
+                  <Card
+                    id={least.id}
+                    type={"least"}
+                    key={index}
+                    mainCategory={id}
+                    subcategory={sub}
+                    nestedCategoryTitle={least.name}
+                    description={least.description}
+                  />
+                );
+              })}
         </CardWrapper>
       </SectionContainer>
     </Container>

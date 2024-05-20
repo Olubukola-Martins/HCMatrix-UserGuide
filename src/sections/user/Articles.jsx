@@ -7,48 +7,26 @@ import {
   CardWrapper,
 } from "../../components/user";
 import { useParams } from "react-router-dom";
-import { categories } from "../../data/data";
-import { useEffect, useState } from "react";
-
+import { useEffect } from "react";
 import { NoData } from "../../components/common";
+import { getCategoryArticlesUser } from "../../state/user/userData/thunkFunction";
+import { useDispatch, useSelector } from "react-redux";
+import { resetHandler } from "../../state/user/userData/userData";
+import { cardPlaceholder } from "../../data/data";
 
 const Articles = () => {
+  const dispatch = useDispatch();
   const { category: id, subcategory: sub, nestedCategory } = useParams();
-
-  const [articles, setArticles] = useState([]);
-
-  const findArticles = () => {
-    const category = categories.find(
-      (category) => category.title.toLowerCase() === id.toLowerCase()
-    );
-
-    if (category) {
-      const finder = category.articles.filter((article) => {
-        if (nestedCategory) {
-          return (
-            article.nestedCategory.toLowerCase() ===
-            nestedCategory.toLowerCase()
-          );
-        }
-
-        if (!article.subcategories) {
-          return true;
-        }
-
-        if (sub) {
-          if (!article.nestedCategory) {
-            return article.subcategories.toLowerCase() === sub.toLowerCase();
-          }
-        }
-      });
-
-      setArticles(finder);
-    }
-  };
+  const { articles, ids, isLoading } = useSelector((store) => store.userData);
 
   useEffect(() => {
-    findArticles();
-  }, [id, sub]);
+    dispatch(
+      getCategoryArticlesUser(
+        ids.least !== "" ? ids.least : ids.sub !== "" ? ids.sub : ids.main
+      )
+    );
+    dispatch(resetHandler("articles"));
+  }, []);
 
   return (
     <Container>
@@ -57,6 +35,7 @@ const Articles = () => {
         subcategory={sub}
         nestedCategory={nestedCategory}
       />
+
       <SectionContainer>
         <header className="flex justify-between">
           <Back
@@ -69,8 +48,21 @@ const Articles = () => {
             {articles?.length} Articles
           </span>
         </header>
-        <CardWrapper empty={articles.length < 1 ? true : false}>
-          {articles.length > 0 ? (
+        <CardWrapper
+          empty={isLoading ? false : articles.length < 1 ? true : false}
+        >
+          {isLoading ? (
+            cardPlaceholder.map((dummy, index) => {
+              return (
+                <Card
+                  key={index}
+                  title={dummy.title}
+                  description={dummy.description}
+                  className={`skeleton`}
+                />
+              );
+            })
+          ) : articles.length > 0 ? (
             articles?.map((article, index) => {
               return (
                 <Card
@@ -78,8 +70,9 @@ const Articles = () => {
                   mainCategory={id}
                   subcategory={sub}
                   nestedCategory={nestedCategory}
-                  title={article.title}
-                  description={article.description}
+                  title={article?.title.toLowerCase()}
+                  description={`Learn about ${article?.title.toLowerCase()}`}
+                  articleId={article.id}
                 />
               );
             })

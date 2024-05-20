@@ -1,24 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { categories } from "../../../data/data";
-import { articles } from "../../../data/articles";
-import { testArticle } from "../../../data/dummyArticle";
+
 import {
   createNewArticle,
   editArticle,
   getCategoryArticles,
   disableArticlesHandler,
+  findSingleArticle,
 } from "./thunkFunctions";
 import { toast } from "react-toastify";
 
 const initialState = {
-  allArticles: articles,
+  allArticles: [],
   newArticle: {},
-  categories: categories,
   content: "",
   editingArticle: {},
   editing: false,
   singleArticle: {},
   singleCategoryArticles: [],
+  articleInfo: {},
   loading: false,
   error: false,
   message: "",
@@ -28,14 +27,8 @@ const articleSlice = createSlice({
   name: "article",
   initialState,
   reducers: {
-    getSingleArticle: (state, actions) => {
-      const { name, category } = actions.payload;
-      const findOne = articles.find((article) => {
-        return article.articleTitle
-          .toLocaleLowerCase()
-          .includes(name.toLocaleLowerCase());
-      });
-      state.singleArticle = findOne;
+    cancelEdit: (state, actions) => {
+      state.editing = false;
     },
     clearContent: (state, actions) => {
       state.content = "";
@@ -69,10 +62,7 @@ const articleSlice = createSlice({
       state.editedContent = {};
       state.editing = false;
     },
-    addContent: (state, actions) => {
-      const content = actions.payload;
-      state.newArticle = {};
-    },
+
     editContent: (state, actions) => {
       const id = actions.payload;
       const singleArticleForEdit = state.singleCategoryArticles.find(
@@ -142,16 +132,30 @@ const articleSlice = createSlice({
         state.message = "There was an error";
         state.loading = false;
         state.message = "Something went wrong!";
+      })
+      .addCase(findSingleArticle.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(findSingleArticle.fulfilled, (state, action) => {
+        const article = action.payload.data.data;
+        state.articleInfo = article;
+        state.loading = false;
+        state.error = false;
+      })
+      .addCase(findSingleArticle.rejected, (state, action) => {
+        console.log("this is a failure");
+        state.message = "There was an error";
+        state.loading = false;
       });
   },
 });
 
 export const {
   populateNewArticle,
-  addContent,
+
   articleContentHandler,
   editContent,
-  getSingleArticle,
+  cancelEdit,
   clearNewArticle,
   clearContent,
   populateEditingArticle,

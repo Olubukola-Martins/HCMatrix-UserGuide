@@ -5,10 +5,7 @@ import { Container, SectionContainer } from "../../../components/user";
 import { BtnLayoutAdmin } from "../../../components/admin";
 import { useNavigate } from "react-router-dom";
 import { ReactTyped } from "react-typed";
-import {
-  addContent,
-  articleContentHandler,
-} from "../../../state/admin/articles/articleSlice";
+import { articleContentHandler } from "../../../state/admin/articles/articleSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { publish, cancel } from "../../../assets/admin/icons/articles";
 import { useEffect } from "react";
@@ -31,8 +28,7 @@ const CreateArticle = ({ margin }) => {
     content,
     editing,
     loading,
-    error,
-    message,
+
     newArticle,
     editingArticle,
   } = useSelector((store) => store.article);
