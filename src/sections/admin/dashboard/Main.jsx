@@ -51,7 +51,7 @@ const Main = () => {
 
           {/* Main Body */}
           <MainContent>
-            <div className="bg-transparent h-8 mb-3 "></div>
+            <div className="bg-transparent h-8 "></div>
             {/* Search input */}
             <Wrapper padding={"py-2"} className="mb-4 bg-white rounded-lg">
               <section className="flex pl-6 gap-3 items-center">

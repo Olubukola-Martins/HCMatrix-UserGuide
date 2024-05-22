@@ -1,10 +1,11 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Popover } from "antd";
 import { menu } from "../../assets/admin/icons/articles";
 import { dateConverter } from "../../utils/dateConverter";
 import { editContent } from "../../state/admin/articles/articleSlice";
 import { newArticleModalToggle } from "../../state/admin/modalSlice";
+import { FaSpinner } from "react-icons/fa";
 import {
   disableArticlesHandler,
   findSingleArticle,
@@ -33,6 +34,7 @@ const ArticleDisplay = ({
   };
 
   const editHandler = () => {
+    dispatch(findSingleArticle(id));
     dispatch(editContent(id));
     dispatch(newArticleModalToggle());
   };

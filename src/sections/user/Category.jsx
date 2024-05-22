@@ -14,7 +14,6 @@ const Category = () => {
   );
 
   useEffect(() => {
-    console.log(mainCategoriesUser);
     dispatch(getMainCategoriesForUser());
     dispatch(resetHandler("main"));
   }, []);

@@ -6,7 +6,6 @@ export const createNewArticle = createAsyncThunk(
   "article/newArticle",
   async (newArticle) => {
     try {
-   
       let categoryId;
 
       const {
@@ -32,7 +31,7 @@ export const createNewArticle = createAsyncThunk(
         body: body,
       };
 
-      if (videoLink.trim() !== "") {
+      if (videoLink?.trim() !== "") {
         formattedArticle.videoUrl = videoLink;
       }
 
@@ -91,6 +90,7 @@ export const getCategoryArticles = createAsyncThunk(
     }
   }
 );
+
 
 export const disableArticlesHandler = createAsyncThunk(
   "article/disable",

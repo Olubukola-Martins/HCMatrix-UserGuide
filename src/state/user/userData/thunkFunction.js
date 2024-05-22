@@ -39,9 +39,41 @@ export const getCategoryArticlesUser = createAsyncThunk(
       const response = await axiosInstance.get(
         `/categories/${categoryId}/articles`
       );
-      
+
       return response.data;
     } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const findSingleArticle = createAsyncThunk(
+  "userData/find",
+  async (articleId) => {
+    try {
+      const response = await axiosInstance.get(`/articles/${articleId}`);
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      toast.error("Something went wrong");
+      console.log(error);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const searchArticle = createAsyncThunk(
+  "userData/search",
+  async (searchWord) => {
+    try {
+      const response = await axiosInstance.get(
+        `/articles?search=${searchWord}`
+      );
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      toast.error("Something went wrong");
       console.log(error);
       return rejectWithValue(error.response.data);
     }

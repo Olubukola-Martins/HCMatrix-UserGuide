@@ -84,6 +84,7 @@ const authSlice = createSlice({
       })
       .addCase(inviteUser.fulfilled, (state, action) => {
         const res = action.payload;
+        toast.success("Invite sent successfully");
         state.loading = false;
         state.error = null;
       })

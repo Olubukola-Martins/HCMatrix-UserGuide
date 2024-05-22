@@ -7,6 +7,7 @@ import FormContainer from "../FormContainer";
 import {
   populateNewArticle,
   populateEditingArticle,
+  reset,
 } from "../../../state/admin/articles/articleSlice";
 import { formValidation } from "../../../utils/formvalidator";
 import { Input, TextArea, FormBtn } from "../../common";
@@ -28,7 +29,9 @@ const NewArticleModal = () => {
     (store) => store.adminData
   );
   // const { newArticleModal } = useSelector((store) => store.modelSlice);
-  const { editing, editingArticle } = useSelector((store) => store.article);
+  const { editing, editingArticle, articleInfo, loadingArticle } = useSelector(
+    (store) => store.article
+  );
 
   // Init values //
   // Initial values for the state
@@ -36,13 +39,6 @@ const NewArticleModal = () => {
     articleTitle: "",
     articleDescription: "",
     videoLink: "",
-  };
-
-  const initialEditing = {
-    articleTitle: editingArticle?.title,
-    articleDescription: editingArticle?.description,
-    videoLink:
-      editingArticle?.videoUrl === null ? "" : editingArticle?.videoUrl,
   };
 
   const initCategory = { category: "", subcategory: "", leastSubcategory: "" };
@@ -53,9 +49,7 @@ const NewArticleModal = () => {
   const { category, subcategory, leastSubcategory } = categoryValue;
 
   // The values of the form input //
-  const [inputFields, setInputFields] = useState(
-    editing ? initialEditing : initial
-  );
+  const [inputFields, setInputFields] = useState(initial);
   const { articleTitle, articleDescription, videoLink } = inputFields;
 
   useEffect(() => {
@@ -67,6 +61,15 @@ const NewArticleModal = () => {
     dispatch(getSpecificSubcategory());
     dispatch(getSpecificLeastSubcategory());
   }, []);
+
+  useEffect(() => {
+    setInputFields({
+      articleTitle: editingArticle?.title,
+      articleDescription: editingArticle?.description,
+      videoLink:
+        editingArticle?.videoUrl === null ? "" : editingArticle?.videoUrl,
+    });
+  }, [editingArticle]);
 
   // Text change handler
   const textChangeHandler = (e) => {
@@ -83,6 +86,7 @@ const NewArticleModal = () => {
   };
 
   const onClickHandler = () => {
+    dispatch(reset());
     dispatch(newArticleModalToggle());
   };
 

@@ -2,8 +2,6 @@ import { Routes, Route, useLocation } from "react-router-dom";
 
 import Home from "../pages/user/Home";
 
-
-
 import {
   Articles,
   Category,
@@ -28,9 +26,6 @@ const UserRoutes = () => {
       <Route path="/" Component={Home}>
         {/* ROUTE TO THE CATEGORY COMPONENT */}
         <Route path="" Component={Category} />
-
-       
-    
 
         {/* ROUTE TO THE SUBCATEGORY COMPONENT */}
         <Route path="/category/:category" Component={Subcategories} />
@@ -72,6 +67,11 @@ const UserRoutes = () => {
           path="/category/:category/:subcategory/nested/:nestedCategory/:article"
           Component={ArticleContainer}
         >
+          <Route path="" Component={SingleArticle}></Route>
+        </Route>
+
+        {/* Route to the article on search */}
+        <Route path="/search/:article" Component={ArticleContainer}>
           <Route path="" Component={SingleArticle}></Route>
         </Route>
       </Route>

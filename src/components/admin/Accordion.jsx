@@ -36,7 +36,7 @@ const Accordion = ({ name, desc, type, id, toggle }) => {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <img src={type === "footer" ? link : placeholder} alt="" />
-          <h3 className="font-semibold">{name}</h3>
+          <h3 className="font-semibold text-customGray-dark">{name}</h3>
         </div>
         <button
           onClick={() => closeAccordionHandler()}
@@ -76,9 +76,7 @@ const Accordion = ({ name, desc, type, id, toggle }) => {
 
       {type === "footer" && toggle && (
         <div className="w-full py-2 px-6 mb-3 rounded-lg grid gap-10 grid-cols-2">
-          <div className="border">Name
-          
-          </div>
+          <div className="border">Name</div>
           <div className="border">Links</div>
         </div>
       )}

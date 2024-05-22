@@ -10,8 +10,6 @@ const ArticleContainer = () => {
   const { category, subcategory, nestedCategory, article } = useParams();
   const { articleContent } = useSelector((store) => store.userData);
 
-  console.log(category, subcategory, nestedCategory, article);
-
   return (
     <Container>
       <NavMenu

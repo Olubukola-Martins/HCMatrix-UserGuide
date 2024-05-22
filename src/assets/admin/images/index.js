@@ -1,3 +1,3 @@
 import Logo from "./HcLogo.png";
-
-export { Logo };
+import adminLogo from './adminLogo.png'
+export { Logo, adminLogo };

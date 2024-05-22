@@ -3,6 +3,8 @@ import {
   getMainCategoriesForUser,
   getSubcategoriesForUser,
   getCategoryArticlesUser,
+  findSingleArticle,
+  searchArticle,
 } from "./thunkFunction";
 import { placeholder } from "../../../assets/admin/icons/settings";
 
@@ -11,6 +13,7 @@ const initialState = {
   mainCategoriesUser: [],
   subcategoriesUser: [],
   leastCategoriesUser: [],
+  searchArticles: [],
   isLoading: false,
   ids: { main: "", sub: "", least: "" },
   articles: [],
@@ -21,6 +24,19 @@ const userDataSlice = createSlice({
   name: "userData",
   initialState,
   reducers: {
+    searchedContentHandler: (state, actions) => {
+      const id = actions.payload;
+      const find = state.searchArticles.find((each) => {
+        return each.id === id;
+      });
+
+      state.articleContent = find;
+    },
+
+    clearSearch: (state, actions) => {
+      state.searchArticles = [];
+    },
+
     resetHandler: (state, actions) => {
       const location = actions.payload;
       if (location === "main") {
@@ -47,20 +63,12 @@ const userDataSlice = createSlice({
         state.articleContent = {};
       }
     },
+
     idHandler: (state, actions) => {
       const { type, id } = actions.payload;
       state.ids = { ...state.ids, [type]: id };
     },
 
-    setArticleContent: (state, actions) => {
-      const id = actions.payload;
-
-      const article = state.articles.find((article) => {
-        return article.id === id;
-      });
-
-      state.articleContent = article;
-    },
     getNestedCategory: (state, actions) => {
       const id = actions.payload;
       const least = state.subcategoriesUser.find((each) => {
@@ -112,11 +120,40 @@ const userDataSlice = createSlice({
       })
       .addCase(getCategoryArticlesUser.rejected, (state, action) => {
         state.isLoading = false;
+      })
+      .addCase(findSingleArticle.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(findSingleArticle.fulfilled, (state, actions) => {
+        state.isLoading = false;
+        const article = actions.payload.data;
+        state.articleContent = article;
+        state.error = false;
+      })
+      .addCase(findSingleArticle.rejected, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(searchArticle.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(searchArticle.fulfilled, (state, actions) => {
+        state.isLoading = false;
+        const articles = actions.payload.data.result;
+        state.searchArticles = articles;
+        state.error = false;
+      })
+      .addCase(searchArticle.rejected, (state, action) => {
+        state.isLoading = false;
       });
   },
 });
 
-export const { idHandler, setArticleContent, resetHandler, getNestedCategory } =
-  userDataSlice.actions;
+export const {
+  idHandler,
+  resetHandler,
+  getNestedCategory,
+  clearSearch,
+  searchedContentHandler,
+} = userDataSlice.actions;
 
 export default userDataSlice.reducer;

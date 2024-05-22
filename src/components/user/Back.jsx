@@ -35,6 +35,10 @@ const Back = ({ home, category, subcategory, article, nestedCategory }) => {
       return;
     }
 
+    if (article && !home) {
+      navigate("/");
+    }
+
     //Going to the home page
     home && navigate("/");
   };

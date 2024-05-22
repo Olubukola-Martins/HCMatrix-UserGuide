@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 import { LogoutHandler } from "../../../state/admin/authenticationSlice";
 import { adminModalToggle } from "../../../state/admin/modalSlice";
 import useAuthUser from "react-auth-kit/hooks/useAuthUser";
+import { resetHeaderNav } from "../../../state/admin/headerSlice";
 
 const AuthModal = () => {
   const signOut = useSignOut();
@@ -26,6 +27,7 @@ const AuthModal = () => {
     Cookies.remove("_auth");
     signOut();
     dispatch(LogoutHandler());
+    dispatch(resetHeaderNav());
     dispatch(adminModalToggle());
     navigate("/auth/login");
   };

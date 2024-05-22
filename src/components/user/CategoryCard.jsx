@@ -29,7 +29,7 @@ const CategoryCard = ({ category, isLoading }) => {
   if (!category?.placeholder) {
     return (
       <div className="category__card__container  rounded-lg bg-white customShadow box-border h-auto flex flex-col items-center ">
-        <div className="h-full grid grid-rows-4 pt-3 items-center justify-items-center">
+        <div className="h-full grid grid-rows-4 py-5  md:pt-3 md:pb-3 lg:pb-0 items-center justify-items-center">
           {category?.emoji?.code ? (
             <span className="text-[2rem] -mb-2">{category?.emoji?.code}</span>
           ) : (
@@ -56,7 +56,7 @@ const CategoryCard = ({ category, isLoading }) => {
         isLoading ? "skeleton" : ""
       } `}
     >
-      <div className="h-full grid grid-rows-4 pt-3 items-center justify-items-center">
+      <div className="h-full grid grid-rows-4 py-3 items-center justify-items-center">
         <img src={placeHolder.svg} className="h-9 md:h-8 mb-3" alt="" />
         <Link>
           <h3 className="category__card__header ">{placeHolder.title}</h3>

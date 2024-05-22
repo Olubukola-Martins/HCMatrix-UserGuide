@@ -31,10 +31,38 @@ const adminHeaderSlice = createSlice({
   name: "admin",
   initialState,
   reducers: {
+    resetHeaderNav: (state, action) => {
+      const nav = state.navMenu.map((menu, index) => {
+        if (index === 0) {
+          return { ...menu, active: true };
+        }
+        return { ...menu, active: false };
+      });
+
+      // TO RESET THE SETTING
+      const settingNav = state.settingsMenu.map((menu, index) => {
+        if (index === 0) {
+          return { ...menu, active: true };
+        }
+        return { ...menu, active: false };
+      });
+
+      state.barToggle = false;
+      state.navMenu = nav;
+      state.settingsMenu = settingNav;
+    },
     navigation: (state, action) => {
       const name = action.payload;
       const nav = state.navMenu.map((menu) => {
         if (name === menu.name) {
+          return { ...menu, active: true };
+        }
+        return { ...menu, active: false };
+      });
+
+      // TO RESET THE SETTING
+      const settingNav = state.settingsMenu.map((menu, index) => {
+        if (index === 0) {
           return { ...menu, active: true };
         }
         return { ...menu, active: false };
@@ -48,6 +76,7 @@ const adminHeaderSlice = createSlice({
       }
 
       state.navMenu = nav;
+      state.settingsMenu = settingNav;
     },
     settingsNavigation: (state, action) => {
       const name = action.payload;
@@ -72,6 +101,6 @@ const adminHeaderSlice = createSlice({
   },
 });
 
-export const { navigation, settingsNavigation, headerToggle } =
+export const { navigation, settingsNavigation, headerToggle,resetHeaderNav } =
   adminHeaderSlice.actions;
 export default adminHeaderSlice.reducer;

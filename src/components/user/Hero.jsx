@@ -4,10 +4,10 @@ import Container from "./Container";
 import HeroImg from "../../assets/common/images/heroimg.png";
 import Hand from "../../assets/user/Hand.svg";
 import Idea from "../../assets/user/bulb.svg";
-import Search from "../../assets/user/search.svg";
 import GlassDesign from "./GlassDesign";
 import SearchBar from "./SearchBar";
 import Logo from "../../assets/user/Logo.svg";
+
 
 const Hero = ({ showSearch }) => {
   const { contactBtn } = useSelector((store) => store.customization);
@@ -46,7 +46,7 @@ const Hero = ({ showSearch }) => {
             className="text-white cursor-pointer  md:block"
             onClick={() => toAdmin()}
           >
-            HcMatrix Help Center
+            HcMatrix Guide Center
           </p>
         </nav>
 

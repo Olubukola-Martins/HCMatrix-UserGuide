@@ -7,7 +7,7 @@ import { newArticleModalToggle } from "../../state/admin/modalSlice";
 import { Fluent, ViewFinder } from "../../assets/admin/icons/dashboard";
 import { AddBtn } from "../../assets/admin/icons/dashboard";
 import { gear } from "../../assets/user/categories";
-import { cancelEdit } from "../../state/admin/articles/articleSlice";
+import { reset } from "../../state/admin/articles/articleSlice";
 
 const SideMenu = ({ page, title: pageTitle }) => {
   const { mainCategories, loadingCategory } = useSelector(
@@ -20,7 +20,7 @@ const SideMenu = ({ page, title: pageTitle }) => {
   };
 
   const newArticleHandler = () => {
-    dispatch(cancelEdit());
+    dispatch(reset());
     dispatch(newArticleModalToggle());
   };
 
@@ -28,10 +28,10 @@ const SideMenu = ({ page, title: pageTitle }) => {
 
   return (
     <SidePanel>
-      <h3 className="mb-4 text-lg">{pageTitle}</h3>
+      <h3 className="mb-3 text-sm">{pageTitle}</h3>
       {page === "dashboard" && (
         <Wrapper
-          className="flex bg-white justify-center rounded-lg items-center gap-2 mb-4 cursor-pointer"
+          className="flex bg-white justify-center rounded-lg items-center gap-2 mb-5 cursor-pointer"
           onClickHandler={newArticleHandler}
         >
           <AddBtn />
@@ -39,7 +39,7 @@ const SideMenu = ({ page, title: pageTitle }) => {
         </Wrapper>
       )}
 
-      <h3 className="mb-4">All Categories</h3>
+      <h3 className="mb-4 text-sm">All Categories</h3>
       <div className="min-h-[50vh] max-h-[80vh] overflow-auto pb-2">
         {loadingCategory ? (
           <div>

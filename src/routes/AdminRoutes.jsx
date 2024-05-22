@@ -24,11 +24,7 @@ const AdminRoutes = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location.pathname]);
 
-  // useEffect(() => {
-  //   if (useIsAuthenticated) {
-  //     navigate("/auth/login");
-  //   }
-  // }, []);
+
 
   return (
     <>

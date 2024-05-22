@@ -25,7 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const ManageUser = () => {
   const dispatch = useDispatch();
-  const {} = useSelector((store) => store);
+  const { loading } = useSelector((store) => store.auth);
 
   const init = {
     email: "",
@@ -48,10 +48,10 @@ const ManageUser = () => {
 
     if ((email === "", firstName === "", lastName === "")) {
       toast.error("please enter values");
+      return;
     }
 
     dispatch(inviteUser(newMember));
-    toast.success("Invite successfully sent");
     setNewMember(init);
   };
 
@@ -60,17 +60,19 @@ const ManageUser = () => {
       <Layout>
         <SidePanel>
           <div className="w-full flex flex-col gap-3">
-            <h3 className=" font-bold">Invite your team members</h3>
+            <h3 className="text-customGray-dark font-bold">
+              Invite your team members
+            </h3>
             <p className="text-[12px] leading-6 font-medium text-customGray-light">
               Invite new members to your knowledge base or manage existing ones:
             </p>
           </div>
         </SidePanel>
         <MainContent>
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 text-customGray-dark">
             <Wrapper padding="p-6">
               <form className="flex flex-col gap-4" onSubmit={onSubmitHandler}>
-                <h3 className="text-md font-semibold">Invite A New Member</h3>
+                <h3 className="text-md font-semibold ">Invite A New Member</h3>
                 <div className="grid grid-cols-3 gap-3 justify-start mb-2">
                   <Input
                     onChange={onChangeHandler}
@@ -98,7 +100,11 @@ const ManageUser = () => {
                     placeholder="last name"
                     className="w-[20%] capitalize"
                   />
-                  <Button message="invite members" margin={"mt-4"} />
+                  <Button
+                    message="invite members"
+                    margin={"mt-4"}
+                    loading={loading}
+                  />
                 </div>
               </form>
             </Wrapper>

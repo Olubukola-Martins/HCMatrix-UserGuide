@@ -6,6 +6,7 @@ import {
   getSubCategories,
   getReviews,
 } from "./thunkFunctions";
+import { toast } from "react-toastify";
 
 const init = {
   categoryName: "",
@@ -156,6 +157,7 @@ const adminDataSlice = createSlice({
         state.error = null;
       })
       .addCase(createNewCategory.rejected, (state, action) => {
+        console.log(action.payload);
         state.loadingAddCategory = false;
         state.addNew = init;
         state.error = action.payload;

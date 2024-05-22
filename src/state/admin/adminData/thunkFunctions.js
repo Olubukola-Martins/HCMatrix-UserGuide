@@ -127,8 +127,6 @@ export const createNewCategory = createAsyncThunk(
       };
     }
 
-    console.log(newCategory);
-
     try {
       const response = await axiosInstance.post(`/categories`, newCategory);
       if (response.data.message) {
@@ -138,7 +136,6 @@ export const createNewCategory = createAsyncThunk(
       return response.data;
     } catch (error) {
       console.log(error);
-      toast.error("An error occurred");
       return rejectWithValue(error.response.data);
     }
   }

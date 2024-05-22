@@ -1,10 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  idHandler,
-  setArticleContent,
-} from "../../state/user/userData/userData";
+import { idHandler } from "../../state/user/userData/userData";
+import { findSingleArticle } from "../../state/user/userData/thunkFunction";
 
 const Card = ({
   className,
@@ -23,7 +21,10 @@ const Card = ({
 
   const onClickHandler = () => {
     dispatch(idHandler({ type, id }));
-    articleId && dispatch(setArticleContent(articleId));
+
+    if (articleId) {
+      dispatch(findSingleArticle(articleId));
+    }
 
     //  When routing to the articles and no subCategories
     if (!subcategory) {

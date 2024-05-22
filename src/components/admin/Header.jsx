@@ -9,7 +9,7 @@ import {
   settingsicon,
 } from "../../assets/admin/icons/header";
 
-import { Logo } from "../../assets/admin/images";
+import { Logo, adminLogo } from "../../assets/admin/images";
 
 //REDUX HOOKS
 import { useSelector, useDispatch } from "react-redux";
@@ -21,7 +21,6 @@ import { useNavigate } from "react-router";
 import { navigation, settingsNavigation } from "../../state/admin/headerSlice";
 import { adminModalToggle } from "../../state/admin/modalSlice";
 import { AuthModal } from "./modals";
-
 
 import {
   CreateIcon,
@@ -72,8 +71,12 @@ const Header = () => {
       <Container>
         {/* Main Menu */}
         <div className="flex justify-between">
-          <div className="flex w-[60%] gap-6">
-            <img src={Logo} alt="logo" className=" h-12 -ml-5" />
+          <div className="flex w-[60%] gap-5">
+            <img
+              src={adminLogo}
+              alt="logo"
+              className="scale-105 h-[2.7rem] mr-5"
+            />
             <div className="flex justify-between gap-6">
               {navMenu.map((menu, index) => {
                 const { icon, name, active } = menu;
@@ -82,12 +85,13 @@ const Header = () => {
                   <div
                     key={index}
                     onClick={() => onClickHandler(name, "menu")}
-                    className={`flex items-center gap-2 px-5 rounded-md cursor-pointer ${
+                    className={`flex items-center transition-all duration-150 ease-linear text-[#3A3A3AE5] gap-[0.5rem] px-4 rounded-md cursor-pointer ${
                       active ? "bg-adminBG" : ""
                     }`}
                   >
                     <div>
                       <img
+                        className="h-4 -mt-[1px]"
                         src={
                           name === "Dashboard"
                             ? dashboardicon
@@ -98,7 +102,11 @@ const Header = () => {
                         alt=""
                       />
                     </div>
-                    <span className="font-semibold text-customGray-dark ">
+                    <span
+                      className={`${
+                        active ? "font-semibold" : "font-medium "
+                      } text-[#3A3A3AE5]  text-[14px]`}
+                    >
                       {name}
                     </span>
                   </div>

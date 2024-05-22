@@ -19,6 +19,7 @@ const initialState = {
   singleCategoryArticles: [],
   articleInfo: {},
   loading: false,
+  loadingArticle: false,
   error: false,
   message: "",
 };
@@ -27,8 +28,10 @@ const articleSlice = createSlice({
   name: "article",
   initialState,
   reducers: {
-    cancelEdit: (state, actions) => {
+    reset: (state, actions) => {
       state.editing = false;
+      state.articleInfo = {};
+      state.editingArticle = {};
     },
     clearContent: (state, actions) => {
       state.content = "";
@@ -134,18 +137,21 @@ const articleSlice = createSlice({
         state.message = "Something went wrong!";
       })
       .addCase(findSingleArticle.pending, (state, action) => {
-        state.loading = true;
+        state.loadingArticle = true;
       })
-      .addCase(findSingleArticle.fulfilled, (state, action) => {
-        const article = action.payload.data.data;
+      .addCase(findSingleArticle.fulfilled, (state, actions) => {
+        const article = actions.payload.data;
         state.articleInfo = article;
-        state.loading = false;
+        const { body, ...removedContent } = state.articleInfo;
+        state.editingArticle = { ...article };
+        state.editing = true;
+        state.content = body;
+        state.loadingArticle = false;
         state.error = false;
       })
       .addCase(findSingleArticle.rejected, (state, action) => {
-        console.log("this is a failure");
         state.message = "There was an error";
-        state.loading = false;
+        state.loadingArticle = false;
       });
   },
 });
@@ -155,7 +161,7 @@ export const {
 
   articleContentHandler,
   editContent,
-  cancelEdit,
+  reset,
   clearNewArticle,
   clearContent,
   populateEditingArticle,
