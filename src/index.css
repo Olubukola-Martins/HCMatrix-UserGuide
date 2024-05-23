@@ -158,19 +158,19 @@
   content: url("./assets//admin/icons//articles/idea.svg");
 }
 
-.form::-webkit-scrollbar {
+.scrollWheel::-webkit-scrollbar {
   width: 5px;
   border-top-right-radius: 500px;
   border-bottom-right-radius: 500px;
   overflow: hidden;
 }
 
-.form::-webkit-scrollbar-track {
+.scrollWheel::-webkit-scrollbar-track {
   overflow: hidden;
   height: 80%;
 }
 
-.form::-webkit-scrollbar-thumb {
+.scrollWheel::-webkit-scrollbar-thumb {
   width: 10px;
   background-color: rgba(247, 115, 102, 1);
   border-top-right-radius: 100px;

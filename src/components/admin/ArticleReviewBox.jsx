@@ -6,7 +6,7 @@ import { useState } from "react";
 import { NoData } from "../common";
 
 const ArticleReviewBox = ({ type }) => {
-  const { singleCategoryArticles, loading } = useSelector(
+  const { filteredSingleCategoryArticles, loading } = useSelector(
     (store) => store.article
   );
 
@@ -15,7 +15,7 @@ const ArticleReviewBox = ({ type }) => {
   const pageSize = 5;
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = currentPage * pageSize;
-  const articlesToShow = singleCategoryArticles.slice(startIndex, endIndex);
+  const articlesToShow = filteredSingleCategoryArticles.slice(startIndex, endIndex);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -27,7 +27,7 @@ const ArticleReviewBox = ({ type }) => {
       <Wrapper
         className={`rounded-[26px] bg-white ${loading ? "skeleton" : ""}`}
       >
-        {singleCategoryArticles?.length > 0 ? (
+        {filteredSingleCategoryArticles?.length > 0 ? (
           <section className="min-h-[20rem]">
             {/* Box Heading */}
             <header className="flex px-6 pb-3 mt-3 border-b">
@@ -55,9 +55,9 @@ const ArticleReviewBox = ({ type }) => {
         )}
       </Wrapper>
 
-      {singleCategoryArticles?.length > 5 && (
+      {filteredSingleCategoryArticles?.length > 5 && (
         <Pagination
-          total={singleCategoryArticles?.length}
+          total={filteredSingleCategoryArticles?.length}
           pageSize={pageSize}
           current={currentPage}
           onChange={handlePageChange}

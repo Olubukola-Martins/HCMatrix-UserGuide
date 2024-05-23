@@ -17,6 +17,7 @@ const initialState = {
   editing: false,
   singleArticle: {},
   singleCategoryArticles: [],
+  filteredSingleCategoryArticles: [],
   articleInfo: {},
   loading: false,
   loadingArticle: false,
@@ -28,6 +29,19 @@ const articleSlice = createSlice({
   name: "article",
   initialState,
   reducers: {
+    filterSubArticles: (state, actions) => {
+      const search = actions.payload;
+
+      const filter = state.singleCategoryArticles.filter((article) => {
+        return article.title.toLowerCase().includes(search.toLowerCase());
+      });
+
+      console.log(search);
+      console.log(filter);
+
+      state.filteredSingleCategoryArticles =
+        search !== "" ? filter : state.singleCategoryArticles;
+    },
     reset: (state, actions) => {
       state.editing = false;
       state.articleInfo = {};
@@ -127,6 +141,7 @@ const articleSlice = createSlice({
       .addCase(getCategoryArticles.fulfilled, (state, action) => {
         const articles = action.payload.data.result;
         state.singleCategoryArticles = articles;
+        state.filteredSingleCategoryArticles = [...articles];
         state.loading = false;
         state.content = "";
         state.error = false;
@@ -158,7 +173,7 @@ const articleSlice = createSlice({
 
 export const {
   populateNewArticle,
-
+  filterSubArticles,
   articleContentHandler,
   editContent,
   reset,

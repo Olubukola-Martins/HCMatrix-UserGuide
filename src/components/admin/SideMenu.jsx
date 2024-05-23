@@ -40,7 +40,7 @@ const SideMenu = ({ page, title: pageTitle }) => {
       )}
 
       <h3 className="mb-4 text-sm">All Categories</h3>
-      <div className="min-h-[50vh] max-h-[80vh] overflow-auto pb-2">
+      <div className="min-h-[50vh] scrollWheel max-h-[60vh] overflow-auto pb-2">
         {loadingCategory ? (
           <div>
             {placeHolder.map((each, index) => {

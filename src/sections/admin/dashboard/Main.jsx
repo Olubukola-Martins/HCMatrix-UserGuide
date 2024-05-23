@@ -1,6 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { AddBtn } from "../../../assets/admin/icons/dashboard";
 import { Layout, MainContent } from "../../../components/admin/layout";
 import {
   Container,
@@ -11,19 +10,15 @@ import {
 import { Search } from "../../../assets/admin/icons/dashboard";
 import { SideMenu } from "../../../components/admin";
 import { newArticleModalToggle } from "../../../state/admin/modalSlice";
-import { AutoComplete } from "antd";
+import { AutoComplete, Input } from "antd";
 import { getCategoryArticles } from "../../../state/admin/articles/thunkFunctions";
-import { editContent } from "../../../state/admin/articles/articleSlice";
-import { useNavigate } from "react-router-dom";
+import { filterSubArticles } from "../../../state/admin/articles/articleSlice";
+import { useDebouncedCallback } from "use-debounce";
 
 const Main = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const { mainCategoryId, singleCategory } = useSelector(
-    (store) => store.adminData
-  );
-  const { singleCategoryArticles } = useSelector((store) => store.article);
+  const [searchInput, setSearchInput] = useState();
+  const { mainCategoryId } = useSelector((store) => store.adminData);
 
   useEffect(() => {
     dispatch(getCategoryArticles(mainCategoryId));
@@ -37,10 +32,9 @@ const Main = () => {
     { label: "snow", value: "snow" },
   ];
 
-  const editArticleNavigation = () => {
-    dispatch(editContent());
-    navigate("/admin/create");
-  };
+  const debouncedOnChange = useDebouncedCallback(() => {
+    dispatch(filterSubArticles(searchInput));
+  }, 500);
 
   return (
     <main className="font-semibold relative text-customGray-dark text-[15px]">
@@ -56,16 +50,17 @@ const Main = () => {
             <Wrapper padding={"py-2"} className="mb-4 bg-white rounded-lg">
               <section className="flex pl-6 gap-3 items-center">
                 <Search />
-                <AutoComplete
+                <Input
                   variant="borderless"
                   style={{
                     width: "99%",
                     border: "none",
                   }}
-                  options={options}
                   placeholder="Search for article"
-                  onSearch={(value) => console.log(value)}
-                  // onSelect={editArticleNavigation}
+                  onChange={(e) => {
+                    setSearchInput(e.target.value);
+                    debouncedOnChange.call();
+                  }}
                 />
               </section>
             </Wrapper>

@@ -147,7 +147,7 @@ const NewArticleModal = () => {
       ></div>
 
       {/* The form Container */}
-      <div className="relative form border-3 rounded-2xl pr-4 z-20 bg-white w-2/5 max-w-[600px]  overflow-y-scroll pl-6 px-5 pb-5 shadow-lg my-6 ">
+      <div className="relative scrollWheel border-3 rounded-2xl pr-4 z-20 bg-white w-2/5 max-w-[600px]  overflow-y-scroll pl-6 px-5 pb-5 shadow-lg my-6 ">
         {/* For The Effect */}
         {/* <div className="h-[20px] w-[37%] fixed bg-white"></div> */}
 
