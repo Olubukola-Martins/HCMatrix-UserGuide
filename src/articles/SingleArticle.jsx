@@ -69,12 +69,12 @@ const SingleArticle = () => {
             </p>
           </div>
 
-          {articleContent?.vidoeUrl && (
+          {articleContent?.videoUrl && (
             <div className="order-1 my-5 md:order-2 w-full md:w-[28rem] h-[15rem] md:h-[18rem] border rounded-lg overflow-hidden">
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/ILOnnEW2iRg"
+                src={`${articleContent?.videoUrl}`}
                 frameBorder="0"
                 allowFullScreen
               ></iframe>

@@ -21,6 +21,7 @@ const Main = () => {
   const { mainCategoryId } = useSelector((store) => store.adminData);
 
   useEffect(() => {
+    console.log(mainCategoryId);
     dispatch(getCategoryArticles(mainCategoryId));
   }, [mainCategoryId]);
 

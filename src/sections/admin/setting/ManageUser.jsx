@@ -4,7 +4,6 @@ import {
   TableHeader,
   TableBody,
   Button,
-  FormContainer,
 } from "../../../components/admin";
 
 import { inviteUser } from "../../../state/admin/authenticationSlice";
@@ -13,7 +12,7 @@ import { toast } from "react-toastify";
 
 import { Input } from "../../../components/common";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   Layout,
@@ -22,10 +21,61 @@ import {
 } from "../../../components/admin/layout";
 import { adminTableData, adminTableHeader } from "../../../data/admintableData";
 import { useDispatch, useSelector } from "react-redux";
+import { Pagination } from "antd";
+import { usePagination } from "../../../hooks/common";
+import { getUsers } from "../../../state/admin/adminData/thunkFunctions";
 
 const ManageUser = () => {
   const dispatch = useDispatch();
   const { loading } = useSelector((store) => store.auth);
+  const { isLoading, users } = useSelector((store) => store.adminData);
+
+  const placeholder = [
+    {
+      userId: 3,
+      firstName: "Usman",
+      user: {
+        email: "soliuomogbolahan01@gmail.com",
+        isVerified: true,
+      },
+    },
+    {
+      userId: 3,
+      firstName: "Usman",
+      user: {
+        email: "soliuomogbolahan01@gmail.com",
+        isVerified: true,
+      },
+    },
+    {
+      userId: 3,
+      firstName: "Usman",
+      user: {
+        email: "soliuomogbolahan01@gmail.com",
+        isVerified: true,
+      },
+    },
+    {
+      userId: 3,
+      firstName: "Usman",
+      user: {
+        email: "soliuomogbolahan01@gmail.com",
+        isVerified: true,
+      },
+    },
+    {
+      userId: 3,
+      firstName: "Usman",
+      user: {
+        email: "soliuomogbolahan01@gmail.com",
+        isVerified: true,
+      },
+    },
+  ];
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
 
   const init = {
     email: "",
@@ -33,8 +83,15 @@ const ManageUser = () => {
     lastName: "",
   };
   const [newMember, setNewMember] = useState(init);
-
   const { email, firstName, lastName } = newMember;
+
+  const pageSize = 5;
+
+  const {
+    currentPage,
+    paginatedData: articlesToShow,
+    handlePageChange,
+  } = usePagination([], pageSize);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -119,9 +176,15 @@ const ManageUser = () => {
                     ))}
                   </thead>
                   <tbody>
-                    <TableBody tableRows={adminTableData} />
+                    <TableBody tableRows={users} loading={isLoading} />
                   </tbody>
-                </table>
+                </table>j 
+
+                <Pagination
+                  pageSize={pageSize}
+                  current={currentPage}
+                  onChange={handlePageChange}
+                />
               </div>
             </Wrapper>
           </div>

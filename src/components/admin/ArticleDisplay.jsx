@@ -15,7 +15,7 @@ import { getReviews } from "../../state/admin/adminData/thunkFunctions";
 const ArticleDisplay = ({
   title,
   updatedAt,
-  articleStats,
+  feedbackStats,
   type,
   id,
   isPublished,
@@ -69,13 +69,13 @@ const ArticleDisplay = ({
       </div>
       <div className="flex-1 flex h-[60px] text-center">
         <span className="bg-customGreen text-customGreen-normal grid place-items-center text-center h-full flex-1">
-          {`${articleStats?.positivePercentage.toFixed(2)}%`}
+          {`${feedbackStats?.positivePercentage.toFixed(2)}%`}
         </span>
         <span className="grid text-customGreen-normal place-items-center text-center h-full flex-1">
-          {`${articleStats?.neutralPercentage.toFixed(2)}%`}
+          {`${feedbackStats?.neutralPercentage.toFixed(2)}%`}
         </span>
         <span className="bg-customRed grid place-items-center text-center h-full flex-1 text-customRed-normal">
-          {`${articleStats?.negativePercentage.toFixed(2)}%`}
+          {`${feedbackStats?.negativePercentage.toFixed(2)}%`}
         </span>
       </div>
       <div className="w-[25%] relative grid place-items-center">

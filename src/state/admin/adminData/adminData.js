@@ -5,6 +5,7 @@ import {
   createNewCategory,
   getSubCategories,
   getReviews,
+  getUsers,
 } from "./thunkFunctions";
 import { toast } from "react-toastify";
 
@@ -25,6 +26,7 @@ const initialState = {
   mainCategoryId: "",
   emoji: [],
   allCategories: [],
+  users: [],
   mainCategories: [],
   subcategories: [],
   leastSubcategories: [],
@@ -170,6 +172,16 @@ const adminDataSlice = createSlice({
         state.reviews = action.payload.data.result;
       })
       .addCase(getReviews.rejected, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(getUsers.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(getUsers.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.users = action.payload.data.result;
+      })
+      .addCase(getUsers.rejected, (state, action) => {
         state.isLoading = false;
       });
   },

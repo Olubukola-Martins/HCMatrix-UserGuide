@@ -54,7 +54,7 @@ const Review = () => {
               </span>
             ) : (
               <span className="text-lg text-customGreen-normal font-semibold">
-                50%
+                {articleInfo?.feedbackStats?.positivePercentage}%
               </span>
             )}
           </div>
@@ -67,7 +67,7 @@ const Review = () => {
               </span>
             ) : (
               <span className="text-lg text-customGray-semiDark font-semibold">
-                50%
+                {articleInfo?.feedbackStats?.neutralPercentage}%
               </span>
             )}
           </div>
@@ -80,7 +80,7 @@ const Review = () => {
               </span>
             ) : (
               <span className="text-lg text-customRed-normal font-semibold">
-                0%
+                {articleInfo?.feedbackStats?.negativePercentage}%
               </span>
             )}
           </div>

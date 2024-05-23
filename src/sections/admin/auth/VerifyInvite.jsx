@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FloatingInput } from "../../../components/admin";
 import { useEffect, useState } from "react";
 import { FormBtn } from "../../../components/common";
@@ -9,8 +9,9 @@ import { FaSpinner } from "react-icons/fa";
 import useSignIn from "react-auth-kit/hooks/useSignIn";
 import Auth from "../../../pages/auth/Auth";
 
-const VerifyPassword = () => {
+const VerifyInvite = () => {
   const navigate = useNavigate();
+  const { uid, token } = useParams();
   const dispatch = useDispatch();
 
   const [credentials, setCredentials] = useState({
@@ -18,7 +19,7 @@ const VerifyPassword = () => {
     password: "",
   });
   const { password, confirmPassword } = credentials;
-  const { loginMessage, user, token, loading, error } = useSelector(
+  const { loginMessage, user, loading, error } = useSelector(
     (store) => store.auth
   );
 
@@ -99,4 +100,4 @@ const VerifyPassword = () => {
     </Auth>
   );
 };
-export default VerifyPassword;
+export default VerifyInvite;

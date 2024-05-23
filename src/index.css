@@ -171,7 +171,7 @@
 }
 
 .scrollWheel::-webkit-scrollbar-thumb {
-  width: 10px;
+  width: 5px;
   background-color: rgba(247, 115, 102, 1);
   border-top-right-radius: 100px;
   border-top-left-radius: 100px;

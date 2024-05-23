@@ -4,26 +4,23 @@ import { positive, negative, neutral } from "../../assets/common/review";
 import { Pagination } from "antd";
 import { useState } from "react";
 import { NoData } from "../common";
+import { usePagination } from "../../hooks/common";
 
 const ArticleReviewBox = ({ type }) => {
   const { filteredSingleCategoryArticles, loading } = useSelector(
     (store) => store.article
   );
 
-  //Pagination Logic
-  const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
-  const startIndex = (currentPage - 1) * pageSize;
-  const endIndex = currentPage * pageSize;
-  const articlesToShow = filteredSingleCategoryArticles.slice(startIndex, endIndex);
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
+  const {
+    currentPage,
+    paginatedData: articlesToShow,
+    handlePageChange,
+  } = usePagination(filteredSingleCategoryArticles, pageSize);
 
   return (
     <section className="w-full flex flex-col gap-3">
-   
       <Wrapper
         className={`rounded-[26px] bg-white ${loading ? "skeleton" : ""}`}
       >
@@ -67,4 +64,3 @@ const ArticleReviewBox = ({ type }) => {
   );
 };
 export default ArticleReviewBox;
-

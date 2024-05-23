@@ -93,6 +93,16 @@ export const getReviews = createAsyncThunk("adminData/reviews", async (id) => {
   }
 });
 
+export const getUsers = createAsyncThunk("adminData/users", async () => {
+  try {
+    const response = await axiosInstance.get(`/user`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue(error.response.data);
+  }
+});
+
 export const createNewCategory = createAsyncThunk(
   "adminData/newCategory",
   async (data, thunkAPI) => {

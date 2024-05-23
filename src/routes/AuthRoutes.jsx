@@ -4,7 +4,7 @@ import {
   SignUp,
   ForgotPassword,
   SetNewPassword,
-  VerifyPassword,
+  VerifyInvite,
 } from "../sections/admin/auth";
 
 const AuthRoutes = () => {
@@ -13,7 +13,7 @@ const AuthRoutes = () => {
       <Route path="/auth/login" index Component={Login} />
       <Route path="/auth/sign-up" index Component={SignUp} />
       <Route path="/auth/forgot-password" index Component={ForgotPassword} />
-      <Route path="/auth/verify-password" index Component={VerifyPassword} />
+      <Route path="/auth/verify-invite" index Component={VerifyInvite} />
       <Route path="/auth/set-password" index Component={SetNewPassword} />
     </Routes>
   );
