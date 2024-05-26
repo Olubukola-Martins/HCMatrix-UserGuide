@@ -9,7 +9,6 @@ import {
   populateEditingArticle,
   reset,
 } from "../../../state/admin/articles/articleSlice";
-import { formValidation } from "../../../utils/formvalidator";
 import { Input, TextArea, FormBtn } from "../../common";
 import {
   getMainCategory,
@@ -29,9 +28,13 @@ const NewArticleModal = () => {
     (store) => store.adminData
   );
   // const { newArticleModal } = useSelector((store) => store.modelSlice);
-  const { editing, editingArticle, articleInfo, loadingArticle } = useSelector(
+  const { editing, editingArticle, loading } = useSelector(
     (store) => store.article
   );
+
+  useEffect(() => {
+    console.log(loading);
+  }, [loading]);
 
   // Init values //
   // Initial values for the state
@@ -187,7 +190,7 @@ const NewArticleModal = () => {
             </FormContainer>
 
             <div className="mb-3">
-              <FormBtn />
+              <FormBtn loading={loading} />
             </div>
           </form>
         ) : (
@@ -288,7 +291,7 @@ const NewArticleModal = () => {
             <FormContainer label="Article Description">
               <TextArea
                 type="text"
-                className="w-full py-3 px-4 rounded-lg border outline-none text-sm"
+                className="w-full py-3 px-4 overflow-y-auto scrollbar-hide rounded-lg border outline-none text-sm"
                 value={articleDescription}
                 name="articleDescription"
                 onChange={textChangeHandler}

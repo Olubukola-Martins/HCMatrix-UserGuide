@@ -1,12 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { FloatingInput } from "../../../components/admin";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FormBtn } from "../../../components/common";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../../state/admin/authenticationSlice";
-import { FaSpinner } from "react-icons/fa";
-import useSignIn from "react-auth-kit/hooks/useSignIn";
+import { verifyUser } from "../../../state/admin/authenticationSlice";
 import Auth from "../../../pages/auth/Auth";
 
 const VerifyInvite = () => {
@@ -43,9 +41,17 @@ const VerifyInvite = () => {
       return;
     }
 
-    dispatch(loginUser(credentials)).then((result) => {
+    // if (!uid || !token) {
+    //   toast.error("You cannot access this resource!");
+    //   return;
+    // }
+
+    const details = { id: uid, token: token, credentials: credentials };
+
+    dispatch(verifyUser(details)).then((result) => {
       if (result.payload) {
         setCredentials({ email: "", password: "" });
+        navigate("/admin/dashboard");
       }
     });
   };

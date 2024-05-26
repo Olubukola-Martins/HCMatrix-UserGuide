@@ -10,7 +10,7 @@ const NoData = ({ className, msg, padding, whiteText }) => {
       />
       <span
         className={`font-extralight ${
-          whiteText ? " text-white" : " text-customRed-normal"
+          whiteText ? "text-white" : " text-customRed-light"
         } `}
       >
         {msg}

@@ -16,7 +16,25 @@ const SingleArticle = () => {
             <h2 className="text-[25px] skeleton font-semibold mb-[0.15rem]">
               How to create an account?
             </h2>
-            <span className="text-[12px] skeleton block mb-3">{`Learn about how to create an account`}</span>
+            <span className="text-[12px] skeleton block mb-3">
+              Lorem ipsum dolor sit amet consectetur.
+            </span>
+            <span className="text-[12px] skeleton block mb-3">
+              Lorem ipsum dolor sit amet consectetur.
+            </span>
+            <span className="text-[12px] skeleton block mb-3">
+              Lorem ipsum dolor sit amet consectetur.
+            </span>
+            <span className="text-[12px] skeleton block mb-3">
+              Lorem ipsum dolor sit amet consectetur.
+            </span>
+            <span className="text-[12px] skeleton block mb-3">
+              Lorem ipsum dolor sit amet consectetur.
+            </span>
+            <span className="text-[12px] skeleton block mb-3">
+              Lorem ipsum dolor sit amet consectetur.
+            </span>
+
             <p className="text-[14px] text-[#3a3a3ab2] skeleton leading-6">
               This guide will walk you through the quick and easy steps to
               create your account, so you can start benefiting from all that the

@@ -1,6 +1,7 @@
 import { FaSpinner } from "react-icons/fa";
 
 const FormBtn = ({ custom, loading }) => {
+  console.log(loading);
   return (
     <button
       disabled={loading}

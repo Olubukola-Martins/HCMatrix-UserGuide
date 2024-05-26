@@ -67,7 +67,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 w-full z-[99] mb-72 bg-white  shadow-md py-5 grid font-semibold text-customGray-dark place-items-center text-[15px]">
+    <header className="fixed top-0 w-full z-[99] bg-white  shadow-md pt-8 pb-7 grid font-semibold text-customGray-dark place-items-center text-[15px]">
       <Container>
         {/* Main Menu */}
         <div className="flex justify-between">
@@ -129,7 +129,7 @@ const Header = () => {
 
         {/* Settings Sub Menu */}
         {barToggle && (
-          <div className="flex border-t-[1px] mt-4 gap-16 justify-center text-customGray-fade items-center pt-4">
+          <div className="flex border-t mt-5 gap-16 justify-center text-customGray-fade items-center pt-4">
             {settingsMenu.map((menu, index) => {
               const { name, active } = menu;
 
@@ -137,8 +137,10 @@ const Header = () => {
                 <div
                   key={index}
                   onClick={() => onClickHandler(name, "settings")}
-                  className={`flex items-center gap-2 cursor-pointer ${
-                    active ? "text-adminHighlight" : ""
+                  className={`flex  items-center gap-2 pb-1 transition-all duration-100 ease-linear  cursor-pointer ${
+                    active
+                      ? "text-adminHighlight border-b pb-1 border-adminHighlight"
+                      : ""
                   }`}
                 >
                   {name === "create category" ? (
@@ -149,7 +151,7 @@ const Header = () => {
                     <MemberIcon />
                   )}
 
-                  <span className="capitalize text-[14px]">{name}</span>
+                  <span className="capitalize text-[12px]">{name}</span>
                 </div>
               );
             })}

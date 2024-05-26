@@ -28,7 +28,9 @@ const SideMenu = ({ page, title: pageTitle }) => {
 
   return (
     <SidePanel>
-      <h3 className="mb-3 text-sm">{pageTitle}</h3>
+      <h3 className={`${page === "dashboard" ? "mb-3" : "mb-6"} text-sm`}>
+        {pageTitle}
+      </h3>
       {page === "dashboard" && (
         <Wrapper
           className="flex bg-white justify-center rounded-lg items-center gap-2 mb-5 cursor-pointer"
@@ -40,7 +42,7 @@ const SideMenu = ({ page, title: pageTitle }) => {
       )}
 
       <h3 className="mb-4 text-sm">All Categories</h3>
-      <div className="min-h-[50vh] scrollWheel max-h-[60vh] overflow-auto pb-2">
+      <div className="max-h-[70vh] overflow-y-scroll  scrollbar-hide pb-2">
         {loadingCategory ? (
           <div>
             {placeHolder.map((each, index) => {
@@ -55,17 +57,17 @@ const SideMenu = ({ page, title: pageTitle }) => {
             })}
           </div>
         ) : (
-          <section>
+          <section className="">
             {mainCategories.map((category, index) => {
               const { emoji, name, active, id, articlesCount } = category;
 
               return (
                 <Wrapper
                   onClickHandler={() => onClickHandler(id)}
-                  className={`flex transition-all border-[1.2px] border-transparent duration-100 ease-linear justify-between items-center px-3 rounded-lg hover:cursor-pointer ${
-                    active ? "activeindicator" : ""
+                  className={`flex transition-all border-[1.2px] border-transparent duration-100 ease-linear justify-between items-center px-3 py-3 rounded-lg hover:cursor-pointer ${
+                    active ? "activeindicator shadow-md" : ""
                   }`}
-                  key={name}
+                  key={id}
                 >
                   <div className="flex gap-4 items-center">
                     {name === "Settings" ? (
@@ -84,7 +86,7 @@ const SideMenu = ({ page, title: pageTitle }) => {
       </div>
 
       {page === "dashboard" && (
-        <div className="mt-4">
+        <div className="mt-5">
           <span className="mb-3">Preview</span>
           <Link to="/" target="blank">
             <Wrapper className="activeindicator flex gap-2 items-center justify-center mt-2 hover:cursor-pointer">

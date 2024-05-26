@@ -101,7 +101,7 @@ const CreateCategory = () => {
                 onSubmit={categoryCreationHandler}
               >
                 <Wrapper padding="pt-5 pb-4 pl-8">
-                  <FormContainer>
+                  <FormContainer bold={true} label={`Parent Category name`}>
                     <DataListInput
                       category={allCategories}
                       onChange={onChangeHandler}
@@ -114,7 +114,7 @@ const CreateCategory = () => {
                 </Wrapper>
 
                 <Wrapper padding="py-8 pl-8 flex flex-col gap-2">
-                  <FormContainer>
+                  <FormContainer bold={true} label={`Category name`}>
                     <Input
                       onChange={onChangeHandler}
                       name="categoryName"
@@ -124,7 +124,7 @@ const CreateCategory = () => {
                     />
                   </FormContainer>
 
-                  <FormContainer>
+                  <FormContainer bold={true} label={`description`}>
                     <TextArea
                       placeholder="Enter description..."
                       value={description}

@@ -1,17 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { FloatingInput } from "../../../components/admin";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FormBtn } from "../../../components/common";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../state/admin/authenticationSlice";
-import useSignIn from "react-auth-kit/hooks/useSignIn";
 import Auth from "../../../pages/auth/Auth";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const signIn = useSignIn();
 
   const signUpNavigate = () => {
     navigate("/auth/sign-up");
@@ -42,28 +40,10 @@ const Login = () => {
     dispatch(loginUser(credentials)).then((result) => {
       if (result.payload) {
         setCredentials({ email: "", password: "" });
+        navigate("/admin/dashboard");
       }
     });
   };
-
-  useEffect(() => {
-    if (token) {
-      if (
-        signIn({
-          auth: {
-            token: token,
-            type: "Bearer",
-          },
-          userState: { user: user },
-        })
-      ) {
-        toast.success("Welcome back!");
-        navigate("/admin/dashboard");
-      } else {
-        toast.error("Something went wrong");
-      }
-    }
-  }, [token, signIn, navigate]);
 
   return (
     <Auth>

@@ -15,11 +15,10 @@ const ProtectedRoutes = () => {
   useEffect(() => {
     if (storedUser) {
       dispatch(setCurrentUser(storedUser));
-      dispatch(getAccessToken());
     }
   }, [storedUser]);
 
-  return user ? <Outlet /> : <Navigate to="/auth" />;
+  return user ? <Outlet /> : <Navigate to="/auth/login" />;
 };
 
 export default ProtectedRoutes;

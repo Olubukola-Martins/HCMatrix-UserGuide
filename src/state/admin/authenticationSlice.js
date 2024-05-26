@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import axiosInstance from "../../services/AxiosInstance";
+import { json } from "react-router-dom";
 const baseUrl = import.meta.env.BASE;
 
 export const loginUser = createAsyncThunk(
@@ -8,7 +9,6 @@ export const loginUser = createAsyncThunk(
   async (userCredential, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.post(`/auth/`, userCredential);
-      localStorage.setItem("user", JSON.stringify(response.data));
       return response.data;
     } catch (error) {
       console.log(error);
@@ -33,6 +33,25 @@ export const inviteUser = createAsyncThunk(
   }
 );
 
+export const verifyUser = createAsyncThunk(
+  "auth/verify",
+
+  async (userCredential, { rejectWithValue }) => {
+    const { token, uid, credentials } = userCredential;
+    console.log(token, uid, credentials);
+    try {
+      // const response = await axiosInstance.post(
+      //   `/user/invite/verification?uid=${uid}&token={{${token}}}`
+      // );
+      // return response.data;
+    } catch (error) {
+      console.log(error);
+      toast.error("An Error occurred");
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const initialState = {
   error: "",
   loading: false,
@@ -47,7 +66,8 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setCurrentUser: (state, action) => {
-      state.user = JSON.parse(action.payload);
+      const user = JSON.parse(action.payload);
+      state.user = user?.user;
     },
     getAccessToken: (state, action) => {
       const user = JSON.parse(localStorage.getItem("user"));
@@ -58,6 +78,7 @@ const authSlice = createSlice({
       }
     },
     LogoutHandler: (state, action) => {
+      localStorage.removeItem("user");
       state.user = null;
       state.token = "";
     },
@@ -68,10 +89,10 @@ const authSlice = createSlice({
         state.loading = true;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        const res = action.payload;
-        state.loginMessage = res.message;
-        state.user = res.data.user;
-        state.token = res.data.accessToken;
+        const response = action.payload;
+        localStorage.setItem("user", JSON.stringify(response.data));
+        state.loginMessage = response.message;
+        state.user = response.data.user;
         state.loading = false;
         state.error = null;
       })
@@ -89,6 +110,19 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(inviteUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(verifyUser.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(verifyUser.fulfilled, (state, action) => {
+        const res = action.payload;
+        toast.success("Verification Successful");
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(verifyUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

@@ -81,7 +81,7 @@ export const getCategoryArticles = createAsyncThunk(
   async (categoryId) => {
     try {
       const response = await axiosInstance.get(
-        `/categories/${categoryId}/articles`
+        `/categories/${categoryId}/articles/?limit=1000`
       );
       return response.data;
     } catch (error) {
@@ -90,7 +90,6 @@ export const getCategoryArticles = createAsyncThunk(
     }
   }
 );
-
 
 export const disableArticlesHandler = createAsyncThunk(
   "article/disable",

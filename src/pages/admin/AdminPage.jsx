@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { NewArticleModal } from "../../components/admin/modals";
 import { useDispatch, useSelector } from "react-redux";
+import { resetHeaderNav } from "../../state/admin/headerSlice";
 
 const AdminPage = () => {
   const { newArticleModal } = useSelector((store) => store.modelSlice);
@@ -18,13 +19,14 @@ const AdminPage = () => {
 
   useEffect(() => {
     navigate("/admin/dashboard");
+    dispatch(resetHeaderNav());
   }, []);
 
   return (
     <>
       {showHeader && <Header />}
       {newArticleModal && <NewArticleModal />}
-      <div className={`${barToggle ? "py-44" : "py-[6.5rem]"}`}>
+      <div className={`${barToggle ? "py-48" : "py-[9rem]"}`}>
         <Outlet />
       </div>
     </>

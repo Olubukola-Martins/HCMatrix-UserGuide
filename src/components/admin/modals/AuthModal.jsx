@@ -2,18 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { UserIcon } from "../../../assets/admin/icons/dashboard";
 import { Lock, LogOut } from "../../../assets/admin/icons/dashboard";
 import { useNavigate } from "react-router-dom";
-import useSignOut from "react-auth-kit/hooks/useSignOut";
-import Cookies from "js-cookie";
 import { LogoutHandler } from "../../../state/admin/authenticationSlice";
 import { adminModalToggle } from "../../../state/admin/modalSlice";
-import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 import { resetHeaderNav } from "../../../state/admin/headerSlice";
 
 const AuthModal = () => {
-  const signOut = useSignOut();
-  const auth = useAuthUser();
-
-  const { user, token } = useSelector((store) => store.auth);
+  const { user } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -24,8 +18,6 @@ const AuthModal = () => {
   };
 
   const logOutHandler = () => {
-    Cookies.remove("_auth");
-    signOut();
     dispatch(LogoutHandler());
     dispatch(resetHeaderNav());
     dispatch(adminModalToggle());

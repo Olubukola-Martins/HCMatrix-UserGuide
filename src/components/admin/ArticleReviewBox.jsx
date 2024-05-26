@@ -11,7 +11,7 @@ const ArticleReviewBox = ({ type }) => {
     (store) => store.article
   );
 
-  const pageSize = 5;
+  const pageSize = 4;
 
   const {
     currentPage,
@@ -22,19 +22,19 @@ const ArticleReviewBox = ({ type }) => {
   return (
     <section className="w-full flex flex-col gap-3">
       <Wrapper
-        className={`rounded-[26px] bg-white ${loading ? "skeleton" : ""}`}
+        className={`rounded-[26px] pb-0 bg-white ${loading ? "skeleton" : ""}`}
       >
         {filteredSingleCategoryArticles?.length > 0 ? (
-          <section className="min-h-[20rem]">
+          <section className="h-[22rem] grid grid-rows-[3rem_1fr_1fr_1fr_1fr]">
             {/* Box Heading */}
-            <header className="flex px-6 pb-3 mt-3 border-b">
-              <span className="flex-1 text-customGray-semiDark">Articles</span>
-              <div className="flex-1  flex">
+            <header className="flex h-[3rem] items-center px-6 border-b">
+              <span className="w-[45%] text-customGray-semiDark">Articles</span>
+              <div className="flex-1   items-center flex">
                 <img src={positive} alt="" className=" h-5 flex-1" />
                 <img src={neutral} alt="" className="flex-1  h-5" />
                 <img src={negative} alt="" className="flex-1  h-5" />
               </div>
-              <span className="w-[25%] grid place-items-center">Action</span>
+              <span className="w-[20%]  grid place-items-center">Action</span>
             </header>
 
             {/* The Articles */}
@@ -43,7 +43,7 @@ const ArticleReviewBox = ({ type }) => {
             })}
           </section>
         ) : (
-          <Wrapper className="flex flex-col justify-center items-center max-h-[20rem] min-h-[20rem]">
+          <Wrapper className="flex flex-col justify-center items-center h-[23rem]">
             <NoData
               className="h-24 mb-5 -ml-3 -mt-5"
               msg="No articles, Create Now!!!"
@@ -52,12 +52,14 @@ const ArticleReviewBox = ({ type }) => {
         )}
       </Wrapper>
 
-      {filteredSingleCategoryArticles?.length > 5 && (
+      {filteredSingleCategoryArticles?.length > 4 && (
         <Pagination
           total={filteredSingleCategoryArticles?.length}
-          pageSize={pageSize}
           current={currentPage}
+          pageSize={pageSize}
           onChange={handlePageChange}
+          showSizeChanger={false}
+          showQuickJumper={false}
         />
       )}
     </section>

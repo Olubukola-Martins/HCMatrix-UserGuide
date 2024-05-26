@@ -37,11 +37,11 @@ export default {
         },
       },
       fontFamily: {
-        body: ["Inter"],
+        body: ["Inter", "sans-serif"],
         SFPro: ["SF-Pro-Text", "sans-serif"],
         poppins: [],
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 };

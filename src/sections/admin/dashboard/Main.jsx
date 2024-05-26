@@ -9,8 +9,7 @@ import {
 } from "../../../components/admin";
 import { Search } from "../../../assets/admin/icons/dashboard";
 import { SideMenu } from "../../../components/admin";
-import { newArticleModalToggle } from "../../../state/admin/modalSlice";
-import { AutoComplete, Input } from "antd";
+import { Input } from "antd";
 import { getCategoryArticles } from "../../../state/admin/articles/thunkFunctions";
 import { filterSubArticles } from "../../../state/admin/articles/articleSlice";
 import { useDebouncedCallback } from "use-debounce";
@@ -21,17 +20,9 @@ const Main = () => {
   const { mainCategoryId } = useSelector((store) => store.adminData);
 
   useEffect(() => {
-    console.log(mainCategoryId);
     dispatch(getCategoryArticles(mainCategoryId));
   }, [mainCategoryId]);
 
-  const options = [
-    { label: "article", value: "article" },
-    { label: "articulate", value: "articulate" },
-    { label: "mandy", value: "mandy" },
-    { label: "john", value: "john" },
-    { label: "snow", value: "snow" },
-  ];
 
   const debouncedOnChange = useDebouncedCallback(() => {
     dispatch(filterSubArticles(searchInput));

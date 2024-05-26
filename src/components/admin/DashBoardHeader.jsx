@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 const DashBoardHeader = () => {
   const { mainCategories } = useSelector((store) => store.adminData);
-  const { singleCategoryArticles, loading } = useSelector(
+  const { filteredSingleCategoryArticles, loading } = useSelector(
     (store) => store.article
   );
 
@@ -14,7 +14,7 @@ const DashBoardHeader = () => {
     <section className="mb-4">
       <div className="flex items-center gap-3">
         <span className="text-[27px] -mt-3">{active?.emoji?.code}</span>
-        <h2 className="text-[27px] mb-2 capitalize font-[600]">
+        <h2 className="text-[27px] mb-4 capitalize font-[600]">
           {active?.name}
         </h2>
       </div>
@@ -24,7 +24,9 @@ const DashBoardHeader = () => {
       ) : (
         <span className="text-sm font-semibold text-customGray-light">
           {`${
-            singleCategoryArticles ? singleCategoryArticles?.length : 0
+            filteredSingleCategoryArticles
+              ? filteredSingleCategoryArticles?.length
+              : 0
           } Articles`}
         </span>
       )}

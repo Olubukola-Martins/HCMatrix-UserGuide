@@ -1,11 +1,8 @@
-import { UserRoutes, AdminRoutes, AuthRoutes } from "./routes";
+import { UserRoutes, AdminRoutes, AuthRoutes, ProtectedRoutes } from "./routes";
 import { ToastContainer } from "react-toastify";
 
 //React Router Dom
-import { BrowserRouter as Router } from "react-router-dom";
-
-
-
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const App = () => {
   return (

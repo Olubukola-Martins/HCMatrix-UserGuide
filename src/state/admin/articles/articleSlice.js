@@ -20,7 +20,6 @@ const initialState = {
   filteredSingleCategoryArticles: [],
   articleInfo: {},
   loading: false,
-  loadingArticle: false,
   error: false,
   message: "",
 };
@@ -87,11 +86,8 @@ const articleSlice = createSlice({
           return article.id === id;
         }
       );
-
-      const { body, ...removedContent } = singleArticleForEdit;
       state.editingArticle = { ...singleArticleForEdit };
       state.editing = true;
-      state.content = body;
     },
   },
   extraReducers: (builder) => {
@@ -112,15 +108,15 @@ const articleSlice = createSlice({
         state.loading = false;
         state.message = "Something went wrong!";
       })
-      .addCase(editArticle.pending, (state, action) => {
-        state.loading = true;
-      })
       .addCase(disableArticlesHandler.pending, (state, action) => {})
       .addCase(disableArticlesHandler.fulfilled, (state, action) => {
         toast.success("Articles Disabled");
       })
       .addCase(disableArticlesHandler.rejected, (state, action) => {
         toast.error("Something went wrong ");
+      })
+      .addCase(editArticle.pending, (state, action) => {
+        state.loading = true;
       })
       .addCase(editArticle.fulfilled, (state, action) => {
         toast.success("Article Updated successfully");
@@ -132,8 +128,8 @@ const articleSlice = createSlice({
       })
       .addCase(editArticle.rejected, (state, action) => {
         state.message = "There was an error";
-        state.loading = false;
         state.message = "Something went wrong!";
+        state.loading = false;
       })
       .addCase(getCategoryArticles.pending, (state, action) => {
         state.loading = true;
@@ -152,7 +148,7 @@ const articleSlice = createSlice({
         state.message = "Something went wrong!";
       })
       .addCase(findSingleArticle.pending, (state, action) => {
-        state.loadingArticle = true;
+        state.loading = true;
       })
       .addCase(findSingleArticle.fulfilled, (state, actions) => {
         const article = actions.payload.data;
@@ -161,12 +157,12 @@ const articleSlice = createSlice({
         state.editingArticle = { ...article };
         state.editing = true;
         state.content = body;
-        state.loadingArticle = false;
+        state.loading = false;
         state.error = false;
       })
       .addCase(findSingleArticle.rejected, (state, action) => {
         state.message = "There was an error";
-        state.loadingArticle = false;
+        state.loading = false;
       });
   },
 });

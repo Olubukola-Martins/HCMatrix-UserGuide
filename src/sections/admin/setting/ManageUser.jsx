@@ -169,8 +169,8 @@ const ManageUser = () => {
             <Wrapper padding="p-6 pb-10">
               <div className="flex flex-col gap-7">
                 <h3 className="text-md font-semibold">Manage Team Members</h3>
-                <table class="min-w-full text-left text-sm font-light pb-5 font-poppins">
-                  <thead class="border-b font-medium">
+                <table className="min-w-full text-left text-sm font-light pb-5 font-poppins">
+                  <thead className="border-b font-medium">
                     {adminTableHeader.map((header) => (
                       <TableHeader key={header} value={header} />
                     ))}
@@ -178,7 +178,7 @@ const ManageUser = () => {
                   <tbody>
                     <TableBody tableRows={users} loading={isLoading} />
                   </tbody>
-                </table>j 
+                </table>
 
                 <Pagination
                   pageSize={pageSize}

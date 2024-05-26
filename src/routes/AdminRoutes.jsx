@@ -11,10 +11,9 @@ import {
 import { InsightMain, Review } from "../sections/admin/insight";
 import { CreateArticle } from "../sections/admin/article";
 import { useEffect } from "react";
-import AuthOutlet from "@auth-kit/react-router/AuthOutlet";
-import useIsAuthenticated from "react-auth-kit/hooks/useIsAuthenticated";
 import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 const AdminRoutes = () => {
   const location = useLocation();
@@ -24,13 +23,11 @@ const AdminRoutes = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location.pathname]);
 
-
-
   return (
     <>
       <ToastContainer />
       <Routes>
-        <Route element={<AuthOutlet fallbackPath="/auth/login" />}>
+        <Route element={<ProtectedRoutes />}>
           <Route path="/admin" Component={AdminPage}>
             {/* Dashboard Routes */}
 
