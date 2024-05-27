@@ -40,7 +40,8 @@ export const verifyUser = createAsyncThunk(
     const { token, uid, credentials } = userCredential;
     try {
       const response = await axiosInstance.post(
-        `/user/invite/verification?uid=${uid}&token={{${token}}}`, credentials
+        `/user/invite/verification?uid=${uid}&token={{${token}}}`,
+        credentials
       );
       return response.data;
     } catch (error) {
@@ -124,19 +125,6 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(inviteUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(verifyUser.pending, (state, action) => {
-        state.loading = true;
-      })
-      .addCase(verifyUser.fulfilled, (state, action) => {
-        const res = action.payload;
-        toast.success("Verification Successful");
-        state.loading = false;
-        state.error = null;
-      })
-      .addCase(verifyUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
