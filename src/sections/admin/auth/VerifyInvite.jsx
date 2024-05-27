@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { FloatingInput } from "../../../components/admin";
 import { useState } from "react";
 import { FormBtn } from "../../../components/common";
@@ -9,17 +9,32 @@ import Auth from "../../../pages/auth/Auth";
 
 const VerifyInvite = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { uid, token } = useParams();
   const dispatch = useDispatch();
 
   const [credentials, setCredentials] = useState({
     confirmPassword: "",
     password: "",
+    uid: "",
+    token: "",
   });
   const { password, confirmPassword } = credentials;
   const { loginMessage, user, loading, error } = useSelector(
     (store) => store.auth
   );
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const uid = searchParams.get("uid");
+    const token = searchParams.get("token");
+
+    setCredentials((prev) => {
+      return { ...prev, token: token, uid: uid };
+    });
+
+    console.log(uid, token);
+  }, [location.search]);
 
   const onChangeHandler = (e) => {
     const { value, name } = e.target;
@@ -30,8 +45,6 @@ const VerifyInvite = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-
-    console.log(uid, token);
 
     if (!confirmPassword || !password) {
       toast.error("Please enter password");
