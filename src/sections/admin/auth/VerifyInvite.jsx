@@ -10,7 +10,6 @@ import Auth from "../../../pages/auth/Auth";
 const VerifyInvite = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { uid, token } = useParams();
   const dispatch = useDispatch();
 
   const [credentials, setCredentials] = useState({
@@ -19,7 +18,7 @@ const VerifyInvite = () => {
     uid: "",
     token: "",
   });
-  const { password, confirmPassword } = credentials;
+  const { password, confirmPassword, uid, token } = credentials;
   const { loginMessage, user, loading, error } = useSelector(
     (store) => store.auth
   );
@@ -33,7 +32,6 @@ const VerifyInvite = () => {
       return { ...prev, token: token, uid: uid };
     });
 
-    console.log(uid, token);
   }, [location.search]);
 
   const onChangeHandler = (e) => {
