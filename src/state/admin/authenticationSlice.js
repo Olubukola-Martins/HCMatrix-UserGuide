@@ -38,12 +38,11 @@ export const verifyUser = createAsyncThunk(
 
   async (userCredential, { rejectWithValue }) => {
     const { token, uid, credentials } = userCredential;
-    console.log(token, uid, credentials);
     try {
-      // const response = await axiosInstance.post(
-      //   `/user/invite/verification?uid=${uid}&token={{${token}}}`
-      // );
-      // return response.data;
+      const response = await axiosInstance.post(
+        `/user/invite/verification?uid=${uid}&token={{${token}}}`, credentials
+      );
+      return response.data;
     } catch (error) {
       console.log(error);
       toast.error("An Error occurred");
@@ -97,6 +96,21 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(loginUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(verifyUser.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(verifyUser.fulfilled, (state, action) => {
+        const response = action.payload;
+        localStorage.setItem("user", JSON.stringify(response.data));
+        state.loginMessage = response.message;
+        state.user = response.data.user;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(verifyUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })

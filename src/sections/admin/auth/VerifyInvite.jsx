@@ -41,16 +41,16 @@ const VerifyInvite = () => {
       return;
     }
 
-    // if (!uid || !token) {
-    //   toast.error("You cannot access this resource!");
-    //   return;
-    // }
+    if (!uid || !token) {
+      toast.error("You cannot access this resource!");
+      return;
+    }
 
     const details = { id: uid, token: token, credentials: credentials };
 
     dispatch(verifyUser(details)).then((result) => {
       if (result.payload) {
-        setCredentials({ email: "", password: "" });
+        setCredentials({ confirmPassword: "", password: "" });
         navigate("/admin/dashboard");
       }
     });
