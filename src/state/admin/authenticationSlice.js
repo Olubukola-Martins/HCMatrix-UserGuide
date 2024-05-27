@@ -37,11 +37,12 @@ export const verifyUser = createAsyncThunk(
   "auth/verify",
 
   async (userCredential, { rejectWithValue }) => {
-    const { token, uid, credentials } = userCredential;
+   const {token , uid, ...passwords} = userCredential
+   
     try {
       const response = await axiosInstance.post(
         `/user/invite/verification?uid=${uid}&token={{${token}}}`,
-        credentials
+        passwords
       );
       return response.data;
     } catch (error) {

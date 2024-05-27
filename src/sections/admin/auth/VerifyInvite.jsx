@@ -31,7 +31,6 @@ const VerifyInvite = () => {
     setCredentials((prev) => {
       return { ...prev, token: token, uid: uid };
     });
-
   }, [location.search]);
 
   const onChangeHandler = (e) => {
@@ -59,11 +58,14 @@ const VerifyInvite = () => {
       return;
     }
 
-    const details = { id: uid, token: token, credentials: credentials };
-
-    dispatch(verifyUser(details)).then((result) => {
+    dispatch(verifyUser(credentials)).then((result) => {
       if (result.payload) {
-        setCredentials({ confirmPassword: "", password: "" });
+        setCredentials({
+          confirmPassword: "",
+          password: "",
+          uid: "",
+          token: "",
+        });
         navigate("/admin/dashboard");
       }
     });
@@ -100,7 +102,7 @@ const VerifyInvite = () => {
               name="confirmPassword"
             />
 
-            <FormBtn custom="rounded-full" loading={false} />
+            <FormBtn custom="rounded-full" loading={loading} />
           </div>
         </form>
 
