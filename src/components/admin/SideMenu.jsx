@@ -8,6 +8,7 @@ import { Fluent, ViewFinder } from "../../assets/admin/icons/dashboard";
 import { AddBtn } from "../../assets/admin/icons/dashboard";
 import { gear } from "../../assets/user/categories";
 import { reset } from "../../state/admin/articles/articleSlice";
+import { NoData } from "../common";
 
 const SideMenu = ({ page, title: pageTitle }) => {
   const { mainCategories, loadingCategory } = useSelector(
@@ -42,7 +43,13 @@ const SideMenu = ({ page, title: pageTitle }) => {
       )}
 
       <h3 className="mb-4 text-sm">All Categories</h3>
-      <div className="max-h-[70vh] overflow-y-scroll  scrollbar-hide pb-2">
+      <div
+        className={`min-h-[50vh]  max-h-[70vh] overflow-y-scroll scrollbar-hide pb-2 ${
+          mainCategories.length === 0 &&
+          !loadingCategory &&
+          "grid place-items-center mt-6"
+        }`}
+      >
         {loadingCategory ? (
           <div>
             {placeHolder.map((each, index) => {
@@ -56,7 +63,7 @@ const SideMenu = ({ page, title: pageTitle }) => {
               );
             })}
           </div>
-        ) : (
+        ) : mainCategories.length !== 0 ? (
           <section className="">
             {mainCategories.map((category, index) => {
               const { emoji, name, active, id, articlesCount } = category;
@@ -82,6 +89,8 @@ const SideMenu = ({ page, title: pageTitle }) => {
               );
             })}
           </section>
+        ) : (
+          <NoData msg="No Category!!!" />
         )}
       </div>
 

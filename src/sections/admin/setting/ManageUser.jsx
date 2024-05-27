@@ -15,6 +15,11 @@ import { Input } from "../../../components/common";
 import { useEffect, useState } from "react";
 
 import {
+  deleteUser,
+  disableUser,
+} from "../../../state/admin/authenticationSlice";
+
+import {
   Layout,
   MainContent,
   SidePanel,
@@ -89,9 +94,9 @@ const ManageUser = () => {
 
   const {
     currentPage,
-    paginatedData: articlesToShow,
+    paginatedData: userToShow,
     handlePageChange,
-  } = usePagination([], pageSize);
+  } = usePagination(users, pageSize);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -176,7 +181,7 @@ const ManageUser = () => {
                     ))}
                   </thead>
                   <tbody>
-                    <TableBody tableRows={users} loading={isLoading} />
+                    <TableBody tableRows={userToShow} loading={isLoading} />
                   </tbody>
                 </table>
 
@@ -184,6 +189,7 @@ const ManageUser = () => {
                   pageSize={pageSize}
                   current={currentPage}
                   onChange={handlePageChange}
+                  total={users.length}
                 />
               </div>
             </Wrapper>

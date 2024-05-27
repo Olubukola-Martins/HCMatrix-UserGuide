@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { verifyUser } from "../../../state/admin/authenticationSlice";
 import Auth from "../../../pages/auth/Auth";
+import { validatePassword } from "../../../services/passwordChecker";
 
 const VerifyInvite = () => {
   const navigate = useNavigate();
@@ -50,6 +51,11 @@ const VerifyInvite = () => {
 
     if (confirmPassword !== password) {
       toast.error("Password do not match");
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      toast.error("Password is not strong enough");
       return;
     }
 

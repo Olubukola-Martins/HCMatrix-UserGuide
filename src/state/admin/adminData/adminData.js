@@ -133,7 +133,7 @@ const adminDataSlice = createSlice({
         state.allCategories = categories;
         state.mainCategoryId = main.find((category) => {
           return category.active === true;
-        }).id;
+        })?.id;
         state.mainCategories = main;
         state.loadingCategory = false;
         state.error = null;

@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import axiosInstance from "../../services/AxiosInstance";
-import { json } from "react-router-dom";
-const baseUrl = import.meta.env.BASE;
+import { getUsers } from "./adminData/thunkFunctions";
 
 export const loginUser = createAsyncThunk(
   "auth/login",
@@ -39,13 +38,48 @@ export const verifyUser = createAsyncThunk(
   async (userCredential, { rejectWithValue }) => {
     const { token, uid, ...passwords } = userCredential;
 
+    console.log(token, uid);
+    console.log(passwords);
+
     try {
       const response = await axiosInstance.post(
-        `/user/invite/verification?uid=${uid}&token={{${token}}}`,
+        `/user/invite/verification?uid=${uid}&token=${token}`,
         passwords
       );
 
       console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      toast.error("An Error occurred");
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const disableUser = createAsyncThunk(
+  "auth/disable",
+
+  async (id, thunkApi) => {
+    try {
+      const response = await axiosInstance.patch(`/user/${id}/enable`);
+      thunkApi.dispatch(getUsers());
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      toast.error("An Error occurred");
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const deleteUser = createAsyncThunk(
+  "auth/delete",
+
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.delete(`/user/${id}`);
+      thunkApi.dispatch(getUsers());
       return response.data;
     } catch (error) {
       console.log(error);
@@ -128,6 +162,32 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(inviteUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(deleteUser.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(deleteUser.fulfilled, (state, action) => {
+        const res = action.payload;
+        toast.success("user deleted successfully");
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(deleteUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(disableUser.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(disableUser.fulfilled, (state, action) => {
+        const res = action.payload;
+        toast.success("user updated successfully");
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(disableUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
