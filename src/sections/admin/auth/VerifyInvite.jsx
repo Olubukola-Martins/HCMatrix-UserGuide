@@ -31,6 +31,8 @@ const VerifyInvite = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
+    console.log(uid, token);
+
     if (!confirmPassword || !password) {
       toast.error("Please enter password");
       return;
