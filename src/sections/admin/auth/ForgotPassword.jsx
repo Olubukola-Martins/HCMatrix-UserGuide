@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Auth from "../../../pages/auth/Auth";
 import { Select } from "antd";
 import { FormContainer } from "../../../components/admin";
+import { forgotPassword } from "../../../state/admin/authenticationSlice";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -30,6 +31,8 @@ const ForgotPassword = () => {
       toast.error("Please enter your email");
       return;
     }
+
+    dispatch(forgotPassword(email));
   };
 
   return (

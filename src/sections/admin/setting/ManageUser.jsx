@@ -185,12 +185,14 @@ const ManageUser = () => {
                   </tbody>
                 </table>
 
-                <Pagination
-                  pageSize={pageSize}
-                  current={currentPage}
-                  onChange={handlePageChange}
-                  total={users.length}
-                />
+                {users.length > 5 && (
+                  <Pagination
+                    pageSize={pageSize}
+                    current={currentPage}
+                    onChange={handlePageChange}
+                    total={users.length}
+                  />
+                )}
               </div>
             </Wrapper>
           </div>

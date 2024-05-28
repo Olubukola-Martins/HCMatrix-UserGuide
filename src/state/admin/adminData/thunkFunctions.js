@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 export const getAllCategories = createAsyncThunk(
   "adminData/category",
-  async (thunkAPI) => {
+  async () => {
     try {
       const response = await axiosInstance.get(`/categories/?limit=1000`);
       return response.data;
@@ -17,7 +17,7 @@ export const getAllCategories = createAsyncThunk(
 
 export const searchCategories = createAsyncThunk(
   "adminData/category",
-  async (categoryName, thunkAPI) => {
+  async (categoryName) => {
     try {
       const response = await axiosInstance.get(
         `/categories/?search=${categoryName}`
@@ -47,7 +47,7 @@ export const getMainCategory = createAsyncThunk(
 
 export const getSubCategories = createAsyncThunk(
   "adminData/subcategories",
-  async (thunkAPI) => {
+  async () => {
     try {
       const response = await axiosInstance.get(
         `/categories//categories/?category_type=Sub`
@@ -62,7 +62,7 @@ export const getSubCategories = createAsyncThunk(
 
 export const getLeastCategories = createAsyncThunk(
   "adminData/category",
-  async (thunkAPI) => {
+  async () => {
     try {
       const response = await axiosInstance.get(`/categories/`);
       return response.data;
@@ -139,10 +139,12 @@ export const createNewCategory = createAsyncThunk(
 
     try {
       const response = await axiosInstance.post(`/categories`, newCategory);
+
       if (response.data.message) {
         const msg = response.data.message;
         toast.success(msg);
       }
+      thunkAPI.dispatch(getAllCategories());
       return response.data;
     } catch (error) {
       console.log(error);

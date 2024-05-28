@@ -9,8 +9,6 @@
 @font-face {
   font-family: "SF-Pro-Text";
   src: url("./fonts/SF-Pro-Text-Regular.otf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
 }
 
 @layer base {
@@ -23,8 +21,8 @@
     scroll-behavior: smooth;
   }
 
-  .body {
-    font-family: "SF-Pro-Text", "sans-serif";
+  body {
+    font-family: "SF-Pro-Text", sans-serif;
   }
 
   input:-webkit-autofill,

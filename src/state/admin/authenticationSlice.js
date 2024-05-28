@@ -76,10 +76,25 @@ export const disableUser = createAsyncThunk(
 export const deleteUser = createAsyncThunk(
   "auth/delete",
 
-  async (id, { rejectWithValue }) => {
+  async (id, thunkApi) => {
     try {
       const response = await axiosInstance.delete(`/user/${id}`);
       thunkApi.dispatch(getUsers());
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      toast.error("An Error occurred");
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const forgotPassword = createAsyncThunk(
+  "auth/forgot",
+
+  async (email) => {
+    try {
+      const response = await axiosInstance.post(`/auth/forgot-password`, email);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -188,6 +203,19 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(disableUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(forgotPassword.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(forgotPassword.fulfilled, (state, action) => {
+        const res = action.payload;
+        toast.success("Successfully please check your email");
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(forgotPassword.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
