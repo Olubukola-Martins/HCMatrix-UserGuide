@@ -38,16 +38,12 @@ export const verifyUser = createAsyncThunk(
   async (userCredential, { rejectWithValue }) => {
     const { token, uid, ...passwords } = userCredential;
 
-    console.log(token, uid);
-    console.log(passwords);
-
     try {
       const response = await axiosInstance.post(
         `/user/invite/verification?uid=${uid}&token=${token}`,
         passwords
       );
 
-      console.log(response.data);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -94,7 +90,9 @@ export const forgotPassword = createAsyncThunk(
 
   async (email) => {
     try {
-      const response = await axiosInstance.post(`/auth/forgot-password`, email);
+      const response = await axiosInstance.post(`/auth/forgot-password`, {
+        email: email,
+      });
       return response.data;
     } catch (error) {
       console.log(error);

@@ -13,6 +13,8 @@ const ForgotPassword = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const { loading } = useSelector((store) => store.auth);
+
   const [email, setEmail] = useState("");
 
   const loginNavigate = () => {
@@ -53,7 +55,7 @@ const ForgotPassword = () => {
               name="email"
             />
 
-            <FormBtn custom="rounded-full" loading={false} />
+            <FormBtn custom="rounded-full" loading={loading} />
           </div>
         </form>
 

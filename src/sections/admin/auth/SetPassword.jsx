@@ -8,7 +8,7 @@ import { verifyUser } from "../../../state/admin/authenticationSlice";
 import Auth from "../../../pages/auth/Auth";
 import { validatePassword } from "../../../services/passwordChecker";
 
-const VerifyInvite = () => {
+const SetPassword = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -127,4 +127,4 @@ const VerifyInvite = () => {
     </Auth>
   );
 };
-export default VerifyInvite;
+export default SetPassword;
