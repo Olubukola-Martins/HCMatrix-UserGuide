@@ -5,33 +5,21 @@ import { FormBtn } from "../../../components/common";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import Auth from "../../../pages/auth/Auth";
-import { resetPassword } from "../../../state/admin/authenticationSlice";
+import { changePassword } from "../../../state/admin/authenticationSlice";
+import { useDebouncedCallback } from "use-debounce";
 
-const ResetPassword = () => {
+const ChangePassword = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
 
   const [credentials, setCredentials] = useState({
+    currentPassword: "",
     confirmPassword: "",
     password: "",
-    uid: "",
-    token: "",
   });
-  const { password, confirmPassword, uid, token } = credentials;
-  const { loginMessage, user, loading, error } = useSelector(
-    (store) => store.auth
-  );
-
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const uid = searchParams.get("uid");
-    const token = searchParams.get("token");
-
-    setCredentials((prev) => {
-      return { ...prev, token: token, uid: uid };
-    });
-  }, [location.search]);
+  const { password, confirmPassword, currentPassword } = credentials;
+  const { loading } = useSelector((store) => store.auth);
 
   const onChangeHandler = (e) => {
     const { value, name } = e.target;
@@ -43,32 +31,26 @@ const ResetPassword = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    if (!confirmPassword || !password) {
+    if (!currentPassword || !confirmPassword || !password) {
       toast.error("Please enter password");
       return;
     }
 
     if (confirmPassword !== password) {
-      toast.error("Password do not match");
+      toast.error("New passwords do not match");
       return;
     }
 
-    if (!uid || !token) {
-      toast.error("You cannot access this resource!");
-      return;
-    }
-
-    dispatch(resetPassword(credentials)).then((result) => {
+    dispatch(changePassword(credentials)).then((result) => {
       if (result.payload) {
         setCredentials({
+          currentPassword: "",
           confirmPassword: "",
           password: "",
-          uid: "",
-          token: "",
         });
 
         useDebouncedCallback(() => {
-          navigate("/auth/login");
+          navigate("/admin/dashboard");
         }, 500);
       }
     });
@@ -81,10 +63,18 @@ const ResetPassword = () => {
   return (
     <Auth>
       <div className="text-center text-[#3A3A3AB2] mb-10">
-        <h3 className=" font-semibold text-xl mb-2">Enter You new Password</h3>
+        <h3 className=" font-semibold text-xl mb-2">Change you password</h3>
       </div>
       <form className="  relative w-full" onSubmit={onSubmitHandler}>
         <div className="flex flex-col gap-10">
+          <FloatingInput
+            type="password"
+            placeHolder="Enter old password"
+            FloatingInput
+            value={currentPassword}
+            onChange={onChangeHandler}
+            name="currentPassword"
+          />
           <FloatingInput
             type="password"
             placeHolder="Enter New Password"
@@ -108,7 +98,7 @@ const ResetPassword = () => {
 
       <div className="mt-3 text-center">
         <p className="text-[#7C7C7C] text-[13px] mx-auto ">
-          Already Have an Account ?{" "}
+          This was a mistake ?{" "}
           <span
             className="text-[#F77366] cursor-pointer"
             onClick={loginNavigate}
@@ -120,4 +110,4 @@ const ResetPassword = () => {
     </Auth>
   );
 };
-export default ResetPassword;
+export default ChangePassword;

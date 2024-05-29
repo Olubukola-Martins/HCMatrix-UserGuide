@@ -100,7 +100,7 @@ const CreateCategory = () => {
                 className="flex flex-col gap-5"
                 onSubmit={categoryCreationHandler}
               >
-                <Wrapper padding="pt-5 pb-4 pl-8">
+                <Wrapper padding="pt-6 pb-4 px-6 md:pl-8">
                   <FormContainer bold={true} label={`Parent Category name`}>
                     <DataListInput
                       category={allCategories}
@@ -113,7 +113,7 @@ const CreateCategory = () => {
                   </FormContainer>
                 </Wrapper>
 
-                <Wrapper padding="py-8 pl-8 flex flex-col gap-2">
+                <Wrapper padding="py-6 px-6 md:pl-8 flex flex-col gap-2">
                   <FormContainer bold={true} label={`Category name`}>
                     <Input
                       onChange={onChangeHandler}

@@ -13,16 +13,18 @@ import { Input } from "antd";
 import { getCategoryArticles } from "../../../state/admin/articles/thunkFunctions";
 import { filterSubArticles } from "../../../state/admin/articles/articleSlice";
 import { useDebouncedCallback } from "use-debounce";
+import { useMediaQuery } from "../../../hooks/common";
 
 const Main = () => {
   const dispatch = useDispatch();
   const [searchInput, setSearchInput] = useState();
   const { mainCategoryId } = useSelector((store) => store.adminData);
 
+  const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
+
   useEffect(() => {
     dispatch(getCategoryArticles(mainCategoryId));
   }, [mainCategoryId]);
-
 
   const debouncedOnChange = useDebouncedCallback(() => {
     dispatch(filterSubArticles(searchInput));

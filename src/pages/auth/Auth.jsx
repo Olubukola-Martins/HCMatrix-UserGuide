@@ -4,9 +4,11 @@ import { Container, SectionContainer } from "../../components/user";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Logo } from "../../assets/admin/images";
+import { useMediaQuery } from "../../hooks/common";
 
 const Auth = ({ children }) => {
   const navigate = useNavigate();
+  const belowSmallScreens = useMediaQuery("(min-width:'0px')");
 
   return (
     <>
@@ -26,8 +28,12 @@ const Auth = ({ children }) => {
           HCMatrix User Guide{" "}
         </h1>
         <SectionContainer>
-          <div className="py-10 flex items-center justify-center border rounded-md mb-2">
-            {children}
+          <div className="py-10  flex items-center justify-center border-black rounded-md mb-2">
+            <div
+              className={`relative w-[90%] xs:w-[70%] sm:w-[50%] md:w-[40%] `}
+            >
+              {children}
+            </div>
           </div>
 
           <div className="flex items-center justify-center">

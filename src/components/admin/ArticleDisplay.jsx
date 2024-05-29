@@ -11,6 +11,7 @@ import {
   findSingleArticle,
 } from "../../state/admin/articles/thunkFunctions";
 import { getReviews } from "../../state/admin/adminData/thunkFunctions";
+import { useMediaQuery } from "../../hooks/common";
 
 const ArticleDisplay = ({
   title,
@@ -22,6 +23,8 @@ const ArticleDisplay = ({
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
 
   const disableArticle = () => {
     dispatch(disableArticlesHandler(id));
@@ -59,15 +62,15 @@ const ArticleDisplay = ({
   );
 
   return (
-    <div className="flex px-6 border-b last:border-none h-full items-stretch">
-      <div className="w-[45%] pr-5 flex flex-col justify-center ">
+    <div className="flex justify-between md:justify-start px-6 border-b last:border-none h-full items-stretch">
+      <div className="sm:w-[45%] pr-5 flex flex-col  justify-center ">
         <h3 className="capitalize text-customGray">{title}</h3>
 
         <span className="text-[10px] font-light">
           {`Last updated ${dateConverter(updatedAt)} hours ago`}
         </span>
       </div>
-      <div className="flex-1 flex h-full font-body text-center">
+      <div className="flex-1 hidden sm:flex h-full font-body text-center">
         <span className="bg-customGreen text-customGreen-normal grid place-items-center text-center h-full  flex-1">
           {`${feedbackStats?.positivePercentage.toFixed(1)}%`}
         </span>
@@ -78,11 +81,11 @@ const ArticleDisplay = ({
           {`${feedbackStats?.negativePercentage.toFixed(1)}%`}
         </span>
       </div>
-      <div className="w-[20%] relative grid place-items-center">
+      <div className=" w-[20%] relative grid place-items-center">
         <Popover
           content={type === "dashboard" ? dashboardContent : insightContent}
-          trigger="click"
-          placement="right"
+          trigger="hover"
+          placement={!isAboveMediumScreens ? "bottom" : "right"}
         >
           <img src={menu} alt="" />
         </Popover>

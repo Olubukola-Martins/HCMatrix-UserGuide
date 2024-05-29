@@ -4,12 +4,15 @@ import { positive, negative, neutral } from "../../assets/common/review";
 import { Pagination } from "antd";
 import { useState } from "react";
 import { NoData } from "../common";
-import { usePagination } from "../../hooks/common";
+import { usePagination, useMediaQuery } from "../../hooks/common";
+
 
 const ArticleReviewBox = ({ type }) => {
   const { filteredSingleCategoryArticles, loading } = useSelector(
     (store) => store.article
   );
+
+  const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
 
   const pageSize = 4;
 
@@ -27,9 +30,9 @@ const ArticleReviewBox = ({ type }) => {
         {filteredSingleCategoryArticles?.length > 0 ? (
           <section className="h-[22rem] grid grid-rows-[3rem_1fr_1fr_1fr_1fr]">
             {/* Box Heading */}
-            <header className="flex h-[3rem] items-center px-6 border-b">
+            <header className="flex h-[3rem] items-center  justify-between md:justify-start px-6 border-b">
               <span className="w-[45%] text-customGray-semiDark">Articles</span>
-              <div className="flex-1   items-center flex">
+              <div className="flex-1 hidden sm:flex items-center ">
                 <img src={positive} alt="" className=" h-5 flex-1" />
                 <img src={neutral} alt="" className="flex-1  h-5" />
                 <img src={negative} alt="" className="flex-1  h-5" />

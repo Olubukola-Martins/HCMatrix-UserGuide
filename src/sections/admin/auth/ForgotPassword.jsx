@@ -34,42 +34,44 @@ const ForgotPassword = () => {
       return;
     }
 
-    dispatch(forgotPassword(email));
+    dispatch(forgotPassword(email)).then((response) => {
+      if (response.data) {
+        setEmail("");
+      }
+    });
   };
 
   return (
     <Auth>
-      <div className="relative w-[40%]">
-        <div className="text-center text-[#3A3A3AB2] mb-10">
-          <h3 className=" font-semibold text-xl mb-2">
-            Enter Email to reset password
-          </h3>
-        </div>
-        <form className="  relative w-full" onSubmit={onSubmitHandler}>
-          <div className="flex flex-col gap-10">
-            <FloatingInput
-              placeHolder="Your email"
-              value={email}
-              type="email"
-              onChange={onChangeHandler}
-              name="email"
-            />
+      <div className="text-center text-[#3A3A3AB2] mb-10">
+        <h3 className=" font-semibold text-xl mb-2">
+          Enter Email to reset password
+        </h3>
+      </div>
+      <form className="  relative w-full" onSubmit={onSubmitHandler}>
+        <div className="flex flex-col gap-10">
+          <FloatingInput
+            placeHolder="Your email"
+            value={email}
+            type="email"
+            onChange={onChangeHandler}
+            name="email"
+          />
 
-            <FormBtn custom="rounded-full" loading={loading} />
-          </div>
-        </form>
-
-        <div className="mt-3 text-center">
-          <p className="text-[#7C7C7C] text-[13px] mx-auto ">
-            This was a mistake ?{" "}
-            <span
-              className="text-[#F77366] cursor-pointer"
-              onClick={loginNavigate}
-            >
-              Log in
-            </span>
-          </p>
+          <FormBtn custom="rounded-full" loading={loading} />
         </div>
+      </form>
+
+      <div className="mt-3 text-center">
+        <p className="text-[#7C7C7C] text-[13px] mx-auto ">
+          This was a mistake ?{" "}
+          <span
+            className="text-[#F77366] cursor-pointer"
+            onClick={loginNavigate}
+          >
+            Log in
+          </span>
+        </p>
       </div>
     </Auth>
   );

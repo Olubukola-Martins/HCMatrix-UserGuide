@@ -26,7 +26,7 @@ const AdminPage = () => {
     <>
       {showHeader && <Header />}
       {newArticleModal && <NewArticleModal />}
-      <div className={`${barToggle ? "py-48" : "py-[9rem]"}`}>
+      <div className={`${barToggle ? "py-48" : "py-[8rem] md:py-[9rem]"}`}>
         <Outlet />
       </div>
     </>

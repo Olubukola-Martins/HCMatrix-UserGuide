@@ -8,7 +8,7 @@ import { verifyUser } from "../../../state/admin/authenticationSlice";
 import Auth from "../../../pages/auth/Auth";
 import { validatePassword } from "../../../services/passwordChecker";
 
-const SetPassword = () => {
+const VerifyInvite = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -54,10 +54,6 @@ const SetPassword = () => {
       return;
     }
 
-    if (!validatePassword(password)) {
-      toast.error("Password is not strong enough");
-      return;
-    }
 
     if (!uid || !token) {
       toast.error("You cannot access this resource!");
@@ -127,4 +123,4 @@ const SetPassword = () => {
     </Auth>
   );
 };
-export default SetPassword;
+export default VerifyInvite;

@@ -3,6 +3,11 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      screens: {
+        xs: "480px",
+        sm: "768px",
+        md: "1060px",
+      },
       gradientColorStops: {
         "custom-white": "rgba(255, 255, 255, 0.24)",
         "custom-gray": "rgba(196, 196, 196, 0.04)",

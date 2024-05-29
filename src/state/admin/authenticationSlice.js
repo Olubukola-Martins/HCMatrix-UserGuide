@@ -52,6 +52,26 @@ export const verifyUser = createAsyncThunk(
     }
   }
 );
+export const resetPassword = createAsyncThunk(
+  "auth/reset",
+
+  async (userCredential, { rejectWithValue }) => {
+    const { token, uid, ...passwords } = userCredential;
+
+    try {
+      const response = await axiosInstance.post(
+        `/auth/reset-password?uid=${uid}&token=${token}`,
+        passwords
+      );
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      toast.error("An Error occurred");
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
 export const disableUser = createAsyncThunk(
   "auth/disable",
@@ -93,6 +113,23 @@ export const forgotPassword = createAsyncThunk(
       const response = await axiosInstance.post(`/auth/forgot-password`, {
         email: email,
       });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      toast.error("An Error occurred");
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+export const changePassword = createAsyncThunk(
+  "auth/change-password",
+
+  async (passwords) => {
+    try {
+      const response = await axiosInstance.patch(
+        `/me/change-password`,
+        passwords
+      );
       return response.data;
     } catch (error) {
       console.log(error);
@@ -209,11 +246,37 @@ const authSlice = createSlice({
       })
       .addCase(forgotPassword.fulfilled, (state, action) => {
         const res = action.payload;
-        toast.success("Successfully please check your email");
+        toast.success("Success!!! check your email");
         state.loading = false;
         state.error = null;
       })
       .addCase(forgotPassword.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(resetPassword.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(resetPassword.fulfilled, (state, action) => {
+        const res = action.payload;
+        toast.success("Thank you!");
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(resetPassword.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(changePassword.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(changePassword.fulfilled, (state, action) => {
+        const res = action.payload;
+        toast.success("Thank you!");
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(changePassword.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

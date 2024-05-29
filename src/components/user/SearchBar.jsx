@@ -43,7 +43,7 @@ const SearchBar = () => {
 
   return (
     <div className="">
-      <GlassDesign className="rounded-md pl-5 py-3 md:mt-[-.7rem]">
+      <GlassDesign className="rounded-md pl-5 py-3 ">
         <div className="flex items-center">
           <img src={search} alt="" className="h-4 md:h-6" />
           <input

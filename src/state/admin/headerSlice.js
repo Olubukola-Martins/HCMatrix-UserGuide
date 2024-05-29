@@ -1,16 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  dashboardicon,
-  insighticon,
-  settingsicon,
-  admin,
-} from "../../assets/admin/icons/header";
-
-import {
-  MemberIcon,
-  LookIcon,
-  CreateIcon,
-} from "../../assets/admin/icons/headerSetting";
 
 const initialState = {
   navMenu: [

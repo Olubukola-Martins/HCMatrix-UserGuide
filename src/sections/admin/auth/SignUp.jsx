@@ -40,7 +40,7 @@ const SignUp = () => {
 
   return (
     <Auth>
-      <div className="relative w-[40%]">
+     
         <div className="text-center text-[#3A3A3AB2] mb-10">
           <h3 className=" font-semibold text-xl mb-2">
             Admin sign up to HCMatrix User Guide
@@ -92,7 +92,7 @@ const SignUp = () => {
             </span>
           </p>
         </div>
-      </div>
+  
     </Auth>
   );
 };

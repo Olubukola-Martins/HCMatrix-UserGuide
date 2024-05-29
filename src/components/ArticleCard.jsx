@@ -7,7 +7,6 @@ const ArticleCard = ({ article, category }) => {
   const navigate = useNavigate();
 
   const link = `/${category}/${title}`;
-  console.log(link);
 
   const onClickHandler = () => {
     navigate(`/${category}/${title}`);

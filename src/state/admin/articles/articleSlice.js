@@ -35,9 +35,6 @@ const articleSlice = createSlice({
         return article.title.toLowerCase().includes(search.toLowerCase());
       });
 
-      console.log(search);
-      console.log(filter);
-
       state.filteredSingleCategoryArticles =
         search !== "" ? filter : state.singleCategoryArticles;
     },

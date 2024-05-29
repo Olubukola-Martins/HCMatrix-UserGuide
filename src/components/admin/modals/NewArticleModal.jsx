@@ -32,9 +32,6 @@ const NewArticleModal = () => {
     (store) => store.article
   );
 
-  useEffect(() => {
-    console.log(loading);
-  }, [loading]);
 
   // Init values //
   // Initial values for the state

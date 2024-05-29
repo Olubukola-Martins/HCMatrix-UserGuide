@@ -8,7 +8,6 @@ import GlassDesign from "./GlassDesign";
 import SearchBar from "./SearchBar";
 import Logo from "../../assets/user/Logo.svg";
 
-
 const Hero = ({ showSearch }) => {
   const { contactBtn } = useSelector((store) => store.customization);
   const navigate = useNavigate();
@@ -63,8 +62,8 @@ const Hero = ({ showSearch }) => {
           </GlassDesign>
         )}
 
-        <div className="w-[99%] md:w-[75%] mx-auto md:mt-[2rem] mt-[7rem] relative ">
-          <div className=" flex items-center mb-1 md:mb-2 justify-center">
+        <div className="w-[99%] md:w-[75%] mx-auto md:mt-[3rem] mt-[7rem] relative ">
+          <div className=" flex items-center justify-center">
             <h1 className="text-center font-bold text-lg  md:text-2xl md:text-l mr-2">
               How can we help?
             </h1>

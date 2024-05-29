@@ -73,7 +73,7 @@ const SetNewPassword = () => {
 
   return (
     <Auth>
-      <div className="relative w-[40%]">
+    
         <div className="text-center text-[#3A3A3AB2] mb-10">
           <h3 className=" font-semibold text-xl mb-2">
             Enter You new Password
@@ -113,7 +113,7 @@ const SetNewPassword = () => {
             </span>
           </p>
         </div>
-      </div>
+ 
     </Auth>
   );
 };

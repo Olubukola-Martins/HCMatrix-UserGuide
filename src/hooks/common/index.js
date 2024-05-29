@@ -1,4 +1,4 @@
 import usePagination from "./usePagination";
+import useMediaQuery from "./useMediaQuery";
 
-
-export { usePagination };
+export { usePagination, useMediaQuery };

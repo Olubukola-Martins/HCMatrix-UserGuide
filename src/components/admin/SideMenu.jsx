@@ -6,15 +6,16 @@ import { getSingleCategory } from "../../state/admin/adminData/adminData";
 import { newArticleModalToggle } from "../../state/admin/modalSlice";
 import { Fluent, ViewFinder } from "../../assets/admin/icons/dashboard";
 import { AddBtn } from "../../assets/admin/icons/dashboard";
-import { gear } from "../../assets/user/categories";
 import { reset } from "../../state/admin/articles/articleSlice";
 import { NoData } from "../common";
+import { useMediaQuery } from "../../hooks/common";
 
 const SideMenu = ({ page, title: pageTitle }) => {
   const { mainCategories, loadingCategory } = useSelector(
     (store) => store.adminData
   );
   const dispatch = useDispatch();
+
 
   const onClickHandler = (id) => {
     dispatch(getSingleCategory({ id, page }));
@@ -77,11 +78,8 @@ const SideMenu = ({ page, title: pageTitle }) => {
                   key={id}
                 >
                   <div className="flex gap-4 items-center">
-                    {name === "Settings" ? (
-                      <img src={gear} alt="" className=" p-1 h-[1.8rem]" />
-                    ) : (
-                      <span className="text-lg">{emoji?.code}</span>
-                    )}
+                    <span className="text-lg">{emoji?.code}</span>
+
                     <h3 className="text-[16px] capitalize">{name}</h3>
                   </div>
                   <span className="font-light text-[11px]">{`${articlesCount} Articles`}</span>

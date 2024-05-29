@@ -14,7 +14,7 @@ const AuthModal = () => {
   const { adminModal } = useSelector((store) => store.modelSlice);
 
   const changePasswordHandler = () => {
-    navigate("/auth/forgot-password");
+    navigate("/auth/change-password");
   };
 
   const logOutHandler = () => {

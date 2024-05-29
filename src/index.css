@@ -42,11 +42,6 @@
     border-radius: 50px;
   }
 
-  li {
-    list-style-type: disc;
-    list-style-position: inside;
-  }
-
   p {
     font-size: 14px;
   }
@@ -212,7 +207,7 @@
 }
 
 .glass__two::-webkit-scrollbar {
-  width: 7px; /* Width of the scrollbar */
+  width: 7px;
 }
 
 .customShadow {

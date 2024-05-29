@@ -77,7 +77,7 @@ const adminDataSlice = createSlice({
     },
 
     getSingleCategory: (state, action) => {
-      const { id, page } = action.payload;
+      const { id } = action.payload;
       const setActive = state.mainCategories.map((category) => {
         if (category.id === id) {
           return { ...category, active: true };
@@ -159,7 +159,7 @@ const adminDataSlice = createSlice({
         state.error = null;
       })
       .addCase(createNewCategory.rejected, (state, action) => {
-        console.log(action.payload);
+       
         state.loadingAddCategory = false;
         state.addNew = init;
         state.error = action.payload;

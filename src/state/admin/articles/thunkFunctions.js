@@ -49,7 +49,7 @@ export const editArticle = createAsyncThunk(
   "article/editArticle",
   async (article) => {
     try {
-      console.log(article, "unformatted article");
+     
       const { body, description, id, title, videoUrl, categoryId } = article;
 
       const formattedArticle = {
@@ -95,7 +95,7 @@ export const disableArticlesHandler = createAsyncThunk(
   "article/disable",
   async (articleId) => {
     try {
-      console.log(articleId);
+
       const response = await axiosInstance.patch(
         `/articles/${articleId}/publish`
       );
@@ -113,7 +113,7 @@ export const findSingleArticle = createAsyncThunk(
   async (articleId) => {
     try {
       const response = await axiosInstance.get(`/articles/${articleId}`);
-      console.log(response);
+     
       return response.data;
     } catch (error) {
       toast.error("Something went wrong");
