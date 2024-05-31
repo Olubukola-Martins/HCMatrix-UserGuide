@@ -73,7 +73,7 @@
   }
 
   .container {
-    @apply max-w-[1150px] mx-auto px-3 md:px-8 font-body relative z-50 mb-32;
+    @apply max-w-[1150px] mx-auto px-5 md:px-8 font-body relative z-50 mb-32;
   }
 
   .category__card__container {
@@ -89,7 +89,7 @@
   }
 
   .category__card__header {
-    @apply md:text-xl font-bold  cursor-pointer capitalize w-full text-center;
+    @apply text-2xl md:text-xl font-bold  cursor-pointer capitalize w-full text-center;
   }
 
   .article__card__container {

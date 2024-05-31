@@ -31,9 +31,11 @@ const CategoryCard = ({ category, isLoading }) => {
       <div className="category__card__container  rounded-lg bg-white customShadow box-border h-auto flex flex-col items-center ">
         <div className="h-full grid grid-rows-4 py-5  md:pt-3 md:pb-3 lg:pb-0 items-center justify-items-center">
           {category?.emoji?.code ? (
-            <span className="text-[2rem] -mb-2">{category?.emoji?.code}</span>
+            <span className="text-[2.8rem] md:text-[2rem] -mb-2">
+              {category?.emoji?.code}
+            </span>
           ) : (
-            <img src={wavingHand} className="h-10 " />
+            <img src={wavingHand} className="h-10" />
           )}
 
           <h3 className="category__card__header " onClick={() => navigating()}>
