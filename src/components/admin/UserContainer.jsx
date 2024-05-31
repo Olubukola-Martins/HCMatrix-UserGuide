@@ -3,7 +3,7 @@ import { Popover } from "antd";
 import { useDispatch } from "react-redux";
 import { deleteUser, disableUser } from "../../state/admin/authenticationSlice";
 
-const TableBody = ({ tableRows, loading }) => {
+const UsersContainer = ({ users, loading }) => {
   const dispatch = useDispatch();
   const manageUserHandler = (type, id) => {
     type === "delete" ? dispatch(deleteUser(id)) : dispatch(disableUser(id));
@@ -26,7 +26,7 @@ const TableBody = ({ tableRows, loading }) => {
     </div>
   );
 
-  return tableRows.map((user, index) => {
+  return users.map((user, index) => {
     const statusTextLogic = user?.user?.isVerified
       ? "Accepted Invite"
       : "Pending Invite";
@@ -34,37 +34,27 @@ const TableBody = ({ tableRows, loading }) => {
       ? "text-green-600"
       : "text-yellow-400";
 
+    const style = "px-6  py-4 md:block font-medium flex-1 text-left";
+
     return (
-      <tr className="border-b" key={index}>
-        <td
-          className={`whitespace-nowrap px-6 py-4 font-medium ${
-            loading && "skeleton"
-          }`}
-        >
+      <div className="grid grid-cols-[75%_25%] sm:grid-cols-[50%_30%_20%] md:grid-cols-[5%_20%_30%_30%_15%] overflow-hidden  border-b  justify-between">
+        <span className={`${style} hidden ${loading && "skeleton"}`}>
           {++index}
-        </td>
-        <td
-          className={`whitespace-nowrap px-6 py-4 font-medium ${
-            loading && "skeleton"
-          }`}
-        >
+        </span>
+        <span className={`${style} hidden ${loading && "skeleton"}`}>
           {user?.firstName}
-        </td>
-        <td
-          className={`whitespace-nowrap px-6 py-4 font-medium ${
-            loading && "skeleton"
-          }`}
-        >
-          {user?.user?.email}{" "}
-        </td>
-        <td
-          className={`whitespace-nowrap px-6 py-4 font-medium ${
+        </span>
+        <span className={`${style} ${loading && "skeleton"}`}>
+          {user?.user?.email}
+        </span>
+        <span
+          className={`${style} hidden sm:block ${
             loading && "skeleton"
           } ${statusStyleLogic}`}
         >
-          {statusTextLogic}{" "}
-        </td>
-        <td className={` px-6 py-4 font-medium ${loading && "skeleton"}`}>
+          {statusTextLogic}
+        </span>
+        <span className={` ${style} ${loading && "skeleton"}`}>
           <Popover
             content={
               <div>
@@ -85,13 +75,12 @@ const TableBody = ({ tableRows, loading }) => {
             trigger="hover"
             placement="right"
           >
-            <img src={menu} alt="" />
+            <img src={menu} alt="" className="min-h-5" />
           </Popover>
-        </td>
-      </tr>
+        </span>
+      </div>
     );
   });
 };
 
-export default TableBody;
-
+export default UsersContainer;

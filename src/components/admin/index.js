@@ -21,6 +21,8 @@ import EmojiPicker from "./EmojiPicker";
 import FormContainer from "./FormContainer";
 import FloatingInput from "./FloatingInput";
 
+import UsersContainer from "./UserContainer";
+
 export {
   FormContainer,
   Header,
@@ -42,4 +44,5 @@ export {
   BtnLayoutAdmin,
   EmojiPicker,
   FloatingInput,
+  UsersContainer,
 };

@@ -78,7 +78,7 @@ const Login = () => {
         </div>
       </form>
 
-      <div className="mt-3 text-center">
+      <div className="mt-6 text-center">
         <p className="text-[#7C7C7C] text-[13px] mx-auto ">
           Forgotten password ?{" "}
           <span

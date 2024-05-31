@@ -78,6 +78,7 @@ const SideModal = () => {
   const categoryHandler = (id) => {
     onClose();
     dispatch(getSingleCategory({ id }));
+    navigate("/admin/dashboard");
   };
 
   const placeHolder = [1, 2, 3, 4, 5];

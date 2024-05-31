@@ -34,7 +34,7 @@ const Review = () => {
           {isLoading ? (
             <h2 className="font-semibold text-3xl skeleton mb-2">Loading</h2>
           ) : (
-            <h2 className="font-semibold text-3xl mb-3 capitalize">
+            <h2 className="font-semibold text-lg md:text-3xl mb-3 capitalize">
               {articleInfo?.title}
             </h2>
           )}
@@ -159,7 +159,7 @@ const Review = () => {
         ) : (
           <div>
             <NoData
-              className={`h-28 mb-5 mr-3`}
+              className={`h-16 md:h-28 mb-5 mr-3`}
               msg="There are no reviews yet!!"
             />
           </div>

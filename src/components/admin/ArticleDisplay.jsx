@@ -5,7 +5,7 @@ import { menu } from "../../assets/admin/icons/articles";
 import { dateConverter } from "../../utils/dateConverter";
 import { editContent } from "../../state/admin/articles/articleSlice";
 import { newArticleModalToggle } from "../../state/admin/modalSlice";
-import { FaSpinner } from "react-icons/fa";
+
 import {
   disableArticlesHandler,
   findSingleArticle,

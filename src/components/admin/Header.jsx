@@ -216,6 +216,7 @@ const Header = () => {
   const { adminModal } = useSelector((store) => store.modelSlice);
   const { settings, loading } = useSelector((store) => store.customization);
 
+  const isAboveSmallScreens = useMediaQuery("(min-width:768px)");
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
 
   const dispatch = useDispatch();

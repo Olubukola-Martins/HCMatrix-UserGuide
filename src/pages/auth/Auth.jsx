@@ -1,21 +1,21 @@
-import { Outlet } from "react-router-dom";
 import { heroImg } from "../../assets/common/images";
 import { Container, SectionContainer } from "../../components/user";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { Logo } from "../../assets/admin/images";
-import { useMediaQuery } from "../../hooks/common";
+import { useSelector } from "react-redux";
 
 const Auth = ({ children }) => {
   const navigate = useNavigate();
-  const belowSmallScreens = useMediaQuery("(min-width:'0px')");
+  const { headerStyle, settings } = useSelector((store) => store.customization);
 
   return (
     <>
       {/* <Hero /> */}
       <section
         className="bg-cover bg-center relative text-primary h-96 pt-7"
-        style={{ backgroundImage: `url(${heroImg})` }}
+        style={{
+          backgroundImage: `url(${headerStyle ? headerStyle : heroImg})`,
+        }}
       >
         <div className="absolute inset-0 bg-black opacity-70"></div>
         <nav
@@ -28,17 +28,17 @@ const Auth = ({ children }) => {
           HCMatrix User Guide{" "}
         </h1>
         <SectionContainer>
-          <div className="py-10  flex items-center justify-center border-black rounded-md mb-2">
+          <div className="py-10 flex flex-col items-center justify-center border rounded-md mb-2">
             <div
               className={`relative w-[90%] xs:w-[70%] sm:w-[50%] md:w-[40%] `}
             >
               {children}
             </div>
-          </div>
 
-          <div className="flex items-center justify-center">
-            <span className="text-sm -mr-2">Powered by</span>
-            <img src={Logo} alt="" className="h-9" />
+            <div className="flex items-center justify-center mt-1">
+              <span className="text-[10px] font-bold -mr-2">Powered by</span>
+              <img src={Logo} alt="" className="h-9" />
+            </div>
           </div>
         </SectionContainer>
       </Container>

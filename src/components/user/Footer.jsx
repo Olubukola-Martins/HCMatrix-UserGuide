@@ -10,7 +10,7 @@ const Footer = () => {
         <div className=" grid place-items-center">
           {badge && (
             <div className="flex items-center">
-              <p className="text-[11px] md:text-sm">Powered by</p>
+              <p className="text-[10px] md:text-sm">Powered by</p>
               <img src={Logo} alt="" className="h-10 md:h-14 -ml-2 " />
             </div>
           )}
