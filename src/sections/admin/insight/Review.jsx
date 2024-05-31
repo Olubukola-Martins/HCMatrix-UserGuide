@@ -21,7 +21,7 @@ const Review = () => {
 
   return (
     <Container>
-      <header className="flex justify-between mb-5">
+      <header className="flex justify-between mb-5 ">
         <div className="flex items-start flex-col self-stretch justify-between">
           <div
             className="py-[0.4rem] rounded-md text-customGray-light px-3 bg-white mb-3 flex gap-2 items-center cursor-pointer"
@@ -44,42 +44,42 @@ const Review = () => {
           </span>
         </div>
 
-        <div className="  self-stretch flex justify-between flex-col mr-5">
-          <div className="flex gap-3 items-center">
-            <img src={positive} alt="" className="h-6" />
+        <div className="self-stretch flex justify-between flex-col mr-0 md:mr-5">
+          <div className="flex gap-3 md:gap-3 items-center">
+            <img src={positive} alt="" className=" h-5 md:h-6" />
 
             {isLoading ? (
               <span className="text-lg py-1 mb-1 skeleton text-customGreen-normal font-semibold">
                 50%
               </span>
             ) : (
-              <span className="text-lg text-customGreen-normal font-semibold">
+              <span className="text-md md:text-lg text-customGreen-normal font-semibold">
                 {articleInfo?.feedbackStats?.positivePercentage}%
               </span>
             )}
           </div>
           <div className="flex gap-3 items-center">
-            <img src={neutral} alt="" className="h-6" />
+            <img src={neutral} alt="" className=" h-5 md:h-6" />
 
             {isLoading ? (
-              <span className="text-lg py-1 mb-1 text-customGray-semiDark skeleton font-semibold">
+              <span className="text-md md:text-lg py-1 mb-1 text-customGray-semiDark skeleton font-semibold">
                 50%
               </span>
             ) : (
-              <span className="text-lg text-customGray-semiDark font-semibold">
+              <span className="text-md md:text-lg text-customGray-semiDark font-semibold">
                 {articleInfo?.feedbackStats?.neutralPercentage}%
               </span>
             )}
           </div>
           <div className="flex gap-3 items-center">
-            <img src={negative} alt="" className="h-6" />
+            <img src={negative} alt="" className=" h-5 md:h-6" />
 
             {isLoading ? (
-              <span className="text-lg py-1 mb-1 text-customRed-normal skeleton font-semibold">
+              <span className="text-md md:text-lg py-1 mb-1 text-customRed-normal skeleton font-semibold">
                 50%
               </span>
             ) : (
-              <span className="text-lg text-customRed-normal font-semibold">
+              <span className="text-md md:text-lg text-customRed-normal font-semibold">
                 {articleInfo?.feedbackStats?.negativePercentage}%
               </span>
             )}
@@ -89,7 +89,9 @@ const Review = () => {
 
       <main
         className={`grid ${
-          reviews.length === 0 && !isLoading ? "" : "grid-cols-2 gap-4"
+          reviews.length === 0 && !isLoading
+            ? ""
+            : "grid-cols-1 mt-3 md:mt-0 md:grid-cols-2 gap-4"
         }`}
       >
         {isLoading ? (

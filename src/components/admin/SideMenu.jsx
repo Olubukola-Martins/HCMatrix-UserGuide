@@ -9,13 +9,13 @@ import { AddBtn } from "../../assets/admin/icons/dashboard";
 import { reset } from "../../state/admin/articles/articleSlice";
 import { NoData } from "../common";
 import { useMediaQuery } from "../../hooks/common";
+import AddArticle from "./AddArticle";
 
 const SideMenu = ({ page, title: pageTitle }) => {
   const { mainCategories, loadingCategory } = useSelector(
     (store) => store.adminData
   );
   const dispatch = useDispatch();
-
 
   const onClickHandler = (id) => {
     dispatch(getSingleCategory({ id, page }));
@@ -34,13 +34,14 @@ const SideMenu = ({ page, title: pageTitle }) => {
         {pageTitle}
       </h3>
       {page === "dashboard" && (
-        <Wrapper
-          className="flex bg-white justify-center rounded-lg items-center gap-2 mb-5 cursor-pointer"
-          onClickHandler={newArticleHandler}
-        >
-          <AddBtn />
-          <span>New Article</span>
-        </Wrapper>
+        // <Wrapper
+        //   className="flex bg-white justify-center rounded-lg items-center gap-2 mb-5 cursor-pointer"
+        //   onClickHandler={newArticleHandler}
+        // >
+        //   <AddBtn />
+        //   <span>New Article</span>
+        // </Wrapper>
+        <AddArticle />
       )}
 
       <h3 className="mb-4 text-sm">All Categories</h3>

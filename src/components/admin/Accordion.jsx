@@ -1,5 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useRef } from "react";
+import { useDispatch } from "react-redux";
 import {
   placeholder,
   down,
@@ -7,28 +6,40 @@ import {
   link,
 } from "../../assets/admin/icons/settings";
 import { accordionToggler } from "../../state/admin/customizationSlice";
-
 import Wrapper from "./Wrapper";
 import { Button, Upload } from "antd";
+import { toast } from "react-toastify";
+import {
+  uploadImage,
+  sendUrlToBackend,
+} from "../../state/admin/customizationSlice";
+import { Input } from "antd";
 
 const Accordion = ({ name, desc, type, id, toggle }) => {
-  //   const {} = useSelector((store) => store.customization);
   const dispatch = useDispatch();
 
   const closeAccordionHandler = () => {
     dispatch(accordionToggler(id));
   };
 
-  const inputRef = useRef(null);
+  const customRequest = ({ file, onSuccess, onError }) => {
+    dispatch(uploadImage(file))
+      .unwrap()
+      .then((url) => {
+        onSuccess(url, file);
 
-  const handleUploadClick = () => {
-    inputRef.current.click();
-  };
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    // Do something with the selected file, such as uploading it
-    console.log("Selected file:", file);
+        dispatch(sendUrlToBackend({ id, url }))
+          .then((res) => {
+            res.data && toast.success("Image uploaded successfully");
+          })
+          .catch((err) => {
+            toast.error("Upload failed, Please try again.");
+          });
+      })
+      .catch((err) => {
+        onError(err);
+        toast.error("Upload failed, Please try again.");
+      });
   };
 
   return (
@@ -53,13 +64,29 @@ const Accordion = ({ name, desc, type, id, toggle }) => {
         {desc}
       </p>
       <hr className="mb-3" />
-
-      {type !== "footer"}
+      {/* 
+      {type !== "footer" && toggle && (
+        <div className="w-[60%] xs:w-[50%] sm:w-[60%] md:w-[35%] py-14 px-6 mb-3 rounded-lg bg-customGray-upload transition-all duration-75 ease-in">
+          <Wrapper className="rounded-lg bg-white px-3">
+            <Upload customRequest={customRequest}>
+              <Button>
+                <div className="flex gap-2 items-center">
+                  <img src={upload} alt="" className="ml-1 h-4" />
+                  {`Upload ${name}`}
+                </div>
+              </Button>
+            </Upload>
+          </Wrapper>
+          <span className="text-[12px] block text-center mt-2 text-customGray-fade font-semibold">
+            PNG or JPEG up to 2mb
+          </span>
+        </div>
+      )} */}
 
       {type !== "footer" && toggle && (
-        <div className="w-[35%] py-14 px-6 mb-3 rounded-lg bg-customGray-upload">
-          <Wrapper className="rounded-lg bg-white px-3">
-            <Upload>
+        <div className="xs:w-[50%] sm:w-[50%] md:w-[30%] lg:w-[35%]  py-10 px-4 sm:py-12 sm:px-5 md:py-14 md:px-6 mb-3 rounded-lg bg-customGray-upload transition-all duration-75 ease-in">
+          <Wrapper className="rounded-lg bg-white px-2 sm:px-3 grid place-items-center">
+            <Upload customRequest={customRequest}>
               <Button>
                 <div className="flex gap-2 items-center">
                   <img src={upload} alt="" className="ml-1 h-4" />
@@ -75,32 +102,26 @@ const Accordion = ({ name, desc, type, id, toggle }) => {
       )}
 
       {type === "footer" && toggle && (
-        <div className="w-full py-2 px-6 mb-3 rounded-lg grid gap-10 grid-cols-2">
-          <div className="border">Name</div>
-          <div className="border">Links</div>
+        <div className="w-full py-2 px-6 mb-3 rounded-lg flex flex-col gap-5">
+          <div className="flex w-full gap-10">
+            <Input placeholder="Our Website" size="large" />
+            <Input placeholder="www.hcmatrix.com" />
+          </div>
+          <div className="flex  w-full gap-10">
+            <Input placeholder="Blog" size="large" />
+            <Input placeholder="http//:hcmatrix/blog" />
+          </div>
+          <div className="flex  w-full gap-10">
+            <Input placeholder="follow us" size="large" />
+            <Input placeholder="http//:follow-us/LinkedIn" />
+          </div>
+          <div className="flex  w-full gap-10">
+            <Input placeholder="contact us" size="large" />
+            <Input placeholder="http://contact-us-page" />
+          </div>
         </div>
       )}
     </div>
   );
 };
 export default Accordion;
-
-`
-<div className="flex items-center relative gap-2 w-[95%] mx-auto">
-<input
-  type="file"
-  className="absolute opacity-0"
-  ref={inputRef}
-  onChange={handleFileChange}
-  onClick={(event) => event.stopPropagation()}
-/>
-
-<div
-  onClick={handleUploadClick}
-  className="flex gap-2 items-center pl-1"
->
-  <img src={upload} alt="" className="ml-1" />
-  <span className="font-bold text-md">Upload Image</span>
-</div>
-</div>
-`;

@@ -214,6 +214,7 @@ const Header = () => {
     (store) => store.adminHeader
   );
   const { adminModal } = useSelector((store) => store.modelSlice);
+  const { settings, loading } = useSelector((store) => store.customization);
 
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
 
@@ -254,11 +255,20 @@ const Header = () => {
       <Container>
         <div className="flex justify-between">
           <div className="flex w-[60%] gap-5">
-            <img
-              src={adminLogo}
-              alt="logo"
-              className="scale-105 h-[2.7rem] mr-5"
-            />
+            {loading ? (
+              <img
+                src={adminLogo}
+                alt="logo"
+                className="scale-105 h-[2.7rem] mr-5 skeleton"
+              />
+            ) : (
+              <img
+                src={settings?.logoUrl}
+                alt="logo"
+                className="scale-105 h-[2.7rem] mr-5"
+              />
+            )}
+
             <div className="hidden sm:flex justify-between gap-6">
               {navMenu.map((menu, index) => {
                 const { icon, name, active } = menu;

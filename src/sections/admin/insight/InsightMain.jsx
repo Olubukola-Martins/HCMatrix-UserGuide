@@ -30,7 +30,7 @@ const InsightMain = () => {
   }, 500);
 
   return (
-    <main className="font-semibold text-customGray-dark text-[15px] mt-9 md:mt-0">
+    <main className="font-semibold text-customGray-dark text-[15px] md:mt-0">
       <Container>
         <Layout>
           {/* Side Panel */}

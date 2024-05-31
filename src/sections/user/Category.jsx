@@ -6,6 +6,8 @@ import { resetHandler } from "../../state/user/userData/userData";
 import { categoryCardPlaceholder } from "../../data/data";
 import { SectionContainer, CardWrapper } from "../../components/user";
 import { NoData } from "../../components/common";
+import { getSettings } from "../../state/admin/customizationSlice";
+
 
 const Category = () => {
   const dispatch = useDispatch();
@@ -15,6 +17,7 @@ const Category = () => {
 
   useEffect(() => {
     dispatch(getMainCategoriesForUser());
+    dispatch(getSettings());
     dispatch(resetHandler("main"));
   }, []);
 

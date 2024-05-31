@@ -1,7 +1,5 @@
 import { useSelector } from "react-redux";
 import { Accordion, Container } from "../../../components/admin";
-import { Switch } from "antd";
-
 import { Logo } from "../../../assets/admin/images";
 
 import {
@@ -9,8 +7,6 @@ import {
   MainContent,
   SidePanel,
 } from "../../../components/admin/layout";
-
-import { idea } from "../../../assets/admin/icons/settings";
 
 import { GlassDesign } from "../../../components/user";
 
@@ -24,8 +20,6 @@ import { article } from "../../../assets/admin/images/settings";
 
 import { Toggler } from "../../../components/admin";
 
-import Home from "../../../pages/user/Home";
-
 import HeroImg from "../../../assets/common/images/heroimg.png";
 
 const Customization = () => {
@@ -33,9 +27,9 @@ const Customization = () => {
     toggler: toggle,
     accordion,
     contactBtn,
+    badge,
+    settings,
   } = useSelector((store) => store.customization);
-
-  const { badge } = useSelector((store) => store.customization);
 
   return (
     <Container>
@@ -61,7 +55,7 @@ const Customization = () => {
           <div className="border w-full pb-5 bg-white rounded-xl overflow-hidden relative">
             <section
               className="bg-cover bg-center relative text-primary h-52"
-              style={{ backgroundImage: `url(${HeroImg})` }}
+              style={{ backgroundImage: `url(${settings?.headerStyle})` }}
             >
               <div className="absolute inset-0 bg-black opacity-70"></div>
 

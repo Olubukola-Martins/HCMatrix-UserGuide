@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { NewArticleModal } from "../../components/admin/modals";
 import { useDispatch, useSelector } from "react-redux";
 import { resetHeaderNav } from "../../state/admin/headerSlice";
+import { getSettings } from "../../state/admin/customizationSlice";
 
 const AdminPage = () => {
   const { newArticleModal } = useSelector((store) => store.modelSlice);
@@ -20,13 +21,14 @@ const AdminPage = () => {
   useEffect(() => {
     navigate("/admin/dashboard");
     dispatch(resetHeaderNav());
+    dispatch(getSettings());
   }, []);
 
   return (
     <>
       {showHeader && <Header />}
       {newArticleModal && <NewArticleModal />}
-      <div className={`${barToggle ? "py-48" : "py-[8rem] md:py-[9rem]"}`}>
+      <div className={`${barToggle ? "py-48" : "py-[7rem] md:py-[9rem]"}`}>
         <Outlet />
       </div>
     </>

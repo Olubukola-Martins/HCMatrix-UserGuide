@@ -12,6 +12,7 @@ import { Logo } from "../../../assets/admin/images";
 import { LogoutHandler } from "../../../state/admin/authenticationSlice";
 import { resetHeaderNav } from "../../../state/admin/headerSlice";
 import { useMediaQuery } from "../../../hooks/common";
+import styled from "styled-components";
 
 import {
   AppstoreOutlined,
@@ -75,6 +76,7 @@ const SideModal = () => {
   };
 
   const categoryHandler = (id) => {
+    onClose();
     dispatch(getSingleCategory({ id }));
   };
 
@@ -159,6 +161,16 @@ const SideModal = () => {
     navigationHandler(name, path[1]);
   };
 
+  const StyledMenu = styled(Menu)`
+    .ant-menu-item-selected {
+      background-color: transparent !important;
+    }
+
+    .ant-menu-item-selected a {
+      color: black !important;
+    }
+  `;
+
   return (
     <>
       <Hamburger onClick={showDrawer} />
@@ -186,7 +198,7 @@ const SideModal = () => {
         <span className="text-[17px]  block w-full mb-2 font-normal text-customGray-fade">
           {user?.email}
         </span>
-        <Menu
+        <StyledMenu
           onClick={onClick}
           className="font-body"
           style={{

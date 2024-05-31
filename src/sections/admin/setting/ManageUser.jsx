@@ -172,7 +172,7 @@ const ManageUser = () => {
             </Wrapper>
 
             <Wrapper padding="p-6 pb-10">
-              <div className="flex flex-col gap-7">
+              <div className="flex flex-col gap-7 overflow-hidden">
                 <h3 className="text-md font-semibold">Manage Team Members</h3>
                 <table className="min-w-full text-left text-sm font-light pb-5 font-poppins">
                   <thead className="border-b font-medium">

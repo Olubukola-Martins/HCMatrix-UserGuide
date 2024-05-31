@@ -9,7 +9,9 @@ import SearchBar from "./SearchBar";
 import Logo from "../../assets/user/Logo.svg";
 
 const Hero = ({ showSearch }) => {
-  const { contactBtn } = useSelector((store) => store.customization);
+  const { contactBtn, headerStyle } = useSelector(
+    (store) => store.customization
+  );
   const navigate = useNavigate();
 
   const toAdmin = () => {
@@ -23,7 +25,7 @@ const Hero = ({ showSearch }) => {
   return (
     <section
       className="bg-cover bg-center relative text-primary h-96"
-      style={{ backgroundImage: `url(${HeroImg})` }}
+      style={{ backgroundImage: `url(${headerStyle ? headerStyle : HeroImg})` }}
     >
       <div className="absolute inset-0 bg-black opacity-70"></div>
 

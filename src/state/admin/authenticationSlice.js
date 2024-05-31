@@ -78,8 +78,13 @@ export const disableUser = createAsyncThunk(
 
   async (id, thunkApi) => {
     try {
-      const response = await axiosInstance.patch(`/user/${id}/enable`);
-      thunkApi.dispatch(getUsers());
+      const response = await axiosInstance
+        .patch(`/user/${id}/enable`)
+        .then((res) => {
+          if (res.data) {
+            thunkApi.dispatch(getUsers());
+          }
+        });
       return response.data;
     } catch (error) {
       console.log(error);
@@ -94,8 +99,11 @@ export const deleteUser = createAsyncThunk(
 
   async (id, thunkApi) => {
     try {
-      const response = await axiosInstance.delete(`/user/${id}`);
-      thunkApi.dispatch(getUsers());
+      const response = await axiosInstance.delete(`/user/${id}`).then((res) => {
+        if (res.data) {
+          thunkApi.dispatch(getUsers());
+        }
+      });
       return response.data;
     } catch (error) {
       console.log(error);

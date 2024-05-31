@@ -14,6 +14,7 @@ import { getCategoryArticles } from "../../../state/admin/articles/thunkFunction
 import { filterSubArticles } from "../../../state/admin/articles/articleSlice";
 import { useDebouncedCallback } from "use-debounce";
 import { useMediaQuery } from "../../../hooks/common";
+import AddArticle from "../../../components/admin/AddArticle";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -39,7 +40,12 @@ const Main = () => {
 
           {/* Main Body */}
           <MainContent>
-            <div className="bg-transparent h-8 "></div>
+            {isAboveMediumScreens ? (
+              <div className="bg-transparent h-8 "></div>
+            ) : (
+              <AddArticle color={true} />
+            )}
+
             {/* Search input */}
             <Wrapper padding={"py-2"} className="mb-4 bg-white rounded-lg">
               <section className="flex pl-6 gap-3 items-center">

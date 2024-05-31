@@ -32,7 +32,6 @@ const NewArticleModal = () => {
     (store) => store.article
   );
 
-
   // Init values //
   // Initial values for the state
   const initial = {
@@ -139,21 +138,21 @@ const NewArticleModal = () => {
   };
 
   return (
-    <div className="w-[100%] h-[100vh] fixed top-0 left-0 z-[99] flex items-center  justify-center flex-col">
+    <div className="w-[100%] h-[100vh] fixed top-0 left-0 z-[99] flex items-center justify-center flex-col">
       {/* The overlay */}
       <div
-        className="absolute inset-0 bg-black opacity-10"
+        className="absolute inset-0 bg-black opacity-30 blur-lg"
         onClick={() => onClickHandler()}
       ></div>
 
       {/* The form Container */}
-      <div className="relative scrollWheel border-3 rounded-2xl pr-4 z-20 bg-white w-2/5 max-w-[600px]  overflow-y-scroll pl-6 px-5 pb-5 shadow-lg my-6 ">
+      <div className="relative scrollWheel border-3 rounded-2xl z-20 bg-white w-[95%] sm:w-[60%] md:max-w-[550px] overflow-y-scroll p-5 shadow-lg -mt-8">
         {/* For The Effect */}
         {/* <div className="h-[20px] w-[37%] fixed bg-white"></div> */}
 
         {editing ? (
           <form className="w-full" onSubmit={onSubmitHandler}>
-            <h3 className="font-semibold text-lg mb-2 mt-4">Edit Article</h3>
+            <h3 className="font-semibold text-lg mb-3 mt-4">Edit Article</h3>
 
             {/* The video link */}
             <FormContainer label="Embedded video link (optional)">
@@ -202,7 +201,7 @@ const NewArticleModal = () => {
                 size="large"
                 allowClear
                 placeholder="Select Category"
-                className="md:flex hidden w-[full]"
+                className=" w-full"
                 onChange={(value) => {
                   setCategoryValue((prev) => {
                     return { ...prev, category: value };
