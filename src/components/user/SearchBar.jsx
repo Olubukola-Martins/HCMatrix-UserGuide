@@ -17,7 +17,6 @@ const SearchBar = () => {
   const dispatch = useDispatch();
 
   const { searchArticles, isLoading } = useSelector((store) => store.userData);
-
   const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
@@ -44,7 +43,7 @@ const SearchBar = () => {
   return (
     <div className="">
       <GlassDesign className="rounded-md pl-5 py-3 ">
-        <div className="flex items-center">
+        <div className="flex items-center w-[60%] border-green-800 border-3">
           <img src={search} alt="" className="h-4 md:h-6" />
           <input
             value={searchInput}
@@ -55,7 +54,7 @@ const SearchBar = () => {
             }}
             type="text"
             placeholder="Search for articles"
-            className="bg-transparent outline-none text-l md:text-lg text-body w-[100%] md:w-[85%]  ml-5 "
+            className="bg-transparent outline-none text-l md:text-lg text-body w-[100%] md:w-[85%] ml-5 "
           />
         </div>
       </GlassDesign>

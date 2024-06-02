@@ -89,7 +89,7 @@
   }
 
   .category__card__header {
-    @apply text-2xl md:text-xl font-bold  cursor-pointer capitalize w-full text-center;
+    @apply text-[1.6rem] md:text-xl font-bold  cursor-pointer capitalize w-full text-center;
   }
 
   .article__card__container {

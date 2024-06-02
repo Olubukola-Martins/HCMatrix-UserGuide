@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { FormBtn } from "../../../components/common";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
+import { FormInputWrapper } from "../../../components/admin";
 import Auth from "../../../pages/auth/Auth";
 import { changePassword } from "../../../state/admin/authenticationSlice";
 import { useDebouncedCallback } from "use-debounce";
@@ -65,8 +66,8 @@ const ChangePassword = () => {
       <div className="text-center text-[#3A3A3AB2] mb-10">
         <h3 className=" font-semibold text-xl mb-2">Change you password</h3>
       </div>
-      <form className="  relative w-full" onSubmit={onSubmitHandler}>
-        <div className="flex flex-col gap-10">
+      <form className="relative w-full" onSubmit={onSubmitHandler}>
+        <FormInputWrapper>
           <FloatingInput
             type="password"
             placeHolder="Enter old password"
@@ -93,7 +94,7 @@ const ChangePassword = () => {
           />
 
           <FormBtn custom="rounded-full" loading={loading} />
-        </div>
+        </FormInputWrapper>
       </form>
 
       <div className="mt-3 text-center">

@@ -29,12 +29,12 @@ const Hero = ({ showSearch }) => {
     >
       <div className="absolute inset-0 bg-black opacity-70"></div>
 
-      <Container margin="mb-0 py-7 z-[9999999]">
+      <Container margin="mb-0 py-4 md:py-7 z-[9999999]">
         <nav className="flex justify-between items-center text-md md:text-[1.15rem] mb-3">
           <img
             src={Logo}
             alt=""
-            className="md:hidden h-14 -ml-3"
+            className="md:hidden h-12 md:h-14 -ml-3"
             onClick={() => toHome()}
           />
 
@@ -44,7 +44,7 @@ const Hero = ({ showSearch }) => {
           </div>
 
           <p
-            className="text-white cursor-pointer  md:block"
+            className="text-white text-[12px] md:text-sm cursor-pointer md:block"
             onClick={() => toAdmin()}
           >
             HcMatrix Guide Center
@@ -53,7 +53,7 @@ const Hero = ({ showSearch }) => {
 
         {contactBtn && (
           <GlassDesign className="inline-block rounded-xl px-4 py-2 absolute -mt-4 md:-mt-0 right-5 md:right-14 cursor-pointer animate-pulse">
-            <p className="text-[10px]">
+            <p className="text-[9px] md:text-[10px]">
               <a
                 target="_black"
                 href="https://hcmatrixsupport.powerappsportals.com/contact-us/"
@@ -66,11 +66,11 @@ const Hero = ({ showSearch }) => {
 
         <div className="w-[99%] md:w-[75%] mx-auto md:mt-[3rem] mt-[7rem] relative ">
           <div className=" flex items-center justify-center">
-            <h1 className="text-center font-bold text-lg  md:text-2xl md:text-l mr-2">
+            <h1 className="text-center font-bold text-sm  sm:text-2xl md:text-l mr-2">
               How can we help?
             </h1>
 
-            <img src={Idea} alt="" className="md:h-16 h-10 hidden md:block  " />
+            <img src={Idea} alt="" className="md:h-16 h-10 hidden sm:block  " />
 
             {/* <Idea /> */}
           </div>

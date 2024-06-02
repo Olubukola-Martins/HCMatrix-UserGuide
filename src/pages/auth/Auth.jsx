@@ -28,19 +28,18 @@ const Auth = ({ children }) => {
           HCMatrix User Guide{" "}
         </h1>
         <SectionContainer>
-          <div className="py-10 flex flex-col items-center justify-center border rounded-md mb-2">
+          <div className="pt-3 pb-3 md:py-10 flex flex-col items-center justify-center border-none md:border rounded-md mb-2">
             <div
-              className={`relative w-[90%] xs:w-[70%] sm:w-[50%] md:w-[40%] `}
+              className={`relative w-[96%] xs:w-[70%] sm:w-[50%] md:w-[40%] `}
             >
               {children}
             </div>
-
-            <div className="flex items-center justify-center mt-1">
-              <span className="text-[10px] font-bold -mr-2">Powered by</span>
-              <img src={Logo} alt="" className="h-9" />
-            </div>
           </div>
         </SectionContainer>
+        <div className="flex items-center justify-center mt-10">
+          <span className="text-[10px] font-bold -mr-2">Powered by</span>
+          <img src={Logo} alt="" className="h-9" />
+        </div>
       </Container>
     </>
   );

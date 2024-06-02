@@ -22,6 +22,7 @@ import FormContainer from "./FormContainer";
 import FloatingInput from "./FloatingInput";
 
 import UsersContainer from "./UserContainer";
+import FormInputWrapper from "./FormInputWrapper";
 
 export {
   FormContainer,
@@ -45,4 +46,5 @@ export {
   EmojiPicker,
   FloatingInput,
   UsersContainer,
+  FormInputWrapper,
 };

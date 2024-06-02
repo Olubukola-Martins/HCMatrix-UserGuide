@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { FloatingInput } from "../../../components/admin";
+import { FloatingInput, FormInputWrapper } from "../../../components/admin";
 import { useState } from "react";
 import { FormBtn } from "../../../components/common";
 import { toast } from "react-toastify";
@@ -49,7 +49,7 @@ const ForgotPassword = () => {
         </h3>
       </div>
       <form className="  relative w-full" onSubmit={onSubmitHandler}>
-        <div className="flex flex-col gap-10">
+        <FormInputWrapper>
           <FloatingInput
             placeHolder="Your email"
             value={email}
@@ -59,7 +59,7 @@ const ForgotPassword = () => {
           />
 
           <FormBtn custom="rounded-full" loading={loading} />
-        </div>
+        </FormInputWrapper>
       </form>
 
       <div className="mt-6 text-center">
