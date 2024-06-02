@@ -52,7 +52,7 @@ const Hero = ({ showSearch }) => {
         </nav>
 
         {contactBtn && (
-          <GlassDesign className="inline-block rounded-xl px-4 py-2 absolute -mt-4 md:-mt-0 right-5 md:right-14 cursor-pointer animate-pulse">
+          <GlassDesign className="inline-block rounded-xl px-2 md:px-4 py-2 absolute -mt-4 md:-mt-0 right-5 md:right-14 cursor-pointer animate-pulse">
             <p className="text-[9px] md:text-[10px]">
               <a
                 target="_black"
@@ -64,9 +64,9 @@ const Hero = ({ showSearch }) => {
           </GlassDesign>
         )}
 
-        <div className="w-[99%] md:w-[75%] mx-auto md:mt-[3rem] mt-[7rem] relative ">
-          <div className=" flex items-center justify-center">
-            <h1 className="text-center font-bold text-sm  sm:text-2xl md:text-l mr-2">
+        <div className="w-[99%] md:w-[75%] mx-auto md:mt-[3rem] mt-[6rem] relative ">
+          <div className="flex items-center justify-center">
+            <h1 className="text-center font-bold text-lg sm:text-2xl md:text-l mr-2">
               How can we help?
             </h1>
 
