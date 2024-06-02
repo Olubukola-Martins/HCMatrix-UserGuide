@@ -64,28 +64,10 @@ const Accordion = ({ name, desc, type, id, toggle }) => {
         {desc}
       </p>
       <hr className="mb-3" />
-      {/* 
-      {type !== "footer" && toggle && (
-        <div className="w-[60%] xs:w-[50%] sm:w-[60%] md:w-[35%] py-14 px-6 mb-3 rounded-lg bg-customGray-upload transition-all duration-75 ease-in">
-          <Wrapper className="rounded-lg bg-white px-3">
-            <Upload customRequest={customRequest}>
-              <Button>
-                <div className="flex gap-2 items-center">
-                  <img src={upload} alt="" className="ml-1 h-4" />
-                  {`Upload ${name}`}
-                </div>
-              </Button>
-            </Upload>
-          </Wrapper>
-          <span className="text-[12px] block text-center mt-2 text-customGray-fade font-semibold">
-            PNG or JPEG up to 2mb
-          </span>
-        </div>
-      )} */}
 
       {type !== "footer" && toggle && (
-        <div className="xs:w-[50%] sm:w-[50%] md:w-[30%] lg:w-[35%]  py-10 px-4 sm:py-12 sm:px-5 md:py-14 md:px-6 mb-3 rounded-lg bg-customGray-upload transition-all duration-75 ease-in">
-          <Wrapper className="rounded-lg bg-white px-2 sm:px-3 grid place-items-center">
+        <div className="xs:w-[50%] sm:w-[50%] md:w-[35%] lg:w-[35%]  py-10 px-4 sm:py-12 sm:px-5 md:py-14 md:px-6 mb-3 rounded-lg bg-customGray-upload transition-all duration-75 ease-in">
+          <Wrapper className="rounded-lg bg-white  px-2 sm:px-3 grid place-items-center">
             <Upload customRequest={customRequest}>
               <Button>
                 <div className="flex gap-2 items-center">

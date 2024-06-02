@@ -34,12 +34,12 @@ const Review = () => {
           {isLoading ? (
             <h2 className="font-semibold text-3xl skeleton mb-2">Loading</h2>
           ) : (
-            <h2 className="font-semibold text-lg md:text-3xl mb-3 capitalize">
+            <h2 className="font-semibold text-lg md:text-3xl mb-2 capitalize">
               {articleInfo?.title}
             </h2>
           )}
 
-          <span className="text text-customGray-lightest text-md font-semibold">
+          <span className=" text-customGray-lightest text-[12px] sm:text-md font-semibold">
             Article Feedbacks
           </span>
         </div>
@@ -137,11 +137,11 @@ const Review = () => {
                   </p>
                   <div className="flex items-center justify-between">
                     <div className="text-md font-medium">
-                      <span>{review?.email}</span>
+                      <span className="text-[13px]">{review?.email}</span>
                       <span className="ml-4">{review?.date}</span>
                     </div>
                     <img
-                      className="h-6"
+                      className="h-5 md:h-6"
                       src={
                         review?.type === "negative"
                           ? negative
@@ -159,7 +159,7 @@ const Review = () => {
         ) : (
           <div>
             <NoData
-              className={`h-16 md:h-28 mb-5 mr-3`}
+              className={`h-16 md:h-24 mt-16 mb-5 mr-3`}
               msg="There are no reviews yet!!"
             />
           </div>

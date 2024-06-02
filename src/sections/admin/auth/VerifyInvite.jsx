@@ -78,46 +78,42 @@ const VerifyInvite = () => {
 
   return (
     <Auth>
-      <div className="relative w-[40%]">
-        <div className="text-center text-[#3A3A3AB2] mb-10">
-          <h3 className=" font-semibold text-xl mb-2">
-            Enter You new Password
-          </h3>
-        </div>
-        <form className="  relative w-full" onSubmit={onSubmitHandler}>
-          <FormInputWrapper>
-            <FloatingInput
-              type="password"
-              placeHolder="Enter New Password"
-              FloatingInput
-              value={password}
-              onChange={onChangeHandler}
-              name="password"
-            />
-            <FloatingInput
-              type="password"
-              placeHolder="confirm your password"
-              FloatingInput
-              value={confirmPassword}
-              onChange={onChangeHandler}
-              name="confirmPassword"
-            />
+      <div className="text-center text-[#3A3A3AB2] mb-10">
+        <h3 className=" font-semibold text-xl mb-2">Enter You new Password</h3>
+      </div>
+      <form className="relative w-full" onSubmit={onSubmitHandler}>
+        <FormInputWrapper>
+          <FloatingInput
+            type="password"
+            placeHolder="Enter New Password"
+            FloatingInput
+            value={password}
+            onChange={onChangeHandler}
+            name="password"
+          />
+          <FloatingInput
+            type="password"
+            placeHolder="confirm your password"
+            FloatingInput
+            value={confirmPassword}
+            onChange={onChangeHandler}
+            name="confirmPassword"
+          />
 
-            <FormBtn custom="rounded-full" loading={loading} />
-          </FormInputWrapper>
-        </form>
+          <FormBtn custom="rounded-full" loading={loading} />
+        </FormInputWrapper>
+      </form>
 
-        <div className="mt-3 text-center">
-          <p className="text-[#7C7C7C] text-[13px] mx-auto ">
-            Already Have an Account ?{" "}
-            <span
-              className="text-[#F77366] cursor-pointer"
-              onClick={loginNavigate}
-            >
-              Log in
-            </span>
-          </p>
-        </div>
+      <div className="mt-3 text-center">
+        <p className="text-[#7C7C7C] text-[13px] mx-auto ">
+          Already Have an Account ?{" "}
+          <span
+            className="text-[#F77366] cursor-pointer"
+            onClick={loginNavigate}
+          >
+            Log in
+          </span>
+        </p>
       </div>
     </Auth>
   );

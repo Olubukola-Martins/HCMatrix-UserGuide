@@ -37,7 +37,10 @@ const UsersContainer = ({ users, loading }) => {
     const style = "px-6  py-4 md:block font-medium flex-1 text-left";
 
     return (
-      <div className="grid grid-cols-[75%_25%] sm:grid-cols-[50%_30%_20%] md:grid-cols-[5%_20%_30%_30%_15%] overflow-hidden  border-b  justify-between">
+      <div
+        key={index}
+        className="grid grid-cols-[75%_25%] sm:grid-cols-[50%_30%_20%] md:grid-cols-[5%_20%_30%_30%_15%] overflow-hidden  border-b  justify-between"
+      >
         <span className={`${style} hidden ${loading && "skeleton"}`}>
           {++index}
         </span>

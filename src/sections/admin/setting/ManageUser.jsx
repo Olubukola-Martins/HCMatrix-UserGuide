@@ -1,9 +1,7 @@
 import {
   Container,
   Wrapper,
-  TableHeader,
-  TableBody,
-  Button,
+
 } from "../../../components/admin";
 
 import { inviteUser } from "../../../state/admin/authenticationSlice";
@@ -16,11 +14,6 @@ import { UsersContainer } from "../../../components/admin";
 
 import { useEffect, useState } from "react";
 
-import {
-  deleteUser,
-  disableUser,
-} from "../../../state/admin/authenticationSlice";
-
 import { FormBtn } from "../../../components/common";
 
 import {
@@ -28,7 +21,6 @@ import {
   MainContent,
   SidePanel,
 } from "../../../components/admin/layout";
-import { adminTableData, adminTableHeader } from "../../../data/admintableData";
 import { useDispatch, useSelector } from "react-redux";
 import { Pagination } from "antd";
 import { usePagination } from "../../../hooks/common";
@@ -142,7 +134,7 @@ const ManageUser = () => {
         </SidePanel>
         <MainContent>
           <div className="flex flex-col gap-5 text-customGray-dark">
-            <Wrapper padding="p-6">
+            <Wrapper padding="p-4 sm:p-6">
               <form
                 className="flex flex-col gap-4 overflow-hidden"
                 onSubmit={onSubmitHandler}
@@ -183,7 +175,7 @@ const ManageUser = () => {
               </form>
             </Wrapper>
 
-            <Wrapper padding="p-6 pb-10">
+            <Wrapper padding="p-4 sm:p-6 pb-10">
               <div className="flex flex-col gap-7 overflow-hidden">
                 <h3 className="text-md  text-center md:text-left  font-semibold">
                   Manage Team Members
@@ -191,14 +183,16 @@ const ManageUser = () => {
 
                 <section className="w-full border">
                   <div>
-                    <header className="grid grid-cols-[75%_25%] sm:grid-cols-[50%_30%_20%] md:grid-cols-[5%_20%_30%_30%_15%] border-b justify-between">
+                    <header className="grid grid-cols-[75%_25%] sm:grid-cols-[50%_30%_20%] bg-customGray-upload md:grid-cols-[5%_20%_30%_30%_15%] border-b justify-between">
                       <HeaderText className={`hidden md:block `}></HeaderText>
-                      <HeaderText className={`hidden  `}>Name</HeaderText>
+                      <HeaderText className={`hidden  md:block `}>
+                        Name
+                      </HeaderText>
                       <HeaderText>Email Address</HeaderText>
                       <HeaderText className={`hidden sm:block `}>
                         Status
                       </HeaderText>
-                      <HeaderText>Action</HeaderText>
+                      <HeaderText className={`-ml-3 `}>Action</HeaderText>
                     </header>
                     <main className="flex flex-col">
                       <UsersContainer users={userToShow} />

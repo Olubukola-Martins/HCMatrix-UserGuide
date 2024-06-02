@@ -9,7 +9,7 @@ const NoData = ({ className, msg, padding, whiteText }) => {
         className={`${className ? className : "h-16 mb-5 mr-3"}`}
       />
       <span
-        className={`font-extralight ${
+        className={`font-extralight text-[12px] md:text-sm ${
           whiteText ? "text-white" : " text-customRed-light"
         } `}
       >
