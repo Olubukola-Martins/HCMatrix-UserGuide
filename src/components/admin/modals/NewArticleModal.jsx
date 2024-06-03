@@ -204,7 +204,11 @@ const NewArticleModal = () => {
                 className=" w-full"
                 onChange={(value) => {
                   setCategoryValue((prev) => {
-                    return { ...prev, category: value };
+                    return {
+                      category: value,
+                      leastSubcategory: null,
+                      subcategory: null,
+                    };
                   });
                   handleCategory(value);
                 }}
@@ -223,10 +227,15 @@ const NewArticleModal = () => {
                   size="large"
                   allowClear
                   placeholder="Select Subcategories"
+                  value={subcategory ?? undefined}
                   className="md:flex hidden w-[full]"
                   onChange={(value) => {
                     setCategoryValue((prev) => {
-                      return { ...prev, subcategory: value };
+                      return {
+                        ...prev,
+                        subcategory: value,
+                        leastSubcategory: null,
+                      };
                     });
                     dispatch(getSpecificLeastSubcategory(value));
                   }}
@@ -245,7 +254,8 @@ const NewArticleModal = () => {
               <FormContainer label="Select Least Subcategory">
                 <Select
                   size="large"
-                  allowClear
+                  allowClear={true}
+                  value={leastSubcategory ?? undefined}
                   placeholder="Select least subcategory"
                   className="md:flex hidden w-[full]"
                   onChange={(value) => {
