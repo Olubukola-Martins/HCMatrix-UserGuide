@@ -2,14 +2,13 @@ import EmojiComponent from "./EmojiComponent";
 import { reviews } from "../../data/data";
 import { ReviewModal } from "./modals";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+
 
 const ReviewBox = () => {
   const { showReviewModal, reactionType } = useSelector(
     (store) => store.userModalSlice
   );
 
-  const { reaction, setReaction } = useState("");
 
   const findReaction = () => {
     const emoji = reviews.find((each) => {

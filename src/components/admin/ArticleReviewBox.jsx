@@ -1,18 +1,14 @@
 import { useSelector } from "react-redux";
-import { Wrapper, ArticleDisplay, AddBtn } from ".";
+import { Wrapper, ArticleDisplay } from ".";
 import { positive, negative, neutral } from "../../assets/common/review";
 import { Pagination } from "antd";
-import { useState } from "react";
 import { NoData } from "../common";
-import { usePagination, useMediaQuery } from "../../hooks/common";
-
+import { usePagination } from "../../hooks/common";
 
 const ArticleReviewBox = ({ type }) => {
   const { filteredSingleCategoryArticles, loading } = useSelector(
     (store) => store.article
   );
-
-  const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
 
   const pageSize = 4;
 

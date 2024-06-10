@@ -1,10 +1,7 @@
 import { Outlet, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import {
-  setCurrentUser,
-  getAccessToken,
-} from "../state/admin/authenticationSlice";
+import { setCurrentUser } from "../state/admin/authenticationSlice";
 
 const ProtectedRoutes = () => {
   const dispatch = useDispatch();

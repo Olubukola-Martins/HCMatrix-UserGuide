@@ -220,7 +220,7 @@ const NewArticleModal = () => {
                 })}
               />
             </FormContainer>
-
+ 
             {subcategories?.length > 0 && (
               <FormContainer label="Select subcategory">
                 <Select

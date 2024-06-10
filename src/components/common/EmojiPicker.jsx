@@ -7,7 +7,6 @@ const EmojiPicker = ({
   name,
   type,
   className,
-  placeholder,
   onChange,
 }) => {
   const dispatch = useDispatch();

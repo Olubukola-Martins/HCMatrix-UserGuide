@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { newCategoryDataHandler } from "../../../state/admin/adminData/adminData";
 
 import { toast } from "react-toastify";
-import { ToastContainer } from "react-toastify";
 import {
   Container,
   Wrapper,
@@ -19,7 +18,6 @@ import {
 import {
   getAllCategories,
   createNewCategory,
-  getMainCategory,
 } from "../../../state/admin/adminData/thunkFunctions";
 import {
   Input,
@@ -39,7 +37,6 @@ const CreateCategory = () => {
     dispatch(getAllCategories());
   }, []);
 
-  const { category } = useSelector((store) => store.adminData);
 
   const onChangeHandler = (e) => {
     const { value, name } = e.target;

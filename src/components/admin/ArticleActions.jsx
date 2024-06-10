@@ -2,8 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { editContent } from "../../state/admin/articles/articleSlice";
 
-
-const ArticleActions = ({ type, article, id, info }) => {
+const ArticleActions = ({ type, id }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

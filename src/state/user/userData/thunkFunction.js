@@ -53,7 +53,6 @@ export const findSingleArticle = createAsyncThunk(
   async (articleId) => {
     try {
       const response = await axiosInstance.get(`/articles/${articleId}`);
-      console.log(response);
       return response.data;
     } catch (error) {
       toast.error("Something went wrong");
@@ -70,7 +69,7 @@ export const searchArticle = createAsyncThunk(
       const response = await axiosInstance.get(
         `/articles?search=${searchWord}`
       );
-      console.log(response);
+
       return response.data;
     } catch (error) {
       toast.error("Something went wrong");

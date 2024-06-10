@@ -1,4 +1,4 @@
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { FloatingInput, FormInputWrapper } from "../../../components/admin";
 import { useState, useEffect } from "react";
 import { FormBtn } from "../../../components/common";

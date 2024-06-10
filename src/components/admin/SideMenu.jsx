@@ -3,12 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { SidePanel } from "./layout";
 import { Link } from "react-router-dom";
 import { getSingleCategory } from "../../state/admin/adminData/adminData";
-import { newArticleModalToggle } from "../../state/admin/modalSlice";
 import { Fluent, ViewFinder } from "../../assets/admin/icons/dashboard";
-import { AddBtn } from "../../assets/admin/icons/dashboard";
-import { reset } from "../../state/admin/articles/articleSlice";
 import { NoData } from "../common";
-import { useMediaQuery } from "../../hooks/common";
 import AddArticle from "./AddArticle";
 
 const SideMenu = ({ page, title: pageTitle }) => {
@@ -21,11 +17,6 @@ const SideMenu = ({ page, title: pageTitle }) => {
     dispatch(getSingleCategory({ id, page }));
   };
 
-  const newArticleHandler = () => {
-    dispatch(reset());
-    dispatch(newArticleModalToggle());
-  };
-
   const placeHolder = [1, 2, 3, 4, 5];
 
   return (
@@ -33,16 +24,7 @@ const SideMenu = ({ page, title: pageTitle }) => {
       <h3 className={`${page === "dashboard" ? "mb-3" : "mb-6"} text-sm`}>
         {pageTitle}
       </h3>
-      {page === "dashboard" && (
-        // <Wrapper
-        //   className="flex bg-white justify-center rounded-lg items-center gap-2 mb-5 cursor-pointer"
-        //   onClickHandler={newArticleHandler}
-        // >
-        //   <AddBtn />
-        //   <span>New Article</span>
-        // </Wrapper>
-        <AddArticle />
-      )}
+      {page === "dashboard" && <AddArticle />}
 
       <h3 className="mb-4 text-sm">All Categories</h3>
       <div
@@ -54,7 +36,7 @@ const SideMenu = ({ page, title: pageTitle }) => {
       >
         {loadingCategory ? (
           <div>
-            {placeHolder.map((each, index) => {
+            {placeHolder.map((each) => {
               return (
                 <Wrapper
                   key={each}
@@ -67,7 +49,7 @@ const SideMenu = ({ page, title: pageTitle }) => {
           </div>
         ) : mainCategories.length !== 0 ? (
           <section className="">
-            {mainCategories.map((category, index) => {
+            {mainCategories.map((category) => {
               const { emoji, name, active, id, articlesCount } = category;
 
               return (

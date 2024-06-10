@@ -10,17 +10,11 @@ import {
 
 import { GlassDesign } from "../../../components/user";
 
-import {
-  articles,
-  searchBar,
-  preview,
-} from "../../../assets/admin/icons/settings";
+import { searchBar, preview } from "../../../assets/admin/icons/settings";
 
 import { article } from "../../../assets/admin/images/settings";
 
 import { Toggler } from "../../../components/admin";
-
-import HeroImg from "../../../assets/common/images/heroimg.png";
 
 const Customization = () => {
   const {

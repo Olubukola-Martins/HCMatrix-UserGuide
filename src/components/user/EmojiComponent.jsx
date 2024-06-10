@@ -1,5 +1,4 @@
-import { ReviewModal } from "./modals";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { handleReaction } from "../../state/user/modals/userModalSlice";
 

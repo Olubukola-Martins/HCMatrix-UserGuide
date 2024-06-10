@@ -1,13 +1,12 @@
 import Wrapper from "./Wrapper";
-
 import { AddBtn } from "../../assets/admin/icons/dashboard";
 import { useDispatch } from "react-redux";
-
 import { reset } from "../../state/admin/articles/articleSlice";
 import { newArticleModalToggle } from "../../state/admin/modalSlice";
 
 const AddArticle = ({ color }) => {
   const dispatch = useDispatch();
+
   const newArticleHandler = () => {
     dispatch(reset());
     dispatch(newArticleModalToggle());
