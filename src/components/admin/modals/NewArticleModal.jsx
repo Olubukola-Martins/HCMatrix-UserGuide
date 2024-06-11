@@ -147,9 +147,6 @@ const NewArticleModal = () => {
 
       {/* The form Container */}
       <div className="relative scrollWheel border-3 rounded-2xl z-20 bg-white w-[95%] sm:w-[60%] md:max-w-[550px] overflow-y-scroll p-5 shadow-lg -mt-8">
-        {/* For The Effect */}
-        {/* <div className="h-[20px] w-[37%] fixed bg-white"></div> */}
-
         {editing ? (
           <form className="w-full" onSubmit={onSubmitHandler}>
             <h3 className="font-semibold text-lg mb-3 mt-4">Edit Article</h3>
@@ -220,7 +217,7 @@ const NewArticleModal = () => {
                 })}
               />
             </FormContainer>
- 
+
             {subcategories?.length > 0 && (
               <FormContainer label="Select subcategory">
                 <Select

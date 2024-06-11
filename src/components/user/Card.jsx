@@ -1,5 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { idHandler } from "../../state/user/userData/userData";
 import { findSingleArticle } from "../../state/user/userData/thunkFunction";

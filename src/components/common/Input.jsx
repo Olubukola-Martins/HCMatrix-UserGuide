@@ -1,4 +1,4 @@
-import { placeholder } from "../../assets/admin/icons/settings";
+
 
 const Input = ({ onChange, value, name, type, className, placeholder }) => {
   return (
