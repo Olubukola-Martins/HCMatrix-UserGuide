@@ -22,7 +22,7 @@ const InsightMain = () => {
   const { svg, title, articles } = singleCategory;
 
   useEffect(() => {
-    dispatch(getCategoryArticles(mainCategoryId));
+    dispatch(getCategoryArticles({ categoryId: mainCategoryId }));
   }, [mainCategoryId]);
 
   const debouncedOnChange = useDebouncedCallback(() => {

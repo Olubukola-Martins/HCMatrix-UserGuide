@@ -5,43 +5,32 @@ import { Link } from "react-router-dom";
 import { getSingleCategory } from "../../state/admin/adminData/adminData";
 import { Fluent, ViewFinder } from "../../assets/admin/icons/dashboard";
 import { NoData } from "../common";
+import { updateOffset } from "../../state/admin/articles/articleSlice";
 import AddArticle from "./AddArticle";
 
 const SideMenu = ({ page, title: pageTitle }) => {
-  const { mainCategories, loadingCategory } = useSelector(
-    (store) => store.adminData
-  );
+  const { mainCategories, loadingCategory } = useSelector((store) => store.adminData);
   const dispatch = useDispatch();
 
   const onClickHandler = (id) => {
     dispatch(getSingleCategory({ id, page }));
+    dispatch(updateOffset(0));
   };
 
   const placeHolder = [1, 2, 3, 4, 5];
 
   return (
     <SidePanel>
-      <h3 className={`${page === "dashboard" ? "mb-3" : "mb-6"} text-sm`}>
-        {pageTitle}
-      </h3>
+      <h3 className={`${page === "dashboard" ? "mb-3" : "mb-6"} text-sm`}>{pageTitle}</h3>
       {page === "dashboard" && <AddArticle />}
 
       <h3 className="mb-4 text-sm">All Categories</h3>
-      <div
-        className={`min-h-[50vh]  max-h-[70vh] overflow-y-scroll scrollbar-hide pb-2 ${
-          mainCategories.length === 0 &&
-          !loadingCategory &&
-          "grid place-items-center mt-6"
-        }`}
-      >
+      <div className={`min-h-[50vh]  max-h-[70vh] overflow-y-scroll scrollbar-hide pb-2 ${mainCategories.length === 0 && !loadingCategory && "grid place-items-center mt-6"}`}>
         {loadingCategory ? (
           <div>
             {placeHolder.map((each) => {
               return (
-                <Wrapper
-                  key={each}
-                  className="skeleton flex border-[1.2px] py-4 mb-2 px-3 rounded-lg"
-                >
+                <Wrapper key={each} className="skeleton flex border-[1.2px] py-4 mb-2 px-3 rounded-lg">
                   working
                 </Wrapper>
               );
@@ -53,13 +42,7 @@ const SideMenu = ({ page, title: pageTitle }) => {
               const { emoji, name, active, id, articlesCount } = category;
 
               return (
-                <Wrapper
-                  onClickHandler={() => onClickHandler(id)}
-                  className={`flex transition-all border-[1.2px] border-transparent duration-100 ease-linear justify-between items-center px-3 py-3 rounded-lg hover:cursor-pointer ${
-                    active ? "activeindicator shadow-md" : ""
-                  }`}
-                  key={id}
-                >
+                <Wrapper onClickHandler={() => onClickHandler(id)} className={`flex transition-all border-[1.2px] border-transparent duration-100 ease-linear justify-between items-center px-3 py-3 rounded-lg hover:cursor-pointer ${active ? "activeindicator shadow-md" : ""}`} key={id}>
                   <div className="flex gap-4 items-center">
                     <span className="text-lg">{emoji?.code}</span>
 

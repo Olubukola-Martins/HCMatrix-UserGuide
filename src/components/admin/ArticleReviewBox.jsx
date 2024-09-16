@@ -1,28 +1,23 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useMemo } from "react";
 import { Wrapper, ArticleDisplay } from ".";
 import { positive, negative, neutral } from "../../assets/common/review";
 import { Pagination } from "antd";
 import { NoData } from "../common";
+import { updateOffset } from "../../state/admin/articles/articleSlice";
 import { usePagination } from "../../hooks/common";
 
 const ArticleReviewBox = ({ type }) => {
-  const { filteredSingleCategoryArticles, loading } = useSelector(
-    (store) => store.article
-  );
-
-  const pageSize = 4;
-
-  const {
-    currentPage,
-    paginatedData: articlesToShow,
-    handlePageChange,
-  } = usePagination(filteredSingleCategoryArticles, pageSize);
+  const { filteredSingleCategoryArticles, loading, limit,offset } = useSelector((store) => store.article);
+  const { mainCategories } = useSelector((store) => store.adminData);
+  const dispatch = useDispatch();
+  const totalArticles = useMemo(() => mainCategories.find((article) => article.active)?.articlesCount ?? 0, [mainCategories]);
+  const currentPage = useMemo(() => offset / limit + 1, [offset, limit]);
+  // const { currentPage, paginatedData: articlesToShow, handlePageChange } = usePagination(filteredSingleCategoryArticles, limit);
 
   return (
     <section className="w-full flex flex-col gap-3">
-      <Wrapper
-        className={`rounded-[26px] pb-0 bg-white ${loading ? "skeleton" : ""}`}
-      >
+      <Wrapper className={`rounded-[26px] pb-0 bg-white ${loading ? "skeleton" : ""}`}>
         {filteredSingleCategoryArticles?.length > 0 ? (
           <section className="h-[22rem] grid grid-rows-[3rem_1fr_1fr_1fr_1fr]">
             {/* Box Heading */}
@@ -37,26 +32,26 @@ const ArticleReviewBox = ({ type }) => {
             </header>
 
             {/* The Articles */}
-            {articlesToShow?.map((each, index) => {
+            {filteredSingleCategoryArticles?.map((each, index) => {
               return <ArticleDisplay key={index} {...each} type={type} />;
             })}
           </section>
         ) : (
           <Wrapper className="flex flex-col justify-center items-center h-[23rem]">
-            <NoData
-              className="h-24 mb-5 -ml-3 -mt-5"
-              msg="No articles, Create Now!!!"
-            />
+            <NoData className="h-24 mb-5 -ml-3 -mt-5" msg="No articles, Create Now!!!" />
           </Wrapper>
         )}
       </Wrapper>
 
-      {filteredSingleCategoryArticles?.length > 4 && (
+      {totalArticles > 4 && (
         <Pagination
-          total={filteredSingleCategoryArticles?.length}
+          total={totalArticles}
           current={currentPage}
-          pageSize={pageSize}
-          onChange={handlePageChange}
+          pageSize={limit}
+          onChange={(page) => {
+            dispatch(updateOffset((page - 1) * limit));
+          }}
+          // onChange={handlePageChange}
           showSizeChanger={false}
           showQuickJumper={false}
         />

@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Layout, MainContent } from "../../../components/admin/layout";
-import {
-  Container,
-  Wrapper,
-  ArticleReviewBox,
-  DashBoardHeader,
-} from "../../../components/admin";
+import { Container, Wrapper, ArticleReviewBox, DashBoardHeader } from "../../../components/admin";
 import { Search } from "../../../assets/admin/icons/dashboard";
 import { SideMenu } from "../../../components/admin";
 import { Input } from "antd";
@@ -20,12 +15,14 @@ const Main = () => {
   const dispatch = useDispatch();
   const [searchInput, setSearchInput] = useState();
   const { mainCategoryId } = useSelector((store) => store.adminData);
+  const { offset, limit } = useSelector((store) => store.article);
 
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
-
   useEffect(() => {
-    dispatch(getCategoryArticles(mainCategoryId));
-  }, [mainCategoryId]);
+    if (mainCategoryId && offset !== undefined && limit !== undefined) {
+      dispatch(getCategoryArticles({ categoryId: mainCategoryId, offset, limit }));
+    }
+  }, [mainCategoryId, offset, limit, dispatch]); 
 
   const debouncedOnChange = useDebouncedCallback(() => {
     dispatch(filterSubArticles(searchInput));
@@ -40,11 +37,7 @@ const Main = () => {
 
           {/* Main Body */}
           <MainContent>
-            {isAboveMediumScreens ? (
-              <div className="bg-transparent h-8 "></div>
-            ) : (
-              <AddArticle color={true} />
-            )}
+            {isAboveMediumScreens ? <div className="bg-transparent h-8 "></div> : <AddArticle color={true} />}
 
             {/* Search input */}
             <Wrapper padding={"py-2"} className="mb-4 bg-white rounded-lg">

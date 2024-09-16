@@ -1,12 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import {
-  createNewArticle,
-  editArticle,
-  getCategoryArticles,
-  disableArticlesHandler,
-  findSingleArticle,
-} from "./thunkFunctions";
+import { createNewArticle, editArticle, getCategoryArticles, disableArticlesHandler, findSingleArticle } from "./thunkFunctions";
 import { toast } from "react-toastify";
 
 const initialState = {
@@ -22,6 +16,8 @@ const initialState = {
   loading: false,
   error: false,
   message: "",
+  offset: 0,
+  limit: 4,
 };
 
 const articleSlice = createSlice({
@@ -35,8 +31,7 @@ const articleSlice = createSlice({
         return article.title.toLowerCase().includes(search.toLowerCase());
       });
 
-      state.filteredSingleCategoryArticles =
-        search !== "" ? filter : state.singleCategoryArticles;
+      state.filteredSingleCategoryArticles = search !== "" ? filter : state.singleCategoryArticles;
     },
     reset: (state, actions) => {
       state.editing = false;
@@ -50,9 +45,7 @@ const articleSlice = createSlice({
     articleContentHandler: (state, actions) => {
       const content = actions.payload;
       state.content = content;
-      state.editing
-        ? (state.editingArticle = { ...state.editingArticle, body: content })
-        : (state.newArticle = { ...state.newArticle, body: content });
+      state.editing ? (state.editingArticle = { ...state.editingArticle, body: content }) : (state.newArticle = { ...state.newArticle, body: content });
     },
     populateNewArticle: (state, actions) => {
       const form = actions.payload;
@@ -78,13 +71,17 @@ const articleSlice = createSlice({
 
     editContent: (state, actions) => {
       const id = actions.payload;
-      const singleArticleForEdit = state.singleCategoryArticles.find(
-        (article) => {
-          return article.id === id;
-        }
-      );
+      const singleArticleForEdit = state.singleCategoryArticles.find((article) => {
+        return article.id === id;
+      });
       state.editingArticle = { ...singleArticleForEdit };
       state.editing = true;
+    },
+    updateOffset: (state, actions) => {
+      state.offset = actions.payload;
+    },
+    updateLimit: (state, actions) => {
+      state.limit = actions.payload;
     },
   },
   extraReducers: (builder) => {
@@ -164,14 +161,5 @@ const articleSlice = createSlice({
   },
 });
 
-export const {
-  populateNewArticle,
-  filterSubArticles,
-  articleContentHandler,
-  editContent,
-  reset,
-  clearNewArticle,
-  clearContent,
-  populateEditingArticle,
-} = articleSlice.actions;
+export const { populateNewArticle, filterSubArticles, articleContentHandler, editContent, reset, clearNewArticle, clearContent, populateEditingArticle,updateOffset,updateLimit } = articleSlice.actions;
 export default articleSlice.reducer;
