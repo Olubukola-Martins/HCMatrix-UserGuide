@@ -70,6 +70,7 @@ export const getSettings = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const response = await axiosInstance.get("/settings");
+      console.log("all settings", response.data.data[0]);
       return response.data.data[0];
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -100,7 +101,6 @@ export const toggle = createAsyncThunk(
             thunkApi.dispatch(getSettings());
           }
         });
-
       toast.success(`${name} updated successfully`);
       return response.data;
     } catch (error) {

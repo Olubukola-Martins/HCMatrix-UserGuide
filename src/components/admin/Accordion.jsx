@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { FaPen } from "react-icons/fa";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { placeholder, down, upload, link } from "../../assets/admin/icons/settings";
-import { accordionToggler, getSettings } from "../../state/admin/customizationSlice";
+import { accordionToggler } from "../../state/admin/customizationSlice";
 import Wrapper from "./Wrapper";
 import { Form, Upload, Input, Button } from "antd";
 import { toast } from "react-toastify";
 import { uploadImage, sendUrlToBackend } from "../../state/admin/customizationSlice";
+import { useUpdateFooterLinks } from "../../hooks/admin/useUpdateFooterLinks";
 import FormItem from "antd/es/form/FormItem";
 
 const Accordion = ({ name, desc, type, id, toggle }) => {
@@ -19,6 +20,22 @@ const Accordion = ({ name, desc, type, id, toggle }) => {
     },
     [settings]
   );
+  const { loading: updatingFooterLinks, updateFooterLinks } = useUpdateFooterLinks();
+
+  const onFinish = (values) => {
+    const footerLinks = Object.keys(values)
+      .filter((key) => values[key])
+      .map((key) => ({
+        name: key,
+        url: values[key],
+      }));
+
+    if (footerLinks.length === 0) {
+      toast.error("No URL was inputted for change");
+    } else {
+      updateFooterLinks(footerLinks);
+    }
+  };
 
   const closeAccordionHandler = () => {
     dispatch(accordionToggler(id));
@@ -79,38 +96,38 @@ const Accordion = ({ name, desc, type, id, toggle }) => {
       )}
 
       {type === "footer" && toggle && (
-        <Form onFinish={(val) => console.log("form values", val)} className="w-full py-2 px-6 mb-3 rounded-lg flex flex-col gap-5">
+        <Form onFinish={onFinish} className="w-full py-2 px-6 mb-3 rounded-lg flex flex-col gap-5">
           <div className="flex w-full gap-8">
             <Input placeholder="Our Website" size="large" value={"Our Website"} disabled />
-            <FormItem noStyle name={"website"} initialValue={getInitialLink("Our Website")}>
-              <Input placeholder="www.hcmatrix.com" defaultValue={getInitialLink("Our Website")} disabled={footerLinkToEdit === "website"} />
+            <FormItem noStyle name={"website"} initialValue={getInitialLink("website")}>
+              <Input placeholder="http://example-hcmatrix.com" defaultValue={getInitialLink("website")} disabled={!(footerLinkToEdit === "website")} />
             </FormItem>
             <FaPen size={40} className="text-gray-400 cursor-pointer" onClick={() => handleSetFooterLink("website")} />
           </div>
           <div className="flex  w-full gap-8">
             <Input placeholder="Blog" size="large" value={"Blog"} disabled />
-            <FormItem noStyle name={"blog"} initialValue={getInitialLink("Blog")}>
-              <Input placeholder="http//:hcmatrix/blog" defaultValue={getInitialLink("Blog")} disabled={footerLinkToEdit === "blog"} />
+            <FormItem noStyle name={"blog"} initialValue={getInitialLink("blog")}>
+              <Input placeholder="http://example-hcmatrix/blog.com" defaultValue={getInitialLink("blog")} disabled={!(footerLinkToEdit === "blog")} />
             </FormItem>
             <FaPen size={40} className="text-gray-400 cursor-pointer" onClick={() => handleSetFooterLink("blog")} />
           </div>
           <div className="flex  w-full gap-8">
             <Input placeholder="Follow us" size="large" value={"Follow us"} disabled />
-            <FormItem noStyle name={"follow_us"} initialValue={getInitialLink("Follow us")}>
-              <Input placeholder="http//:follow-us/LinkedIn" defaultValue={getInitialLink("Follow us")} disabled={footerLinkToEdit === "follow_us"} />
+            <FormItem noStyle name={"follow_us"} initialValue={getInitialLink("follow_us")}>
+              <Input placeholder="http://example-follow-us/LinkedIn.com" defaultValue={getInitialLink("follow_us")} disabled={!(footerLinkToEdit === "follow_us")} />
             </FormItem>
             <FaPen size={40} className="text-gray-400 cursor-pointer" onClick={() => handleSetFooterLink("follow_us")} />
           </div>
           <div className="flex  w-full gap-8">
             <Input placeholder="Contact us" size="large" value={"Contact us"} disabled />
-            <FormItem noStyle name={"contact_us"} initialValue={getInitialLink("Contact us")}>
-              <Input placeholder="http://contact-us-page" defaultValue={getInitialLink("Contact us")} disabled={footerLinkToEdit === "contact_us"} />
+            <FormItem noStyle name={"contact_us"} initialValue={getInitialLink("contact_us")}>
+              <Input placeholder="http://example-contact-us-page.com" defaultValue={getInitialLink("contact_us")} disabled={!(footerLinkToEdit === "contact_us")} />
             </FormItem>
             <FaPen size={40} className="text-gray-400 cursor-pointer" onClick={() => handleSetFooterLink("contact_us")} />
           </div>
           <FormItem className="self-end">
-            <Button htmlType="submit" className="w-fit text-white font-semibold bg-[#097C37]">
-              Save Changes{" "}
+            <Button htmlType="submit" className="w-fit text-white font-semibold bg-[#097C37]" loading={updatingFooterLinks}>
+              Save Changes
             </Button>
           </FormItem>
         </Form>
